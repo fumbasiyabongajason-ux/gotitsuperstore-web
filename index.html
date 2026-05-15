@@ -633,6 +633,139 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* ============== STORE CARDS ============== */
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.store-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 18px 22px;
+  background: linear-gradient(135deg, #ffffff 0%, #f6f4ee 100%);
+  border: 1px solid #e8e4d8;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 140px;
+}
+.store-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F26B1A, #00A86B);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.store-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(14, 42, 71, 0.08), 0 4px 8px rgba(14, 42, 71, 0.04);
+  border-color: #d4ccb5;
+}
+.store-card:hover::before {
+  opacity: 1;
+}
+.store-icon {
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: transform 0.18s ease;
+}
+.store-card:hover .store-icon {
+  transform: scale(1.08) rotate(-3deg);
+}
+.store-name {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #0E2A47;
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+.store-tag {
+  font-size: 11.5px;
+  color: #788596;
+  font-weight: 500;
+}
+
+/* ============== CATEGORY CARDS — UPGRADED ============== */
+.category-card {
+  background: linear-gradient(135deg, #ffffff 0%, #faf8f2 100%);
+  border: 1px solid #ebe6d5;
+  border-radius: 14px;
+  padding: 22px 16px 18px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  position: relative;
+  cursor: pointer;
+}
+.category-card .category-icon {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 4px;
+  transition: transform 0.18s ease;
+  display: block;
+}
+.category-card .category-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0E2A47;
+  letter-spacing: -0.01em;
+  display: block;
+}
+.category-card .category-count {
+  font-size: 11.5px;
+  color: #788596;
+  font-weight: 500;
+  display: block;
+}
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(14, 42, 71, 0.08);
+  border-color: #F26B1A;
+  background: linear-gradient(135deg, #ffffff 0%, #fff8ee 100%);
+}
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+.category-card.soon {
+  opacity: 0.7;
+}
+.category-card.soon .category-count {
+  color: #F26B1A;
+  font-style: italic;
+  font-weight: 600;
+}
+.category-card.active-filter {
+  border-color: #00A86B;
+  background: linear-gradient(135deg, #ffffff 0%, #ebfaf3 100%);
+  box-shadow: 0 6px 16px rgba(0, 168, 107, 0.18);
+}
+.category-card.active-filter .category-count::after {
+  content: " · click again to clear";
+  font-size: 10px;
+  color: #00A86B;
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  margin-top: 2px;
+}
+
 </style>
 </head>
 <body>
@@ -727,28 +860,91 @@ footer {
   </div>
 </section>
 
+<!-- ============== SHOP BY STORE ============== -->
+<section class="section" id="stores">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Shop direct</div>
+      <h2 class="section-title">Browse <span class="accent">10 trusted stores</span></h2>
+    </div>
+    <span class="section-meta">Direct links · Search & login on the store</span>
+  </div>
+  <div class="stores-grid">
+    <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">📦</div>
+      <div class="store-name">Amazon</div>
+      <div class="store-tag">Global marketplace</div>
+    </a>
+    <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🏪</div>
+      <div class="store-name">Walmart</div>
+      <div class="store-tag">Everyday low prices</div>
+    </a>
+    <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🎯</div>
+      <div class="store-name">Target</div>
+      <div class="store-tag">Style + value</div>
+    </a>
+    <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">⛰️</div>
+      <div class="store-name">REI Co-op</div>
+      <div class="store-tag">Outdoor gear</div>
+    </a>
+    <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🐾</div>
+      <div class="store-name">Chewy</div>
+      <div class="store-tag">Pet supplies</div>
+    </a>
+    <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🎨</div>
+      <div class="store-name">Etsy</div>
+      <div class="store-tag">Handmade &amp; vintage</div>
+    </a>
+    <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🛍️</div>
+      <div class="store-name">eBay</div>
+      <div class="store-tag">Auctions &amp; resale</div>
+    </a>
+    <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">📺</div>
+      <div class="store-name">Best Buy</div>
+      <div class="store-tag">Tech &amp; appliances</div>
+    </a>
+    <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🌏</div>
+      <div class="store-name">AliExpress</div>
+      <div class="store-tag">Global wholesale</div>
+    </a>
+    <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <div class="store-icon">🇿🇦</div>
+      <div class="store-name">Takealot</div>
+      <div class="store-tag">South Africa</div>
+    </a>
+  </div>
+</section>
+
 <!-- ============== CATEGORIES ============== -->
 <section class="section" id="categories">
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Shop by category</div>
-      <h2 class="section-title">12 categories · <span class="accent">handpicked</span></h2>
+      <h2 class="section-title">7 active categories · <span class="accent">handpicked</span></h2>
     </div>
-    <span class="section-meta">Updated daily · 100+ products</span>
+    <span class="section-meta">Click to filter · More coming weekly</span>
   </div>
   <div class="categories">
-    <a href="#deals" class="category-card"><span class="category-icon">🍲</span><span class="category-name">Food &amp; Drink</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">💊</span><span class="category-name">Medicine &amp; Health</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">👗</span><span class="category-name">Clothes &amp; Fashion</span><span class="category-count">10 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">📚</span><span class="category-name">Books</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">🚗</span><span class="category-name">Auto Accessories</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">🏠</span><span class="category-name">Home &amp; Kitchen</span><span class="category-count">10 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">💻</span><span class="category-name">Electronics</span><span class="category-count">10 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">💄</span><span class="category-name">Beauty</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">⛺</span><span class="category-name">Outdoor &amp; Camping</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">🐶</span><span class="category-name">Pets</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">💼</span><span class="category-name">Work &amp; Office</span><span class="category-count">8 deals</span></a>
-    <a href="#deals" class="category-card"><span class="category-icon">🎲</span><span class="category-name">Toys &amp; Games</span><span class="category-count">8 deals</span></a>
+    <a href="#deals" data-category="food-drink" class="category-card soon"><span class="category-icon">🍲</span><span class="category-name">Food &amp; Drink</span><span class="category-count">Coming soon</span></a>
+    <a href="#deals" data-category="medicine-health" class="category-card"><span class="category-icon">💊</span><span class="category-name">Medicine &amp; Health</span><span class="category-count">1 deal</span></a>
+    <a href="#deals" data-category="clothes" class="category-card"><span class="category-icon">👗</span><span class="category-name">Clothes &amp; Fashion</span><span class="category-count">1 deal</span></a>
+    <a href="#deals" data-category="books" class="category-card soon"><span class="category-icon">📚</span><span class="category-name">Books</span><span class="category-count">Coming soon</span></a>
+    <a href="#deals" data-category="auto" class="category-card soon"><span class="category-icon">🚗</span><span class="category-name">Auto Accessories</span><span class="category-count">Coming soon</span></a>
+    <a href="#deals" data-category="home-kitchen" class="category-card"><span class="category-icon">🏠</span><span class="category-name">Home &amp; Kitchen</span><span class="category-count">4 deals</span></a>
+    <a href="#deals" data-category="electronics" class="category-card"><span class="category-icon">💻</span><span class="category-name">Electronics</span><span class="category-count">3 deals</span></a>
+    <a href="#deals" data-category="beauty" class="category-card"><span class="category-icon">💄</span><span class="category-name">Beauty</span><span class="category-count">1 deal</span></a>
+    <a href="#deals" data-category="outdoor" class="category-card"><span class="category-icon">⛺</span><span class="category-name">Outdoor &amp; Camping</span><span class="category-count">1 deal</span></a>
+    <a href="#deals" data-category="pets" class="category-card"><span class="category-icon">🐶</span><span class="category-name">Pets</span><span class="category-count">1 deal</span></a>
+    <a href="#deals" data-category="work-office" class="category-card soon"><span class="category-icon">💼</span><span class="category-name">Work &amp; Office</span><span class="category-count">Coming soon</span></a>
+    <a href="#deals" data-category="toys" class="category-card soon"><span class="category-icon">🎲</span><span class="category-name">Toys &amp; Games</span><span class="category-count">Coming soon</span></a>
   </div>
 </section>
 
@@ -762,51 +958,51 @@ footer {
     <span class="section-meta">Verified prices · Updated weekly</span>
   </div>
   <div class="products">
-    <a href="https://www.amazon.com/s?k=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
       <div class="product-img">🎧<span class="product-badge orange">-30%</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Sony WH-1000XM5 Headphones</span><span class="product-price">$279.99</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=breville+barista+express" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=breville+barista+express" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
       <div class="product-img">☕<span class="product-badge">Best Seller</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Breville Barista Express Espresso</span><span class="product-price">$549.95</span></div>
     </a>
-    <a href="https://www.target.com/s?searchTerm=dyson+airwrap" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.target.com/s?searchTerm=dyson+airwrap" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
       <div class="product-img">💨<span class="product-badge orange">Hot</span></div>
       <div class="product-info"><span class="product-retailer">Target</span><span class="product-name">Dyson Airwrap Complete</span><span class="product-price">$599.99</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=le+creuset+dutch+oven" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=le+creuset+dutch+oven" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
       <div class="product-img">🍳<span class="product-badge">Top Rated</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Le Creuset Dutch Oven 5.5qt</span><span class="product-price">$319.95</span></div>
     </a>
-    <a href="https://www.rei.com/search?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.rei.com/search?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
       <div class="product-img">🧥<span class="product-badge">REI Co-op</span></div>
       <div class="product-info"><span class="product-retailer">REI</span><span class="product-name">Patagonia Better Sweater Jacket</span><span class="product-price">$139.00</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=theragun+mini" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=theragun+mini" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="medicine-health" class="product-card">
       <div class="product-img">💪<span class="product-badge orange">-25%</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Theragun Mini Massage Gun</span><span class="product-price">$149.00</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=yeti+rambler+30oz" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=yeti+rambler+30oz" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="outdoor" class="product-card">
       <div class="product-img">🥤<span class="product-badge">Bundle</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">YETI Rambler 30oz Tumbler</span><span class="product-price">$39.99</span></div>
     </a>
-    <a href="https://www.walmart.com/search?q=samsung+galaxy+tab+s9+fe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.walmart.com/search?q=samsung+galaxy+tab+s9+fe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
       <div class="product-img">📱<span class="product-badge">New</span></div>
       <div class="product-info"><span class="product-retailer">Walmart</span><span class="product-name">Samsung Galaxy Tab S9 FE</span><span class="product-price">$449.99</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=brita+water+pitcher" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=brita+water+pitcher" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
       <div class="product-img">💧<span class="product-badge">Top Rated</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Brita Water Filter Pitcher</span><span class="product-price">$29.99</span></div>
     </a>
-    <a href="https://www.target.com/s?searchTerm=fitbit+inspire" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.target.com/s?searchTerm=fitbit+inspire" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
       <div class="product-img">⌚<span class="product-badge orange">-20%</span></div>
       <div class="product-info"><span class="product-retailer">Target</span><span class="product-name">Fitbit Inspire 3 Fitness Tracker</span><span class="product-price">$79.95</span></div>
     </a>
-    <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="pets" class="product-card">
       <div class="product-img">🐶<span class="product-badge">Autoship</span></div>
       <div class="product-info"><span class="product-retailer">Chewy</span><span class="product-name">Pet Essentials Bundle (35% off)</span><span class="product-price">From $29.99</span></div>
     </a>
-    <a href="https://www.amazon.com/s?k=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="product-card">
+    <a href="https://www.amazon.com/s?k=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
       <div class="product-img">🧊<span class="product-badge">New</span></div>
       <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Cold Brew Coffee Maker 1.5L</span><span class="product-price">$27.99</span></div>
     </a>
@@ -1381,5 +1577,63 @@ footer {
 })();
 </script>
 
+
+<script>
+/* ============== CATEGORY FILTERING ============== */
+(function() {
+  const cats = document.querySelectorAll('.category-card[data-category]');
+  const products = document.querySelectorAll('.product-card[data-category]');
+  const dealsSection = document.getElementById('deals');
+  const dealsHeader = dealsSection ? dealsSection.querySelector('.section-meta') : null;
+  const originalDealsMeta = dealsHeader ? dealsHeader.textContent : '';
+  let currentFilter = null;
+
+  cats.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const cat = this.dataset.category;
+      const isSoon = this.classList.contains('soon');
+
+      // Clear all active filters first
+      document.querySelectorAll('.category-card.active-filter').forEach(c => c.classList.remove('active-filter'));
+
+      // Toggle off if clicking the same one again
+      if (currentFilter === cat) {
+        currentFilter = null;
+        products.forEach(p => { p.style.display = ''; });
+        if (dealsHeader) dealsHeader.textContent = originalDealsMeta;
+      } else {
+        currentFilter = cat;
+        this.classList.add('active-filter');
+
+        let visibleCount = 0;
+        products.forEach(p => {
+          if (p.dataset.category === cat) {
+            p.style.display = '';
+            visibleCount++;
+          } else {
+            p.style.display = 'none';
+          }
+        });
+
+        // Update deals header to show the filter context
+        if (dealsHeader) {
+          const catName = this.querySelector('.category-name').textContent;
+          if (visibleCount === 0) {
+            dealsHeader.textContent = catName + ' deals coming soon · check back weekly';
+          } else {
+            dealsHeader.textContent = 'Showing ' + visibleCount + ' ' + catName + ' deal' + (visibleCount === 1 ? '' : 's');
+          }
+        }
+      }
+
+      // Scroll deals section into view smoothly
+      if (dealsSection) {
+        dealsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
