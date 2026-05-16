@@ -119,6 +119,25 @@ a { color: var(--navy); text-decoration: none; }
 .nav-search {
   flex: 1; max-width: 480px; position: relative;
 }
+.nav-search-shell {
+  position: relative;
+}
+.nav-search-badge {
+  position: absolute;
+  top: -9px;
+  left: 16px;
+  z-index: 2;
+  background: var(--navy);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(14, 42, 71, 0.18);
+}
 .nav-search input {
   width: 100%; height: 42px;
   border: 1.5px solid var(--border);
@@ -138,6 +157,14 @@ a { color: var(--navy); text-decoration: none; }
   transition: all 0.2s;
 }
 .nav-search button:hover { background: var(--orange-bright); transform: scale(1.06); }
+.nav-search-hint {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  padding-left: 18px;
+  font-style: italic;
+  opacity: 0.85;
+}
 .nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; }
 .nav-links a { color: var(--ink-soft); transition: color 0.2s; }
 .nav-links a:hover { color: var(--orange); }
@@ -616,6 +643,120 @@ footer {
 .modal-body strong { color: var(--navy); }
 .modal-body a { color: var(--orange); font-weight: 600; }
 
+/* ============== INQUIRY RECEPTION MODAL ============== */
+.inquiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 42, 71, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.inquiry-modal-overlay.open {
+  display: flex;
+  animation: inquiry-fade 0.18s ease;
+}
+@keyframes inquiry-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.inquiry-modal-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow-lg);
+}
+.inquiry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.inquiry-modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  color: var(--navy);
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+.inquiry-modal-header p {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+.inquiry-modal-close {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.inquiry-modal-close:hover { color: var(--navy); }
+.inquiry-query-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff4ea 0%, #ffe8d5 100%);
+  color: var(--navy);
+  border: 1px solid #ffd0a8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.inquiry-stores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.inquiry-store-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+.inquiry-store-link:hover {
+  border-color: var(--orange);
+  background: #fff8f0;
+  transform: translateY(-1px);
+}
+.inquiry-store-link-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.inquiry-store-link-text { flex: 1; min-width: 0; }
+.inquiry-store-link-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  display: block;
+}
+.inquiry-store-link-tag {
+  font-size: 11.5px;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
 /* ============== RESPONSIVE ============== */
 @media (max-width: 920px) {
   .nav-inner { flex-wrap: wrap; gap: 12px; }
@@ -629,12 +770,119 @@ footer {
   .section { padding: 48px 18px; }
   .why-grid { grid-template-columns: 1fr; }
 }
+@media (max-width: 768px) {
+  .mall-walkway { grid-template-columns: 1fr; gap: 12px; }
+  .mall-floor {
+    min-height: 72px;
+  }
+  .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
+  .mall-floor-arrow { display: none; }
+  /* On mobile the walkway is short; hide the scattered blooms, keep only the planters at the ends */
+  .mall-floor-deco:not(.d1):not(.d10) { display: none; }
+  .mall-floor-deco.d1 { top: 50%; left: 12%; transform: translateY(-50%); font-size: 22px; }
+  .mall-floor-deco.d10 { bottom: auto; top: 50%; left: auto; right: 12%; transform: translateY(-50%); font-size: 22px; }
+}
+@media (max-width: 480px) {
+  .inquiry-stores { grid-template-columns: 1fr; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
-/* ============== STORE CARDS ============== */
+/* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
+.mall-walkway {
+  display: grid;
+  grid-template-columns: 1fr 84px 1fr;
+  gap: 18px;
+  margin-top: 14px;
+  align-items: stretch;
+}
+.mall-aisle {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mall-floor {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 220px;
+  background-color: #f0e4cc;
+  /* Layered: highlight dots at tile centers + diamond/argyle tile pattern + warm cream base */
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 250, 235, 0.55) 0, rgba(255, 250, 235, 0.55) 3px, transparent 4px),
+    linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
+    linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
+    linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
+  background-size: 32px 32px;
+  background-position: 16px 16px, 0 0, 0 16px, 16px -16px, -16px 0;
+  box-shadow:
+    inset 0 4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
+}
+/* Soft vignette so the centre of the walkway feels lit, edges feel shaded */
+.mall-floor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 110, 60, 0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.mall-floor-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+  letter-spacing: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  color: rgba(120, 90, 50, 0.65);
+  text-transform: uppercase;
+  pointer-events: none;
+  background: rgba(255, 250, 235, 0.7);
+  padding: 4px 14px;
+  border-radius: 999px;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
+}
+.mall-floor-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(120, 90, 50, 0.5);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+.mall-floor-arrow.top { top: 14px; }
+.mall-floor-arrow.bottom { bottom: 14px; }
+/* Flowers and planters scattered along the walkway */
+.mall-floor-deco {
+  position: absolute;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  filter: drop-shadow(0 2px 3px rgba(80, 50, 20, 0.25));
+}
+.mall-floor-deco.d1  { top: 4%;   left: 50%; transform: translateX(-50%);                 font-size: 28px; }
+.mall-floor-deco.d2  { top: 14%;  left: 12%; transform: rotate(-15deg);                   font-size: 18px; }
+.mall-floor-deco.d3  { top: 17%;  right: 12%; transform: rotate(12deg);                   font-size: 18px; }
+.mall-floor-deco.d4  { top: 30%;  left: 22%; transform: rotate(8deg);                     font-size: 15px; opacity: 0.92; }
+.mall-floor-deco.d5  { top: 34%;  right: 20%; transform: rotate(-10deg);                  font-size: 15px; opacity: 0.92; }
+.mall-floor-deco.d6  { top: 60%;  left: 14%; transform: rotate(-8deg);                    font-size: 18px; }
+.mall-floor-deco.d7  { top: 63%;  right: 14%; transform: rotate(14deg);                   font-size: 18px; }
+.mall-floor-deco.d8  { bottom: 18%; left: 24%; transform: rotate(-12deg);                 font-size: 15px; opacity: 0.92; }
+.mall-floor-deco.d9  { bottom: 21%; right: 22%; transform: rotate(8deg);                  font-size: 15px; opacity: 0.92; }
+.mall-floor-deco.d10 { bottom: 4%; left: 50%; transform: translateX(-50%);                font-size: 28px; }
+/* Older class kept as fallback for any legacy reference */
 .stores-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -792,10 +1040,14 @@ footer {
       </span>
     </a>
     <div class="nav-search" role="search">
-      <input id="searchInput" type="text" placeholder="Search products, brands, deals…" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Search">
-      <button onclick="doSearch()" aria-label="Search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
+      <div class="nav-search-shell">
+        <span class="nav-search-badge">Inquiry Reception</span>
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 10 stores">
+        <button onclick="doSearch()" aria-label="Submit inquiry">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </div>
+      <div class="nav-search-hint">Tell us what you need — we'll show you which of our 10 stores carry it.</div>
     </div>
     <div class="nav-links">
       <a href="#categories">Shop</a>
@@ -860,66 +1112,86 @@ footer {
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE ============== -->
+<!-- ============== SHOP BY STORE — MALL WALKWAY ============== -->
 <section class="section" id="stores">
   <div class="section-header">
     <div>
-      <div class="section-eyebrow">Shop direct</div>
-      <h2 class="section-title">Browse <span class="accent">10 trusted stores</span></h2>
+      <div class="section-eyebrow">Step inside the mall</div>
+      <h2 class="section-title">Take a stroll through our <span class="accent">10 trusted stores</span></h2>
     </div>
-    <span class="section-meta">Direct links · Search & login on the store</span>
+    <span class="section-meta">5 storefronts on each side · click a sign to enter</span>
   </div>
-  <div class="stores-grid">
-    <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">📦</div>
-      <div class="store-name">Amazon</div>
-      <div class="store-tag">Global marketplace</div>
-    </a>
-    <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🏪</div>
-      <div class="store-name">Walmart</div>
-      <div class="store-tag">Everyday low prices</div>
-    </a>
-    <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🎯</div>
-      <div class="store-name">Target</div>
-      <div class="store-tag">Style + value</div>
-    </a>
-    <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">⛰️</div>
-      <div class="store-name">REI Co-op</div>
-      <div class="store-tag">Outdoor gear</div>
-    </a>
-    <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🐾</div>
-      <div class="store-name">Chewy</div>
-      <div class="store-tag">Pet supplies</div>
-    </a>
-    <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🎨</div>
-      <div class="store-name">Etsy</div>
-      <div class="store-tag">Handmade &amp; vintage</div>
-    </a>
-    <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🛍️</div>
-      <div class="store-name">eBay</div>
-      <div class="store-tag">Auctions &amp; resale</div>
-    </a>
-    <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">📺</div>
-      <div class="store-name">Best Buy</div>
-      <div class="store-tag">Tech &amp; appliances</div>
-    </a>
-    <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🌏</div>
-      <div class="store-name">AliExpress</div>
-      <div class="store-tag">Global wholesale</div>
-    </a>
-    <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <div class="store-icon">🇿🇦</div>
-      <div class="store-name">Takealot</div>
-      <div class="store-tag">South Africa</div>
-    </a>
+  <div class="mall-walkway">
+    <!-- LEFT AISLE -->
+    <div class="mall-aisle mall-aisle-left">
+      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">📦</div>
+        <div class="store-name">Amazon</div>
+        <div class="store-tag">Global marketplace</div>
+      </a>
+      <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🏪</div>
+        <div class="store-name">Walmart</div>
+        <div class="store-tag">Everyday low prices</div>
+      </a>
+      <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🎯</div>
+        <div class="store-name">Target</div>
+        <div class="store-tag">Style + value</div>
+      </a>
+      <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">⛰️</div>
+        <div class="store-name">REI Co-op</div>
+        <div class="store-tag">Outdoor gear</div>
+      </a>
+      <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🐾</div>
+        <div class="store-name">Chewy</div>
+        <div class="store-tag">Pet supplies</div>
+      </a>
+    </div>
+
+    <!-- CENTRE WALKWAY: tiled floor with planters at the ends and scattered blooms -->
+    <div class="mall-floor" aria-hidden="true">
+      <span class="mall-floor-arrow top">▲</span>
+      <span class="mall-floor-label">Walkway</span>
+      <span class="mall-floor-arrow bottom">▼</span>
+      <span class="mall-floor-deco d1">🪴</span>
+      <span class="mall-floor-deco d2">🌷</span>
+      <span class="mall-floor-deco d3">🌸</span>
+      <span class="mall-floor-deco d6">🌺</span>
+      <span class="mall-floor-deco d7">🌼</span>
+      <span class="mall-floor-deco d10">🪴</span>
+    </div>
+
+    <!-- RIGHT AISLE -->
+    <div class="mall-aisle mall-aisle-right">
+      <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🎨</div>
+        <div class="store-name">Etsy</div>
+        <div class="store-tag">Handmade &amp; vintage</div>
+      </a>
+      <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🛍️</div>
+        <div class="store-name">eBay</div>
+        <div class="store-tag">Auctions &amp; resale</div>
+      </a>
+      <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">📺</div>
+        <div class="store-name">Best Buy</div>
+        <div class="store-tag">Tech &amp; appliances</div>
+      </a>
+      <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🌏</div>
+        <div class="store-name">AliExpress</div>
+        <div class="store-tag">Global wholesale</div>
+      </a>
+      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <div class="store-icon">🇿🇦</div>
+        <div class="store-name">Takealot</div>
+        <div class="store-tag">South Africa</div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1351,11 +1623,11 @@ footer {
   </div>
   <div class="contact-grid">
     <div class="contact-info">
-      <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#2c4b435845585f595c495e5f58435e491e181b6c4b414d4540024f4341"><span class="__cf_email__" data-cfemail="0d6a627964797e787d687f7e79627f683f393a4d6a606c6461236e6260">[email&#160;protected]</span></a></p>
+      <p><strong>Contact us:</strong> <a href="#contact">Use the contact form →</a></p>
       <p><strong>Registration:</strong> CIPC Reg. 2023/224652/07</p>
       <p><strong>Country:</strong> South Africa (serving global shoppers)</p>
       <p><strong>Hours:</strong> We respond within 24-48 hours, Mon-Fri.</p>
-      <p style="margin-top: 18px;"><strong style="display:block; min-width:0; margin-bottom:6px;">For partnership / brand inquiries:</strong>Send us a brief intro with your brand, niche, and the product/category you'd like featured. We respond to all inquiries.</p>
+      <p style="margin-top: 18px;"><strong style="display:block; min-width:0; margin-bottom:6px;">For partnership / brand inquiries:</strong>Send us a brief intro with your brand, niche, and the product/category you'd like featured via the contact form. We respond to all inquiries.</p>
     </div>
     <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Your message has been received. We will respond within 24-48 hours.');">
       <div class="form-row">
@@ -1368,6 +1640,21 @@ footer {
     </form>
   </div>
 </section>
+
+<!-- ============== INQUIRY RECEPTION MODAL ============== -->
+<div class="inquiry-modal-overlay" id="inquiry-modal" onclick="if(event.target===this)closeInquiryModal()" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
+  <div class="inquiry-modal-card">
+    <div class="inquiry-modal-header">
+      <div>
+        <h3 id="inquiry-title">Your inquiry — here's where to find it</h3>
+        <p>Pick the store you'd like to check first. Each link opens that store's search in a new tab.</p>
+      </div>
+      <button class="inquiry-modal-close" type="button" onclick="closeInquiryModal()" aria-label="Close">×</button>
+    </div>
+    <span class="inquiry-query-pill"></span>
+    <div class="inquiry-stores"></div>
+  </div>
+</div>
 
 </main>
 
@@ -1459,7 +1746,7 @@ footer {
       <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated "Last Updated" date.</p>
       <h3>10. Contact Us</h3>
       <p>For privacy-related inquiries, data access requests, or complaints:<br>
-      <strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#52353d263b26212722372021263d203760666512353f333b3e7c313d3f"><span class="__cf_email__" data-cfemail="88efe7fce1fcfbfdf8edfafbfce7faedbabcbfc8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></a><br>
+      <strong>Contact us:</strong> <a href="#contact" onclick="closeModal('privacy-modal')">Use the contact form on our homepage →</a><br>
       <strong>Registration:</strong> CIPC 2023/224652/07<br>
       <strong>Information Regulator (South Africa):</strong> <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a></p>
     </div>
@@ -1508,13 +1795,13 @@ footer {
       <h3>8. Governing Law</h3>
       <p>These Terms are governed by and construed in accordance with the laws of the <strong>Republic of South Africa</strong>. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the South African courts.</p>
       <h3>9. Contact</h3>
-      <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#284f475c415c5b5d584d5a5b5c475a4d1a1c1f684f45494144064b4745"><span class="__cf_email__" data-cfemail="c2a5adb6abb6b1b7b2a7b0b1b6adb0a7f0f6f582a5afa3abaeeca1adaf">[email&#160;protected]</span></a><br>
+      <p><strong>Contact us:</strong> <a href="#contact" onclick="closeModal('terms-modal')">Use the contact form on our homepage →</a><br>
       <strong>Registration:</strong> CIPC 2023/224652/07</p>
     </div>
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function () {
   'use strict';
 
@@ -1548,17 +1835,73 @@ footer {
     }
   };
 
-  // ============== SEARCH ==============
+  // ============== INQUIRY RECEPTION ==============
+  // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
+  // we surface all 10 stores so the visitor picks where to look. Every store gets
+  // a real search URL for the visitor's query.
+  var INQUIRY_STORES = [
+    { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
+    { name: 'Walmart',    icon: '🏪', tag: 'Everyday low prices', build: function (q) { return 'https://www.walmart.com/search?q=' + q; } },
+    { name: 'Target',     icon: '🎯', tag: 'Style + value',       build: function (q) { return 'https://www.target.com/s?searchTerm=' + q; } },
+    { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
+    { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
+    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
+    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
+  ];
+
   window.doSearch = function () {
     var input = document.getElementById('searchInput');
     if (!input) return;
     var q = (input.value || '').trim().replace(/[\x00-\x1f]/g, '').slice(0, 200);
     if (!q) { input.focus(); return; }
-    var url = 'https://www.amazon.com/s?k=' + encodeURIComponent(q);
-    try {
-      var w = window.open(url, '_blank', 'noopener,noreferrer');
-      if (w) w.opener = null;
-    } catch (e) { /* no-op */ }
+    showInquiryModal(q);
+  };
+
+  window.showInquiryModal = function (q) {
+    var overlay = document.getElementById('inquiry-modal');
+    if (!overlay) return;
+    var enc = encodeURIComponent(q);
+    var listEl = overlay.querySelector('.inquiry-stores');
+    var queryEl = overlay.querySelector('.inquiry-query-pill');
+    if (queryEl) queryEl.textContent = '“' + q + '”';
+    if (listEl) {
+      listEl.innerHTML = '';
+      INQUIRY_STORES.forEach(function (s) {
+        var a = document.createElement('a');
+        a.href = s.build(enc);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.referrerPolicy = 'strict-origin-when-cross-origin';
+        a.className = 'inquiry-store-link';
+        var iconSpan = document.createElement('span');
+        iconSpan.className = 'inquiry-store-link-icon';
+        iconSpan.textContent = s.icon;
+        var textWrap = document.createElement('span');
+        textWrap.className = 'inquiry-store-link-text';
+        var nameSpan = document.createElement('span');
+        nameSpan.className = 'inquiry-store-link-name';
+        nameSpan.textContent = s.name;
+        var tagSpan = document.createElement('span');
+        tagSpan.className = 'inquiry-store-link-tag';
+        tagSpan.textContent = s.tag;
+        textWrap.appendChild(nameSpan);
+        textWrap.appendChild(tagSpan);
+        a.appendChild(iconSpan);
+        a.appendChild(textWrap);
+        listEl.appendChild(a);
+      });
+    }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeInquiryModal = function () {
+    var overlay = document.getElementById('inquiry-modal');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
   };
 
   // ============== BFCACHE / TAB-BACK BEHAVIOR ==============
