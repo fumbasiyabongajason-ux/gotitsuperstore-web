@@ -777,10 +777,6 @@ footer {
   }
   .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
   .mall-floor-arrow { display: none; }
-  /* On mobile the walkway is short; hide the scattered blooms, keep only the planters at the ends */
-  .mall-floor-deco:not(.d1):not(.d10) { display: none; }
-  .mall-floor-deco.d1 { top: 50%; left: 12%; transform: translateY(-50%); font-size: 22px; }
-  .mall-floor-deco.d10 { bottom: auto; top: 50%; left: auto; right: 12%; transform: translateY(-50%); font-size: 22px; }
 }
 @media (max-width: 480px) {
   .inquiry-stores { grid-template-columns: 1fr; }
@@ -863,25 +859,6 @@ footer {
 }
 .mall-floor-arrow.top { top: 14px; }
 .mall-floor-arrow.bottom { bottom: 14px; }
-/* Flowers and planters scattered along the walkway */
-.mall-floor-deco {
-  position: absolute;
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  z-index: 2;
-  filter: drop-shadow(0 2px 3px rgba(80, 50, 20, 0.25));
-}
-.mall-floor-deco.d1  { top: 4%;   left: 50%; transform: translateX(-50%);                 font-size: 28px; }
-.mall-floor-deco.d2  { top: 14%;  left: 12%; transform: rotate(-15deg);                   font-size: 18px; }
-.mall-floor-deco.d3  { top: 17%;  right: 12%; transform: rotate(12deg);                   font-size: 18px; }
-.mall-floor-deco.d4  { top: 30%;  left: 22%; transform: rotate(8deg);                     font-size: 15px; opacity: 0.92; }
-.mall-floor-deco.d5  { top: 34%;  right: 20%; transform: rotate(-10deg);                  font-size: 15px; opacity: 0.92; }
-.mall-floor-deco.d6  { top: 60%;  left: 14%; transform: rotate(-8deg);                    font-size: 18px; }
-.mall-floor-deco.d7  { top: 63%;  right: 14%; transform: rotate(14deg);                   font-size: 18px; }
-.mall-floor-deco.d8  { bottom: 18%; left: 24%; transform: rotate(-12deg);                 font-size: 15px; opacity: 0.92; }
-.mall-floor-deco.d9  { bottom: 21%; right: 22%; transform: rotate(8deg);                  font-size: 15px; opacity: 0.92; }
-.mall-floor-deco.d10 { bottom: 4%; left: 50%; transform: translateX(-50%);                font-size: 28px; }
 /* Older class kept as fallback for any legacy reference */
 .stores-grid {
   display: grid;
@@ -1151,17 +1128,11 @@ footer {
       </a>
     </div>
 
-    <!-- CENTRE WALKWAY: tiled floor with planters at the ends and scattered blooms -->
+    <!-- CENTRE WALKWAY: clean tiled floor -->
     <div class="mall-floor" aria-hidden="true">
       <span class="mall-floor-arrow top">▲</span>
       <span class="mall-floor-label">Walkway</span>
       <span class="mall-floor-arrow bottom">▼</span>
-      <span class="mall-floor-deco d1">🪴</span>
-      <span class="mall-floor-deco d2">🌷</span>
-      <span class="mall-floor-deco d3">🌸</span>
-      <span class="mall-floor-deco d6">🌺</span>
-      <span class="mall-floor-deco d7">🌼</span>
-      <span class="mall-floor-deco d10">🪴</span>
     </div>
 
     <!-- RIGHT AISLE -->
