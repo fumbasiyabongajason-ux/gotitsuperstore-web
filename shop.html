@@ -885,7 +885,22 @@ footer {
   gap: 12px;
 }
 .mall-floor.has-centre .mall-floor-label {
-  display: none;
+  /* Walkway label sits as a small pill between the welcome mat and the bottom arrow */
+  position: relative;
+  top: auto; left: auto;
+  transform: none;
+  display: inline-block;
+  align-self: center;
+  margin: 0 auto;
+  background: rgba(255, 250, 235, 0.85);
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: rgba(120, 90, 50, 0.65);
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
 }
 .mall-floor.has-centre .mall-floor-arrow {
   position: static;
@@ -1444,7 +1459,7 @@ footer {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll show you which of our 13 stores carry it.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
@@ -1538,6 +1553,7 @@ footer {
           <span class="mat-brand">WELCOME</span>
         </div>
       </div>
+      <span class="mall-floor-label">Walkway</span>
       <span class="mall-floor-arrow bottom">▼</span>
     </div>
 
@@ -1549,11 +1565,11 @@ footer {
         <div class="store-name">Etsy</div>
         <div class="store-tag">Handmade &amp; vintage</div>
       </a>
-      <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon">🛍️</div>
-        <div class="store-name">eBay</div>
-        <div class="store-tag">Auctions &amp; resale</div>
+        <div class="store-icon">🛋️</div>
+        <div class="store-name">IKEA</div>
+        <div class="store-tag">Furniture &amp; home</div>
       </a>
       <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
@@ -1800,7 +1816,7 @@ footer {
     { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
     { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
     { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
     { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
     { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
     { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
