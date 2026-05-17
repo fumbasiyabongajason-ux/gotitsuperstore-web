@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Got It Superstore — Curated Deals from Amazon, Walmart, Target, REI &amp; Chewy</title>
+<title>Got It Superstore — Welcome</title>
 <meta name="description" content="Got It Superstore curates the best deals from Amazon, Walmart, Target, REI, Chewy and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
 <meta name="keywords" content="affiliate deals, Amazon deals, Walmart deals, Target deals, REI deals, Chewy deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -1215,6 +1215,124 @@ footer {
   margin-top: 2px;
 }
 
+
+/* ============== HERO VIDEO LAYOUT ============== */
+.hero-inner-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+  text-align: center;
+}
+.hero-text-centered {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-text-centered .hero-eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 16px 40px rgba(14, 42, 71, 0.18);
+}
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 32px;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(14, 42, 71, 0.65) 100%);
+}
+.hero-video-overlay > * {
+  pointer-events: auto;
+}
+.btn-hop-in-overlay {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  padding: 14px 26px;
+  box-shadow: 0 8px 24px rgba(242, 107, 26, 0.45);
+  animation: hop-pulse 1.8s ease-in-out infinite;
+}
+.btn-hop-in-overlay.visible {
+  display: inline-flex;
+}
+@keyframes hop-pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hero-video-prompt {
+  color: #fff;
+  font-size: 12.5px;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  margin-top: 12px;
+  opacity: 0.85;
+  display: none;
+  text-align: center;
+}
+.hero-video-prompt.visible {
+  display: block;
+}
+.hero-shop .hero-video-wrap {
+  max-width: 1100px;
+}
+
+/* ============== DEALS STATUS HEADER ============== */
+.deals-status-section {
+  padding-bottom: 0;
+}
+.deals-status-card {
+  background: linear-gradient(135deg, #fff8ef 0%, #ffffff 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.deals-status-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.deals-status-pill {
+  background: rgba(0, 168, 107, 0.12);
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 168, 107, 0.3);
+}
+.deals-status-time {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
 </style>
 </head>
 <body>
@@ -1245,7 +1363,7 @@ footer {
 <!-- ============== NAV ============== -->
 <nav class="navbar">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo" aria-label="Got It Superstore home">
+    <a href="index.html" class="nav-logo" aria-label="Got It Superstore home">
       <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#1a3d62" stroke-width="2"/>
         <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -1267,574 +1385,49 @@ footer {
       <div class="nav-search-hint">Tell us what you need — we'll show you which of our 13 stores carry it.</div>
     </div>
     <div class="nav-links">
-      <a href="#categories">Shop</a>
-      <a href="#deals">Deals</a>
-      <a href="#blog">Blog</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="categories.html">Shop</a>
+      <a href="deals.html">Deals</a>
+      <a href="categories.html#blog">Blog</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
     </div>
   </div>
 </nav>
 
 <main id="main-content">
 
-<!-- ============== HERO ============== -->
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-eyebrow">Verified deals · Updated daily</div>
-      <h1>Find the <span class="accent">best deals</span> in every <span class="accent-green">category</span></h1>
-      <p class="lead">Got It Superstore curates top-rated products from Amazon, Walmart, Target, REI, Chewy and more — so you always get the best value at zero cost to you.</p>
-      <div class="hero-buttons">
-        <a class="btn btn-primary" href="#categories">Browse Deals</a>
-        <a class="btn btn-secondary" href="#deals">Exclusive Deals</a>
-      </div>
-      <div class="hero-trust">
-        <span class="hero-trust-label">Curating from</span>
-        <div class="hero-trust-logos">
-          <span>amazon</span><span>Walmart</span><span>Target</span><span>REI</span><span>Chewy</span>
-        </div>
+<!-- ============== HERO (HOME) ============== -->
+<section class="hero hero-home" id="home">
+  <div class="hero-inner hero-inner-stacked">
+    <div class="hero-text hero-text-centered">
+      <div class="hero-eyebrow">Trusted Everyday</div>
+      <h1>Welcome to <span class="accent">Got It Superstore</span></h1>
+      <p class="lead">Watch how easy shopping can be — then tap <strong>Hop in</strong> to walk through our mall of 13 trusted stores.</p>
+    </div>
+    <div class="hero-video-wrap">
+      <video class="hero-video"
+             id="hero-arrival-video"
+             src="media/hero-arrival.mp4"
+             playsinline
+             muted
+             autoplay
+             preload="metadata"
+             aria-label="Got It Superstore arrival commercial — couple greeted by the manager at the mall entrance">
+        Your browser does not support embedded video.
+      </video>
+      <div class="hero-video-overlay" id="hero-video-overlay" aria-hidden="true">
+        <button class="btn btn-primary btn-hop-in btn-hop-in-overlay" id="hop-in-button" type="button" onclick="window.location.href='shop.html'">
+          <span style="font-size:20px;line-height:1">🚪</span>
+          <span>Hop in</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <p class="hero-video-prompt" id="hero-video-prompt">Tap Hop in when you're ready</p>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hero-card-grid">
-          <div class="hero-deal">
-            <span class="hero-deal-emoji">🎧</span>
-            <span class="hero-deal-tag">-30%</span>
-            <span class="hero-deal-name">Sony WH-1000XM5</span>
-            <span class="hero-deal-price"><span class="now">$279</span><span class="was">$399</span></span>
-          </div>
-          <div class="hero-deal">
-            <span class="hero-deal-emoji">☕</span>
-            <span class="hero-deal-tag">-25%</span>
-            <span class="hero-deal-name">Breville Barista Express</span>
-            <span class="hero-deal-price"><span class="now">$549</span><span class="was">$729</span></span>
-          </div>
-          <div class="hero-deal">
-            <span class="hero-deal-emoji">🍳</span>
-            <span class="hero-deal-tag">-20%</span>
-            <span class="hero-deal-name">Le Creuset Dutch Oven</span>
-            <span class="hero-deal-price"><span class="now">$319</span><span class="was">$399</span></span>
-          </div>
-          <div class="hero-deal">
-            <span class="hero-deal-emoji">⌚</span>
-            <span class="hero-deal-tag">New</span>
-            <span class="hero-deal-name">Fitbit Inspire 3</span>
-            <span class="hero-deal-price"><span class="now">$79.95</span><span class="was">$99.95</span></span>
-          </div>
-        </div>
-      </div>
+    <div class="hero-buttons" style="justify-content:center;margin-top:24px">
+      <a class="btn btn-secondary" href="categories.html">Browse Curated</a>
+      <a class="btn btn-secondary" href="deals.html">Today's Deals</a>
     </div>
-  </div>
-</section>
-
-<!-- ============== SHOP BY STORE — MALL WALKWAY ============== -->
-<section class="section" id="stores">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
-    </div>
-    <span class="section-meta">6 storefronts each side + 1 featured in the centre · every door is OPEN</span>
-  </div>
-  <div class="mall-walkway">
-    <!-- LEFT AISLE — 6 storefronts -->
-    <div class="mall-aisle mall-aisle-left">
-      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">📦</div>
-        <div class="store-name">Amazon</div>
-        <div class="store-tag">Global marketplace</div>
-      </a>
-      <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🏪</div>
-        <div class="store-name">Walmart</div>
-        <div class="store-tag">Everyday low prices</div>
-      </a>
-      <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🎯</div>
-        <div class="store-name">Target</div>
-        <div class="store-tag">Style + value</div>
-      </a>
-      <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">⛰️</div>
-        <div class="store-name">REI Co-op</div>
-        <div class="store-tag">Outdoor gear</div>
-      </a>
-      <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🐾</div>
-        <div class="store-name">Chewy</div>
-        <div class="store-tag">Pet supplies</div>
-      </a>
-      <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🍎</div>
-        <div class="store-name">Apple</div>
-        <div class="store-tag">Premium electronics</div>
-      </a>
-    </div>
-
-    <!-- CENTRE WALKWAY: welcome mat, fish-bowl planters, and a featured centre store -->
-    <div class="mall-floor has-centre">
-      <span class="mall-floor-arrow top">▲</span>
-
-      <div class="mall-welcome-mat">
-        <span class="mat-eyebrow">Welcome to</span>
-        <span class="mat-brand">GOT IT SUPERSTORE</span>
-        <span class="mat-welcome">Mind your step · trusted everyday</span>
-      </div>
-
-      <div class="fish-planter" aria-label="Decorative fishbowl planter">
-        <span class="planter-greenery">🌿</span>
-        <span class="planter-greenery">🌱</span>
-      </div>
-
-      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-centre-store">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛒</div>
-        <div class="store-name">Costco</div>
-        <div class="store-tag">Members-only wholesale</div>
-      </a>
-
-      <div class="fish-planter" aria-label="Decorative fishbowl planter">
-        <span class="planter-greenery">🌿</span>
-        <span class="planter-greenery">🌱</span>
-      </div>
-
-      <span class="mall-floor-arrow bottom">▼</span>
-    </div>
-
-    <!-- RIGHT AISLE — 6 storefronts -->
-    <div class="mall-aisle mall-aisle-right">
-      <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🎨</div>
-        <div class="store-name">Etsy</div>
-        <div class="store-tag">Handmade &amp; vintage</div>
-      </a>
-      <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛍️</div>
-        <div class="store-name">eBay</div>
-        <div class="store-tag">Auctions &amp; resale</div>
-      </a>
-      <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">📺</div>
-        <div class="store-name">Best Buy</div>
-        <div class="store-tag">Tech &amp; appliances</div>
-      </a>
-      <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🌏</div>
-        <div class="store-name">AliExpress</div>
-        <div class="store-tag">Global wholesale</div>
-      </a>
-      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🇿🇦</div>
-        <div class="store-name">Takealot</div>
-        <div class="store-tag">South Africa</div>
-      </a>
-      <a href="https://www.nike.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">👟</div>
-        <div class="store-name">Nike</div>
-        <div class="store-tag">Sportswear &amp; sneakers</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============== CATEGORIES ============== -->
-<section class="section" id="categories">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Shop by category</div>
-      <h2 class="section-title">7 active categories · <span class="accent">handpicked</span></h2>
-    </div>
-    <span class="section-meta">Click to filter · More coming weekly</span>
-  </div>
-  <div class="categories">
-    <a href="#deals" data-category="food-drink" class="category-card soon"><span class="category-icon">🍲</span><span class="category-name">Food &amp; Drink</span><span class="category-count">Coming soon</span></a>
-    <a href="#deals" data-category="medicine-health" class="category-card"><span class="category-icon">💊</span><span class="category-name">Medicine &amp; Health</span><span class="category-count">1 deal</span></a>
-    <a href="#deals" data-category="clothes" class="category-card"><span class="category-icon">👗</span><span class="category-name">Clothes &amp; Fashion</span><span class="category-count">1 deal</span></a>
-    <a href="#deals" data-category="books" class="category-card soon"><span class="category-icon">📚</span><span class="category-name">Books</span><span class="category-count">Coming soon</span></a>
-    <a href="#deals" data-category="auto" class="category-card soon"><span class="category-icon">🚗</span><span class="category-name">Auto Accessories</span><span class="category-count">Coming soon</span></a>
-    <a href="#deals" data-category="home-kitchen" class="category-card"><span class="category-icon">🏠</span><span class="category-name">Home &amp; Kitchen</span><span class="category-count">4 deals</span></a>
-    <a href="#deals" data-category="electronics" class="category-card"><span class="category-icon">💻</span><span class="category-name">Electronics</span><span class="category-count">3 deals</span></a>
-    <a href="#deals" data-category="beauty" class="category-card"><span class="category-icon">💄</span><span class="category-name">Beauty</span><span class="category-count">1 deal</span></a>
-    <a href="#deals" data-category="outdoor" class="category-card"><span class="category-icon">⛺</span><span class="category-name">Outdoor &amp; Camping</span><span class="category-count">1 deal</span></a>
-    <a href="#deals" data-category="pets" class="category-card"><span class="category-icon">🐶</span><span class="category-name">Pets</span><span class="category-count">1 deal</span></a>
-    <a href="#deals" data-category="work-office" class="category-card soon"><span class="category-icon">💼</span><span class="category-name">Work &amp; Office</span><span class="category-count">Coming soon</span></a>
-    <a href="#deals" data-category="toys" class="category-card soon"><span class="category-icon">🎲</span><span class="category-name">Toys &amp; Games</span><span class="category-count">Coming soon</span></a>
-  </div>
-</section>
-
-<!-- ============== EXCLUSIVE DEALS (BENTO GRID) ============== -->
-<section class="section" id="deals">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Editor's picks · This week</div>
-      <h2 class="section-title">Exclusive <span class="accent">deals</span></h2>
-    </div>
-    <span class="section-meta">Verified prices · Updated weekly</span>
-  </div>
-  <div class="products">
-    <a href="https://www.amazon.com/s?k=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">🎧<span class="product-badge orange">-30%</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Sony WH-1000XM5 Headphones</span><span class="product-price">$279.99</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=breville+barista+express" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">☕<span class="product-badge">Best Seller</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Breville Barista Express Espresso</span><span class="product-price">$549.95</span></div>
-    </a>
-    <a href="https://www.target.com/s?searchTerm=dyson+airwrap" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
-      <div class="product-img">💨<span class="product-badge orange">Hot</span></div>
-      <div class="product-info"><span class="product-retailer">Target</span><span class="product-name">Dyson Airwrap Complete</span><span class="product-price">$599.99</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=le+creuset+dutch+oven" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">🍳<span class="product-badge">Top Rated</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Le Creuset Dutch Oven 5.5qt</span><span class="product-price">$319.95</span></div>
-    </a>
-    <a href="https://www.rei.com/search?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
-      <div class="product-img">🧥<span class="product-badge">REI Co-op</span></div>
-      <div class="product-info"><span class="product-retailer">REI</span><span class="product-name">Patagonia Better Sweater Jacket</span><span class="product-price">$139.00</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=theragun+mini" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="medicine-health" class="product-card">
-      <div class="product-img">💪<span class="product-badge orange">-25%</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Theragun Mini Massage Gun</span><span class="product-price">$149.00</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=yeti+rambler+30oz" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="outdoor" class="product-card">
-      <div class="product-img">🥤<span class="product-badge">Bundle</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">YETI Rambler 30oz Tumbler</span><span class="product-price">$39.99</span></div>
-    </a>
-    <a href="https://www.walmart.com/search?q=samsung+galaxy+tab+s9+fe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">📱<span class="product-badge">New</span></div>
-      <div class="product-info"><span class="product-retailer">Walmart</span><span class="product-name">Samsung Galaxy Tab S9 FE</span><span class="product-price">$449.99</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=brita+water+pitcher" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">💧<span class="product-badge">Top Rated</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Brita Water Filter Pitcher</span><span class="product-price">$29.99</span></div>
-    </a>
-    <a href="https://www.target.com/s?searchTerm=fitbit+inspire" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">⌚<span class="product-badge orange">-20%</span></div>
-      <div class="product-info"><span class="product-retailer">Target</span><span class="product-name">Fitbit Inspire 3 Fitness Tracker</span><span class="product-price">$79.95</span></div>
-    </a>
-    <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="pets" class="product-card">
-      <div class="product-img">🐶<span class="product-badge">Autoship</span></div>
-      <div class="product-info"><span class="product-retailer">Chewy</span><span class="product-name">Pet Essentials Bundle (35% off)</span><span class="product-price">From $29.99</span></div>
-    </a>
-    <a href="https://www.amazon.com/s?k=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">🧊<span class="product-badge">New</span></div>
-      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Cold Brew Coffee Maker 1.5L</span><span class="product-price">$27.99</span></div>
-    </a>
-  </div>
-</section>
-
-<!-- ============== BLOG ============== -->
-<section class="section" id="blog">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Deal Insider · Editorial</div>
-      <h2 class="section-title">Tips, guides, and <span class="accent">strategies</span></h2>
-    </div>
-    <span class="section-meta">8 fresh reads · Updated weekly</span>
-  </div>
-  <div class="blog-grid">
-
-    <!-- POST 1: Amazon Prime -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-7">
-        <span class="blog-cover-tag">Amazon</span>
-        <span class="blog-cover-emoji">📦</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Amazon</span><span>·</span><span>May 2, 2026</span><span>·</span><span>9 min read</span></div>
-        <h3 class="blog-title">Why Amazon Prime is Worth It in 2026: A Member's Guide</h3>
-        <p class="blog-excerpt">Free same-day shipping, Prime Video, exclusive Lightning Deals, Whole Foods savings — we break down whether the $139/year membership pays for itself in 2026.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>Amazon Prime in 2026 is no longer just about two-day shipping. The membership has evolved into a multi-benefit ecosystem that, when used fully, delivers far more than its $139/year price tag. We tracked our usage across nine months and found the average household saves $340-$580 a year — assuming you actually claim the benefits.</p>
-          <h4>The shipping math still wins</h4>
-          <p>The headline benefit: free same-day or one-day delivery on millions of items. If you place even three orders a month that would otherwise cost $7-$12 in shipping, Prime pays for itself in shipping alone. In 2026, Amazon expanded same-day delivery to over 90% of US zip codes — meaning that "I need it today" emergency purchase no longer costs $14.99 in expedited fees.</p>
-          <h4>Streaming + audio that punches above its weight</h4>
-          <p>Prime Video's 2026 lineup is genuinely strong: <em>Citadel S2</em>, <em>Project Hail Mary</em> (post-theatrical), the <em>Reacher</em> universe, NFL Thursday Night Football, and a rotating cast of indie award winners. Standalone Prime Video membership runs $8.99/month — already $107/year — which means everything else is essentially free if you watch anything at all. Add Amazon Music (100M songs, ad-free), and it gets even better.</p>
-          <h4>The hidden levers most members never touch</h4>
-          <ul>
-            <li><strong>Whole Foods Prime Member discounts:</strong> 10% off sale items + member-exclusive deeper cuts. We tracked $48/month in grocery savings.</li>
-            <li><strong>Amazon Photos:</strong> unlimited full-resolution photo storage. If you'd otherwise pay $9.99/month for iCloud or Google One, that's a clean $120/year.</li>
-            <li><strong>Prime Reading + Kindle First:</strong> rotating library of free ebooks, plus one free Kindle First book monthly.</li>
-            <li><strong>Prescription Discounts:</strong> RxPass + Prime Rx savings can knock 50-80% off select medications.</li>
-            <li><strong>Try Before You Buy:</strong> ship clothing home, try it for 7 days, return what you don't want — no shipping or return fees.</li>
-          </ul>
-          <h4>Where it falls short</h4>
-          <p>Three honest caveats. One: shipping speed in rural and international markets still varies. Two: Lightning Deals require time investment to spot the real bargains. Three: the platform is intentionally sticky — designed to make non-members feel friction.</p>
-          <h4>Verdict</h4>
-          <p>If you order from Amazon at least twice a month, watch any Prime Video content, or shop at Whole Foods, Prime pays for itself in 60-90 days. <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer">Sign up for the 30-day free trial</a> to test it without commitment — most users who try it don't cancel. We've tracked our subscription for 7 years; it remains our highest-ROI annual fee.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 2: Walmart vs Target -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-8">
-        <span class="blog-cover-tag">Walmart vs Target</span>
-        <span class="blog-cover-emoji">🛒</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Comparison</span><span>·</span><span>Apr 30, 2026</span><span>·</span><span>8 min read</span></div>
-        <h3 class="blog-title">Walmart vs. Target: Which Big-Box Has Better Online Deals?</h3>
-        <p class="blog-excerpt">We tracked 50 identical products across both retailers for six weeks. The results surprised us: each store wins decisively in different categories.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>The Walmart-vs-Target debate has lived rent-free in American households for two decades. In 2026, both stores have aggressive online affiliate programs and overlapping inventory, but the price differences across categories are larger than most shoppers realize. We tracked 50 identical SKUs across both retailers for six straight weeks and ran the numbers.</p>
-          <h4>Walmart wins decisively on: groceries, electronics, household basics</h4>
-          <p>Walmart's grocery pricing was 8-14% cheaper on average across our basket of 20 staple items. Their everyday electronics deals (TVs, laptops, tablets) consistently undercut Target by 5-12% on identical models. For commodity household items like paper towels, cleaning supplies, and pantry staples, Walmart was the clear value leader 4 weeks out of 6.</p>
-          <h4>Target wins decisively on: home decor, fashion, beauty, kids</h4>
-          <p>Target's exclusive brand collaborations (Magnolia, Hearth &amp; Hand, A New Day, Cat &amp; Jack) deliver design quality you cannot match at Walmart at any price point. Target's online beauty deals — especially during their quarterly Beauty Sale events — beat Walmart by an average of 18%. Their kids' clothing and accessories ran 12-16% cheaper for comparable quality. Target Circle (their free loyalty program) layers an additional 1-5% on top.</p>
-          <h4>Where they tie: brand-name goods</h4>
-          <p>Big-name brands (KitchenAid, Sony, Dyson, Apple, etc.) often hit identical sale prices at both retailers within 24-48 hours of each other. The tiebreaker becomes shipping speed, free-pickup availability, and which loyalty program you already have.</p>
-          <h4>The Circle vs Walmart+ math</h4>
-          <ul>
-            <li><strong>Walmart+</strong> ($98/year): free same-day delivery, fuel discounts, Paramount+ included, mobile scan-and-go in-store. Best for high-volume shoppers.</li>
-            <li><strong>Target Circle 360</strong> ($99/year): free same-day delivery from Target + Apple, 5% off most purchases, free returns. Best for design-conscious shoppers and parents.</li>
-          </ul>
-          <h4>Our recommendation</h4>
-          <p>Use both. Set <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer">Walmart</a> for groceries + electronics + commodities, and <a href="https://www.target.com" target="_blank" rel="noopener noreferrer">Target</a> for home, fashion, beauty, and kids. The minor friction of comparing two carts is worth $400-$700 a year for the average household.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 3: REI -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-3">
-        <span class="blog-cover-tag">REI Co-op</span>
-        <span class="blog-cover-emoji">⛺</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>REI</span><span>·</span><span>Apr 28, 2026</span><span>·</span><span>10 min read</span></div>
-        <h3 class="blog-title">REI Co-op: The Insider's Guide to Outdoor Gear &amp; Member Dividends</h3>
-        <p class="blog-excerpt">A one-time $30 fee, 10% back annually as a Member Dividend, exclusive Garage Sales, and the most generous return policy in retail. Here's how to maximize REI in 2026.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>REI is the smartest membership in retail and almost nobody talks about it. For a one-time $30 lifetime fee, you become a co-op member and earn 10% back on most purchases as an annual Member Dividend. After your first $300 in spending, you've already broken even. Most active outdoor families earn $200-$600 in dividends annually.</p>
-          <h4>Why REI's pricing structure is uniquely shopper-friendly</h4>
-          <p>REI is a consumer cooperative, not a public company. Profits flow back to members instead of shareholders, which is why dividends, sales, and the legendary return policy exist in the first place. Their staff (called "green vests") are subject-matter experts who actually use the gear they sell — often the best free buying advice you can get.</p>
-          <h4>The events that keep REI Members rich</h4>
-          <ul>
-            <li><strong>Anniversary Sale (May):</strong> the biggest sale of the year. Most clothing 25-40% off, plus extra member coupons.</li>
-            <li><strong>Member Days (March + October):</strong> exclusive 20% off one full-price item plus 20% off REI Outlet.</li>
-            <li><strong>Garage Sales (in-store, monthly):</strong> Members-only access to deeply discounted returned and floor-model gear. Bring patience and arrive early.</li>
-            <li><strong>REI Outlet:</strong> off-season and discontinued gear at 20-50% off. Members get free shipping over $50.</li>
-            <li><strong>Re/Supply Used Gear:</strong> traded-in equipment graded and resold at 30-70% off retail.</li>
-          </ul>
-          <h4>The return policy is unmatched</h4>
-          <p>One year, no questions asked. Boots that hurt? Return them. Tent that leaked on the trip? Return it. Jacket that didn't fit right after a season? Return it. This is the strongest consumer guarantee in retail and dramatically lowers the risk of buying expensive gear sight-unseen.</p>
-          <h4>Brands worth paying full price for at REI</h4>
-          <p>Patagonia, Arc'teryx, Black Diamond, Osprey, and Smartwool rarely go on sale anywhere else. When they do, REI's pricing typically matches or beats Backcountry and Moosejaw, plus you get the dividend on top. <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer">Browse the REI Co-op shop</a> to see current deals and sign up for the membership in checkout.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 4: Chewy -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-5">
-        <span class="blog-cover-tag">Chewy</span>
-        <span class="blog-cover-emoji">🐶</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Pets</span><span>·</span><span>Apr 26, 2026</span><span>·</span><span>7 min read</span></div>
-        <h3 class="blog-title">Chewy Autoship: How to Save 35% on Pet Essentials Year-Round</h3>
-        <p class="blog-excerpt">35% off your first Autoship, 5% off recurring orders, free shipping over $49, and 24/7 vet chat that's actually useful. Here's the full Chewy playbook.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>If you have a pet and you're not on Chewy Autoship, you're paying retail for predictable, repeating purchases. Autoship is Chewy's recurring-delivery program — set up your dog food, cat litter, monthly flea/tick prevention, or reptile substrate, and they ship automatically on whatever cadence you set, with discounts that stack.</p>
-          <h4>How the discounts actually work</h4>
-          <ul>
-            <li><strong>First Autoship order:</strong> 35% off (capped at $20 — best to use on a high-priced item like a 30-lb bag of premium kibble).</li>
-            <li><strong>Recurring orders:</strong> 5% off every subsequent shipment, automatically.</li>
-            <li><strong>Free shipping:</strong> $49+ orders ship free, with most Autoship cycles arriving in 1-3 days from regional fulfillment centers.</li>
-            <li><strong>Multi-pet households:</strong> bundle multiple Autoships to one delivery to clear the $49 threshold and avoid extra trips.</li>
-          </ul>
-          <h4>What's actually a good deal on Chewy</h4>
-          <p>Premium dog and cat food brands (Hill's Science Diet, Royal Canin, Blue Buffalo, Wellness, Purina Pro Plan) consistently price 8-15% cheaper than Petco/PetSmart and even Amazon. Prescription diets — which require veterinary authorization — are often the cheapest of any retailer. Cat litter (especially in 35-lb+ formats) is a major value: Chewy's cost-per-pound undercuts most grocery and big-box stores.</p>
-          <h4>The vet chat is genuinely valuable</h4>
-          <p>Chewy Connects with a Vet (free for Autoship members) is a 24/7 chat with licensed veterinarians and vet techs. Useful for: "my dog ate something, is this an emergency?", med dosage questions, and behavioral guidance — saving an emergency-vet trip that runs $250-$500.</p>
-          <h4>Pro tips most pet parents miss</h4>
-          <ul>
-            <li>You can <strong>skip or pause</strong> any Autoship cycle without canceling — useful for trips or temporary food rotations.</li>
-            <li>Chewy will <strong>refund + donate</strong> opened/expired food rather than make you ship it back. Generous policy.</li>
-            <li><strong>Sympathy cards and flowers</strong> are sent automatically when a pet passes — small but meaningful.</li>
-            <li><strong>Pharmacy</strong> (separate Chewy Pharmacy section) is licensed in all 50 states and often beats vet office pricing on chronic medications by 30-60%.</li>
-          </ul>
-          <p>The math is simple: if you spend $80+/month on pet supplies, Autoship saves $200-$500 a year. <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer">Browse Chewy</a> to set up your first 35% off Autoship.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 5: Existing — Groceries -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-3">
-        <span class="blog-cover-tag">Savings tips</span>
-        <span class="blog-cover-emoji">💰</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Groceries</span><span>·</span><span>Apr 28, 2026</span><span>·</span><span>8 min read</span></div>
-        <h3 class="blog-title">10 Ways to Save on Groceries in 2026</h3>
-        <p class="blog-excerpt">From bulk buying to cashback apps to store-brand swaps, these proven strategies can cut your food bill by up to 40% — without sacrificing quality.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>Grocery inflation in 2024-2025 priced millions of households out of comfortable shopping habits. The 2026 environment is more stable but still elevated — meaning the strategies you used pre-pandemic no longer cut it. We've spent two years testing every grocery-savings tactic on our families' actual receipts. These ten strategies, used in combination, consistently cut bills by 25-40%.</p>
-          <h4>1. Buy store brands on commodity items</h4>
-          <p>Salt, sugar, flour, baking soda, frozen vegetables, plain pasta, canned tomatoes — there is virtually no quality difference between name brand and store brand on these basics. Costco's Kirkland, Walmart's Great Value, Target's Good &amp; Gather, and Aldi house brands all deliver identical or better quality at 30-50% less.</p>
-          <h4>2. Shop the perimeter, then list-only down the middle</h4>
-          <p>The perimeter (produce, meat, dairy, bread) is where you make the meal. The interior aisles (snacks, processed foods, beverages) are where unplanned spending happens. Make a list of exactly what you need from interior aisles and don't deviate.</p>
-          <h4>3. Use cashback stacking</h4>
-          <p>Layer (a) credit card grocery rewards (Amex Gold = 4x, Citi Custom Cash = 5%), (b) cashback apps (Rakuten, Ibotta, Fetch Rewards), and (c) store loyalty programs. Done right, this stacks to 8-12% effective rebate on every grocery dollar.</p>
-          <h4>4. Bulk buy what you'll actually use</h4>
-          <p>Costco and Sam's Club shine on shelf-stable staples (rice, beans, oats, oil, spices, cereal) and meat. They lose on fresh produce unless you have storage and family size to match. Calculate cost-per-unit before assuming bulk wins.</p>
-          <h4>5. Plan meals around what's on sale</h4>
-          <p>Reverse the order: scan weekly circulars first, build the menu around discounts second. Apps like Flipp aggregate every store's circular in your area. A 20-minute Sunday plan saves $40-$80 weekly.</p>
-          <h4>6. Frozen + canned vegetables are nutritionally equivalent</h4>
-          <p>Frozen vegetables are often picked at peak ripeness and flash-frozen, so nutritional content matches or beats fresh. They cost half as much and never go bad before you use them.</p>
-          <h4>7. Cook ONE big-batch meal weekly</h4>
-          <p>Soups, chilis, stews, casseroles, grain bowls. One pot covers 4-6 dinners and 2-3 lunches. Per-serving cost typically lands at $1.50-$3.00 vs. $8-$12 for delivery.</p>
-          <h4>8. Use cashback shopping portals for online grocery</h4>
-          <p>Amazon Fresh, Walmart Grocery, Target Drive Up, Whole Foods (Prime), and Instacart all integrate with cashback portals. Going through Rakuten or Ibotta first adds 1-5% on top.</p>
-          <h4>9. Audit "convenience tax"</h4>
-          <p>Pre-cut vegetables, single-serve packets, and grab-and-go meals carry a 200-400% markup. Buy whole and prep yourself when time allows.</p>
-          <h4>10. Track actual spend monthly</h4>
-          <p>You can't optimize what you don't measure. Whether spreadsheet or app (Mint, YNAB, Copilot), seeing your monthly grocery total in one place reveals patterns you'll never spot at checkout. <a href="https://www.amazon.com/s?k=meal+planner+notebook" target="_blank" rel="noopener noreferrer">A simple meal-planning notebook</a> often pays for itself in week one.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 6: Existing — Laptops -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-1">
-        <span class="blog-cover-tag">Tech deals</span>
-        <span class="blog-cover-emoji">💻</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Electronics</span><span>·</span><span>Apr 22, 2026</span><span>·</span><span>9 min read</span></div>
-        <h3 class="blog-title">Best Budget Laptops Under $500 in 2026</h3>
-        <p class="blog-excerpt">We tested 12 affordable laptops across Amazon, Walmart, and Target to find the best options for students, freelancers, and families on tight budgets.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>Sub-$500 laptops in 2026 are dramatically better than they were even two years ago. ARM chips, AI-accelerated processors, and aggressive Chromebook competition have pushed Windows OEMs to ship genuinely capable hardware at entry prices. Here's what we recommend after 60+ hours of hands-on testing.</p>
-          <h4>Best overall: Acer Aspire 5 (15.6", Ryzen 5 7530U) — $479 at Walmart</h4>
-          <p>The all-around king under $500. Solid keyboard, full-HD display, 8GB RAM upgradeable to 16GB, fast SSD, and an honest 8-9 hours of real-world battery life. Ryzen 5 7530U handles everything short of demanding gaming or 4K video editing. Great for students, remote workers, and family use.</p>
-          <h4>Best for students: HP Pavilion x360 (14", Intel Core i3-N305) — $429 at Target</h4>
-          <p>The 360-degree hinge turns it into a tablet for note-taking; touch screen is responsive; 8GB RAM and 256GB SSD are adequate for typical coursework. Battery life lands around 9 hours on light use. Pen support is a meaningful upgrade for anyone taking handwritten notes.</p>
-          <h4>Best Chromebook: Lenovo IdeaPad Flex 5i Chromebook — $389 at Amazon</h4>
-          <p>If your computing life lives in Google Workspace or browser apps, ChromeOS gives you a faster, more secure, longer-lasting laptop than equivalent Windows hardware. The Flex 5i has the best keyboard at this price, a 1080p touchscreen, and 12+ hours of real battery life.</p>
-          <h4>Best ultra-portable: ASUS Vivobook Go 14 — $349 at Walmart</h4>
-          <p>If you need a true travel laptop and don't want to spend MacBook money, the Vivobook Go 14 weighs 3.2 lbs, runs cool, and handles 90% of office workflows comfortably.</p>
-          <h4>Avoid these traps</h4>
-          <ul>
-            <li><strong>4GB RAM laptops.</strong> Even at $250, they will frustrate you within six months. 8GB is the floor in 2026.</li>
-            <li><strong>32GB or 64GB eMMC storage.</strong> Looks like a deal — isn't. Windows 11 + Office + a few apps fills it instantly.</li>
-            <li><strong>"Celeron" branded chips at any price.</strong> They're 4+ generations behind. Look for Intel Core i3/i5 or AMD Ryzen 3/5 instead.</li>
-            <li><strong>1366×768 displays.</strong> Eye-strain inducing in 2026. Demand 1080p minimum.</li>
-          </ul>
-          <h4>The accessory math</h4>
-          <p>Budget $40-$80 for a sleeve, a USB-C hub (most sub-$500 laptops have only 1-2 ports), a basic mouse, and a screen wipe kit. <a href="https://www.amazon.com/s?k=laptop+accessories+bundle" target="_blank" rel="noopener noreferrer">A bundle pack on Amazon</a> typically beats à-la-carte pricing.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 7: Existing — Smart Home -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-4">
-        <span class="blog-cover-tag">Home &amp; living</span>
-        <span class="blog-cover-emoji">🏠</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Home</span><span>·</span><span>Apr 15, 2026</span><span>·</span><span>8 min read</span></div>
-        <h3 class="blog-title">Smart Home Essentials: A Starter Guide for 2026</h3>
-        <p class="blog-excerpt">Transform your home with these affordable smart devices that actually make life easier. We cover the seven products worth buying and the five to skip entirely.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>The smart home category in 2026 has matured dramatically since the chaotic Alexa-vs-Google early days. Matter is now real — meaning devices from different brands actually work together. Here are the seven smart home essentials we install in every home setup we recommend, plus five we still skip.</p>
-          <h4>Buy these seven first</h4>
-          <ul>
-            <li><strong>Smart thermostat (Ecobee or Nest):</strong> $200 upfront pays for itself in 12-18 months through smarter HVAC scheduling. Most utility companies offer $50-$150 rebates.</li>
-            <li><strong>Smart plugs (TP-Link Kasa or Amazon Basics):</strong> $7-$15 each. Best entry point — turn any "dumb" lamp, fan, or appliance into a scheduled or voice-controlled device.</li>
-            <li><strong>Smart bulbs (Philips Hue or Wyze):</strong> Hue if you want best ecosystem, Wyze if budget rules. Start with the rooms you live in (kitchen, living room, bedroom).</li>
-            <li><strong>Video doorbell (Ring or Google Nest Doorbell):</strong> the single most-used smart device in our test. Package deliveries, visitor screening, neighborhood awareness.</li>
-            <li><strong>Smart lock (August Wi-Fi or Schlage Encode):</strong> game-changer for letting in family/cleaners/dog walkers without sharing keys.</li>
-            <li><strong>Robot vacuum (iRobot Roomba i5 or Eufy 11S Max):</strong> $200-$400. Two hours of human time back per week. Pet households especially benefit.</li>
-            <li><strong>Smart speaker for the kitchen (Echo Show 8 or Nest Hub):</strong> hands-free recipes, timers, music, video calls. The kitchen is where smart speakers earn their keep.</li>
-          </ul>
-          <h4>Skip these — they're not ready or not worth it</h4>
-          <ul>
-            <li><strong>Smart refrigerators</strong> with cameras and tablets. Add $1,500+ for features you'll use twice. Buy the regular fridge, save $1,500.</li>
-            <li><strong>Smart toilets/bidets</strong> with apps. The non-app bidet seats work great at 1/4 the cost.</li>
-            <li><strong>Pricey smart faucets.</strong> Touchless faucets at $80 deliver 95% of the value of $400 "smart" ones.</li>
-            <li><strong>"Smart" mirrors.</strong> Cute on TikTok, useless in real life.</li>
-            <li><strong>Smart microwaves and ovens.</strong> Voice-control ovens are mostly gimmicks; preheat from your phone solves nothing.</li>
-          </ul>
-          <h4>One ecosystem rule</h4>
-          <p>Pick Alexa, Google Home, or Apple HomeKit. Don't mix. Pick the one that matches your phone (HomeKit for iPhone, Google for Pixel, Alexa for either) and buy devices that explicitly support it. Matter helps but cross-ecosystem still gets messy. <a href="https://www.amazon.com/s?k=smart+home+starter+kit" target="_blank" rel="noopener noreferrer">Amazon's smart-home starter kits</a> bundle 4-6 devices and save $40-$80 vs. buying piecemeal.</p>
-        </div>
-      </div>
-    </article>
-
-    <!-- POST 8: Black Friday Strategy -->
-    <article class="blog-card">
-      <div class="blog-cover gradient-6">
-        <span class="blog-cover-tag">Strategy</span>
-        <span class="blog-cover-emoji">🎯</span>
-      </div>
-      <div class="blog-info">
-        <div class="blog-meta"><span>Deal hunting</span><span>·</span><span>Apr 12, 2026</span><span>·</span><span>11 min read</span></div>
-        <h3 class="blog-title">The 2026 Black Friday Strategy: How to Stack Discounts Like a Pro</h3>
-        <p class="blog-excerpt">Black Friday now stretches across two months. The smartest shoppers stack 4-7 discounts on a single purchase. Here's the seven-step framework that delivers 50-70% off.</p>
-        <button class="blog-readmore" onclick="toggleBlog(this)"><span class="label-collapsed">Read more</span><span class="label-expanded">Show less</span></button>
-        <div class="blog-full">
-          <p>Black Friday 2026 is no longer a single Friday — it's an eight-week deal economy stretching from late October to mid-January. The shoppers who win aren't necessarily the ones who hit the earliest doorbusters; they're the ones who stack four to seven discounts on every purchase. Here's how it actually works.</p>
-          <h4>The stacking framework</h4>
-          <p>A "stack" combines independent discount layers on a single transaction. Most shoppers achieve 1-2 layers and feel they got a good deal. Master shoppers regularly hit 4-7 layers, taking 50-70% off real retail.</p>
-          <h4>The seven layers, from outside in</h4>
-          <ol>
-            <li><strong>Layer 1 — Sale price.</strong> The retailer's own "Black Friday" or seasonal discount. Usually 15-40% off.</li>
-            <li><strong>Layer 2 — Coupon code.</strong> Stacks on top of the sale at most retailers. Search "[retailer] coupon code 2026" before checkout. Honey, RetailMeNot, and CamelCamelCamel are still your friends.</li>
-            <li><strong>Layer 3 — Loyalty / membership discount.</strong> Target Circle 360, Walmart+, Amazon Prime Member exclusives, REI Co-op member deals — apply automatically once you're signed in.</li>
-            <li><strong>Layer 4 — Cashback portal.</strong> Going through Rakuten, TopCashback, or Ibotta before clicking "Buy" earns 1-12% back on the entire purchase.</li>
-            <li><strong>Layer 5 — Credit card category bonus.</strong> Amex Gold (4x dining/groceries), Citi Custom Cash (5% on top spend category), Capital One Venture X (2x always). 2-5% back, on top of cashback portal.</li>
-            <li><strong>Layer 6 — Gift card discount.</strong> Buy retailer gift cards at 5-15% discount on Raise, GiftCardGranny, or Costco. Use the discounted gift card as your payment method.</li>
-            <li><strong>Layer 7 — Price-protection / price-match.</strong> Many retailers (Target, Best Buy, Costco, Amazon for select items) honor a price drop within 14-30 days. Track your price post-purchase and request the difference.</li>
-          </ol>
-          <h4>How a real stack adds up</h4>
-          <p>Example purchase: $1,000 retail TV.</p>
-          <ul>
-            <li>Sale: $799 (-20%)</li>
-            <li>Coupon code: $759 (-5% additional)</li>
-            <li>Membership discount: $721 (-5%)</li>
-            <li>Rakuten cashback: $49 back later</li>
-            <li>Card 5% bonus: $36 back</li>
-            <li>Gift card bought at 8% off: $58 saved</li>
-            <li>Price drop refund 12 days later: $40 back</li>
-          </ul>
-          <p><strong>Final effective price: ~$538.</strong> That's a 46% real discount on a TV most shoppers paid $799 for.</p>
-          <h4>The non-negotiables</h4>
-          <ul>
-            <li><strong>Patience.</strong> The best deals are not on Black Friday itself — they're in the second wave, between Cyber Monday and December 15.</li>
-            <li><strong>Tracking.</strong> Use CamelCamelCamel, Keepa, or Honey to verify a "deal" is actually below the 90-day low.</li>
-            <li><strong>Avoid sentiment buying.</strong> If you wouldn't have wanted it last week, don't buy it just because it's discounted.</li>
-            <li><strong>Save the receipts.</strong> Price-match windows close within 14-30 days. Track them.</li>
-          </ul>
-          <p>This framework consistently saves our test households $1,200-$2,800 across the holiday season. <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer">Browse current Amazon deals</a> as a starting point — and remember, the goal is the lowest verified all-time price, not the loudest banner.</p>
-        </div>
-      </div>
-    </article>
-
   </div>
 </section>
 
@@ -2237,5 +1830,40 @@ footer {
   });
 })();
 </script>
+
+<script>
+/* ============== HERO VIDEO → HOP IN REVEAL ============== */
+(function () {
+  var video = document.getElementById('hero-arrival-video');
+  var button = document.getElementById('hop-in-button');
+  var prompt = document.getElementById('hero-video-prompt');
+  if (!video || !button) return;
+  function reveal() {
+    button.classList.add('visible');
+    if (prompt) prompt.classList.add('visible');
+  }
+  video.addEventListener('ended', reveal);
+  /* Safety fallback: show the Hop in button after 7s in case the video stalls */
+  setTimeout(reveal, 7000);
+})();
+
+/* ============== DEALS LAST-UPDATED FROM FEED FILE ============== */
+(function () {
+  var el = document.getElementById('deals-last-updated');
+  if (!el) return;
+  fetch('data/deals-feed.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (data && data.lastUpdated) {
+        var d = new Date(data.lastUpdated);
+        el.textContent = 'Last updated: ' + d.toLocaleString();
+      } else {
+        el.textContent = 'Last updated: pending first refresh';
+      }
+    })
+    .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
+})();
+</script>
+
 </body>
 </html>
