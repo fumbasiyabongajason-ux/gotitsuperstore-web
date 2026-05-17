@@ -781,8 +781,7 @@ footer {
   }
   .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
   .mall-floor-arrow { display: none; }
-  .fish-planter { width: 50%; }
-  .mall-welcome-mat, .mall-centre-store { width: 92%; }
+  .mall-welcome-mat, .mall-centre-store, .mall-end-store { width: 92%; }
 }
 @media (max-width: 480px) {
   .inquiry-stores { grid-template-columns: 1fr; }
@@ -866,14 +865,24 @@ footer {
 .mall-floor-arrow.top { top: 14px; }
 .mall-floor-arrow.bottom { bottom: 14px; }
 
-/* The walkway is now a vertical stack: arrow, welcome mat, planter, centre store, planter, arrow */
+/* Walkway now stacks: a top group (arrow + welcome mat at the entrance),
+   an open walkable centre, and a bottom group (Costco end store + arrow at the exit). */
 .mall-floor.has-centre {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
   padding: 32px 10px;
-  min-height: 320px;
+  min-height: 380px;
+}
+.mall-floor-top-group,
+.mall-floor-bottom-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mall-floor-bottom-group {
+  gap: 12px;
 }
 .mall-floor.has-centre .mall-floor-label {
   display: none;
@@ -886,8 +895,8 @@ footer {
 /* Welcome mat with Got It logo right at the top of the walkway */
 .mall-welcome-mat {
   width: 90%;
-  margin: 14px auto 8px;
-  padding: 14px 18px;
+  margin: 8px auto;
+  padding: 18px 18px;
   background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 100%);
   border-radius: 6px;
   text-align: center;
@@ -908,13 +917,12 @@ footer {
 }
 .mall-welcome-mat .mat-brand {
   display: block;
-  margin-top: 2px;
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 18px;
   color: var(--orange);
   font-weight: 800;
-  letter-spacing: 1.5px;
-  line-height: 1.15;
+  letter-spacing: 4px;
+  line-height: 1.1;
 }
 .mall-welcome-mat .mat-welcome {
   display: block;
@@ -976,7 +984,7 @@ footer {
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
 }
 
-/* The centre storefront sits in the middle of the walkway */
+/* The centre storefront sits in the middle of the walkway (kept for compatibility — not used) */
 .mall-centre-store {
   width: 90%;
   margin: 6px auto;
@@ -990,7 +998,6 @@ footer {
   z-index: 3;
 }
 .mall-centre-store::after {
-  /* Subtle "centrepiece" indicator above the card */
   content: 'FEATURED STORE';
   position: absolute;
   top: -10px;
@@ -1004,6 +1011,19 @@ footer {
   padding: 3px 10px;
   border-radius: 999px;
   white-space: nowrap;
+}
+/* End-of-walkway storefront — Costco sits at the exit of the walkway corridor */
+.mall-end-store {
+  width: 90%;
+  margin: 6px auto;
+  min-height: 130px;
+  background: linear-gradient(135deg, #fffdf7 0%, #fff4e2 100%);
+  border: 1.5px solid #f4d8a8;
+  box-shadow:
+    0 8px 20px rgba(14, 42, 71, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 3;
 }
 
 /* Brand banner that sits at the very top of the homepage, above the nav */
@@ -1425,7 +1445,7 @@ footer {
       <div class="section-eyebrow">Step inside the mall</div>
       <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
     </div>
-    <span class="section-meta">6 storefronts each side + 1 featured in the centre · every door is OPEN</span>
+    <span class="section-meta">6 storefronts each side + Costco at the end of the walkway · every door is OPEN</span>
   </div>
   <div class="mall-walkway">
     <!-- LEFT AISLE — 6 storefronts -->
@@ -1468,34 +1488,24 @@ footer {
       </a>
     </div>
 
-    <!-- CENTRE WALKWAY: welcome mat, fish-bowl planters, and a featured centre store -->
+    <!-- CENTRE WALKWAY: welcome mat at the entrance, clean walkway, Costco at the exit -->
     <div class="mall-floor has-centre">
-      <span class="mall-floor-arrow top">▲</span>
-
-      <div class="mall-welcome-mat">
-        <span class="mat-eyebrow">Welcome to</span>
-        <span class="mat-brand">GOT IT SUPERSTORE</span>
-        <span class="mat-welcome">Mind your step · trusted everyday</span>
+      <div class="mall-floor-top-group">
+        <span class="mall-floor-arrow top">▲</span>
+        <div class="mall-welcome-mat">
+          <span class="mat-brand">WELCOME</span>
+        </div>
       </div>
 
-      <div class="fish-planter" aria-label="Decorative fishbowl planter">
-        <span class="planter-greenery">🌿</span>
-        <span class="planter-greenery">🌱</span>
+      <div class="mall-floor-bottom-group">
+        <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-end-store">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛒</div>
+          <div class="store-name">Costco</div>
+          <div class="store-tag">Members-only wholesale</div>
+        </a>
+        <span class="mall-floor-arrow bottom">▼</span>
       </div>
-
-      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-centre-store">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛒</div>
-        <div class="store-name">Costco</div>
-        <div class="store-tag">Members-only wholesale</div>
-      </a>
-
-      <div class="fish-planter" aria-label="Decorative fishbowl planter">
-        <span class="planter-greenery">🌿</span>
-        <span class="planter-greenery">🌱</span>
-      </div>
-
-      <span class="mall-floor-arrow bottom">▼</span>
     </div>
 
     <!-- RIGHT AISLE — 6 storefronts -->
