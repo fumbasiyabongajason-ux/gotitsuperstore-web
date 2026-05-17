@@ -1296,6 +1296,19 @@ footer {
 .hero-shop .hero-video-wrap {
   max-width: 1100px;
 }
+/* Home hero: the worker welcoming the couple is the opening act.
+   The video takes the spotlight; the lead line sits quietly underneath. */
+.hero-home .hero-video-wrap {
+  max-width: 1100px;
+}
+.hero-text-after-video {
+  margin-top: 18px;
+}
+.hero-text-after-video .lead {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
 
 /* ============== DEALS STATUS HEADER ============== */
 .deals-status-section {
@@ -1397,13 +1410,11 @@ footer {
 <main id="main-content">
 
 <!-- ============== HERO (HOME) ============== -->
+<!-- The page opens with the Got It worker welcoming the couple. The Hop in button
+     reveals once the welcome plays out (or after a 7s safety timer) and routes
+     the visitor into the mall on shop.html. -->
 <section class="hero hero-home" id="home">
   <div class="hero-inner hero-inner-stacked">
-    <div class="hero-text hero-text-centered">
-      <div class="hero-eyebrow">Trusted Everyday</div>
-      <h1>Welcome to <span class="accent">Got It Superstore</span></h1>
-      <p class="lead">Watch how easy shopping can be — then tap <strong>Hop in</strong> to walk through our mall of 13 trusted stores.</p>
-    </div>
     <div class="hero-video-wrap">
       <video class="hero-video"
              id="hero-arrival-video"
@@ -1412,7 +1423,7 @@ footer {
              muted
              autoplay
              preload="metadata"
-             aria-label="Got It Superstore arrival commercial — couple greeted by the manager at the mall entrance">
+             aria-label="Got It Superstore arrival — a Got It worker welcomes a visiting couple at the mall entrance">
         Your browser does not support embedded video.
       </video>
       <div class="hero-video-overlay" id="hero-video-overlay" aria-hidden="true">
@@ -1421,12 +1432,11 @@ footer {
           <span>Hop in</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </button>
-        <p class="hero-video-prompt" id="hero-video-prompt">Tap Hop in when you're ready</p>
+        <p class="hero-video-prompt" id="hero-video-prompt">Tap Hop in to step inside</p>
       </div>
     </div>
-    <div class="hero-buttons" style="justify-content:center;margin-top:24px">
-      <a class="btn btn-secondary" href="categories.html">Browse Curated</a>
-      <a class="btn btn-secondary" href="deals.html">Today's Deals</a>
+    <div class="hero-text hero-text-centered hero-text-after-video">
+      <p class="lead">Tap <strong>Hop in</strong> to walk through our mall of 13 trusted stores.</p>
     </div>
   </div>
 </section>
