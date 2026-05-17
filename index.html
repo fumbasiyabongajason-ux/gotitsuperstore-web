@@ -775,8 +775,14 @@ footer {
   .mall-floor {
     min-height: 72px;
   }
+  .mall-floor.has-centre {
+    min-height: auto;
+    padding: 20px 14px;
+  }
   .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
   .mall-floor-arrow { display: none; }
+  .fish-planter { width: 50%; }
+  .mall-welcome-mat, .mall-centre-store { width: 92%; }
 }
 @media (max-width: 480px) {
   .inquiry-stores { grid-template-columns: 1fr; }
@@ -859,6 +865,201 @@ footer {
 }
 .mall-floor-arrow.top { top: 14px; }
 .mall-floor-arrow.bottom { bottom: 14px; }
+
+/* The walkway is now a vertical stack: arrow, welcome mat, planter, centre store, planter, arrow */
+.mall-floor.has-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 32px 10px;
+  min-height: 320px;
+}
+.mall-floor.has-centre .mall-floor-label {
+  display: none;
+}
+.mall-floor.has-centre .mall-floor-arrow {
+  position: static;
+  transform: none;
+  text-align: center;
+}
+/* Welcome mat with Got It logo right at the top of the walkway */
+.mall-welcome-mat {
+  width: 90%;
+  margin: 14px auto 8px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 100%);
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 2px rgba(242, 107, 26, 0.55),
+    inset 0 0 0 4px rgba(255, 253, 247, 0.15);
+}
+.mall-welcome-mat .mat-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: rgba(255, 253, 247, 0.75);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.mall-welcome-mat .mat-brand {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--orange);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
+}
+.mall-welcome-mat .mat-welcome {
+  display: block;
+  margin-top: 4px;
+  font-size: 8.5px;
+  color: rgba(255, 253, 247, 0.55);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+/* Fish-bowl shaped decorative planter with plants */
+.fish-planter {
+  width: 80%;
+  margin: 10px auto;
+  padding: 6px 14px 4px;
+  border-radius: 50% / 70% 70% 30% 30%;
+  background: linear-gradient(180deg, rgba(180, 220, 240, 0.85) 0%, rgba(120, 180, 215, 0.75) 100%);
+  border: 1.5px solid rgba(80, 130, 170, 0.45);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    inset 0 3px 6px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(60, 100, 140, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.fish-planter::before {
+  /* tail fin */
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translateY(-50%);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 12px solid rgba(120, 180, 215, 0.75);
+  filter: drop-shadow(1px 0 0 rgba(80, 130, 170, 0.45));
+}
+.fish-planter::after {
+  /* eye */
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 38%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(14, 42, 71, 0.85);
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.75);
+}
+.fish-planter .planter-greenery {
+  font-size: 20px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
+}
+
+/* The centre storefront sits in the middle of the walkway */
+.mall-centre-store {
+  width: 90%;
+  margin: 6px auto;
+  min-height: 130px;
+  background: linear-gradient(135deg, #fffdf7 0%, #fff4e2 100%);
+  border: 1.5px solid #f4d8a8;
+  box-shadow:
+    0 8px 20px rgba(14, 42, 71, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 3;
+}
+.mall-centre-store::after {
+  /* Subtle "centrepiece" indicator above the card */
+  content: 'FEATURED STORE';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Brand banner that sits at the very top of the homepage, above the nav */
+.brand-banner {
+  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 60%, #0E2A47 100%);
+  padding: 18px 16px;
+  text-align: center;
+  border-bottom: 3px solid var(--orange);
+}
+.brand-banner-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.brand-banner svg {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+.brand-banner-text {
+  text-align: left;
+  line-height: 1.1;
+}
+.brand-banner-text .b-got {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: rgba(255, 253, 247, 0.7);
+  text-transform: uppercase;
+}
+.brand-banner-text .b-store {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+.brand-banner-text .b-tag {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: rgba(255, 253, 247, 0.55);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .brand-banner svg { width: 36px; height: 36px; }
+  .brand-banner-text .b-store { font-size: 21px; }
+  .brand-banner-text .b-got, .brand-banner-text .b-tag { font-size: 10px; letter-spacing: 2.5px; }
+}
 /* Older class kept as fallback for any legacy reference */
 .stores-grid {
   display: grid;
@@ -870,9 +1071,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: 28px 18px 22px;
+  padding: 14px 18px 22px;
   background: linear-gradient(135deg, #ffffff 0%, #f6f4ee 100%);
   border: 1px solid #e8e4d8;
   border-radius: 16px;
@@ -881,7 +1082,30 @@ footer {
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   position: relative;
   overflow: hidden;
-  min-height: 140px;
+  min-height: 150px;
+  gap: 6px;
+}
+/* Each storefront wears an "OPEN" doorway sign at the top */
+.store-door {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #00A86B;
+  background: rgba(0, 168, 107, 0.10);
+  border: 1px solid rgba(0, 168, 107, 0.35);
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 1.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.store-door::before {
+  content: '🚪';
+  font-size: 11px;
+  filter: grayscale(0);
 }
 .store-card::before {
   content: "";
@@ -997,6 +1221,22 @@ footer {
 
 <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
+<!-- ============== BRAND BANNER (sits above the nav on every page) ============== -->
+<header class="brand-banner">
+  <div class="brand-banner-inner">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#F26B1A" stroke-width="3"/>
+      <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="50" y="84" text-anchor="middle" fill="#F26B1A" font-family="Poppins,Inter,sans-serif" font-size="11" font-weight="800" letter-spacing="1">GOT IT</text>
+    </svg>
+    <div class="brand-banner-text">
+      <span class="b-got">Got It</span>
+      <span class="b-store">Superstore</span>
+      <span class="b-tag">Trusted Everyday</span>
+    </div>
+  </div>
+</header>
+
 <!-- ============== FTC DISCLOSURE ============== -->
 <div class="ftc-bar">
   <strong>Affiliate Disclosure:</strong> Got It Superstore earns commissions from qualifying purchases through affiliate links. This comes at no extra cost to you. <a href="#" onclick="openModal('privacy-modal'); return false;">Learn more</a>
@@ -1019,12 +1259,12 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 10 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 13 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll show you which of our 10 stores carry it.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll show you which of our 13 stores carry it.</div>
     </div>
     <div class="nav-links">
       <a href="#categories">Shop</a>
@@ -1094,73 +1334,118 @@ footer {
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">10 trusted stores</span></h2>
+      <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
     </div>
-    <span class="section-meta">5 storefronts on each side · click a sign to enter</span>
+    <span class="section-meta">6 storefronts each side + 1 featured in the centre · every door is OPEN</span>
   </div>
   <div class="mall-walkway">
-    <!-- LEFT AISLE -->
+    <!-- LEFT AISLE — 6 storefronts -->
     <div class="mall-aisle mall-aisle-left">
       <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">📦</div>
         <div class="store-name">Amazon</div>
         <div class="store-tag">Global marketplace</div>
       </a>
       <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🏪</div>
         <div class="store-name">Walmart</div>
         <div class="store-tag">Everyday low prices</div>
       </a>
       <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🎯</div>
         <div class="store-name">Target</div>
         <div class="store-tag">Style + value</div>
       </a>
       <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">⛰️</div>
         <div class="store-name">REI Co-op</div>
         <div class="store-tag">Outdoor gear</div>
       </a>
       <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🐾</div>
         <div class="store-name">Chewy</div>
         <div class="store-tag">Pet supplies</div>
       </a>
+      <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">🍎</div>
+        <div class="store-name">Apple</div>
+        <div class="store-tag">Premium electronics</div>
+      </a>
     </div>
 
-    <!-- CENTRE WALKWAY: clean tiled floor -->
-    <div class="mall-floor" aria-hidden="true">
+    <!-- CENTRE WALKWAY: welcome mat, fish-bowl planters, and a featured centre store -->
+    <div class="mall-floor has-centre">
       <span class="mall-floor-arrow top">▲</span>
-      <span class="mall-floor-label">Walkway</span>
+
+      <div class="mall-welcome-mat">
+        <span class="mat-eyebrow">Welcome to</span>
+        <span class="mat-brand">GOT IT SUPERSTORE</span>
+        <span class="mat-welcome">Mind your step · trusted everyday</span>
+      </div>
+
+      <div class="fish-planter" aria-label="Decorative fishbowl planter">
+        <span class="planter-greenery">🌿</span>
+        <span class="planter-greenery">🌱</span>
+      </div>
+
+      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-centre-store">
+        <span class="store-door">Open</span>
+        <div class="store-icon">🛒</div>
+        <div class="store-name">Costco</div>
+        <div class="store-tag">Members-only wholesale</div>
+      </a>
+
+      <div class="fish-planter" aria-label="Decorative fishbowl planter">
+        <span class="planter-greenery">🌿</span>
+        <span class="planter-greenery">🌱</span>
+      </div>
+
       <span class="mall-floor-arrow bottom">▼</span>
     </div>
 
-    <!-- RIGHT AISLE -->
+    <!-- RIGHT AISLE — 6 storefronts -->
     <div class="mall-aisle mall-aisle-right">
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🎨</div>
         <div class="store-name">Etsy</div>
         <div class="store-tag">Handmade &amp; vintage</div>
       </a>
       <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🛍️</div>
         <div class="store-name">eBay</div>
         <div class="store-tag">Auctions &amp; resale</div>
       </a>
       <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">📺</div>
         <div class="store-name">Best Buy</div>
         <div class="store-tag">Tech &amp; appliances</div>
       </a>
       <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🌏</div>
         <div class="store-name">AliExpress</div>
         <div class="store-tag">Global wholesale</div>
       </a>
       <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
         <div class="store-icon">🇿🇦</div>
         <div class="store-name">Takealot</div>
         <div class="store-tag">South Africa</div>
+      </a>
+      <a href="https://www.nike.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">👟</div>
+        <div class="store-name">Nike</div>
+        <div class="store-tag">Sportswear &amp; sneakers</div>
       </a>
     </div>
   </div>
@@ -1808,7 +2093,7 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 10 stores so the visitor picks where to look. Every store gets
+  // we surface all 13 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
     { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
@@ -1816,11 +2101,14 @@ footer {
     { name: 'Target',     icon: '🎯', tag: 'Style + value',       build: function (q) { return 'https://www.target.com/s?searchTerm=' + q; } },
     { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
     { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
+    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
     { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
     { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
     { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
     { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
+    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'Nike',       icon: '👟', tag: 'Sportswear & sneakers', build: function (q) { return 'https://www.nike.com/w?q=' + q; } }
   ];
 
   window.doSearch = function () {
