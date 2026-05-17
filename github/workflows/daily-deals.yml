@@ -1,0 +1,49 @@
+name: Daily Deals Refresh
+
+# Refreshes data/deals-feed.json every morning so the Deals page shows a fresh
+# "last updated" timestamp. The fetch step is a placeholder — when a real
+# affiliate/data source is connected, swap it for real ingestion logic.
+
+on:
+  schedule:
+    # 06:00 UTC every day = 08:00 in Johannesburg / Cape Town (SAST is UTC+2)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-deals
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh deals feed
+        run: |
+          mkdir -p data
+          NOW=$(date -u +%FT%TZ)
+          cat > data/deals-feed.json <<EOF
+          {
+            "lastUpdated": "${NOW}",
+            "source": "placeholder — connect a real deals API to populate the items array",
+            "items": []
+          }
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/deals-feed.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: daily deals refresh ($(date -u +%F))"
+          git push
+ 
