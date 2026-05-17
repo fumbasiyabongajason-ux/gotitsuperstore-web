@@ -1012,18 +1012,60 @@ footer {
   border-radius: 999px;
   white-space: nowrap;
 }
-/* End-of-walkway storefront — Costco sits at the exit of the walkway corridor */
-.mall-end-store {
-  width: 90%;
-  margin: 6px auto;
-  min-height: 130px;
+/* Horizontal bottom storefront — closes the mall layout into a U-shape.
+   Sits outside the walkway, spans the full width below the left + walkway + right grid. */
+.mall-bottom-store {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin: 22px 0 0 0;
+  padding: 22px 28px;
+  min-height: 110px;
   background: linear-gradient(135deg, #fffdf7 0%, #fff4e2 100%);
   border: 1.5px solid #f4d8a8;
+  border-radius: 18px;
+  text-align: left;
+  position: relative;
   box-shadow:
     0 8px 20px rgba(14, 42, 71, 0.12),
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-  position: relative;
-  z-index: 3;
+}
+.mall-bottom-store .store-door {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  margin: 0;
+}
+.mall-bottom-store .store-icon {
+  font-size: 48px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.mall-bottom-store .store-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mall-bottom-store .store-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.mall-bottom-store .store-tag {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.mall-bottom-store:hover {
+  transform: translateY(-2px);
+  border-color: var(--orange);
+  box-shadow:
+    0 14px 30px rgba(14, 42, 71, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
 /* Brand banner that sits at the very top of the homepage, above the nav */
@@ -1445,7 +1487,7 @@ footer {
       <div class="section-eyebrow">Step inside the mall</div>
       <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
     </div>
-    <span class="section-meta">6 storefronts each side + Costco at the end of the walkway · every door is OPEN</span>
+    <span class="section-meta">6 storefronts each side + Costco closing the U · every door is OPEN</span>
   </div>
   <div class="mall-walkway">
     <!-- LEFT AISLE — 6 storefronts -->
@@ -1488,7 +1530,7 @@ footer {
       </a>
     </div>
 
-    <!-- CENTRE WALKWAY: welcome mat at the entrance, clean walkway, Costco at the exit -->
+    <!-- CENTRE WALKWAY: welcome mat at the entrance, open walkable corridor down to the exit -->
     <div class="mall-floor has-centre">
       <div class="mall-floor-top-group">
         <span class="mall-floor-arrow top">▲</span>
@@ -1496,16 +1538,7 @@ footer {
           <span class="mat-brand">WELCOME</span>
         </div>
       </div>
-
-      <div class="mall-floor-bottom-group">
-        <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-end-store">
-          <span class="store-door">Open</span>
-          <div class="store-icon">🛒</div>
-          <div class="store-name">Costco</div>
-          <div class="store-tag">Members-only wholesale</div>
-        </a>
-        <span class="mall-floor-arrow bottom">▼</span>
-      </div>
+      <span class="mall-floor-arrow bottom">▼</span>
     </div>
 
     <!-- RIGHT AISLE — 6 storefronts -->
@@ -1548,6 +1581,16 @@ footer {
       </a>
     </div>
   </div>
+
+  <!-- BOTTOM HORIZONTAL STOREFRONT — closes the mall into a U-shape -->
+  <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
+    <span class="store-door">Open</span>
+    <span class="store-icon">🛒</span>
+    <span class="store-text">
+      <span class="store-name">Costco</span>
+      <span class="store-tag">Members-only wholesale</span>
+    </span>
+  </a>
 </section>
 
 <!-- ============== INQUIRY RECEPTION MODAL ============== -->
@@ -1600,7 +1643,7 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 Got It Superstore · A division of Siyabonga Fumba (Pty) Ltd · Reg. 2023/224652/07 · South Africa</div>
+      <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
       <div>No tracking · No cookies · POPIA + GDPR + FTC compliant</div>
     </div>
   </div>
