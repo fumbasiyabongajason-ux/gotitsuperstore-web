@@ -1377,12 +1377,12 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 12 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 13 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 12 trusted stores covering 100,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
@@ -1918,7 +1918,7 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 12 stores so the visitor picks where to look. Every store gets
+  // we surface all 13 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
     { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
@@ -1930,6 +1930,7 @@ footer {
     { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
     { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
     { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
     { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
     { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
     { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
