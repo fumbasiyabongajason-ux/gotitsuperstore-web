@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Daily Deals</title>
-<meta name="description" content="Got It Superstore curates the best deals from Amazon, Walmart, Target, REI, Chewy and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
-<meta name="keywords" content="affiliate deals, Amazon deals, Walmart deals, Target deals, REI deals, Chewy deals, online shopping South Africa, curated deals, best prices, deal hunter">
+<meta name="description" content="Got It Superstore curates the best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="keywords" content="affiliate deals, Amazon deals, Shein deals, Sephora deals, REI deals, Chewy deals, LEGO deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
 <meta name="robots" content="index, follow">
@@ -13,7 +13,7 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
-<meta property="og:description" content="Hand-picked deals from Amazon, Walmart, Target, REI, Chewy. Best prices. Zero cost to you.">
+<meta property="og:description" content="Hand-picked deals from Amazon, Shein, Sephora, REI, Chewy, LEGO. Best prices. Zero cost to you.">
 <meta property="og:type" content="website">
 
 <!-- Cache hint for bfcache (back/forward cache) - keeps page persistent when user tabs back -->
@@ -1483,7 +1483,7 @@ footer {
     <div class="footer-grid">
       <div class="footer-brand">
         <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
-        <p>Curated affiliate marketplace · Best deals from Amazon, Walmart, Target, REI, Chewy and more. South African owned · global shoppers welcome.</p>
+        <p>Curated affiliate marketplace · Best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. South African owned · global shoppers welcome.</p>
         <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
       </div>
       <div class="footer-col">
@@ -1495,8 +1495,8 @@ footer {
       <div class="footer-col">
         <h4>Retailers</h4>
         <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Amazon</a>
-        <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Walmart</a>
-        <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Target</a>
+        <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shein</a>
+        <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Sephora</a>
         <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">REI Co-op</a>
         <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Chewy</a>
       </div>
@@ -1583,7 +1583,7 @@ footer {
       <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
       <p>By using Got It Superstore ("the Site"), you agree to these Terms of Service. The Site is registered under CIPC Reg. 2023/224652/07.</p>
       <h3>1. Nature of the Service</h3>
-      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (Amazon, Walmart, Target, REI, Chewy, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
+      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (Amazon, Shein, Sephora, REI, Chewy, LEGO, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
       <h3>2. No Direct Sales</h3>
       <p>All purchases are made directly through the third-party retailer's website. Got It Superstore is not a party to any transaction between you and the retailer. Product availability, pricing, shipping, returns, warranties, and customer service are handled entirely by the respective retailer. We do not guarantee the accuracy of prices or availability displayed on our site.</p>
       <h3>3. Acceptable Use</h3>
@@ -1660,8 +1660,8 @@ footer {
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
     { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
-    { name: 'Walmart',    icon: '🏪', tag: 'Everyday low prices', build: function (q) { return 'https://www.walmart.com/search?q=' + q; } },
-    { name: 'Target',     icon: '🎯', tag: 'Style + value',       build: function (q) { return 'https://www.target.com/s?searchTerm=' + q; } },
+    { name: 'Shein',      icon: '👗', tag: 'Global fast fashion', build: function (q) { return 'https://www.shein.com/Search.html?keyword=' + q; } },
+    { name: 'Sephora',    icon: '💄', tag: 'Premium beauty',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
     { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
     { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
     { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
@@ -1669,7 +1669,7 @@ footer {
     { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
     { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
     { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
+    { name: 'LEGO',       icon: '🧱', tag: 'Toys & collectibles', build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
     { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
     { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
   ];
