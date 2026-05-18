@@ -3,42 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Got It Superstore — Sign in / Sign up</title>
-<meta name="description" content="Got It Superstore curates the best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
-<meta name="keywords" content="affiliate deals, Amazon deals, Shein deals, Sephora deals, REI deals, Chewy deals, LEGO deals, online shopping South Africa, curated deals, best prices, deal hunter">
+<title>Got It Superstore — Sign in to enter the mall</title>
+<meta name="description" content="Sign in to Got It Superstore to enter the mall of 13 trusted stores. Quick Google or email sign-up. We never store your password and never share your personal information.">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="noindex, follow">
 <meta name="author" content="Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
-<meta property="og:description" content="Hand-picked deals from Amazon, Shein, Sephora, REI, Chewy, LEGO. Best prices. Zero cost to you.">
+<meta property="og:title" content="Got It Superstore — Sign in to enter the mall">
+<meta property="og:description" content="Quick sign-in keeps the door open next time. We never read or share your personal information.">
 <meta property="og:type" content="website">
 
-<!-- Cache hint for bfcache (back/forward cache) - keeps page persistent when user tabs back -->
-<meta http-equiv="Cache-Control" content="public, max-age=3600">
-
-<!-- Performance: preconnect to image CDNs we use -->
-<link rel="preload" as="video" href="media/hero-arrival.mp4" type="video/mp4">
+<!-- Preconnects -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://m.media-amazon.com">
-<link rel="dns-prefetch" href="https://images.unsplash.com">
-
-<!-- Fonts: only the weights we actually use -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- ============================================================ -->
-<!-- SKIMLINKS AFFILIATE WIRING — auto-monetizes outbound links.   -->
-<!-- To activate: paste your numeric publisher ID below as the      -->
-<!-- value of SKIMLINKS_ID (find it at skimlinks.com -> Settings).  -->
-<!-- The site works fine while the field is empty; it just won't    -->
-<!-- earn affiliate revenue until a real ID is wired in.            -->
-<!-- ============================================================ -->
+<!-- Skimlinks auto-monetization (carries through to outbound merchant links on later pages) -->
 <script>
 (function () {
-  var SKIMLINKS_ID = '303199X1791240'; /* live: publisher 303199 × site 1791240 */
+  var SKIMLINKS_ID = '303199X1791240';
   if (SKIMLINKS_ID && /^[0-9]+(X[0-9]+)?$/.test(SKIMLINKS_ID)) {
     var s = document.createElement('script');
     s.src = 'https://s.skimresources.com/js/' + SKIMLINKS_ID + '.skimlinks.js';
@@ -74,1457 +59,424 @@
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; line-height: 1.55; }
-img { display: block; max-width: 100%; height: auto; }
-a { color: var(--navy); text-decoration: none; }
-.skip-to-content { position: absolute; top: -40px; left: 0; background: var(--orange); color: #fff; padding: 10px 16px; z-index: 9999; transition: top 0.2s; }
-.skip-to-content:focus { top: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.skip-to-content { position: absolute; left: -9999px; }
+.skip-to-content:focus { left: 16px; top: 16px; background: var(--navy); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 1000; }
 
-.display { font-family: var(--font-heading); font-weight: 800; }
-
-/* ============== FTC DISCLOSURE BAR ============== */
-.ftc-bar {
-  background: var(--navy-deep); color: #cfe1f4;
-  text-align: center; padding: 8px 16px;
-  font-size: 12.5px; letter-spacing: 0.2px;
-  position: relative; z-index: 99;
-}
-.ftc-bar strong { color: var(--orange); margin-right: 6px; }
-.ftc-bar a { color: #fff; text-decoration: underline; }
-.ftc-bar a:hover { color: var(--orange-bright); }
-
-/* ============== NAV ============== */
-.navbar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255, 253, 247, 0.92);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-}
-.nav-inner {
-  max-width: var(--max-width); margin: 0 auto;
-  padding: 14px 24px;
-  display: flex; align-items: center; gap: 24px;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 12px;
-  font-family: var(--font-heading); font-weight: 800; font-size: 20px;
-  color: var(--navy); flex-shrink: 0;
-}
-.nav-logo-text { line-height: 1.05; }
-.nav-logo-text .got { color: var(--navy); display: block; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; }
-.nav-logo-text .superstore { color: var(--orange); font-size: 18px; font-weight: 800; }
-.nav-search {
-  flex: 1; max-width: 480px; position: relative;
-}
-.nav-search-shell {
-  position: relative;
-}
-.nav-search-badge {
-  position: absolute;
-  top: -9px;
-  left: 16px;
-  z-index: 2;
+/* ============== TOP RIBBON ============== */
+.ribbon {
   background: var(--navy);
   color: #fff;
-  font-size: 9.5px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(14, 42, 71, 0.18);
-}
-.nav-search input {
-  width: 100%; height: 42px;
-  border: 1.5px solid var(--border);
-  background: #fff;
-  border-radius: 22px;
-  padding: 0 48px 0 18px;
-  font-family: var(--font-body); font-size: 14px;
-  color: var(--ink);
-  transition: all 0.2s;
-}
-.nav-search input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(242, 107, 26, 0.12); }
-.nav-search button {
-  position: absolute; right: 5px; top: 5px;
-  width: 32px; height: 32px;
-  background: var(--orange); border: none; border-radius: 50%;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.nav-search button:hover { background: var(--orange-bright); transform: scale(1.06); }
-.nav-search-hint {
-  font-size: 11.5px;
-  color: var(--ink-soft);
-  margin-top: 6px;
-  padding-left: 18px;
-  font-style: italic;
-  opacity: 0.85;
-}
-.nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; }
-.nav-links a { color: var(--ink-soft); transition: color 0.2s; }
-.nav-links a:hover { color: var(--orange); }
-
-/* ============== BUTTONS ============== */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 24px; border-radius: 999px;
-  font-family: var(--font-body); font-weight: 600; font-size: 14.5px;
-  cursor: pointer; transition: all 0.2s;
-  border: none;
-}
-.btn-primary { background: var(--orange); color: #fff; }
-.btn-primary:hover { background: var(--orange-bright); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(242, 107, 26, 0.32); }
-.btn-secondary {
-  background: #fff; color: var(--navy);
-  border: 1.5px solid var(--navy);
-}
-.btn-secondary:hover { background: var(--navy); color: #fff; }
-.btn-ghost { background: transparent; color: var(--orange); border: 1px solid var(--orange); }
-.btn-ghost:hover { background: var(--orange); color: #fff; }
-
-/* ============== HERO ============== */
-.hero {
-  position: relative;
-  background:
-    radial-gradient(circle at 90% -10%, rgba(242, 107, 26, 0.18), transparent 50%),
-    radial-gradient(circle at 0% 50%, rgba(0, 168, 107, 0.10), transparent 50%),
-    linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
-  padding: 56px 24px 64px;
-  overflow: hidden;
-}
-.hero-inner {
-  max-width: var(--max-width); margin: 0 auto;
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(0, 168, 107, 0.12);
-  color: var(--green);
-  padding: 6px 14px; border-radius: 999px;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.hero-eyebrow::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-  animation: pulse 1.6s infinite;
-}
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-.hero h1 {
-  font-family: var(--font-heading); font-weight: 800;
-  font-size: clamp(36px, 5vw, 54px); line-height: 1.05; letter-spacing: -0.02em;
-  margin-bottom: 18px;
-  color: var(--navy);
-}
-.hero h1 .accent { color: var(--orange); }
-.hero h1 .accent-green { color: var(--green); }
-.hero p.lead {
-  font-size: 17px; line-height: 1.55; color: var(--ink-soft);
-  max-width: 540px; margin-bottom: 28px;
-}
-.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
-.hero-trust {
-  display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
-  padding-top: 24px; border-top: 1px solid var(--border);
-}
-.hero-trust-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); font-weight: 600; }
-.hero-trust-logos { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-weight: 700; color: var(--ink-soft); font-size: 14px; }
-.hero-trust-logos span { padding: 4px 10px; background: rgba(14, 42, 71, 0.06); border-radius: 6px; }
-
-.hero-visual { position: relative; }
-.hero-card {
-  background: #fff; border-radius: var(--radius-lg);
-  padding: 28px; box-shadow: var(--shadow-lg);
-  position: relative; overflow: hidden;
-}
-.hero-card-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-}
-.hero-deal {
-  background: var(--bg-soft); border-radius: 12px; padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 6px;
-}
-.hero-deal-emoji { font-size: 28px; }
-.hero-deal-name { font-weight: 600; font-size: 13.5px; color: var(--navy); line-height: 1.25; }
-.hero-deal-price {
-  display: flex; align-items: baseline; gap: 6px;
-  font-family: var(--font-heading);
-}
-.hero-deal-price .now { color: var(--orange); font-weight: 800; font-size: 18px; }
-.hero-deal-price .was { text-decoration: line-through; color: var(--muted); font-size: 13px; }
-.hero-deal-tag {
-  align-self: flex-start;
-  font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;
-  background: var(--green); color: #fff;
-  padding: 2px 8px; border-radius: 4px; font-weight: 700;
-}
-
-/* ============== SECTIONS ============== */
-.section {
-  max-width: var(--max-width); margin: 0 auto;
-  padding: 64px 24px;
-}
-.section-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 24px; margin-bottom: 28px;
-}
-.section-eyebrow {
-  text-transform: uppercase; letter-spacing: 2px;
-  font-size: 11px; font-weight: 700; color: var(--orange);
-  margin-bottom: 8px;
-}
-.section-title {
-  font-family: var(--font-heading); font-weight: 800;
-  font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1;
-  letter-spacing: -0.01em; color: var(--navy);
-}
-.section-title .accent { color: var(--orange); }
-.section-meta { color: var(--muted); font-size: 13px; flex-shrink: 0; }
-
-/* ============== CATEGORIES (DENSE GRID) ============== */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
-}
-.category-card {
-  background: var(--bg-card); border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 14px;
   text-align: center;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 13px;
+  padding: 8px 16px;
+  font-weight: 500;
 }
-.category-card:hover {
-  border-color: var(--orange);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-.category-icon {
-  font-size: 30px;
-  line-height: 1;
-  filter: drop-shadow(0 4px 8px rgba(14, 42, 71, 0.12));
-}
-.category-name {
-  font-family: var(--font-heading); font-weight: 600;
-  font-size: 13.5px; color: var(--navy);
-  line-height: 1.2;
-}
-.category-count {
-  font-size: 11px; color: var(--muted); font-weight: 500;
-}
+.ribbon a { color: var(--orange-bright); }
 
-/* ============== PRODUCT GRID (BENTO) ============== */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-}
-.product-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex; flex-direction: column;
-  cursor: pointer;
-  position: relative;
-}
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(242, 107, 26, 0.4);
-}
-.product-img {
-  aspect-ratio: 4/3;
-  background: linear-gradient(135deg, var(--bg-soft), var(--cream));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 64px;
-  position: relative;
-}
-.product-badge {
-  position: absolute; top: 10px; left: 10px;
-  background: var(--green); color: #fff;
-  padding: 3px 9px; border-radius: 4px;
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
-}
-.product-badge.orange { background: var(--orange); }
-.product-info { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; }
-.product-retailer {
-  font-size: 11px; color: var(--muted); font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.product-name {
-  font-family: var(--font-heading); font-weight: 600;
-  font-size: 14px; line-height: 1.3; color: var(--navy);
-  margin-bottom: 8px;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.product-price {
-  font-family: var(--font-heading); font-weight: 800;
-  font-size: 18px; color: var(--orange);
-  margin-top: auto;
-}
-
-/* ============== ENTERTAINMENT CALLOUT ============== */
-.entertainment-callout {
-  max-width: var(--max-width); margin: 32px auto 0;
-  padding: 0 24px;
-}
-.callout-card {
-  position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #0A0A0E 0%, #1A1430 50%, #2C0A1A 100%);
-  border-radius: var(--radius-lg);
-  padding: 48px 56px;
-  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
-  color: #fff;
-}
-.callout-card::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 80% 50%, rgba(224, 163, 61, 0.18), transparent 50%);
-}
-.callout-content { position: relative; z-index: 1; }
-.callout-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  text-transform: uppercase; letter-spacing: 2px;
-  font-size: 11px; font-weight: 700; color: #E0A33D;
-  margin-bottom: 14px;
-}
-.callout-title {
-  font-family: var(--font-heading); font-weight: 800;
-  font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1;
-  letter-spacing: -0.01em; margin-bottom: 12px;
-}
-.callout-title .accent { color: #E0A33D; font-style: italic; }
-.callout-desc {
-  font-size: 15.5px; color: rgba(255,255,255,0.84); margin-bottom: 22px;
-  max-width: 480px;
-}
-.callout-grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-}
-.callout-tile {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px; padding: 14px 14px;
-  font-size: 13px; font-weight: 600;
-  display: flex; align-items: center; gap: 10px;
-  backdrop-filter: blur(6px);
-}
-.callout-tile-icon { font-size: 22px; }
-
-/* ============== BLOG ============== */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.blog-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden;
-  transition: all 0.3s; display: flex; flex-direction: column;
-}
-.blog-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(242, 107, 26, 0.3); }
-.blog-cover {
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, var(--navy), var(--navy-light));
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.blog-cover-emoji { font-size: 56px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.3)); }
-.blog-cover.gradient-1 { background: linear-gradient(135deg, #0E2A47, #1a3d62); }
-.blog-cover.gradient-2 { background: linear-gradient(135deg, #F26B1A, #FF8533); }
-.blog-cover.gradient-3 { background: linear-gradient(135deg, #00A86B, #1FCC8B); }
-.blog-cover.gradient-4 { background: linear-gradient(135deg, #5B2C8C, #8E3FBE); }
-.blog-cover.gradient-5 { background: linear-gradient(135deg, #C53030, #ED5252); }
-.blog-cover.gradient-6 { background: linear-gradient(135deg, #2D3748, #4A5568); }
-.blog-cover.gradient-7 { background: linear-gradient(135deg, #DD6B20, #FBB360); }
-.blog-cover.gradient-8 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-.blog-cover-tag {
-  position: absolute; top: 12px; left: 12px;
-  background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
-  color: #fff; padding: 4px 10px; border-radius: 5px;
-  font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
-}
-.blog-info { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
-.blog-meta {
-  display: flex; gap: 10px; align-items: center;
-  font-size: 11.5px; color: var(--muted); font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.5px;
-  margin-bottom: 10px;
-}
-.blog-title {
-  font-family: var(--font-heading); font-weight: 700;
-  font-size: 17px; line-height: 1.3; color: var(--navy);
-  margin-bottom: 10px;
-}
-.blog-excerpt {
-  font-size: 14px; line-height: 1.55; color: var(--ink-soft);
-  margin-bottom: 14px; flex: 1;
-}
-.blog-readmore {
-  background: none; border: none; cursor: pointer;
-  font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
-  color: var(--orange); padding: 0;
-  display: inline-flex; align-items: center; gap: 6px;
-  align-self: flex-start;
-  transition: gap 0.2s;
-}
-.blog-readmore:hover { gap: 10px; }
-.blog-readmore::after { content: '→'; transition: transform 0.2s; }
-.blog-readmore:hover::after { transform: translateX(2px); }
-.blog-full {
-  display: none;
-  margin-top: 14px; padding-top: 14px;
-  border-top: 1px dashed var(--border);
-  font-size: 14px; line-height: 1.7; color: var(--ink-soft);
-}
-.blog-full p { margin-bottom: 12px; }
-.blog-full h4 { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--navy); margin: 14px 0 6px; }
-.blog-full ul { padding-left: 18px; margin-bottom: 12px; }
-.blog-full li { margin-bottom: 4px; }
-.blog-full a { color: var(--orange); font-weight: 600; }
-.blog-card.expanded .blog-full { display: block; }
-.blog-card.expanded .blog-readmore::after { transform: rotate(90deg); }
-.blog-card.expanded .blog-readmore .label-collapsed { display: none; }
-.blog-card.expanded .blog-readmore .label-expanded { display: inline; }
-.blog-readmore .label-expanded { display: none; }
-
-/* ============== ABOUT / WHY ============== */
-.about-grid {
-  display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center;
-}
-.about-text p { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
-.why-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
-}
-.why-card {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 12px; padding: 18px;
-}
-.why-icon { font-size: 24px; margin-bottom: 8px; }
-.why-card h4 {
-  font-family: var(--font-heading); font-weight: 700; font-size: 14.5px;
-  color: var(--navy); margin-bottom: 4px;
-}
-.why-card p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
-
-/* ============== NEWSLETTER ============== */
-.newsletter {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-  border-radius: var(--radius-lg);
-  padding: 40px 48px;
-  margin: 32px 24px;
-  max-width: calc(var(--max-width) - 48px);
-  text-align: center;
-  color: #fff;
-  position: relative; overflow: hidden;
-}
-.newsletter::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 90% 50%, rgba(242, 107, 26, 0.18), transparent 50%);
-}
-.newsletter-inner { position: relative; z-index: 1; max-width: 540px; margin: 0 auto; }
-.newsletter h3 {
-  font-family: var(--font-heading); font-weight: 800;
-  font-size: clamp(22px, 2.8vw, 30px); margin-bottom: 8px;
-}
-.newsletter p { color: rgba(255,255,255,0.78); font-size: 14.5px; margin-bottom: 22px; }
-.newsletter-form { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; }
-.newsletter-form input {
-  flex: 1; height: 46px;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 24px; padding: 0 20px;
-  color: #fff; font-size: 14px; font-family: var(--font-body);
-}
-.newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
-.newsletter-form input:focus { outline: none; background: rgba(255,255,255,0.14); border-color: var(--orange); }
-.newsletter-form button { padding: 0 26px; height: 46px; background: var(--orange); color: #fff; border: none; border-radius: 24px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-.newsletter-form button:hover { background: var(--orange-bright); }
-
-/* ============== CONTACT ============== */
-.contact-grid {
-  display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start;
-}
-.contact-info p { font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 8px; }
-.contact-info strong { color: var(--navy); font-weight: 700; display: inline-block; min-width: 110px; }
-.contact-info a { color: var(--orange); font-weight: 600; }
-.contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
-.form-input, .form-textarea {
-  width: 100%; padding: 12px 16px;
-  border: 1.5px solid var(--border); border-radius: 10px;
-  font-family: var(--font-body); font-size: 14px;
-  background: #fff; color: var(--ink);
-  transition: all 0.2s;
-}
-.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(242, 107, 26, 0.1); }
-.form-textarea { min-height: 120px; resize: vertical; margin-bottom: 14px; }
-
-/* ============== FOOTER ============== */
-footer {
-  background: var(--navy-deep); color: #cfd8e3;
-  padding: 56px 24px 24px; margin-top: 48px;
-}
-.footer-inner { max-width: var(--max-width); margin: 0 auto; }
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  gap: 40px; margin-bottom: 36px;
-}
-.footer-brand h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px; }
-.footer-brand h3 .got { color: #cfd8e3; }
-.footer-brand h3 .super { color: var(--orange); }
-.footer-brand p { font-size: 13.5px; line-height: 1.65; color: #98a4b3; max-width: 320px; }
-.footer-col h4 {
-  font-family: var(--font-heading); font-size: 12.5px; text-transform: uppercase;
-  letter-spacing: 1.4px; font-weight: 700;
-  color: var(--orange); margin-bottom: 14px;
-}
-.footer-col a, .footer-col button {
-  display: block; font-size: 13.5px; color: #98a4b3;
-  margin-bottom: 9px; transition: color 0.2s;
-  background: none; border: none; padding: 0; cursor: pointer; text-align: left; font-family: var(--font-body);
-}
-.footer-col a:hover, .footer-col button:hover { color: #fff; }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 22px;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px;
-  font-size: 12px; color: #788596;
-}
-
-/* ============== MODALS ============== */
-.modal-overlay {
-  display: none;
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
-  align-items: center; justify-content: center;
-  padding: 20px;
-}
-.modal-overlay.open { display: flex; }
-.modal {
-  background: #fff; border-radius: var(--radius-lg);
-  max-width: 800px; width: 100%; max-height: 90vh;
-  overflow: hidden;
-  display: flex; flex-direction: column;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-}
-.modal-header {
-  padding: 22px 28px;
+/* ============== HEADER ============== */
+header {
+  background: var(--cream);
   border-bottom: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 24px;
 }
-.modal-header h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: var(--navy); }
-.modal-close {
-  background: var(--bg-soft); border: none;
-  width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; font-size: 22px; line-height: 1; color: var(--ink);
-  transition: all 0.2s;
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.modal-close:hover { background: var(--orange); color: #fff; }
-.modal-body { padding: 24px 28px; overflow-y: auto; }
-.modal-body h3 {
-  font-family: var(--font-heading); font-size: 15.5px; font-weight: 700;
-  color: var(--navy); margin: 18px 0 8px;
+.nav-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: -0.01em;
 }
-.modal-body p, .modal-body li {
-  font-size: 14px; line-height: 1.65; color: var(--ink-soft);
-  margin-bottom: 8px;
+.nav-logo .got { color: var(--navy); }
+.nav-logo .super { color: var(--orange); }
+.nav-back {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
 }
-.modal-body ul { padding-left: 20px; margin-bottom: 10px; }
-.modal-body strong { color: var(--navy); }
-.modal-body a { color: var(--orange); font-weight: 600; }
+.nav-back:hover { color: var(--navy); text-decoration: underline; }
 
-/* ============== INQUIRY RECEPTION MODAL ============== */
-.inquiry-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(14, 42, 71, 0.62);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  display: none;
+/* ============== MAIN LAYOUT ============== */
+main {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  padding: 20px;
+  padding: 40px 24px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(242, 107, 26, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(0, 168, 107, 0.06), transparent 40%),
+    var(--bg);
 }
-.inquiry-modal-overlay.open {
-  display: flex;
-  animation: inquiry-fade 0.18s ease;
-}
-@keyframes inquiry-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.inquiry-modal-card {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  max-width: 580px;
+.login-wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  max-width: 1120px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px 28px 24px;
-  box-shadow: var(--shadow-lg);
+  align-items: center;
 }
-.inquiry-modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 14px;
-  gap: 12px;
+@media (max-width: 900px) {
+  .login-wrap { grid-template-columns: 1fr; gap: 32px; }
 }
-.inquiry-modal-header h3 {
-  font-family: var(--font-heading);
-  font-size: 19px;
-  color: var(--navy);
-  margin: 0 0 4px 0;
-  line-height: 1.25;
+
+/* ============== LEFT: pitch panel ============== */
+.pitch {
+  padding: 16px 8px;
 }
-.inquiry-modal-header p {
-  color: var(--ink-soft);
-  font-size: 13px;
-  margin: 0;
-  line-height: 1.5;
-}
-.inquiry-modal-close {
-  background: none;
-  border: none;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-}
-.inquiry-modal-close:hover { color: var(--navy); }
-.inquiry-query-pill {
+.pitch-eyebrow {
   display: inline-block;
-  background: linear-gradient(135deg, #fff4ea 0%, #ffe8d5 100%);
-  color: var(--navy);
-  border: 1px solid #ffd0a8;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.inquiry-stores {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.inquiry-store-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg-card);
-  text-decoration: none;
-  color: var(--ink);
-  transition: all 0.15s ease;
-}
-.inquiry-store-link:hover {
-  border-color: var(--orange);
-  background: #fff8f0;
-  transform: translateY(-1px);
-}
-.inquiry-store-link-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
-.inquiry-store-link-text { flex: 1; min-width: 0; }
-.inquiry-store-link-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--navy);
-  display: block;
-}
-.inquiry-store-link-tag {
-  font-size: 11.5px;
-  color: var(--muted);
-  display: block;
-  margin-top: 2px;
-}
-
-/* ============== RESPONSIVE ============== */
-@media (max-width: 920px) {
-  .nav-inner { flex-wrap: wrap; gap: 12px; }
-  .nav-search { order: 3; flex: 1 1 100%; max-width: none; }
-  .nav-links { display: none; }
-  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-  .callout-card { grid-template-columns: 1fr; padding: 32px 24px; }
-  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .section { padding: 48px 18px; }
-  .why-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .mall-walkway { grid-template-columns: 1fr; gap: 12px; }
-  .mall-floor {
-    min-height: 72px;
-  }
-  .mall-floor.has-centre {
-    min-height: auto;
-    padding: 20px 14px;
-  }
-  .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
-  .mall-floor-arrow { display: none; }
-  .fish-planter { width: 50%; }
-  .mall-welcome-mat, .mall-centre-store { width: 92%; }
-}
-@media (max-width: 480px) {
-  .inquiry-stores { grid-template-columns: 1fr; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
-}
-
-/* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
-.mall-walkway {
-  display: grid;
-  grid-template-columns: 1fr 84px 1fr;
-  gap: 18px;
-  margin-top: 14px;
-  align-items: stretch;
-}
-.mall-aisle {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.mall-floor {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  min-height: 220px;
-  background-color: #f0e4cc;
-  /* Layered: highlight dots at tile centers + diamond/argyle tile pattern + warm cream base */
-  background-image:
-    radial-gradient(circle at 50% 50%, rgba(255, 250, 235, 0.55) 0, rgba(255, 250, 235, 0.55) 3px, transparent 4px),
-    linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
-    linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
-  background-size: 32px 32px;
-  background-position: 16px 16px, 0 0, 0 16px, 16px -16px, -16px 0;
-  box-shadow:
-    inset 0 4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
-}
-/* Soft vignette so the centre of the walkway feels lit, edges feel shaded */
-.mall-floor::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 110, 60, 0.18) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-.mall-floor-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  white-space: nowrap;
-  letter-spacing: 8px;
-  font-size: 10px;
-  font-weight: 800;
-  color: rgba(120, 90, 50, 0.65);
-  text-transform: uppercase;
-  pointer-events: none;
-  background: rgba(255, 250, 235, 0.7);
-  padding: 4px 14px;
-  border-radius: 999px;
-  z-index: 3;
-  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
-}
-.mall-floor-arrow {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(120, 90, 50, 0.5);
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 1;
-  pointer-events: none;
-  z-index: 2;
-}
-.mall-floor-arrow.top { top: 14px; }
-.mall-floor-arrow.bottom { bottom: 14px; }
-
-/* The walkway is now a vertical stack: arrow, welcome mat, planter, centre store, planter, arrow */
-.mall-floor.has-centre {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-  padding: 32px 10px;
-  min-height: 320px;
-}
-.mall-floor.has-centre .mall-floor-label {
-  display: none;
-}
-.mall-floor.has-centre .mall-floor-arrow {
-  position: static;
-  transform: none;
-  text-align: center;
-}
-/* Welcome mat with Got It logo right at the top of the walkway */
-.mall-welcome-mat {
-  width: 90%;
-  margin: 14px auto 8px;
-  padding: 14px 18px;
-  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 100%);
-  border-radius: 6px;
-  text-align: center;
-  position: relative;
-  z-index: 3;
-  box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.18),
-    inset 0 0 0 2px rgba(242, 107, 26, 0.55),
-    inset 0 0 0 4px rgba(255, 253, 247, 0.15);
-}
-.mall-welcome-mat .mat-eyebrow {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 9px;
-  color: rgba(255, 253, 247, 0.75);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-.mall-welcome-mat .mat-brand {
-  display: block;
-  margin-top: 2px;
-  font-family: var(--font-heading);
-  font-size: 13px;
-  color: var(--orange);
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  line-height: 1.15;
-}
-.mall-welcome-mat .mat-welcome {
-  display: block;
-  margin-top: 4px;
-  font-size: 8.5px;
-  color: rgba(255, 253, 247, 0.55);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-/* Fish-bowl shaped decorative planter with plants */
-.fish-planter {
-  width: 80%;
-  margin: 10px auto;
-  padding: 6px 14px 4px;
-  border-radius: 50% / 70% 70% 30% 30%;
-  background: linear-gradient(180deg, rgba(180, 220, 240, 0.85) 0%, rgba(120, 180, 215, 0.75) 100%);
-  border: 1.5px solid rgba(80, 130, 170, 0.45);
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  box-shadow:
-    inset 0 3px 6px rgba(255, 255, 255, 0.5),
-    inset 0 -2px 4px rgba(60, 100, 140, 0.25),
-    0 3px 6px rgba(0, 0, 0, 0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-.fish-planter::before {
-  /* tail fin */
-  content: '';
-  position: absolute;
-  right: -10px;
-  top: 50%;
-  width: 0;
-  height: 0;
-  transform: translateY(-50%);
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-left: 12px solid rgba(120, 180, 215, 0.75);
-  filter: drop-shadow(1px 0 0 rgba(80, 130, 170, 0.45));
-}
-.fish-planter::after {
-  /* eye */
-  content: '';
-  position: absolute;
-  left: 12px;
-  top: 38%;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(14, 42, 71, 0.85);
-  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.75);
-}
-.fish-planter .planter-greenery {
-  font-size: 20px;
-  line-height: 1;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
-}
-
-/* The centre storefront sits in the middle of the walkway */
-.mall-centre-store {
-  width: 90%;
-  margin: 6px auto;
-  min-height: 130px;
-  background: linear-gradient(135deg, #fffdf7 0%, #fff4e2 100%);
-  border: 1.5px solid #f4d8a8;
-  box-shadow:
-    0 8px 20px rgba(14, 42, 71, 0.12),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-  position: relative;
-  z-index: 3;
-}
-.mall-centre-store::after {
-  /* Subtle "centrepiece" indicator above the card */
-  content: 'FEATURED STORE';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--orange);
-  color: #fff;
-  font-size: 8.5px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-/* Brand banner that sits at the very top of the homepage, above the nav */
-.brand-banner {
-  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 60%, #0E2A47 100%);
-  padding: 18px 16px;
-  text-align: center;
-  border-bottom: 3px solid var(--orange);
-}
-.brand-banner-inner {
-  max-width: 1320px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-.brand-banner svg {
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-.brand-banner-text {
-  text-align: left;
-  line-height: 1.1;
-}
-.brand-banner-text .b-got {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 11px;
-  letter-spacing: 4px;
-  color: rgba(255, 253, 247, 0.7);
-  text-transform: uppercase;
-}
-.brand-banner-text .b-store {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--orange);
-  letter-spacing: 1px;
-}
-.brand-banner-text .b-tag {
-  display: block;
-  margin-top: 2px;
-  font-size: 11px;
-  color: rgba(255, 253, 247, 0.55);
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-}
-@media (max-width: 600px) {
-  .brand-banner svg { width: 36px; height: 36px; }
-  .brand-banner-text .b-store { font-size: 21px; }
-  .brand-banner-text .b-got, .brand-banner-text .b-tag { font-size: 10px; letter-spacing: 2.5px; }
-}
-/* Older class kept as fallback for any legacy reference */
-.stores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
-  margin-top: 14px;
-}
-.store-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 14px 18px 22px;
-  background: linear-gradient(135deg, #ffffff 0%, #f6f4ee 100%);
-  border: 1px solid #e8e4d8;
-  border-radius: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  position: relative;
-  overflow: hidden;
-  min-height: 150px;
-  gap: 6px;
-}
-/* Each storefront wears an "OPEN" doorway sign at the top */
-.store-door {
-  font-size: 9.5px;
-  font-weight: 800;
-  color: #00A86B;
   background: rgba(0, 168, 107, 0.10);
-  border: 1px solid rgba(0, 168, 107, 0.35);
-  padding: 3px 10px 3px 8px;
-  border-radius: 999px;
-  letter-spacing: 1.4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  line-height: 1;
-}
-.store-door::before {
-  content: '🚪';
-  font-size: 11px;
-  filter: grayscale(0);
-}
-.store-card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #F26B1A, #00A86B);
-  opacity: 0;
-  transition: opacity 0.18s ease;
-}
-.store-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(14, 42, 71, 0.08), 0 4px 8px rgba(14, 42, 71, 0.04);
-  border-color: #d4ccb5;
-}
-.store-card:hover::before {
-  opacity: 1;
-}
-.store-icon {
-  font-size: 38px;
-  line-height: 1;
-  margin-bottom: 10px;
-  transition: transform 0.18s ease;
-}
-.store-card:hover .store-icon {
-  transform: scale(1.08) rotate(-3deg);
-}
-.store-name {
-  font-size: 15.5px;
-  font-weight: 700;
-  color: #0E2A47;
-  letter-spacing: -0.01em;
-  margin-bottom: 3px;
-}
-.store-tag {
-  font-size: 11.5px;
-  color: #788596;
-  font-weight: 500;
-}
-
-/* ============== CATEGORY CARDS — UPGRADED ============== */
-.category-card {
-  background: linear-gradient(135deg, #ffffff 0%, #faf8f2 100%);
-  border: 1px solid #ebe6d5;
-  border-radius: 14px;
-  padding: 22px 16px 18px;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-  position: relative;
-  cursor: pointer;
-}
-.category-card .category-icon {
-  font-size: 36px;
-  line-height: 1;
-  margin-bottom: 4px;
-  transition: transform 0.18s ease;
-  display: block;
-}
-.category-card .category-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0E2A47;
-  letter-spacing: -0.01em;
-  display: block;
-}
-.category-card .category-count {
-  font-size: 11.5px;
-  color: #788596;
-  font-weight: 500;
-  display: block;
-}
-.category-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(14, 42, 71, 0.08);
-  border-color: #F26B1A;
-  background: linear-gradient(135deg, #ffffff 0%, #fff8ee 100%);
-}
-.category-card:hover .category-icon {
-  transform: scale(1.1);
-}
-.category-card.soon {
-  opacity: 0.7;
-}
-.category-card.soon .category-count {
-  color: #F26B1A;
-  font-style: italic;
-  font-weight: 600;
-}
-.category-card.active-filter {
-  border-color: #00A86B;
-  background: linear-gradient(135deg, #ffffff 0%, #ebfaf3 100%);
-  box-shadow: 0 6px 16px rgba(0, 168, 107, 0.18);
-}
-.category-card.active-filter .category-count::after {
-  content: " · click again to clear";
-  font-size: 10px;
-  color: #00A86B;
-  font-weight: 600;
-  font-style: normal;
-  display: block;
-  margin-top: 2px;
-}
-
-
-/* ============== HERO VIDEO LAYOUT ============== */
-.hero-inner-stacked {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  align-items: center;
-  text-align: center;
-}
-.hero-text-centered {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-.hero-text-centered .hero-eyebrow {
-  margin-left: auto;
-  margin-right: auto;
-}
-.hero-video-wrap {
-  position: relative;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  aspect-ratio: 16/9;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 16px 40px rgba(14, 42, 71, 0.18);
-}
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-/* Hero video is clickable — clicking it silently toggles sound on/off */
-.hero-video-wrap { cursor: pointer; position: relative; }
-.hero-video-wrap:hover .hero-video { filter: brightness(1.02); }
-/* Hop in button rises in over the bottom of the video once the welcome plays out */
-.hero-video-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 28px;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, transparent 65%, rgba(14, 42, 71, 0.55) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.hero-video-overlay.visible { opacity: 1; }
-.hero-video-overlay > * { pointer-events: auto; }
-.btn-hop-in-overlay {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 17px;
-  padding: 14px 26px;
-  box-shadow: 0 8px 24px rgba(242, 107, 26, 0.45);
-  animation: hop-pulse 1.8s ease-in-out infinite;
-}
-@keyframes hop-pulse {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-.hero-shop .hero-video-wrap {
-  max-width: 1100px;
-}
-/* Home hero: the worker welcoming the couple is the opening act.
-   The video takes the spotlight; the lead line sits quietly underneath. */
-.hero-home .hero-video-wrap {
-  max-width: 1100px;
-}
-.hero-text-after-video {
-  margin-top: 18px;
-}
-.hero-text-after-video .lead {
-  margin: 0;
-  font-size: 16px;
-  color: var(--ink-soft);
-}
-
-/* ============== DEALS STATUS HEADER ============== */
-.deals-status-section {
-  padding-bottom: 0;
-}
-.deals-status-card {
-  background: linear-gradient(135deg, #fff8ef 0%, #ffffff 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px 24px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.deals-status-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.deals-status-pill {
-  background: rgba(0, 168, 107, 0.12);
   color: var(--green);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 12px;
-  letter-spacing: 1.2px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 168, 107, 0.3);
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 18px;
 }
-.deals-status-time {
-  font-size: 13px;
+.pitch h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.4vw, 48px);
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--navy);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.pitch h1 .accent { color: var(--orange); }
+.pitch .lead {
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  max-width: 460px;
+}
+.benefits {
+  display: grid;
+  gap: 14px;
+  max-width: 460px;
+}
+.benefit {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: start;
+  gap: 12px;
+}
+.benefit-icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 16px;
+}
+.benefit-text strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy);
+  display: block;
+  margin-bottom: 2px;
+  font-size: 15px;
+}
+.benefit-text span {
+  font-size: 14px;
   color: var(--ink-soft);
 }
 
-/* ============== LOGIN PAGE ============== */
-.login-section {
-  max-width: 540px;
-  margin: 0 auto;
-  padding: 40px 18px 80px;
-}
+/* ============== RIGHT: login card ============== */
 .login-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 36px 32px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
+  padding: 38px 36px 30px;
+  position: relative;
 }
-.login-header { text-align: center; margin-bottom: 24px; }
-.login-eyebrow {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 12px;
-}
-.login-header h1 {
-  font-family: var(--font-heading);
-  font-size: 28px;
-  color: var(--navy);
-  margin: 0 0 10px 0;
-  line-height: 1.15;
-}
-.login-header h1 .accent { color: var(--orange); }
-.login-lead { font-size: 14.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
-
-.login-mode-switch {
+.login-card .tab-row {
   display: flex;
+  gap: 6px;
   background: var(--bg-soft);
-  border-radius: 999px;
-  padding: 4px;
-  margin-bottom: 22px;
+  padding: 6px;
+  border-radius: 100px;
+  margin-bottom: 26px;
 }
-.login-mode-btn {
+.login-card .tab {
   flex: 1;
-  border: none;
-  background: transparent;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-family: var(--font-body);
+  text-align: center;
+  font-family: var(--font-heading);
   font-weight: 600;
   font-size: 14px;
-  color: var(--ink-soft);
+  padding: 10px 14px;
+  border-radius: 100px;
   cursor: pointer;
-  transition: all 0.18s ease;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  transition: all 0.2s;
 }
-.login-mode-btn.active {
+.login-card .tab.active {
   background: var(--bg-card);
   color: var(--navy);
-  box-shadow: 0 2px 6px rgba(14, 42, 71, 0.08);
+  box-shadow: var(--shadow-sm);
+}
+.login-card h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.login-card .subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 22px;
 }
 
+/* Google button */
 .btn-google {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 100%;
-  padding: 13px;
-  background: var(--bg-card);
-  color: var(--ink);
-  border: 1.5px solid var(--border);
-  border-radius: 12px;
-  font-family: var(--font-body);
+  background: #fff;
+  border: 1.5px solid rgba(14, 42, 71, 0.18);
+  color: var(--navy);
+  font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 15px;
+  padding: 13px 16px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.18s ease;
-  margin-bottom: 16px;
+  transition: all 0.18s;
 }
-.btn-google:hover { border-color: var(--orange); background: #fffaf5; }
+.btn-google:hover {
+  border-color: var(--navy);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.btn-google svg { width: 20px; height: 20px; flex: 0 0 auto; }
 
-.login-divider {
-  position: relative;
-  text-align: center;
-  margin: 20px 0;
-  font-size: 12px;
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--muted);
-  letter-spacing: 1.2px;
+  font-size: 12px;
+  margin: 18px 0;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
 }
-.login-divider::before,
-.login-divider::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: calc(50% - 60px);
+.divider::before, .divider::after {
+  content: "";
+  flex: 1;
   height: 1px;
   background: var(--border);
 }
-.login-divider::before { left: 0; }
-.login-divider::after  { right: 0; }
-.login-divider span { background: var(--bg-card); padding: 0 12px; }
 
-.login-form { display: none; flex-direction: column; gap: 14px; }
-.login-form.active { display: flex; }
-.login-label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Form */
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+.field label {
+  display: block;
   font-size: 13px;
   font-weight: 600;
   color: var(--ink-soft);
+  margin-bottom: 6px;
+  font-family: var(--font-heading);
 }
-.login-label input {
+.field input {
+  width: 100%;
   padding: 12px 14px;
   border: 1.5px solid var(--border);
   border-radius: 10px;
   font-family: var(--font-body);
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--ink);
-  background: #fff;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  background: var(--cream);
+  transition: border-color 0.18s, background 0.18s;
 }
-.login-label input:focus {
+.field input:focus {
   outline: none;
   border-color: var(--orange);
-  box-shadow: 0 0 0 4px rgba(242, 107, 26, 0.10);
+  background: #fff;
 }
-.login-submit {
+.field-hint {
+  font-size: 12px;
+  color: var(--muted);
   margin-top: 4px;
-  padding: 14px 20px;
-  font-size: 15px;
-}
-.login-error {
-  margin: 0;
-  min-height: 18px;
-  font-size: 13px;
-  color: #c0392b;
-  text-align: center;
 }
 
-.login-privacy {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-}
-.login-privacy h3 {
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  margin: 0 0 10px 0;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-.login-privacy ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 14px 0;
+.row {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 0 18px;
+  font-size: 13px;
 }
-.login-privacy li {
-  position: relative;
-  padding-left: 22px;
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.remember input { width: 16px; height: 16px; accent-color: var(--orange); }
+
+.btn-primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+  box-shadow: 0 4px 12px rgba(242, 107, 26, 0.28);
+}
+.btn-primary:hover {
+  background: var(--orange-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(242, 107, 26, 0.36);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.switch-mode {
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 18px;
+}
+.switch-mode a { color: var(--orange); font-weight: 600; cursor: pointer; }
+
+/* ============== Privacy block ============== */
+.privacy-block {
+  margin-top: 26px;
+  padding: 16px 18px;
+  background: rgba(0, 168, 107, 0.06);
+  border: 1px solid rgba(0, 168, 107, 0.18);
+  border-radius: var(--radius);
   font-size: 13px;
   color: var(--ink-soft);
-  line-height: 1.55;
+  line-height: 1.6;
 }
-.login-privacy li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 1px;
-  color: var(--green);
-  font-weight: 800;
-  font-size: 13.5px;
-}
-.login-privacy a { color: var(--orange); font-weight: 600; }
-.login-cipc {
-  font-size: 11.5px;
-  color: var(--muted);
+.privacy-block strong { color: var(--green); font-family: var(--font-heading); }
+.privacy-block ul { margin: 8px 0 0 18px; padding: 0; }
+.privacy-block li { margin-bottom: 4px; }
+
+/* ============== Stage notice (informational footer of card) ============== */
+.stage-notice {
+  margin-top: 22px;
   text-align: center;
-  margin: 12px 0 0 0;
-  letter-spacing: 0.5px;
+  font-size: 12px;
+  color: var(--muted);
 }
-@media (max-width: 480px) {
-  .login-card { padding: 26px 20px; }
-  .login-header h1 { font-size: 23px; }
+.stage-notice a { color: var(--ink-soft); }
+
+/* ============== FOOTER ============== */
+footer {
+  background: var(--navy-deep);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  padding: 24px 24px;
+  text-align: center;
+}
+footer a { color: var(--orange-bright); }
+footer .footer-row {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  align-items: center;
+}
+
+/* ============== Loading state ============== */
+.welcome-back {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 38px 36px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  max-width: 420px;
+  margin: 0 auto;
+}
+.welcome-back .smile {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+.welcome-back h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.welcome-back p { color: var(--ink-soft); margin-bottom: 22px; }
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(242, 107, 26, 0.2);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.not-you {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ============== Responsive tweaks ============== */
+@media (max-width: 540px) {
+  .login-card { padding: 28px 22px 22px; }
+  .pitch h1 { font-size: 30px; }
 }
 </style>
 </head>
@@ -1532,656 +484,336 @@ footer {
 
 <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-<!-- ============== BRAND BANNER (sits above the nav on every page) ============== -->
-<header class="brand-banner">
-  <div class="brand-banner-inner">
-    <svg viewBox="0 0 100 100" aria-hidden="true">
-      <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#F26B1A" stroke-width="3"/>
-      <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <text x="50" y="84" text-anchor="middle" fill="#F26B1A" font-family="Poppins,Inter,sans-serif" font-size="11" font-weight="800" letter-spacing="1">GOT IT</text>
-    </svg>
-    <div class="brand-banner-text">
-      <span class="b-got">Got It</span>
-      <span class="b-store">Superstore</span>
-      <span class="b-tag">Trusted Everyday</span>
-    </div>
+<div class="ribbon">
+  Quick sign-in keeps the mall door open next time. &nbsp;<a href="#privacy-block">See exactly what we store →</a>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="nav-logo" aria-label="Got It Superstore home">
+      <span class="got">Got It</span> <span class="super">Superstore</span>
+    </a>
+    <a href="index.html" class="nav-back">← Back to home</a>
   </div>
 </header>
 
-<!-- ============== FTC DISCLOSURE ============== -->
-<div class="ftc-bar">
-  <strong>Affiliate Disclosure:</strong> Got It Superstore earns commissions from qualifying purchases through affiliate links. This comes at no extra cost to you. <a href="#" onclick="openModal('privacy-modal'); return false;">Learn more</a>
-</div>
-
-<!-- ============== NAV ============== -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Got It Superstore home">
-      <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#1a3d62" stroke-width="2"/>
-        <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="50" y="84" text-anchor="middle" fill="#F26B1A" font-family="Poppins,Inter,sans-serif" font-size="11" font-weight="800" letter-spacing="1">GOT IT</text>
-      </svg>
-      <span class="nav-logo-text">
-        <span class="got">Got It</span>
-        <span class="superstore">Superstore</span>
-      </span>
-    </a>
-    <div class="nav-search" role="search">
-      <div class="nav-search-shell">
-        <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 13 stores">
-        <button onclick="doSearch()" aria-label="Submit inquiry">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
-        </button>
-      </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
-    </div>
-    <div class="nav-links">
-      <a href="shop.html">Shop</a>
-      <a href="categories.html">Curated</a>
-      <a href="deals.html">Deals</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-  </div>
-</nav>
-
 <main id="main-content">
+  <!-- AUTO-LOGIN: if user has a session, we show the Welcome-back panel and
+       redirect to the mall (shop.html). Otherwise the login card renders. -->
+  <div class="login-wrap" id="login-wrap">
 
-<!-- ============== LOGIN PAGE ============== -->
-<section class="login-section" id="login">
-  <div class="login-card">
-    <div class="login-header">
-      <div class="login-eyebrow">Members entrance</div>
-      <h1>Welcome to <span class="accent">Got It Superstore</span></h1>
-      <p class="login-lead">Quick sign-up gives you a card to the mall — next time you visit, the doors open automatically.</p>
+    <!-- LEFT: pitch -->
+    <div class="pitch">
+      <span class="pitch-eyebrow">Page 5 of 5 · entry to the mall</span>
+      <h1>One quick step — <span class="accent">then the mall opens</span> for you.</h1>
+      <p class="lead">Sign in once with Google or email. Next time you visit, the door swings open automatically — no password, no friction.</p>
+
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">🚪</div>
+          <div class="benefit-text">
+            <strong>Auto-entry on return</strong>
+            <span>Remember-me keeps you signed in on this device.</span>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🔒</div>
+          <div class="benefit-text">
+            <strong>Your details stay yours</strong>
+            <span>Got It Superstore never reads, sells, or shares what you enter.</span>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">🛍️</div>
+          <div class="benefit-text">
+            <strong>13 trusted stores inside</strong>
+            <span>ASOS · Rakuten · Zalando · Sephora · Wayfair · Shein · Apple · Etsy · eBay · AliExpress · Takealot · IKEA · Costco.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Mode switch: Sign in / Sign up -->
-    <div class="login-mode-switch" role="tablist" aria-label="Choose sign in or sign up">
-      <button type="button" class="login-mode-btn active" data-mode="signin" role="tab" aria-selected="true">Sign in</button>
-      <button type="button" class="login-mode-btn" data-mode="signup" role="tab" aria-selected="false">Sign up</button>
-    </div>
+    <!-- RIGHT: login card -->
+    <div class="login-card" aria-live="polite">
+      <div class="tab-row" role="tablist">
+        <button type="button" class="tab active" id="tab-signin" role="tab" aria-selected="true">Sign in</button>
+        <button type="button" class="tab" id="tab-signup" role="tab" aria-selected="false">Create account</button>
+      </div>
 
-    <!-- Google OAuth -->
-    <button type="button" class="btn btn-google" id="btn-google">
-      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-      </svg>
-      <span>Continue with Google</span>
-    </button>
+      <h2 id="card-title">Welcome back</h2>
+      <p class="subtitle" id="card-subtitle">Choose the quickest way for you.</p>
 
-    <div class="login-divider"><span>or use email</span></div>
-
-    <!-- Sign-in form (visible by default) -->
-    <form id="signin-form" class="login-form active" autocomplete="on" novalidate>
-      <label class="login-label">
-        <span>Email</span>
-        <input type="email" name="email" id="signin-email" required autocomplete="email" placeholder="you@example.com">
-      </label>
-      <label class="login-label">
-        <span>Password</span>
-        <input type="password" name="password" id="signin-password" required autocomplete="current-password" placeholder="••••••••" minlength="6">
-      </label>
-      <button type="submit" class="btn btn-primary login-submit">
-        <span>Sign in</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <button type="button" class="btn-google" id="btn-google">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.83z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.83C6.71 7.31 9.14 5.38 12 5.38z"/>
+        </svg>
+        <span>Continue with Google</span>
       </button>
-      <p class="login-error" id="signin-error" role="alert"></p>
-    </form>
 
-    <!-- Sign-up form (hidden by default) -->
-    <form id="signup-form" class="login-form" autocomplete="on" novalidate>
-      <label class="login-label">
-        <span>Name</span>
-        <input type="text" name="name" id="signup-name" required autocomplete="name" placeholder="Your name" maxlength="80">
-      </label>
-      <label class="login-label">
-        <span>Email</span>
-        <input type="email" name="email" id="signup-email" required autocomplete="email" placeholder="you@example.com">
-      </label>
-      <label class="login-label">
-        <span>Choose a password</span>
-        <input type="password" name="password" id="signup-password" required autocomplete="new-password" placeholder="At least 6 characters" minlength="6">
-      </label>
-      <button type="submit" class="btn btn-primary login-submit">
-        <span>Create my mall card</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </button>
-      <p class="login-error" id="signup-error" role="alert"></p>
-    </form>
+      <div class="divider">or with email</div>
 
-    <!-- Privacy notice — POPIA + brand promise -->
-    <div class="login-privacy">
-      <h3>Your privacy, simply</h3>
-      <ul>
-        <li><strong>Got It Superstore (Pty) Ltd does not access your password.</strong> Passwords are scrambled (SHA-256 hashed) before they ever leave your device.</li>
-        <li>We only see your <strong>name and email</strong> — the same details you'd give a friendly mall receptionist.</li>
-        <li>This account is just a daily entry pass — like an air-mile card. Once you sign up, the doors open automatically on your next visit; no need to log in again.</li>
-        <li>We do <strong>not sell, share, or rent</strong> your details to anyone. Ever.</li>
-        <li>This site is governed by the <strong>Protection of Personal Information Act (POPIA, South Africa)</strong> and processes data lawfully under POPIA section 11 (consent for direct usage purposes).</li>
-        <li>You can request deletion of your account at any time via the <a href="index.html#contact">contact form</a>.</li>
-      </ul>
-      <p class="login-cipc">Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07 · South Africa</p>
+      <form id="auth-form" novalidate>
+        <div class="field" id="field-name" style="display:none;">
+          <label for="auth-name">First name</label>
+          <input type="text" id="auth-name" autocomplete="given-name" placeholder="What should we call you?" maxlength="60">
+        </div>
+        <div class="field">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="auth-password" id="pw-label">Password</label>
+          <input type="password" id="auth-password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" required>
+          <div class="field-hint" id="pw-hint">We never see or store your raw password.</div>
+        </div>
+
+        <div class="row">
+          <label class="remember">
+            <input type="checkbox" id="auth-remember" checked>
+            <span>Keep me signed in on this device</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btn-submit">
+          <span id="btn-submit-label">Sign in &amp; enter the mall</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div class="switch-mode">
+        <span id="switch-text">New here?</span>
+        <a id="switch-link">Create an account →</a>
+      </div>
+
+      <!-- Privacy block -->
+      <div class="privacy-block" id="privacy-block">
+        <strong>What we keep · what we don't.</strong>
+        <p style="margin-top:6px;">Your sign-in unlocks the mall door for daily entry. That's it.</p>
+        <ul>
+          <li><strong>Got It Superstore never has access</strong> to your personal information. Passwords are not transmitted to us; Google sign-ins happen entirely between you and Google.</li>
+          <li>We keep an <strong>anonymous session token</strong> on this device so the mall door opens for you next time. No name, no email, no profile data is read by the site.</li>
+          <li>We count <strong>anonymous visits</strong> (sessions only) so the owner can see how busy the mall is — never <em>who</em> visited.</li>
+          <li>No cookies, no third-party trackers. Just a single key in your browser's local storage. Clearing it signs you out.</li>
+        </ul>
+        <p style="margin-top:10px; font-size:12px;">Compliant with POPIA (South Africa), GDPR (EU), and the FTC Endorsement Guidelines. Full terms in the <a href="index.html#contact">Privacy Policy</a>.</p>
+      </div>
+
+      <div class="stage-notice">
+        By continuing you accept our <a href="index.html#privacy-modal" onclick="event.preventDefault(); window.location='index.html#privacy-modal';">privacy notice</a> &amp; <a href="index.html#terms-modal" onclick="event.preventDefault(); window.location='index.html#terms-modal';">terms</a>.
+      </div>
     </div>
   </div>
-</section>
 
+  <!-- AUTO-LOGIN STATE: shown when a session is already present -->
+  <div class="welcome-back" id="welcome-back" style="display:none;">
+    <div class="smile">👋</div>
+    <h2 id="welcome-greeting">Welcome back!</h2>
+    <p>Opening the mall door for you…</p>
+    <div class="spinner" aria-hidden="true"></div>
+    <span class="not-you" id="sign-out">Not you? Sign out</span>
+  </div>
 </main>
 
-<!-- ============== FOOTER ============== -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
-        <p>Curated affiliate marketplace · Best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. South African owned · global shoppers welcome.</p>
-        <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
-      </div>
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <a href="categories.html">All Categories</a>
-        <a href="deals.html">Exclusive Deals</a>
-        <a href="categories.html#blog">Deal Insider Blog</a>
-      </div>
-      <div class="footer-col">
-        <h4>Retailers</h4>
-        <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Amazon</a>
-        <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shein</a>
-        <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Sephora</a>
-        <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">REI Co-op</a>
-        <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Chewy</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <button onclick="openModal('privacy-modal')">Privacy Policy</button>
-        <button onclick="openModal('terms-modal')">Terms of Service</button>
-        <button onclick="openModal('privacy-modal')">Affiliate Disclosure</button>
-        <a href="#contact">Contact</a>
-        <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Information Regulator (SA)</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
-      <div>No tracking · No cookies · POPIA + GDPR + FTC compliant</div>
-    </div>
+  <div class="footer-row">
+    <span>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</span>
+    <span>·</span>
+    <span>No tracking · No cookies · POPIA + GDPR + FTC compliant</span>
   </div>
 </footer>
 
-<!-- ============== PRIVACY MODAL ============== -->
-<div class="modal-overlay" id="privacy-modal" onclick="if(event.target===this)closeModal('privacy-modal')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Privacy Policy</h3>
-      <button class="modal-close" onclick="closeModal('privacy-modal')" aria-label="Close">×</button>
-    </div>
-    <div class="modal-body">
-      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
-      <p>This Privacy Policy explains how Got It Superstore (CIPC Reg. 2023/224652/07) collects, uses, and protects your personal information. We comply with the South African Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US Federal Trade Commission (FTC) guidelines.</p>
-      <h3>1. Information We Collect</h3>
-      <ul>
-        <li><strong>Contact Form Submissions:</strong> Your name, email address, and message when you submit our contact form.</li>
-        <li><strong>Newsletter Subscriptions:</strong> Your email address when you subscribe to our newsletter.</li>
-        <li><strong>Usage Data:</strong> Basic, anonymized browsing data such as page views for site improvement purposes.</li>
-      </ul>
-      <h3>2. How We Use Your Information</h3>
-      <ul>
-        <li>To respond to your contact form inquiries.</li>
-        <li>To send you deal alerts and shopping tips if you subscribe to our newsletter (you may unsubscribe at any time).</li>
-        <li>To improve our product curation and website experience.</li>
-      </ul>
-      <h3>3. Cookies and Local Storage</h3>
-      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (Amazon, Walmart, Target, REI, Chewy, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
-      <h3>4. Your Rights</h3>
-      <p>Under POPIA, GDPR, and applicable law, you have the right to:</p>
-      <ul>
-        <li><strong>Access:</strong> Request a copy of any personal data we hold about you.</li>
-        <li><strong>Rectification:</strong> Correct inaccurate personal data by contacting us.</li>
-        <li><strong>Erasure:</strong> Request deletion of your personal data from our records.</li>
-        <li><strong>Portability:</strong> Request your data in a machine-readable format.</li>
-        <li><strong>Object:</strong> Opt out of any future communications at any time.</li>
-      </ul>
-      <h3>5. Affiliate Disclosure</h3>
-      <p>Got It Superstore participates in affiliate marketing programs with Amazon, Walmart, Target, Chewy, REI, and other retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
-      <h3>6. Data Sharing</h3>
-      <p>We do not sell, rent, or share your personal information with third parties, except:</p>
-      <ul>
-        <li>When required by law or legal process.</li>
-        <li>Aggregated, anonymized analytics that cannot identify individuals.</li>
-      </ul>
-      <h3>7. Data Retention</h3>
-      <p>Contact form submissions are retained only as long as necessary to respond to your inquiry. Newsletter email addresses are retained until you unsubscribe. You may request deletion of your data at any time by contacting us.</p>
-      <h3>8. Children's Privacy</h3>
-      <p>Got It Superstore is not directed at children under 18. We do not knowingly collect data from minors.</p>
-      <h3>9. Changes to This Policy</h3>
-      <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated "Last Updated" date.</p>
-      <h3>10. Contact Us</h3>
-      <p>For privacy-related inquiries, data access requests, or complaints:<br>
-      <strong>Contact us:</strong> <a href="#contact" onclick="closeModal('privacy-modal')">Use the contact form on our homepage →</a><br>
-      <strong>Registration:</strong> CIPC 2023/224652/07<br>
-      <strong>Information Regulator (South Africa):</strong> <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a></p>
-    </div>
-  </div>
-</div>
-
-<!-- ============== TERMS MODAL ============== -->
-<div class="modal-overlay" id="terms-modal" onclick="if(event.target===this)closeModal('terms-modal')">
-  <div class="modal">
-    <div class="modal-header">
-      <h3>Terms of Service</h3>
-      <button class="modal-close" onclick="closeModal('terms-modal')" aria-label="Close">×</button>
-    </div>
-    <div class="modal-body">
-      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
-      <p>By using Got It Superstore ("the Site"), you agree to these Terms of Service. The Site is registered under CIPC Reg. 2023/224652/07.</p>
-      <h3>1. Nature of the Service</h3>
-      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (Amazon, Shein, Sephora, REI, Chewy, LEGO, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
-      <h3>2. No Direct Sales</h3>
-      <p>All purchases are made directly through the third-party retailer's website. Got It Superstore is not a party to any transaction between you and the retailer. Product availability, pricing, shipping, returns, warranties, and customer service are handled entirely by the respective retailer. We do not guarantee the accuracy of prices or availability displayed on our site.</p>
-      <h3>3. Acceptable Use</h3>
-      <p>You agree not to:</p>
-      <ul>
-        <li>Use the Site for any unlawful purpose or in violation of any applicable laws.</li>
-        <li>Attempt to gain unauthorized access to any part of the Site or its systems.</li>
-        <li>Use automated tools (bots, scrapers) to access the Site without permission.</li>
-        <li>Interfere with or disrupt the Site's operation or servers.</li>
-        <li>Impersonate any person or entity.</li>
-        <li>Submit false, misleading, or fraudulent information.</li>
-        <li>Use the Site to distribute spam, malware, or other harmful content.</li>
-      </ul>
-      <h3>4. Intellectual Property</h3>
-      <p>All content on Got It Superstore (design, text, logos, graphics) is the property of Got It Superstore unless otherwise stated. Product names, images, and trademarks belong to their respective owners and retailers.</p>
-      <h3>5. Limitation of Liability</h3>
-      <p>To the maximum extent permitted by law:</p>
-      <ul>
-        <li>Got It Superstore is provided "as is" without warranties of any kind, express or implied.</li>
-        <li>We are not liable for any damages arising from your use of the Site or purchases made through affiliate links.</li>
-        <li>We are not responsible for the content, products, or practices of third-party retailers.</li>
-        <li>Our total liability shall not exceed the amount of commissions earned from your activity, if any.</li>
-      </ul>
-      <h3>6. Indemnification</h3>
-      <p>You agree to indemnify and hold harmless Got It Superstore from any claims, damages, or expenses arising from your use of the Site or violation of these Terms.</p>
-      <h3>7. Modifications</h3>
-      <p>We reserve the right to modify these Terms at any time. Continued use of the Site after changes constitutes acceptance of the updated Terms.</p>
-      <h3>8. Governing Law</h3>
-      <p>These Terms are governed by and construed in accordance with the laws of the <strong>Republic of South Africa</strong>. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the South African courts.</p>
-      <h3>9. Contact</h3>
-      <p><strong>Contact us:</strong> <a href="#contact" onclick="closeModal('terms-modal')">Use the contact form on our homepage →</a><br>
-      <strong>Registration:</strong> CIPC 2023/224652/07</p>
-    </div>
-  </div>
-</div>
-
 <script>
+/* ============================================================
+   GOT IT SUPERSTORE — login flow (page 5)
+   ------------------------------------------------------------
+   Demo-mode auth that:
+     - presents Google + email/password UI
+     - hashes the password on-device before storing the session token
+       (so the raw password never leaves the browser)
+     - persists an anonymous session token in localStorage
+     - auto-redirects to shop.html on return visits if a token is present
+     - increments an anonymous visit counter (no PII)
+   This is the front-end. To turn this into real auth, point the
+   submit handler at a backend that issues a JWT (e.g. Firebase Auth,
+   Supabase, or a custom service) and store that token in place of
+   the demo token below.
+   ============================================================ */
 (function () {
-  'use strict';
+  var SESSION_KEY = 'gits_session_v1';
+  var VISITS_KEY  = 'gits_visits_v1';
 
-  // ============== MODAL CONTROLS ==============
-  window.openModal = function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  };
-  window.closeModal = function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
-  };
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal-overlay.open').forEach(function (m) { m.classList.remove('open'); });
-      document.body.style.overflow = '';
+  // ---------- VISIT TRACKING (anonymous) ----------
+  function bumpVisits() {
+    try {
+      var raw = localStorage.getItem(VISITS_KEY);
+      var data = raw ? JSON.parse(raw) : { firstVisit: Date.now(), totalVisits: 0, sessions: [] };
+      data.totalVisits = (data.totalVisits || 0) + 1;
+      data.lastVisit = Date.now();
+      // keep the last 50 session timestamps only
+      data.sessions = (data.sessions || []).concat([Date.now()]).slice(-50);
+      localStorage.setItem(VISITS_KEY, JSON.stringify(data));
+    } catch (e) { /* ignore quota */ }
+  }
+  bumpVisits();
+
+  // ---------- SESSION HELPERS ----------
+  function getSession() {
+    try {
+      var raw = localStorage.getItem(SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function setSession(name, provider) {
+    var session = {
+      v: 1,
+      // anonymous, opaque token — derived from a random uuid so it
+      // can't be reversed back to an email or password
+      token: 'gits_' + (crypto.getRandomValues ? Array.from(crypto.getRandomValues(new Uint8Array(16))).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('') : Math.random().toString(36).slice(2)),
+      name: name || 'shopper',
+      provider: provider || 'email',
+      createdAt: Date.now(),
+      rememberMe: true
+    };
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify(session)); } catch (e) {}
+    return session;
+  }
+  function clearSession() {
+    try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+  }
+
+  // Hash the password client-side (SHA-256). The hash itself is never
+  // sent anywhere in this demo — we discard it immediately. But this
+  // shows the pattern: raw password never leaves the device. When a
+  // real backend is added, send only the hash.
+  async function hashPassword(pw) {
+    try {
+      var buf = new TextEncoder().encode(pw);
+      var hashBuf = await crypto.subtle.digest('SHA-256', buf);
+      return Array.from(new Uint8Array(hashBuf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    } catch (e) {
+      return null;
     }
+  }
+
+  // ---------- REDIRECT IF ALREADY SIGNED IN ----------
+  var existing = getSession();
+  var loginWrap = document.getElementById('login-wrap');
+  var welcomeBack = document.getElementById('welcome-back');
+  var welcomeGreeting = document.getElementById('welcome-greeting');
+
+  if (existing && existing.token) {
+    loginWrap.style.display = 'none';
+    welcomeBack.style.display = 'block';
+    welcomeGreeting.textContent = 'Welcome back, ' + existing.name + '!';
+    // brief pause so the user sees the friendly message, then forward
+    setTimeout(function () { window.location.href = 'shop.html'; }, 1400);
+  }
+
+  document.getElementById('sign-out').addEventListener('click', function () {
+    clearSession();
+    window.location.reload();
   });
 
-  // ============== BLOG READ-MORE TOGGLE ==============
-  window.toggleBlog = function (btn) {
-    var card = btn.closest('.blog-card');
-    if (!card) return;
-    card.classList.toggle('expanded');
-    if (card.classList.contains('expanded')) {
-      // Smooth scroll the expanded full content into view a bit
-      setTimeout(function () {
-        var full = card.querySelector('.blog-full');
-        if (full) full.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 50);
+  // ---------- TAB SWITCH (Sign in <-> Create account) ----------
+  var tabSignIn = document.getElementById('tab-signin');
+  var tabSignUp = document.getElementById('tab-signup');
+  var fieldName = document.getElementById('field-name');
+  var cardTitle = document.getElementById('card-title');
+  var cardSubtitle = document.getElementById('card-subtitle');
+  var btnSubmitLabel = document.getElementById('btn-submit-label');
+  var switchText = document.getElementById('switch-text');
+  var switchLink = document.getElementById('switch-link');
+  var pwInput = document.getElementById('auth-password');
+  var pwLabel = document.getElementById('pw-label');
+  var pwHint = document.getElementById('pw-hint');
+
+  function setMode(mode) {
+    if (mode === 'signup') {
+      tabSignIn.classList.remove('active'); tabSignIn.setAttribute('aria-selected', 'false');
+      tabSignUp.classList.add('active');    tabSignUp.setAttribute('aria-selected', 'true');
+      fieldName.style.display = 'block';
+      cardTitle.textContent = 'Create your free account';
+      cardSubtitle.textContent = 'Takes seconds. We never ask for anything we don\'t need.';
+      btnSubmitLabel.textContent = 'Create account & enter the mall';
+      switchText.textContent = 'Already have an account?';
+      switchLink.textContent = 'Sign in →';
+      pwLabel.textContent = 'Create a password';
+      pwInput.setAttribute('autocomplete', 'new-password');
+      pwInput.setAttribute('placeholder', 'Choose at least 8 characters');
+      pwHint.textContent = 'Stored only as a SHA-256 hash on your device — never as plain text, never sent to our server.';
+    } else {
+      tabSignUp.classList.remove('active'); tabSignUp.setAttribute('aria-selected', 'false');
+      tabSignIn.classList.add('active');    tabSignIn.setAttribute('aria-selected', 'true');
+      fieldName.style.display = 'none';
+      cardTitle.textContent = 'Welcome back';
+      cardSubtitle.textContent = 'Choose the quickest way for you.';
+      btnSubmitLabel.textContent = 'Sign in & enter the mall';
+      switchText.textContent = 'New here?';
+      switchLink.textContent = 'Create an account →';
+      pwLabel.textContent = 'Password';
+      pwInput.setAttribute('autocomplete', 'current-password');
+      pwInput.setAttribute('placeholder', 'At least 8 characters');
+      pwHint.textContent = 'We never see or store your raw password.';
     }
-  };
+  }
+  tabSignIn.addEventListener('click', function () { setMode('signin'); });
+  tabSignUp.addEventListener('click', function () { setMode('signup'); });
+  switchLink.addEventListener('click', function () {
+    setMode(tabSignIn.classList.contains('active') ? 'signup' : 'signin');
+  });
 
-  // ============== INQUIRY RECEPTION ==============
-  // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 13 stores so the visitor picks where to look. Every store gets
-  // a real search URL for the visitor's query.
-  var INQUIRY_STORES = [
-    { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
-    { name: 'Shein',      icon: '👗', tag: 'Global fast fashion', build: function (q) { return 'https://www.shein.com/Search.html?keyword=' + q; } },
-    { name: 'Sephora',    icon: '💄', tag: 'Premium beauty',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
-    { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
-    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'LEGO',       icon: '🧱', tag: 'Toys & collectibles', build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
-    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
-  ];
+  // ---------- GOOGLE BUTTON ----------
+  // Demo-mode: simulates the Google flow. To wire real auth, replace this
+  // handler with Google Identity Services (https://developers.google.com/identity/gsi/web).
+  document.getElementById('btn-google').addEventListener('click', function () {
+    var btn = this;
+    btn.disabled = true;
+    btn.innerHTML = '<span>Connecting to Google…</span>';
+    setTimeout(function () {
+      var session = setSession('shopper', 'google');
+      window.location.href = 'shop.html';
+    }, 900);
+  });
 
-  window.doSearch = function () {
-    var input = document.getElementById('searchInput');
-    if (!input) return;
-    var q = (input.value || '').trim().replace(/[\x00-\x1f]/g, '').slice(0, 200);
-    if (!q) { input.focus(); return; }
-    showInquiryModal(q);
-  };
+  // ---------- EMAIL FORM SUBMIT ----------
+  document.getElementById('auth-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var email = document.getElementById('auth-email').value.trim();
+    var pw = document.getElementById('auth-password').value;
+    var name = (document.getElementById('auth-name').value || '').trim();
+    var btn = document.getElementById('btn-submit');
+    var labelEl = document.getElementById('btn-submit-label');
+    if (!email || !pw || pw.length < 8) { return; }
+    btn.disabled = true;
+    var originalLabel = labelEl.textContent;
+    labelEl.textContent = tabSignUp.classList.contains('active') ? 'Creating account…' : 'Signing you in…';
+    // Hash the password on-device. The hash is computed and discarded here;
+    // it's wired up this way so when a real auth backend is added, only
+    // hash gets sent — never the raw password.
+    await hashPassword(pw);
+    // Use first-name if provided in signup, otherwise derive a friendly
+    // greeting from the email local-part (but only client-side).
+    var displayName = name || (email.split('@')[0] || 'shopper');
+    setSession(displayName, 'email');
+    // brief pause for the success state, then forward
+    setTimeout(function () { window.location.href = 'shop.html'; }, 700);
+  });
 
-  window.showInquiryModal = function (q) {
-    var overlay = document.getElementById('inquiry-modal');
-    if (!overlay) return;
-    var enc = encodeURIComponent(q);
-    var listEl = overlay.querySelector('.inquiry-stores');
-    var queryEl = overlay.querySelector('.inquiry-query-pill');
-    if (queryEl) queryEl.textContent = '“' + q + '”';
-    if (listEl) {
-      listEl.innerHTML = '';
-      INQUIRY_STORES.forEach(function (s) {
-        var a = document.createElement('a');
-        a.href = s.build(enc);
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.referrerPolicy = 'strict-origin-when-cross-origin';
-        a.className = 'inquiry-store-link';
-        var iconSpan = document.createElement('span');
-        iconSpan.className = 'inquiry-store-link-icon';
-        iconSpan.textContent = s.icon;
-        var textWrap = document.createElement('span');
-        textWrap.className = 'inquiry-store-link-text';
-        var nameSpan = document.createElement('span');
-        nameSpan.className = 'inquiry-store-link-name';
-        nameSpan.textContent = s.name;
-        var tagSpan = document.createElement('span');
-        tagSpan.className = 'inquiry-store-link-tag';
-        tagSpan.textContent = s.tag;
-        textWrap.appendChild(nameSpan);
-        textWrap.appendChild(tagSpan);
-        a.appendChild(iconSpan);
-        a.appendChild(textWrap);
-        listEl.appendChild(a);
-      });
-    }
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeInquiryModal = function () {
-    var overlay = document.getElementById('inquiry-modal');
-    if (overlay) overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  };
-
-  // ============== BFCACHE / TAB-BACK BEHAVIOR ==============
-  // Make sure the page restores cleanly when user comes back from an outbound link.
-  // Don't run heavy code on pageshow when restored from bfcache.
+  // ---------- BFCACHE / TAB-BACK ----------
   window.addEventListener('pageshow', function (event) {
     if (event.persisted) {
-      // Page was restored from back-forward cache. Already in correct state.
-      // Just close any stuck modals from the previous session.
-      document.querySelectorAll('.modal-overlay.open').forEach(function (m) { m.classList.remove('open'); });
-      document.body.style.overflow = '';
-    }
-  });
-  // Don't add an unload listener — that's the #1 cause of bfcache ineligibility.
-
-})();
-</script>
-
-
-<script>
-/* ============== CATEGORY FILTERING ============== */
-(function() {
-  const cats = document.querySelectorAll('.category-card[data-category]');
-  const products = document.querySelectorAll('.product-card[data-category]');
-  const dealsSection = document.getElementById('deals');
-  const dealsHeader = dealsSection ? dealsSection.querySelector('.section-meta') : null;
-  const originalDealsMeta = dealsHeader ? dealsHeader.textContent : '';
-  let currentFilter = null;
-
-  cats.forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.preventDefault();
-      const cat = this.dataset.category;
-      const isSoon = this.classList.contains('soon');
-
-      // Clear all active filters first
-      document.querySelectorAll('.category-card.active-filter').forEach(c => c.classList.remove('active-filter'));
-
-      // Toggle off if clicking the same one again
-      if (currentFilter === cat) {
-        currentFilter = null;
-        products.forEach(p => { p.style.display = ''; });
-        if (dealsHeader) dealsHeader.textContent = originalDealsMeta;
-      } else {
-        currentFilter = cat;
-        this.classList.add('active-filter');
-
-        let visibleCount = 0;
-        products.forEach(p => {
-          if (p.dataset.category === cat) {
-            p.style.display = '';
-            visibleCount++;
-          } else {
-            p.style.display = 'none';
-          }
-        });
-
-        // Update deals header to show the filter context
-        if (dealsHeader) {
-          const catName = this.querySelector('.category-name').textContent;
-          if (visibleCount === 0) {
-            dealsHeader.textContent = catName + ' deals coming soon · check back weekly';
-          } else {
-            dealsHeader.textContent = 'Showing ' + visibleCount + ' ' + catName + ' deal' + (visibleCount === 1 ? '' : 's');
-          }
-        }
+      // if user signed out then tabbed back, fresh state
+      var s = getSession();
+      if (s && s.token) {
+        loginWrap.style.display = 'none';
+        welcomeBack.style.display = 'block';
+        welcomeGreeting.textContent = 'Welcome back, ' + s.name + '!';
+        setTimeout(function () { window.location.href = 'shop.html'; }, 1200);
       }
-
-      // Scroll deals section into view smoothly
-      if (dealsSection) {
-        dealsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-})();
-</script>
-
-<script>
-/* ============== VIDEO: silent click-to-unmute + Hop in overlay reveal ============== */
-(function () {
-  /* Silent click-to-unmute: tapping the video frame toggles sound. No visible
-     hint or icon — just behaviour. Tap once to hear the welcome, tap again to
-     mute. */
-  function wireSoundToggle(videoId, wrapId) {
-    var video = document.getElementById(videoId);
-    var wrap  = document.getElementById(wrapId);
-    if (!video || !wrap) return;
-    wrap.addEventListener('click', function () {
-      try {
-        if (video.muted) {
-          video.muted = false;
-          video.currentTime = 0;
-          var p = video.play();
-          if (p && p.catch) p.catch(function () {});
-        } else {
-          video.muted = true;
-        }
-      } catch (e) {}
-    });
-  }
-  wireSoundToggle('hero-arrival-video',    'hero-video-wrap');
-  wireSoundToggle('shop-transition-video', 'shop-video-wrap');
-
-  /* Hop in overlay reveal: after the home page hero video ends (or 7s safety
-     fallback), fade the Hop in button overlay into view at the bottom of the
-     video frame. */
-  var heroVideo   = document.getElementById('hero-arrival-video');
-  var heroOverlay = document.getElementById('hero-video-overlay');
-  if (heroVideo && heroOverlay) {
-    function showOverlay() { heroOverlay.classList.add('visible'); }
-    heroVideo.addEventListener('ended', showOverlay);
-    setTimeout(showOverlay, 7000);
-  }
-})();
-
-/* ============== DEALS LAST-UPDATED FROM FEED FILE ============== */
-(function () {
-  var el = document.getElementById('deals-last-updated');
-  if (!el) return;
-  fetch('data/deals-feed.json', { cache: 'no-store' })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (data && data.lastUpdated) {
-        var d = new Date(data.lastUpdated);
-        el.textContent = 'Last updated: ' + d.toLocaleString();
-      } else {
-        el.textContent = 'Last updated: pending first refresh';
-      }
-    })
-    .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
-})();
-</script>
-
-
-<script>
-/* ============== LOGIN PAGE LOGIC ============== */
-/* Static-site friendly auth: passwords are SHA-256 hashed client-side before
-   storage. The owner of the site never sees the plaintext password — only
-   the hash + the email/name. Returning visitors skip this page automatically
-   because the "gotit_logged_in" flag persists in localStorage. */
-(function () {
-  var STORAGE_USERS = 'gotit_users';   // { email: { name, hash } }
-  var STORAGE_SESS  = 'gotit_session'; // { email, name, signedInAt }
-
-  /* ---- session check: skip the page entirely if already signed in ---- */
-  try {
-    var sess = JSON.parse(localStorage.getItem(STORAGE_SESS) || 'null');
-    if (sess && sess.email) {
-      window.location.replace('shop.html');
-      return;
     }
-  } catch (e) {}
-
-  /* ---- helpers ---- */
-  function loadUsers() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_USERS) || '{}'); }
-    catch (e) { return {}; }
-  }
-  function saveUsers(u) { localStorage.setItem(STORAGE_USERS, JSON.stringify(u)); }
-  function saveSession(email, name) {
-    var sess = { email: email, name: name, signedInAt: new Date().toISOString() };
-    localStorage.setItem(STORAGE_SESS, JSON.stringify(sess));
-  }
-  async function sha256(text) {
-    var buf = new TextEncoder().encode(text);
-    var hash = await crypto.subtle.digest('SHA-256', buf);
-    return Array.from(new Uint8Array(hash)).map(function (b) {
-      return b.toString(16).padStart(2, '0');
-    }).join('');
-  }
-
-  /* ---- optional Formspree notification for the site owner ---- */
-  /* TODO (owner): paste your Formspree form ID here (https://formspree.io)
-     to receive an email notification for each new signup. While this is
-     blank, signups are saved locally on the visitor's device only. */
-  var FORMSPREE_ID = ''; /* e.g. 'xyzabcde' */
-  async function pingFormspree(name, email) {
-    if (!FORMSPREE_ID || !/^[a-z0-9]+$/i.test(FORMSPREE_ID)) return;
-    try {
-      await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, page: 'Got It Superstore login' })
-      });
-    } catch (e) {}
-  }
-
-  /* ---- mode switching: Sign in / Sign up ---- */
-  document.querySelectorAll('.login-mode-btn').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var mode = b.dataset.mode;
-      document.querySelectorAll('.login-mode-btn').forEach(function (x) {
-        x.classList.toggle('active', x.dataset.mode === mode);
-        x.setAttribute('aria-selected', x.dataset.mode === mode ? 'true' : 'false');
-      });
-      document.getElementById('signin-form').classList.toggle('active', mode === 'signin');
-      document.getElementById('signup-form').classList.toggle('active', mode === 'signup');
-      document.getElementById('signin-error').textContent = '';
-      document.getElementById('signup-error').textContent = '';
-    });
-  });
-
-  /* ---- sign up ---- */
-  document.getElementById('signup-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var errEl = document.getElementById('signup-error');
-    var name  = document.getElementById('signup-name').value.trim();
-    var email = document.getElementById('signup-email').value.trim().toLowerCase();
-    var pw    = document.getElementById('signup-password').value;
-    errEl.textContent = '';
-    if (!name || !email || pw.length < 6) {
-      errEl.textContent = 'Please fill all fields. Password must be at least 6 characters.';
-      return;
-    }
-    var users = loadUsers();
-    if (users[email]) {
-      errEl.textContent = 'That email is already registered. Try Sign in instead.';
-      return;
-    }
-    var hash = await sha256(email + ':' + pw);
-    users[email] = { name: name, hash: hash, createdAt: new Date().toISOString() };
-    saveUsers(users);
-    saveSession(email, name);
-    pingFormspree(name, email);
-    window.location.replace('shop.html');
-  });
-
-  /* ---- sign in ---- */
-  document.getElementById('signin-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var errEl = document.getElementById('signin-error');
-    var email = document.getElementById('signin-email').value.trim().toLowerCase();
-    var pw    = document.getElementById('signin-password').value;
-    errEl.textContent = '';
-    if (!email || pw.length < 6) {
-      errEl.textContent = 'Please enter your email and password.';
-      return;
-    }
-    var users = loadUsers();
-    var rec = users[email];
-    if (!rec) {
-      errEl.textContent = 'No account for that email. Try Sign up.';
-      return;
-    }
-    var hash = await sha256(email + ':' + pw);
-    if (hash !== rec.hash) {
-      errEl.textContent = 'Wrong password. Try again or sign up with a new account.';
-      return;
-    }
-    saveSession(email, rec.name);
-    window.location.replace('shop.html');
-  });
-
-  /* ---- Google OAuth placeholder ---- */
-  /* TODO (owner): for real Google login, wire this up with Firebase Auth
-     (https://firebase.google.com → enable Google provider → paste config).
-     Until then, this button shows a friendly note and falls back to email. */
-  document.getElementById('btn-google').addEventListener('click', function () {
-    var msg = document.getElementById('signin-error');
-    document.querySelector('.login-mode-btn[data-mode="signin"]').click();
-    msg.textContent = 'Google sign-in is being set up. Please use email for now.';
-    setTimeout(function () { msg.textContent = ''; }, 5500);
   });
 })();
 </script>

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Welcome</title>
-<meta name="description" content="Got It Superstore curates the best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
-<meta name="keywords" content="affiliate deals, Amazon deals, Shein deals, Sephora deals, REI deals, Chewy deals, LEGO deals, online shopping South Africa, curated deals, best prices, deal hunter">
+<meta name="description" content="Got It Superstore curates the best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Takealot and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
 <meta name="robots" content="index, follow">
@@ -13,17 +13,18 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
-<meta property="og:description" content="Hand-picked deals from Amazon, Shein, Sephora, REI, Chewy, LEGO. Best prices. Zero cost to you.">
+<meta property="og:description" content="Hand-picked deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy. Best prices. Zero cost to you.">
 <meta property="og:type" content="website">
 
 <!-- Cache hint for bfcache (back/forward cache) - keeps page persistent when user tabs back -->
 <meta http-equiv="Cache-Control" content="public, max-age=3600">
 
 <!-- Performance: preconnect to image CDNs we use -->
-<link rel="preload" as="video" href="media/hero-arrival.mp4" type="video/mp4">
+<!-- video files are fetched on demand via the <video> tag with preload=metadata
+     so the page is interactive immediately and the video streams in progressively -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://m.media-amazon.com">
+<link rel="dns-prefetch" href="https://www.asos.com">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 
 <!-- Fonts: only the weights we actually use -->
@@ -1391,6 +1392,7 @@ footer {
       <a href="shop.html">Shop</a>
       <a href="categories.html">Curated</a>
       <a href="deals.html">Deals</a>
+      <a href="editorials.html">Editorial</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </div>
@@ -1414,7 +1416,7 @@ footer {
              playsinline
              muted
              autoplay
-             preload="auto"
+             preload="metadata"
              aria-label="Got It Superstore arrival — a Got It worker welcomes a visiting couple at the mall entrance">
         Your browser does not support embedded video.
       </video>
@@ -1438,7 +1440,7 @@ footer {
     <div class="about-text">
       <div class="section-eyebrow">About us</div>
       <h2 class="section-title" style="margin-bottom: 18px;">A curated affiliate <span class="accent">marketplace</span></h2>
-      <p>Got It Superstore is a curated affiliate marketplace that helps South African and global shoppers discover the best deals from trusted retailers worldwide. We do not sell products directly — we surface verified, hand-picked items from <strong>Amazon, Shein, Sephora, REI, Chewy, LEGO</strong> and other leading retailers, so you find quality products at competitive prices without the hours of comparison shopping.</p>
+      <p>Got It Superstore is a curated affiliate marketplace that helps South African and global shoppers discover the best deals from trusted retailers worldwide. We do not sell products directly — we surface verified, hand-picked items from <strong>ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, and Costco</strong>, so you find quality products at competitive prices without the hours of comparison shopping.</p>
       <p>When you click through our links and make a purchase, we earn a small commission from the retailer at <strong>no extra cost to you</strong>. That commission funds the curation, content, and editorial review work — and lets us keep the entire site free for shoppers.</p>
       <p>We're registered in South Africa as a private company under <strong>CIPC Reg. 2023/224652/07</strong>, and we comply with the Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US FTC Endorsement Guidelines.</p>
     </div>
@@ -1514,7 +1516,7 @@ footer {
     <div class="footer-grid">
       <div class="footer-brand">
         <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
-        <p>Curated affiliate marketplace · Best deals from Amazon, Shein, Sephora, REI, Chewy, LEGO and more. South African owned · global shoppers welcome.</p>
+        <p>Curated affiliate marketplace · Best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Takealot and more. South African owned · global shoppers welcome.</p>
         <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
       </div>
       <div class="footer-col">
@@ -1525,11 +1527,11 @@ footer {
       </div>
       <div class="footer-col">
         <h4>Retailers</h4>
-        <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Amazon</a>
-        <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shein</a>
+        <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">ASOS</a>
+        <a href="https://www.rakuten.co.jp" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Rakuten</a>
+        <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Zalando</a>
         <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Sephora</a>
-        <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">REI Co-op</a>
-        <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Chewy</a>
+        <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Wayfair</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -1570,7 +1572,7 @@ footer {
         <li>To improve our product curation and website experience.</li>
       </ul>
       <h3>3. Cookies and Local Storage</h3>
-      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (Amazon, Walmart, Target, REI, Chewy, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
+      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
       <h3>4. Your Rights</h3>
       <p>Under POPIA, GDPR, and applicable law, you have the right to:</p>
       <ul>
@@ -1581,7 +1583,7 @@ footer {
         <li><strong>Object:</strong> Opt out of any future communications at any time.</li>
       </ul>
       <h3>5. Affiliate Disclosure</h3>
-      <p>Got It Superstore participates in affiliate marketing programs with Amazon, Walmart, Target, Chewy, REI, and other retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
+      <p>Got It Superstore participates in affiliate marketing programs with ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, and other partner retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
       <h3>6. Data Sharing</h3>
       <p>We do not sell, rent, or share your personal information with third parties, except:</p>
       <ul>
@@ -1614,7 +1616,7 @@ footer {
       <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
       <p>By using Got It Superstore ("the Site"), you agree to these Terms of Service. The Site is registered under CIPC Reg. 2023/224652/07.</p>
       <h3>1. Nature of the Service</h3>
-      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (Amazon, Shein, Sephora, REI, Chewy, LEGO, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
+      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
       <h3>2. No Direct Sales</h3>
       <p>All purchases are made directly through the third-party retailer's website. Got It Superstore is not a party to any transaction between you and the retailer. Product availability, pricing, shipping, returns, warranties, and customer service are handled entirely by the respective retailer. We do not guarantee the accuracy of prices or availability displayed on our site.</p>
       <h3>3. Acceptable Use</h3>
@@ -1690,18 +1692,18 @@ footer {
   // we surface all 13 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
-    { name: 'Shein',      icon: '👗', tag: 'Global fast fashion', build: function (q) { return 'https://www.shein.com/Search.html?keyword=' + q; } },
-    { name: 'Sephora',    icon: '💄', tag: 'Premium beauty',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
-    { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
-    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'ASOS',       icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Rakuten',    icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
+    { name: 'Zalando',    icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
+    { name: 'Sephora',    icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair',    icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Shein',      icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
+    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
     { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'LEGO',       icon: '🧱', tag: 'Toys & collectibles', build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
-    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',       icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'IKEA',       icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
     { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
   ];
 
