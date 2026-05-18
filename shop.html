@@ -20,6 +20,7 @@
 <meta http-equiv="Cache-Control" content="public, max-age=3600">
 
 <!-- Performance: preconnect to image CDNs we use -->
+<link rel="preload" as="video" href="media/welcome-transition.mp4" type="video/mp4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://m.media-amazon.com">
@@ -1327,48 +1328,26 @@ footer {
   object-fit: cover;
   display: block;
 }
-.hero-video-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 32px;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, transparent 60%, rgba(14, 42, 71, 0.65) 100%);
+/* Hero video is clickable — clicking it toggles sound on/off */
+.hero-video-wrap { cursor: pointer; }
+.hero-video-wrap:hover .hero-video { filter: brightness(1.02); }
+.hero-video-sound-hint {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12.5px;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
 }
-.hero-video-overlay > * {
-  pointer-events: auto;
-}
-.btn-hop-in-overlay {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  font-size: 17px;
-  padding: 14px 26px;
-  box-shadow: 0 8px 24px rgba(242, 107, 26, 0.45);
-  animation: hop-pulse 1.8s ease-in-out infinite;
-}
-.btn-hop-in-overlay.visible {
-  display: inline-flex;
+.hero-video-sound-hint.hidden { opacity: 0; pointer-events: none; }
+/* Hop in button sits below the video as a real CTA, with a gentle pulse */
+.btn-hop-in {
+  animation: hop-pulse 2.2s ease-in-out infinite;
 }
 @keyframes hop-pulse {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-}
-.hero-video-prompt {
-  color: #fff;
-  font-size: 12.5px;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
-  margin-top: 12px;
-  opacity: 0.85;
-  display: none;
-  text-align: center;
-}
-.hero-video-prompt.visible {
-  display: block;
+  50% { transform: translateY(-3px); }
 }
 .hero-shop .hero-video-wrap {
   max-width: 1100px;
@@ -1476,17 +1455,20 @@ footer {
 <!-- ============== TRANSITION VIDEO (SHOP) ============== -->
 <section class="hero hero-shop">
   <div class="hero-inner hero-inner-stacked">
-    <div class="hero-video-wrap shop-video-wrap">
+    <div class="hero-video-wrap shop-video-wrap" id="shop-video-wrap">
       <video class="hero-video"
+             id="shop-transition-video"
              src="media/welcome-transition.mp4"
+             poster="media/welcome-poster.jpg"
              playsinline
              muted
              autoplay
-             preload="metadata"
+             preload="auto"
              aria-label="Got It Superstore welcome — couple stepping inside the mall">
         Your browser does not support embedded video.
       </video>
     </div>
+    <p class="hero-video-sound-hint" id="shop-video-sound-hint">🔊 Tap the video to play with sound</p>
     <div class="hero-text hero-text-centered">
       <div class="hero-eyebrow">You're inside</div>
       <h1>Take a stroll through the <span class="accent">Got It Superstore mall</span></h1>
@@ -1946,19 +1928,41 @@ footer {
 </script>
 
 <script>
-/* ============== HERO VIDEO → HOP IN REVEAL ============== */
+/* ============== VIDEO CLICK-TO-UNMUTE ============== */
+/* Each hero video autoplays muted (so browsers don't block it). Clicking the
+   video frame turns the sound on and restarts the welcome from the start. A
+   subtle sound hint below the video disappears on first interaction. */
 (function () {
-  var video = document.getElementById('hero-arrival-video');
-  var button = document.getElementById('hop-in-button');
-  var prompt = document.getElementById('hero-video-prompt');
-  if (!video || !button) return;
-  function reveal() {
-    button.classList.add('visible');
-    if (prompt) prompt.classList.add('visible');
+  function wireSoundToggle(videoId, wrapId, hintId) {
+    var video = document.getElementById(videoId);
+    var wrap  = document.getElementById(wrapId);
+    var hint  = document.getElementById(hintId);
+    if (!video || !wrap) return;
+    function unmuteAndRestart() {
+      try {
+        video.muted = false;
+        video.currentTime = 0;
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      } catch (e) {}
+      if (hint) {
+        hint.textContent = '🔇 Tap again to mute';
+        hint.classList.remove('hidden');
+      }
+    }
+    function muteSilent() {
+      try { video.muted = true; } catch (e) {}
+      if (hint) {
+        hint.textContent = '🔊 Tap the video to play with sound';
+      }
+    }
+    wrap.addEventListener('click', function () {
+      if (video.muted) { unmuteAndRestart(); }
+      else { muteSilent(); }
+    });
   }
-  video.addEventListener('ended', reveal);
-  /* Safety fallback: show the Hop in button after 7s in case the video stalls */
-  setTimeout(reveal, 7000);
+  wireSoundToggle('hero-arrival-video',    'hero-video-wrap', 'hero-video-sound-hint');
+  wireSoundToggle('shop-transition-video', 'shop-video-wrap', 'shop-video-sound-hint');
 })();
 
 /* ============== DEALS LAST-UPDATED FROM FEED FILE ============== */
