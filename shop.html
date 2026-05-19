@@ -1445,12 +1445,12 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 13 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 21 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 21 trusted stores covering 100,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
@@ -1484,7 +1484,7 @@ footer {
     <div class="hero-text hero-text-centered">
       <div class="hero-eyebrow">You're inside</div>
       <h1>Take a stroll through the <span class="accent">Got It Superstore mall</span></h1>
-      <p class="lead">13 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
+      <p class="lead">21 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
     </div>
   </div>
 </section>
@@ -1494,9 +1494,9 @@ footer {
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
+      <h2 class="section-title">Take a stroll through our <span class="accent">21 trusted stores</span></h2>
     </div>
-    <span class="section-meta">6 storefronts each side + Costco closing the U · every door is OPEN</span>
+    <span class="section-meta">13 stores in the original mall · 8 more in the Expansion Wing · every door is OPEN</span>
   </div>
   <div class="mall-walkway">
     <!-- LEFT AISLE — 6 storefronts -->
@@ -1598,6 +1598,134 @@ footer {
   </a>
 </section>
 
+<!-- ============== EXPANSION WING — 8 NEW STORES ============== -->
+<style>
+.expansion-wing { padding-top: 0; }
+.expansion-divider {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 720px;
+  margin: 0 auto 36px;
+  color: var(--ink-soft);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.expansion-divider::before, .expansion-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.expansion-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+@media (max-width: 980px) { .expansion-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px)  { .expansion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px)  { .expansion-grid { grid-template-columns: 1fr; } }
+.expansion-grid .store-card {
+  /* lighter visual treatment so the original U-mall remains hero */
+  background: linear-gradient(180deg, var(--cream), var(--bg-card));
+}
+.expansion-grid .store-card .store-door {
+  background: rgba(0, 168, 107, 0.16);
+  color: var(--green);
+}
+.new-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+</style>
+<section class="section expansion-wing" id="expansion-wing">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Brand-new openings</div>
+      <h2 class="section-title">Step into the <span class="accent">Expansion Wing</span></h2>
+    </div>
+    <span class="section-meta">8 fresh storefronts · travel, sport, beauty, tech, digital · zero Amazon overlap</span>
+  </div>
+
+  <div class="expansion-divider">
+    <span>↓ &nbsp;Newly opened &nbsp;↓</span>
+  </div>
+
+  <div class="expansion-grid">
+    <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">🛫</div>
+      <div class="store-name">Booking.com</div>
+      <div class="store-tag">Travel &amp; stays</div>
+    </a>
+    <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">💻</div>
+      <div class="store-name">Newegg</div>
+      <div class="store-tag">PC &amp; tech hardware</div>
+    </a>
+    <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">⛺</div>
+      <div class="store-name">Decathlon</div>
+      <div class="store-tag">Sport &amp; outdoor</div>
+    </a>
+    <a href="https://www.adidas.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">👟</div>
+      <div class="store-name">Adidas</div>
+      <div class="store-tag">Sportswear</div>
+    </a>
+    <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">🧘</div>
+      <div class="store-name">Lululemon</div>
+      <div class="store-tag">Premium athleisure</div>
+    </a>
+    <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">💎</div>
+      <div class="store-name">Net-a-Porter</div>
+      <div class="store-tag">Luxury fashion</div>
+    </a>
+    <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">🛁</div>
+      <div class="store-name">Lush</div>
+      <div class="store-tag">Natural beauty</div>
+    </a>
+    <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="new-badge">New</span>
+      <span class="store-door">Open</span>
+      <div class="store-icon">📲</div>
+      <div class="store-name">Digistore24</div>
+      <div class="store-tag">Digital products</div>
+    </a>
+  </div>
+</section>
+
 <!-- ============== INQUIRY RECEPTION MODAL ============== -->
 <div class="inquiry-modal-overlay" id="inquiry-modal" onclick="if(event.target===this)closeInquiryModal()" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
   <div class="inquiry-modal-card">
@@ -1649,7 +1777,7 @@ footer {
     </div>
     <div class="footer-bottom">
       <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
-      <div>No tracking · No cookies · POPIA + GDPR + FTC compliant</div>
+      <div>No tracking · No cookies · POPIA · GDPR · CCPA · LGPD · PDPA · FTC compliant</div>
     </div>
   </div>
 </footer>
@@ -1662,7 +1790,27 @@ footer {
       <button class="modal-close" onclick="closeModal('privacy-modal')" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
+      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 18, 2026</p>
+
+      <div style="background: rgba(0, 168, 107, 0.06); border: 1px solid rgba(0, 168, 107, 0.18); border-radius: 12px; padding: 16px 18px; margin: 16px 0;">
+        <p style="margin-bottom: 8px;"><strong style="color: #00A86B;">🌐 International personal-information policy</strong></p>
+        <p style="margin-bottom: 8px;">Got It Superstore is registered in South Africa and serves shoppers globally. Wherever you are reading this from, our practice is the same: <strong>we do not collect, store, or transmit personally identifying information to ourselves or any third party</strong>. Your sign-in is processed by Google directly; your anonymous session token lives only on your device.</p>
+        <p style="margin-bottom: 8px;">We comply with the following privacy frameworks, and we adopt the strictest applicable standard for each visitor's home jurisdiction:</p>
+        <ul style="margin: 8px 0 8px 22px; padding: 0;">
+          <li><strong>POPIA</strong> — Republic of South Africa, Protection of Personal Information Act, 2013.</li>
+          <li><strong>GDPR</strong> — European Union, General Data Protection Regulation 2016/679.</li>
+          <li><strong>UK GDPR</strong> — United Kingdom, Data Protection Act 2018.</li>
+          <li><strong>CCPA / CPRA</strong> — California Consumer Privacy Act and Privacy Rights Act.</li>
+          <li><strong>LGPD</strong> — Brazil, Lei Geral de Proteção de Dados.</li>
+          <li><strong>PDPA</strong> — Singapore, Personal Data Protection Act 2012.</li>
+          <li><strong>PIPEDA</strong> — Canada, Personal Information Protection and Electronic Documents Act.</li>
+          <li><strong>Australia Privacy Act 1988</strong> (as amended) and the Australian Privacy Principles.</li>
+          <li><strong>APPI</strong> — Japan, Act on the Protection of Personal Information.</li>
+          <li><strong>FTC Endorsement Guidelines</strong> — United States Federal Trade Commission, 16 CFR Part 255.</li>
+        </ul>
+        <p style="margin-bottom: 8px;"><strong>Your rights, in any jurisdiction:</strong> request a copy of any data we hold about you (almost certainly nothing — we don't store user accounts ourselves); request deletion of any data; opt out of cookies (we don't set any non-essential cookies); lodge a complaint with your local data-protection authority. To exercise any of these, use the contact form on our homepage and we'll respond within 30 days.</p>
+        <p style="margin: 0;"><strong>Cross-border transfers:</strong> when you click through to a third-party retailer (ASOS, Rakuten, Zalando, etc.), you are transferring your interaction to that retailer's own privacy regime — which we link to from each store's product page. Got It Superstore does not transfer your data between jurisdictions because we do not store it.</p>
+      </div>
       <p>This Privacy Policy explains how Got It Superstore (CIPC Reg. 2023/224652/07) collects, uses, and protects your personal information. We comply with the South African Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US Federal Trade Commission (FTC) guidelines.</p>
       <h3>1. Information We Collect</h3>
       <ul>
@@ -1794,22 +1942,30 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 13 stores so the visitor picks where to look. Every store gets
+  // we surface all 21 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    { name: 'ASOS',       icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
-    { name: 'Rakuten',    icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
-    { name: 'Zalando',    icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
-    { name: 'Sephora',    icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'Wayfair',    icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
-    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',       icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'IKEA',       icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'Shein',      icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
-    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
+    { name: 'ASOS',         icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Rakuten',      icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
+    { name: 'Zalando',      icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
+    { name: 'Sephora',      icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair',      icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Shein',        icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
+    { name: 'Apple',        icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Etsy',         icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',         icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'AliExpress',   icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',     icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'IKEA',         icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'Costco',       icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
+    { name: 'Booking.com',  icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
+    { name: 'Newegg',       icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
+    { name: 'Decathlon',    icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
+    { name: 'Adidas',       icon: '👟', tag: 'Sportswear',             build: function (q) { return 'https://www.adidas.com/us/search?q=' + q; } },
+    { name: 'Lululemon',    icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
+    { name: 'Net-a-Porter', icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Lush',         icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
+    { name: 'Digistore24',  icon: '📲', tag: 'Digital products',       build: function (q) { return 'https://www.digistore24.com/redir/marketplace/?_query=' + q; } }
   ];
 
   window.doSearch = function () {

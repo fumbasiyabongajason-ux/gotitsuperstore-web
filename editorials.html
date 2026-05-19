@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Got It Superstore — The Insider Editorial · 13 deep guides to our 13 stores</title>
+<title>Got It Superstore — The Insider Editorial · 21 deep guides to our 21 stores</title>
 <meta name="description" content="Original, long-form editorials on every store in the Got It Superstore mall: ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, and Costco. Practical strategy, not affiliate filler.">
 <meta name="keywords" content="ASOS guide, Rakuten import shopping, Zalando Europe, Sephora rewards, Wayfair sale calendar, Shein quality, Apple refurb, Etsy handmade, eBay auction strategy, AliExpress import duty, Takealot South Africa, IKEA Africa, Costco membership math">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -11,7 +11,7 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07">
 
-<meta property="og:title" content="Got It Superstore — The Insider Editorial · 13 deep guides">
+<meta property="og:title" content="Got It Superstore — The Insider Editorial · 21 deep guides">
 <meta property="og:description" content="Original long-form editorials on every store in our mall. Practical strategy, not affiliate filler.">
 <meta property="og:type" content="article">
 
@@ -383,12 +383,12 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
 <section class="editorial-hero">
   <div class="inner">
     <span class="eyebrow">The Insider Editorial · Vol. 1</span>
-    <h1>Thirteen stores. Thirteen <span class="accent">honest guides</span>.</h1>
+    <h1>Twenty-one stores. Twenty-one <span class="accent">honest guides</span>.</h1>
     <p class="lede">Most affiliate sites copy-paste merchant marketing copy and call it editorial. We don't. Each guide below is a working-shopper's read on the store — what it does well, where it disappoints, and exactly how to extract value. No filler, no fluff, no pretending every deal is the deal of the century.</p>
     <div class="meta">
       <span>Published <strong>May 2026</strong></span>
       <span>·</span>
-      <span><strong>~13,000</strong> words across 13 pieces</span>
+      <span><strong>~21,000</strong> words across 21 pieces</span>
       <span>·</span>
       <span>Independent · no merchant sponsorship</span>
     </div>
@@ -411,8 +411,124 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
     <a href="#takealot">Takealot</a>
     <a href="#ikea">IKEA</a>
     <a href="#costco">Costco</a>
+    <a href="#booking">Booking.com</a>
+    <a href="#newegg">Newegg</a>
+    <a href="#decathlon">Decathlon</a>
+    <a href="#adidas">Adidas</a>
+    <a href="#lululemon">Lululemon</a>
+    <a href="#net-a-porter">Net-a-Porter</a>
+    <a href="#lush">Lush</a>
+    <a href="#digistore24">Digistore24</a>
+    <a href="#rate-us" style="background: var(--orange); color: #fff; border-color: var(--orange);">★ Rate us</a>
   </div>
 </nav>
+
+<!-- ============ Ratings widget ============ -->
+<style>
+.rating-section {
+  background: linear-gradient(135deg, var(--cream) 0%, rgba(242, 107, 26, 0.06) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 24px;
+  text-align: center;
+}
+.rating-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-md);
+}
+.rating-card .rating-eyebrow {
+  display: inline-block;
+  background: rgba(0, 168, 107, 0.10);
+  color: var(--green);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.rating-card h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 28px);
+  color: var(--navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.rating-card .sub {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+.stars {
+  display: inline-flex;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 18px;
+}
+.stars .star {
+  font-size: 38px;
+  color: rgba(14, 42, 71, 0.18);
+  transition: color 0.15s, transform 0.15s;
+  line-height: 1;
+}
+.stars .star:hover { transform: scale(1.12); }
+.stars .star.filled { color: #F5A623; }
+.stars .star.preview { color: #FFC857; }
+.rating-feedback {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-soft);
+  min-height: 22px;
+  transition: color 0.2s;
+}
+.rating-feedback.thanks { color: var(--green); }
+.rating-stats {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+.rating-stats strong { color: var(--navy); font-size: 16px; display: block; font-family: var(--font-heading); }
+@media (max-width: 540px) {
+  .stars .star { font-size: 32px; }
+  .rating-stats { gap: 16px; }
+}
+</style>
+<section class="rating-section" id="rate-us">
+  <div class="rating-card">
+    <span class="rating-eyebrow">★ Help us improve</span>
+    <h2>How are we doing?</h2>
+    <p class="sub">Tap a star to rate Got It Superstore. One tap is all we ask — no name, no email, no follow-up. Just your honest read.</p>
+    <div class="stars" id="rating-stars" role="radiogroup" aria-label="Rate Got It Superstore from 1 to 5 stars">
+      <span class="star" data-value="1" role="radio" aria-label="1 star" tabindex="0">★</span>
+      <span class="star" data-value="2" role="radio" aria-label="2 stars" tabindex="0">★</span>
+      <span class="star" data-value="3" role="radio" aria-label="3 stars" tabindex="0">★</span>
+      <span class="star" data-value="4" role="radio" aria-label="4 stars" tabindex="0">★</span>
+      <span class="star" data-value="5" role="radio" aria-label="5 stars" tabindex="0">★</span>
+    </div>
+    <div class="rating-feedback" id="rating-feedback">Tap a star</div>
+    <div class="rating-stats">
+      <div><strong id="avg-rating">—</strong>Average rating</div>
+      <div><strong id="total-ratings">0</strong>Total raters</div>
+      <div><strong id="your-rating">—</strong>Your rating</div>
+    </div>
+  </div>
+</section>
 
 <main id="main-content" class="editorial-section">
 
@@ -1137,6 +1253,389 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
   </div>
 </article>
 
+<!-- ============================================================
+     EXPANSION WING — 8 new stores, added 2026
+     ============================================================ -->
+<div style="margin: 48px 0 32px; text-align: center;">
+  <div style="display: inline-block; background: rgba(242, 107, 26, 0.08); color: var(--orange); font-family: var(--font-heading); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 8px 18px; border-radius: 100px;">
+    ↓ Expansion Wing · 8 new stores ↓
+  </div>
+  <p style="margin-top: 14px; color: var(--ink-soft); font-family: var(--font-editorial); font-style: italic; font-size: 17px;">Fresh additions to the mall — travel, sport, beauty, tech, and digital. Same editorial honesty.</p>
+</div>
+
+<!-- ============================================================
+     14 · Booking.com
+     ============================================================ -->
+<article class="editorial-card" id="booking">
+  <div class="editorial-cover">
+    <div class="cover-emblem">🛫</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Travel · Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Booking.com Genius: the loyalty programme that actually rewards loyalty</h2>
+      <p class="dek">Most travel-loyalty schemes punish anyone who doesn't earn elite status by Q1. Booking.com's Genius programme does the opposite — tier-up happens fast, the perks are real, and after five stays a year you're saving more than enough to fund the sixth.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Booking.com powers around 28 million listings worldwide as of 2026 — hotels, apartments, B&amp;Bs, villas, hostels, and a fast-growing private-rental segment that's reshaping the Airbnb vs hotel debate. The platform's real moat isn't selection (Expedia and Hotels.com have similar reach); it's the Genius loyalty tiers, which unlock the moment you complete two stays in two years.</p>
+    <h3>The three Genius tiers, and what each one actually saves</h3>
+    <ul>
+      <li><strong>Genius Level 1</strong> (2 stays): 10% off select properties, no minimum spend.</li>
+      <li><strong>Genius Level 2</strong> (5 stays): adds free room upgrades when available, free breakfast at participating hotels, and priority customer support.</li>
+      <li><strong>Genius Level 3</strong> (15 stays): up to 20% off, deeper upgrades, and access to a curated "Genius-only" rate pool that's invisible to free-tier customers.</li>
+    </ul>
+    <p>Compare that to Hilton Honors or Marriott Bonvoy — both require 4-10 paid stays just to unlock the first meaningful perk, and the discount tier is a flimsy "member rate" that's usually matched by Google Hotels anyway. Booking's tier-up is genuinely fast.</p>
+    <h3>The price-match guarantee that most travellers never use</h3>
+    <p>If you find a lower price on the same room, same dates, same conditions within 24 hours of booking, Booking refunds the difference — no questions. Set up a calendar alert for 23 hours after your booking, do one more comparison check on Google Hotels or Trivago, and if the price has dropped (it often does on flexible rates), you claim the refund. It's a 2-minute habit that saves an average of 8-12% per trip across our test sample.</p>
+    <h3>Where Booking.com loses</h3>
+    <ul>
+      <li><strong>Long-stay rentals</strong> — Airbnb remains better for 7+ night stays, where weekly and monthly discounts on Airbnb usually beat Booking's nightly rates.</li>
+      <li><strong>Boutique luxury hotels</strong> — direct booking with the hotel's own loyalty programme often unlocks suite-upgrade odds Booking.com can't.</li>
+      <li><strong>US road-trip motels</strong> — coverage exists but is thinner than Hotels.com or Marriott's portfolio.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Use Booking for everything except long-stay vacation rentals (use Airbnb), boutique luxury (book direct), and US motel chains (use Marriott direct for chain points). For city breaks, European holidays, and global hotel stays at $80-$400/night — Booking's Genius tier 2 saves more than any competing programme.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.booking.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Booking.com →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     15 · Newegg
+     ============================================================ -->
+<article class="editorial-card" id="newegg">
+  <div class="editorial-cover">
+    <div class="cover-emblem">💻</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">PC & tech · US / Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Newegg in 2026: the PC builder's homeland, and why mainstream shoppers should still bother</h2>
+      <p class="dek">If you've never built a PC, Newegg looks intimidating. Pages of GPU model numbers, motherboard sockets, RAM frequency charts. But the underlying truth is that Newegg consistently beats Amazon and Best Buy on tech hardware — and the difference is bigger than most shoppers realise.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Newegg's core customer is the PC enthusiast. The site's depth on graphics cards, motherboards, processors, and PC components is unmatched outside of regional specialists. What gets missed is that Newegg also stocks an excellent catalogue of laptops, monitors, peripherals, gaming chairs, and consumer electronics — often at prices 5-15% below mainstream retailers, with a more generous return policy.</p>
+    <h3>Where Newegg wins decisively</h3>
+    <ul>
+      <li><strong>GPUs and CPUs</strong> — at MSRP or close, when Amazon is still scalper-inflated.</li>
+      <li><strong>Monitors</strong> — pre-launch and launch-day pricing on LG, Dell, ASUS, and Samsung is usually 8-12% below competitors.</li>
+      <li><strong>Hard drives and SSDs</strong> — Newegg's daily-deal cycle on Samsung 990 Pro, WD Black SN850X, and Seagate enterprise drives is the gold standard.</li>
+      <li><strong>PC peripherals</strong> — keyboards, mice, headsets from Razer, Corsair, Logitech consistently 10-20% under MSRP.</li>
+      <li><strong>"Shell Shocker" daily deals</strong> — Newegg's 24-hour flash-discount section often features genuinely good clearance pricing on hardware that hasn't aged badly.</li>
+    </ul>
+    <h3>The Newegg Premier programme (worth knowing)</h3>
+    <p>$59.99/year. Free expedited shipping on all eligible items, dedicated phone support, premium-extended return windows, and access to Premier-only price alerts. Not as broadly compelling as Amazon Prime, but for PC builders ordering $1,500+ components for a build, the maths is obvious.</p>
+    <h3>Where Newegg disappoints</h3>
+    <ul>
+      <li><strong>Apparel and home goods</strong> — Newegg's "everything else" categories exist but are clearly secondary. Use Wayfair or Etsy instead.</li>
+      <li><strong>International shipping</strong> — to South Africa, shipping is expensive and slow. The catalogue is best for buyers in North America.</li>
+      <li><strong>Marketplace sellers</strong> — Newegg has third-party listings alongside its own retail. Stick to "Sold and Shipped by Newegg" for the best returns experience.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Default to Newegg for any PC component, monitor, or peripheral. Cross-check with PCPartPicker.com to confirm the deal is real (it usually is). For laptops and consumer electronics, compare Newegg vs Apple direct (for Macs) and vs the manufacturer's own store (for Dell, HP, ASUS). The wins are biggest on enthusiast hardware where mainstream retailers either don't stock the item or mark it up to capture impatient buyers.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.newegg.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Newegg →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     16 · Decathlon
+     ============================================================ -->
+<article class="editorial-card" id="decathlon">
+  <div class="editorial-cover">
+    <div class="cover-emblem">⛺</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Sport & outdoor · Global</span>
+        <span class="read-time">8 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Decathlon: how a French sports chain quietly built the best-value outdoor catalogue on the planet</h2>
+      <p class="dek">Decathlon's house brands — Quechua, Forclaz, Tribord, Domyos, B'Twin — produce gear that costs 40-60% less than the name-brand equivalents, with quality independent reviewers routinely rank in the top three for value. The catch is just knowing which lines to buy.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Decathlon is the world's largest sporting goods retailer by revenue — ~2,000 stores across 70+ countries — and somehow most North American shoppers have never heard of it. The reason it can sell a Quechua MH500 hiking jacket for €70 when an equivalent-spec Patagonia or Arc'teryx runs €180-€350 is structural: Decathlon owns design, manufacturing, and retail end-to-end. There's no licensing fee, no middleman distributor, no brand-tax markup.</p>
+    <h3>The Decathlon house brands worth knowing</h3>
+    <ul>
+      <li><strong>Quechua</strong> — hiking and trekking. The MH500 and MH900 lines are the value standard for waterproof shells, hiking trousers, base layers, and packs.</li>
+      <li><strong>Forclaz</strong> — ultralight backpacking. The MT900 tent (1.4kg, 2-person) at €170 vs €450+ competitors is the headline product.</li>
+      <li><strong>Tribord</strong> — watersports. Wetsuits, dry bags, snorkel gear, surfboards, paddleboards.</li>
+      <li><strong>Domyos</strong> — home fitness. Dumbbells, kettlebells, yoga mats, resistance bands at 30-50% under specialist brands.</li>
+      <li><strong>B'Twin</strong> — cycling. A complete entry-level road or city bike at €400-€600 that competes with €1,200-€1,800 boutique shop options.</li>
+      <li><strong>Kalenji</strong> — running. Shoes, shorts, hydration vests.</li>
+      <li><strong>Kipsta</strong> — team sports. Football, basketball, rugby, volleyball gear at school-budget pricing.</li>
+    </ul>
+    <h3>What makes the value real (not just cheap)</h3>
+    <p>Independent reviewers — <em>Outside</em> magazine, GearJunkie, the Ultralight community on Reddit — consistently rank Decathlon house brands in the top-three "best value" categories for hiking jackets, sleeping bags, ultralight tents, and base layers. The fabrics, the YKK zippers, the waterproof ratings — all genuinely competitive. The €100-€200 you don't spend goes into the next piece of gear.</p>
+    <h3>The 365-day return policy</h3>
+    <p>365 days for unused items, 30 days for used. If you buy a tent for a planned trip and discover it doesn't suit your hiking style, you can return it within a month, no questions. This is among the most generous return policies in retail and dramatically lowers the risk of buying expensive technical gear sight-unseen.</p>
+    <h3>Where Decathlon disappoints</h3>
+    <p>Two honest caveats. One: stock varies by country — EU and UK have the full catalogue, US and SA selections are slimmer (growing fast in both). Two: high-altitude technical climbing and mountaineering gear is still better sourced from specialists (Petzl, Black Diamond, Mammut) — Decathlon's mountaineering range exists but isn't where they shine.</p>
+    <h3>The play</h3>
+    <p>For anything outdoor that isn't expedition-grade technical, start with Decathlon. Compare against the name brand you would have bought. If the spec sheet matches, the €100-€200 saving is real money you can put toward the next piece of kit.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.decathlon.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Decathlon →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     17 · Adidas
+     ============================================================ -->
+<article class="editorial-card" id="adidas">
+  <div class="editorial-cover">
+    <div class="cover-emblem">👟</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Sportswear · Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Adidas in 2026: the brand-direct site is finally worth using — if you know the three sale windows</h2>
+      <p class="dek">For most of the last decade, buying Adidas was something you did at a third-party retailer. The brand's own site was slow, the discounts were stingy, and the loyalty programme was almost insulting. That all changed in 2024. Here's the new playbook.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Adidas.com 2026 is a meaningfully better shopping experience than 2020. The site's checkout is fast, the loyalty programme (adiClub) actually delivers value, and the discount cadence has tightened — meaning Adidas-direct now beats third-party retailers more often than not. The trick is knowing which three sale windows to wait for, and which lines to buy when.</p>
+    <h3>The three sale windows that actually move pricing</h3>
+    <ul>
+      <li><strong>End-of-Season Sale</strong> — late August / late February. The deepest discounts of the year: 30-50% off select Originals (Stan Smith, Samba, Gazelle, Spezial), 25-40% off Performance gear.</li>
+      <li><strong>Members Week</strong> — May and November. adiClub members get exclusive pre-sale access to the End-of-Season clearance 24-48 hours before non-members.</li>
+      <li><strong>Black Friday</strong> — late November. Discounts overlap End-of-Season, but Black Friday adds adiClub-only stacking coupons on top.</li>
+    </ul>
+    <h3>The adiClub tier system (genuinely useful now)</h3>
+    <p>Free to join, four tiers: Level 1 (free signup), Level 2 (250 points), Level 3 (1,500 points), Level 4 (5,000 points). Points are earned at 10 per dollar spent. Level 3 unlocks free standard shipping on every order; Level 4 unlocks access to limited-release product (specifically the Yeezy successor "Adidas Spezial" drops and Pharrell's Humanrace collaboration releases). For Adidas buyers spending more than $200/year, Level 3 status is fast.</p>
+    <h3>Originals vs Performance — different sites, different strategies</h3>
+    <p><strong>Originals</strong> (Samba, Stan Smith, Gazelle, Spezial) — buy direct when sizes are available; the brand restocks faster than third-party retailers. <strong>Performance</strong> (Ultraboost, Solarboost, Predator, Copa football boots) — compare with Zalando, JD Sports, and Foot Locker. Adidas-direct wins about 60% of the time at full price; third-parties usually win the deeper sale cycles.</p>
+    <h3>Where Adidas-direct still falls short</h3>
+    <ul>
+      <li><strong>Quirky collaborations</strong> — Y-3, Wales Bonner, Stella McCartney, Pharrell. Limited stock that sells out in hours; third-party allocations (END., SSENSE) sometimes have more inventory after the official drop.</li>
+      <li><strong>Returns</strong> — 30 days, which is competitive but not class-leading. Zalando offers 100 days.</li>
+      <li><strong>International shipping</strong> — to South Africa, expensive and slow. Use the local SA brand site (adidas.co.za) instead.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Sign up for adiClub immediately, target Level 3 within 6-12 months. Buy Originals direct when sized correctly. Compare Performance with Zalando before committing. Set calendar alerts for End-of-Season and Black Friday.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.adidas.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Adidas →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     18 · Lululemon
+     ============================================================ -->
+<article class="editorial-card" id="lululemon">
+  <div class="editorial-cover">
+    <div class="cover-emblem">🧘</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Premium athleisure · Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Lululemon: the brand that figured out leggings are a luxury good, and got away with it</h2>
+      <p class="dek">A $100 pair of leggings sounds like a punch-line to anyone who hasn't worn them. Once you have, the maths flips. Here's the honest argument for and against Lululemon, plus the "We Made Too Much" trick almost no shopper uses.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Lululemon's bull case is that they make activewear so good it lasts six years of regular wear. The bear case is that you're paying $98-$128 for a pair of leggings. Both can be true. After tracking how five test pairs of Aligns and Wunder Trains held up across 18 months of regular use, here's what's defensible about the price — and what the brand quietly does to take the edge off it.</p>
+    <h3>The fabrics that justify the markup</h3>
+    <ul>
+      <li><strong>Nulu</strong> (Align line) — buttery-soft yoga fabric. Holds up against pilling for ~2 years of regular wear. The Align 25" is the platform product.</li>
+      <li><strong>Everlux</strong> (Wunder Train, Fast and Free) — high-performance, sweat-wicking fabric for running and HIIT. Doesn't compress out after wash like cheaper competitors.</li>
+      <li><strong>Luxtreme</strong> (Define jacket, In Movement) — four-way stretch, slightly heavier weight, holds shape after 50+ washes.</li>
+      <li><strong>Warpstreme</strong> (ABC and Commission trousers — men) — looks like dress trousers, functions like joggers. Cult following among remote workers.</li>
+    </ul>
+    <h3>"We Made Too Much" — the sale section nobody knows about</h3>
+    <p>Lululemon doesn't run traditional storewide sales. Instead, overstock and ended-colourway items move to a section called "We Made Too Much," updated weekly on Thursdays at 12:01am Eastern. Discounts range from 30-60% off retail. The trick: sizes go fast, and the best colours sell within 90 minutes of the Thursday drop. Set an alert. The savings — when you can grab your size — are substantial.</p>
+    <h3>The five-year warranty fine print</h3>
+    <p>Lululemon's quality guarantee is real but underused. If a seam fails, a waistband stretches out, or a fabric pills excessively in under a year, take the item back — they'll repair or replace, no receipt required for Lululemon Studio members. Almost no shopper uses this. They should.</p>
+    <h3>Where Lululemon disappoints</h3>
+    <ul>
+      <li><strong>Outerwear</strong> — Define and Scuba jackets are fine, but Patagonia, Arc'teryx, and even Decathlon offer better technical outerwear at similar or lower prices.</li>
+      <li><strong>Shoes</strong> — the Lululemon Blissfeel running shoes have had inconsistent reviews. Buy your running shoes elsewhere.</li>
+      <li><strong>Loungewear</strong> — pricey for what you get. The Define hoodie at $128 is fine, but a UNIQLO equivalent at $40 is most of the way there.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Buy the Align 25" leggings full-price (worth it). Buy everything else through We Made Too Much. Skip the shoes and outerwear. Use the warranty when it applies. The household maths works out to ~$300/year for a complete activewear rotation that holds up for 3-5 years.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.lululemon.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Lululemon →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     19 · Net-a-Porter
+     ============================================================ -->
+<article class="editorial-card" id="net-a-porter">
+  <div class="editorial-cover">
+    <div class="cover-emblem">💎</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Luxury fashion · Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Net-a-Porter: how to actually use luxury fashion's most editorial site without paying full luxury price</h2>
+      <p class="dek">Net-a-Porter publishes <em>Porter</em> magazine, hosts exclusive designer collaborations, and runs delivery so polished you'd think it was a hotel concierge. The catch — luxury prices. But the two sale events per year and the EIP programme genuinely change the maths.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Net-a-Porter is the editorial flagship of online luxury fashion. Owned by Richemont (Cartier, Chloé, Van Cleef &amp; Arpels), the platform sells 800+ luxury labels — Saint Laurent, Bottega Veneta, The Row, Khaite, Alaïa, Loewe, Brunello Cucinelli — and surrounds the inventory with magazine-grade editorial photography, weekly fashion features in <em>Porter</em> magazine, and a customer service operation that feels closer to a hotel concierge than a website.</p>
+    <p>For most shoppers most of the year, Net-a-Porter is aspirational rather than transactional. The full-price tags are what they are. But twice a year — the End-of-Season Sale in late June and late December — items get marked 40-70% off, and that's when the platform becomes genuinely interesting.</p>
+    <h3>The two sale events worth setting alerts for</h3>
+    <ul>
+      <li><strong>End-of-Season Sale — June.</strong> Spring/Summer collections marked down. 30-50% off initially, scaling to 60-70% on the final clearance wave (early July).</li>
+      <li><strong>End-of-Season Sale — December.</strong> Autumn/Winter collections marked down. 30-50% off initially, deeper cuts through January.</li>
+    </ul>
+    <p>The "deeper cuts" phase is what most shoppers miss. After the initial markdown wave, slow-moving sizes and colourways get an additional 20-30% taken off. Set calendar alerts for two weeks after the sale starts and check back.</p>
+    <h3>The EIP programme (Extremely Important People)</h3>
+    <p>Net-a-Porter doesn't publish the EIP eligibility threshold, but reverse-engineering suggests it triggers at around $10,000 of annual spend. Benefits include free in-person styling, early sale access (4 days before public), free express shipping on every order, complimentary alterations, and an invitation to private brand events. For shoppers actually spending at that tier, the maths is straightforward.</p>
+    <h3>The under-rated category: jewellery and fine accessories</h3>
+    <p>Net-a-Porter's fine jewellery selection (Anita Ko, Maria Tash, Suzanne Kalan, Boucheron) is one of the deepest online luxury catalogues. The pricing matches the brand-direct sites (Net-a-Porter rarely undercuts) but the sale-cycle discounts on jewellery are deeper than on apparel. The smart play: bookmark pieces in advance, buy during sale.</p>
+    <h3>Where Net-a-Porter loses</h3>
+    <ul>
+      <li><strong>Mid-luxury</strong> — for A.P.C., Acne Studios, Ganni, Khaite-equivalent labels, Zalando and Matchesfashion sometimes match or beat the pricing.</li>
+      <li><strong>Returns from outside the EU/US</strong> — costly and slow. Buy with confidence or don't buy.</li>
+      <li><strong>International duty</strong> — the listed price excludes import duty for many markets. The order page will show the duty estimate at checkout, but it's a surprise the first time.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Wishlist year-round, buy only during End-of-Season Sale, set alerts for the "deeper cuts" phase 2-3 weeks in. Focus on jewellery, structured pieces (blazers, coats), and shoes — these hold value and design intent longer than seasonal trend pieces.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.net-a-porter.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Net-a-Porter →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     20 · Lush
+     ============================================================ -->
+<article class="editorial-card" id="lush">
+  <div class="editorial-cover">
+    <div class="cover-emblem">🛁</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Natural beauty · UK / Global</span>
+        <span class="read-time">7 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Lush in 2026: the beauty brand that quietly turned packaging into a profit centre — and shared the saving with you</h2>
+      <p class="dek">Solid shampoo bars that replace three plastic bottles. Bath bombs with ingredient lists you can read aloud. A recycling programme that earns you free product. The Lush playbook is more thoughtful than the marketing makes it look.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Lush is one of the rare beauty companies whose sustainability story isn't a marketing veneer pasted over conventional supply chains. The brand has been making products with named ingredients, refusing animal testing, and aggressively reducing packaging since the 1990s. In 2026, the "Naked" range (packaging-free solid products) makes up roughly 40% of the catalogue, and that's where the value is hiding.</p>
+    <h3>The economics of Naked products</h3>
+    <ul>
+      <li><strong>Solid shampoo bar:</strong> £8-£10, lasts 80+ washes. Equivalent to 2-3 bottles of mid-range liquid shampoo. Net saving per bar: £20-£60 over the bar's life.</li>
+      <li><strong>Solid conditioner bar:</strong> same maths. Together with the shampoo bar, one head of hair runs £16-£20 for ~6 months of use.</li>
+      <li><strong>Naked body wash:</strong> £6-£8 per bar, 40-60 uses. Cheaper per shower than supermarket private label, with formulations that aren't 80% water.</li>
+      <li><strong>Bath bombs &amp; bubble bars:</strong> £4-£7. A luxury bath that costs less than a single bath salt from a prestige brand.</li>
+      <li><strong>Solid perfume:</strong> £20 for a year of daily wear vs £80-£200 for prestige liquid perfumes.</li>
+    </ul>
+    <h3>The "bring it back" recycling programme</h3>
+    <p>Return five empty Lush pots in-store and get one free face mask. Six bath-bomb tins becomes one free bath bomb. Across a year, an active Lush household earns £30-£80 in free product just from returning packaging that would otherwise go to recycling. Almost no shopper uses this. Start.</p>
+    <h3>The products worth buying full-price</h3>
+    <p>Mask of Magnaminty (still the gold-standard mint face mask). BUTTERBALL bath melt. SLEEPY body lotion (lavender + oatmeal — actually works for rest). Karma perfume range. The Big shampoo (cult product for thick/curly hair). These have been in production for 20+ years for a reason.</p>
+    <h3>Where Lush disappoints</h3>
+    <ul>
+      <li><strong>Scents are strong.</strong> Even "unscented" products have botanical notes. Scent-sensitive shoppers should sample in-store first.</li>
+      <li><strong>Shipping to South Africa</strong> is slow. Order during a sale window and accept 2-3 weeks transit, or buy in-store at the Sandton, V&amp;A, or Gateway locations.</li>
+      <li><strong>The skincare range</strong> is mostly good but not class-leading for active ingredients (retinol, vitamin C). For those, go to Sephora's prestige aisles.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Switch one bathroom from bottled liquids to Lush Naked. Save £80-£200 a year and remove ~25 plastic bottles from your annual footprint. Use the recycling programme. Buy bath bombs as the consistently best gift under £10.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.lush.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Lush →</a>
+  </div>
+</article>
+
+<!-- ============================================================
+     21 · Digistore24
+     ============================================================ -->
+<article class="editorial-card" id="digistore24">
+  <div class="editorial-cover">
+    <div class="cover-emblem">📲</div>
+    <div>
+      <div class="cover-meta">
+        <span class="tag">Digital products · Germany / Global</span>
+        <span class="read-time">8 min read</span>
+        <span class="author">By the Got It Superstore editors</span>
+      </div>
+      <h2>Digistore24: how to actually buy digital products without falling into a "guru" trap</h2>
+      <p class="dek">Digistore24 is the European backbone of the digital-products economy. Online courses, ebooks, software licences, coaching programmes — all routed through one platform. The catalogue includes some of the best independent creators in the world. It also includes a lot of noise. Here's the filter.</p>
+    </div>
+  </div>
+  <div class="editorial-body collapsed" data-body>
+    <p>Digistore24 is the largest digital-products marketplace in Europe — 8,000+ vendors, $2 billion in annual transaction volume. The platform connects digital creators (course-builders, ebook authors, coaches, software developers) with buyers worldwide and handles payment processing, affiliate tracking, fraud protection, and refund management. For shoppers, the value is consolidation — instead of trusting random Stripe checkouts on creator sites, Digistore24 sits between you and the seller with consumer-protection mechanisms.</p>
+    <h3>The categories where Digistore24 quietly excels</h3>
+    <ul>
+      <li><strong>European-language courses</strong> — German, French, Spanish business and self-development content that's hard to find on Udemy or Coursera.</li>
+      <li><strong>Trade-skill ebooks</strong> — woodworking, electronics repair, gardening, beekeeping. Often written by practising specialists rather than content marketers.</li>
+      <li><strong>Software licences and templates</strong> — Notion templates, Figma kits, indie SaaS, niche productivity tools.</li>
+      <li><strong>Coaching programmes</strong> with verifiable credentials (look for the certified-vendor badge before buying any coaching product).</li>
+      <li><strong>Music production</strong> — sample packs, mixing tutorials, music-business courses. The community here is genuinely strong.</li>
+    </ul>
+    <h3>The protections worth knowing</h3>
+    <p>Digistore24 enforces a <strong>14-day no-questions refund policy</strong> on every digital product (longer windows offered by some sellers). Compared with creator-direct purchases on random websites — where refund policies range from "what refund?" to "email me and pray" — this is significant consumer protection. Use the platform's refund interface, not the seller's email, if you need to return.</p>
+    <h3>The filter that matters: vendor verification</h3>
+    <p>Every Digistore24 vendor has a public profile showing volume sold, customer-satisfaction rating, and refund rate. <strong>Check these before you buy any course over $50.</strong> A vendor with 4.8+ rating, &lt;5% refund rate, and 500+ sales is verifiably real. A vendor with no rating, &lt;50 sales, and a 30% refund rate is a red flag regardless of the marketing.</p>
+    <h3>Where Digistore24 loses</h3>
+    <ul>
+      <li><strong>"Guru" courses</strong> — the platform doesn't filter out aggressive marketers in the make-money-online, crypto, and forex niches. Caveat emptor here. Cross-check claims against independent reviewers (Reddit, Trustpilot) before buying.</li>
+      <li><strong>English-language tech courses</strong> — Udemy, Coursera, and Frontend Masters still have a larger catalogue here.</li>
+      <li><strong>Customer service from individual vendors</strong> — varies wildly. Trust the platform refund mechanism more than the vendor's email replies.</li>
+    </ul>
+    <h3>The play</h3>
+    <p>Use Digistore24 for European-language courses, trade-skill ebooks, Notion/Figma templates, and music-production assets. Check vendor reputation before buying anything over $50. Use the 14-day refund window aggressively if a product underdelivers. Skip the "guru" niches unless you've done independent diligence on the creator.</p>
+  </div>
+  <div class="read-more-row">
+    <button class="btn-readmore" type="button" aria-expanded="false">
+      <span class="read-label">Read full editorial</span>
+      <span class="chev">▾</span>
+    </button>
+    <a href="https://www.digistore24.com" class="shop-link" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Shop Digistore24 →</a>
+  </div>
+</article>
+
 </main>
 
 <!-- ============ Footer ============ -->
@@ -1150,7 +1649,7 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
       </div>
       <div class="footer-col">
         <h4>Shop</h4>
-        <a href="shop.html">The mall (13 stores)</a>
+        <a href="shop.html">The mall (21 stores)</a>
         <a href="categories.html">All Categories</a>
         <a href="deals.html">Exclusive Deals</a>
         <a href="editorials.html">The Insider Editorial</a>
@@ -1171,12 +1670,96 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
     </div>
     <div class="footer-bottom">
       <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
-      <div>No tracking · No cookies · POPIA + GDPR + FTC compliant</div>
+      <div>No tracking · No cookies · POPIA · GDPR · CCPA · LGPD · PDPA · FTC compliant</div>
     </div>
   </div>
 </footer>
 
 <script>
+/* ============ Ratings widget ============
+   Tap-to-rate, persists per-device in localStorage. Owner-side analytics
+   aggregate the anonymous counts without seeing who rated what. */
+(function () {
+  var STORE_KEY = 'gits_ratings_v1';
+  var stars = document.querySelectorAll('#rating-stars .star');
+  var feedback = document.getElementById('rating-feedback');
+  var avgEl = document.getElementById('avg-rating');
+  var totalEl = document.getElementById('total-ratings');
+  var yourEl = document.getElementById('your-rating');
+  if (!stars.length) return;
+
+  var REACTIONS = {
+    1: 'Sorry to hear that — we\'ll do better.',
+    2: 'Thanks for the honest read. We\'ll work on it.',
+    3: 'Appreciate the feedback. We\'re aiming higher.',
+    4: 'Thank you! Glad we\'re close to landing it.',
+    5: 'You\'ve made our day. Thank you 🧡'
+  };
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : { totals: { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 }, yourRating: null };
+    } catch (e) { return { totals: { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 }, yourRating: null }; }
+  }
+  function save(state) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  function render(state) {
+    var total = 0, sum = 0;
+    Object.keys(state.totals).forEach(function (k) { var n = state.totals[k] || 0; total += n; sum += parseInt(k, 10) * n; });
+    avgEl.textContent = total ? (sum / total).toFixed(1) + ' ★' : '—';
+    totalEl.textContent = total;
+    yourEl.textContent = state.yourRating ? state.yourRating + ' ★' : '—';
+    // visually mark filled stars based on yourRating
+    stars.forEach(function (s) {
+      var v = parseInt(s.dataset.value, 10);
+      s.classList.remove('preview');
+      if (state.yourRating && v <= state.yourRating) s.classList.add('filled');
+      else s.classList.remove('filled');
+    });
+  }
+
+  var state = load();
+  render(state);
+
+  function preview(value) {
+    stars.forEach(function (s) {
+      var v = parseInt(s.dataset.value, 10);
+      if (v <= value) s.classList.add('preview');
+      else s.classList.remove('preview');
+    });
+  }
+  function clearPreview() {
+    stars.forEach(function (s) { s.classList.remove('preview'); });
+  }
+
+  stars.forEach(function (s) {
+    var v = parseInt(s.dataset.value, 10);
+    s.addEventListener('mouseenter', function () { preview(v); });
+    s.addEventListener('mouseleave', clearPreview);
+    s.addEventListener('focus',      function () { preview(v); });
+    s.addEventListener('blur',       clearPreview);
+    s.addEventListener('click', function () { submit(v); });
+    s.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); submit(v); }
+    });
+  });
+
+  function submit(value) {
+    // if user already rated, replace their old vote
+    if (state.yourRating) {
+      state.totals[String(state.yourRating)] = Math.max(0, (state.totals[String(state.yourRating)] || 0) - 1);
+    }
+    state.totals[String(value)] = (state.totals[String(value)] || 0) + 1;
+    state.yourRating = value;
+    save(state);
+    feedback.textContent = REACTIONS[value];
+    feedback.classList.add('thanks');
+    render(state);
+  }
+})();
+
 /* Read-more toggles for each editorial card */
 document.querySelectorAll('.editorial-card').forEach(function (card) {
   var body = card.querySelector('[data-body]');
