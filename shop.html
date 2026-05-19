@@ -1445,12 +1445,12 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 21 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 20 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 21 trusted stores covering 100,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 20 trusted stores covering 100,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
@@ -1484,22 +1484,48 @@ footer {
     <div class="hero-text hero-text-centered">
       <div class="hero-eyebrow">You're inside</div>
       <h1>Take a stroll through the <span class="accent">Got It Superstore mall</span></h1>
-      <p class="lead">21 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
+      <p class="lead">20 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
     </div>
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE — MALL WALKWAY ============== -->
+<!-- ============== SHOP BY STORE — UNIFIED U-SHAPE MALL WALKWAY ============== -->
+<style>
+/* Two-card bottom row so the U closes with 2 stores instead of 1 */
+.mall-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+@media (max-width: 720px) { .mall-bottom-row { grid-template-columns: 1fr; } }
+.mall-bottom-row .mall-bottom-store { margin: 0; }
+/* "New" pill for the 7 expansion-wing stores now folded into the walkway */
+.store-card .new-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+</style>
 <section class="section" id="stores">
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">21 trusted stores</span></h2>
+      <h2 class="section-title">Take a stroll through our <span class="accent">20 trusted stores</span></h2>
     </div>
-    <span class="section-meta">13 stores in the original mall · 8 more in the Expansion Wing · every door is OPEN</span>
+    <span class="section-meta">9 storefronts each side + 2 closing the U · every door is OPEN</span>
   </div>
   <div class="mall-walkway">
-    <!-- LEFT AISLE — 6 storefronts -->
+    <!-- LEFT AISLE — 9 storefronts -->
     <div class="mall-aisle mall-aisle-left">
       <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
@@ -1537,6 +1563,27 @@ footer {
         <div class="store-name">Apple</div>
         <div class="store-tag">Premium electronics</div>
       </a>
+      <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">🛫</div>
+        <div class="store-name">Booking.com</div>
+        <div class="store-tag">Travel &amp; stays</div>
+      </a>
+      <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">💻</div>
+        <div class="store-name">Newegg</div>
+        <div class="store-tag">PC &amp; tech hardware</div>
+      </a>
+      <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">⛺</div>
+        <div class="store-name">Decathlon</div>
+        <div class="store-tag">Sport &amp; outdoor</div>
+      </a>
     </div>
 
     <!-- CENTRE WALKWAY: open walkable corridor with the Walkway label in the middle -->
@@ -1546,7 +1593,7 @@ footer {
       <span class="mall-floor-arrow bottom">▼</span>
     </div>
 
-    <!-- RIGHT AISLE — 6 storefronts -->
+    <!-- RIGHT AISLE — 9 storefronts -->
     <div class="mall-aisle mall-aisle-right">
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
@@ -1584,144 +1631,48 @@ footer {
         <div class="store-name">IKEA</div>
         <div class="store-tag">Affordable home</div>
       </a>
+      <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">🧘</div>
+        <div class="store-name">Lululemon</div>
+        <div class="store-tag">Premium athleisure</div>
+      </a>
+      <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">💎</div>
+        <div class="store-name">Net-a-Porter</div>
+        <div class="store-tag">Luxury fashion</div>
+      </a>
+      <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">🛁</div>
+        <div class="store-name">Lush</div>
+        <div class="store-tag">Natural beauty</div>
+      </a>
     </div>
   </div>
 
-  <!-- BOTTOM HORIZONTAL STOREFRONT — closes the mall into a U-shape -->
-  <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
-    <span class="store-door">Open</span>
-    <span class="store-icon">🛒</span>
-    <span class="store-text">
-      <span class="store-name">Costco</span>
-      <span class="store-tag">Members-only wholesale</span>
-    </span>
-  </a>
-</section>
-
-<!-- ============== EXPANSION WING — 8 NEW STORES ============== -->
-<style>
-.expansion-wing { padding-top: 0; }
-.expansion-divider {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  max-width: 720px;
-  margin: 0 auto 36px;
-  color: var(--ink-soft);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.expansion-divider::before, .expansion-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-.expansion-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-@media (max-width: 980px) { .expansion-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 720px)  { .expansion-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 420px)  { .expansion-grid { grid-template-columns: 1fr; } }
-.expansion-grid .store-card {
-  /* lighter visual treatment so the original U-mall remains hero */
-  background: linear-gradient(180deg, var(--cream), var(--bg-card));
-}
-.expansion-grid .store-card .store-door {
-  background: rgba(0, 168, 107, 0.16);
-  color: var(--green);
-}
-.new-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--orange);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 100px;
-}
-</style>
-<section class="section expansion-wing" id="expansion-wing">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Brand-new openings</div>
-      <h2 class="section-title">Step into the <span class="accent">Expansion Wing</span></h2>
-    </div>
-    <span class="section-meta">8 fresh storefronts · travel, sport, beauty, tech, digital · zero Amazon overlap</span>
-  </div>
-
-  <div class="expansion-divider">
-    <span>↓ &nbsp;Newly opened &nbsp;↓</span>
-  </div>
-
-  <div class="expansion-grid">
-    <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
+  <!-- BOTTOM ROW — 2 storefronts closing the U-shape -->
+  <div class="mall-bottom-row">
+    <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
       <span class="store-door">Open</span>
-      <div class="store-icon">🛫</div>
-      <div class="store-name">Booking.com</div>
-      <div class="store-tag">Travel &amp; stays</div>
+      <span class="store-icon">🛒</span>
+      <span class="store-text">
+        <span class="store-name">Costco</span>
+        <span class="store-tag">Members-only wholesale</span>
+      </span>
     </a>
-    <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+    <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
       <span class="new-badge">New</span>
       <span class="store-door">Open</span>
-      <div class="store-icon">💻</div>
-      <div class="store-name">Newegg</div>
-      <div class="store-tag">PC &amp; tech hardware</div>
-    </a>
-    <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">⛺</div>
-      <div class="store-name">Decathlon</div>
-      <div class="store-tag">Sport &amp; outdoor</div>
-    </a>
-    <a href="https://www.adidas.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">👟</div>
-      <div class="store-name">Adidas</div>
-      <div class="store-tag">Sportswear</div>
-    </a>
-    <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">🧘</div>
-      <div class="store-name">Lululemon</div>
-      <div class="store-tag">Premium athleisure</div>
-    </a>
-    <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">💎</div>
-      <div class="store-name">Net-a-Porter</div>
-      <div class="store-tag">Luxury fashion</div>
-    </a>
-    <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">🛁</div>
-      <div class="store-name">Lush</div>
-      <div class="store-tag">Natural beauty</div>
-    </a>
-    <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <div class="store-icon">📲</div>
-      <div class="store-name">Digistore24</div>
-      <div class="store-tag">Digital products</div>
+      <span class="store-icon">📲</span>
+      <span class="store-text">
+        <span class="store-name">Digistore24</span>
+        <span class="store-tag">Digital products</span>
+      </span>
     </a>
   </div>
 </section>
@@ -1942,7 +1893,7 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 21 stores so the visitor picks where to look. Every store gets
+  // we surface all 20 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
     { name: 'ASOS',         icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
@@ -1961,7 +1912,6 @@ footer {
     { name: 'Booking.com',  icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
     { name: 'Newegg',       icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
     { name: 'Decathlon',    icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
-    { name: 'Adidas',       icon: '👟', tag: 'Sportswear',             build: function (q) { return 'https://www.adidas.com/us/search?q=' + q; } },
     { name: 'Lululemon',    icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
     { name: 'Net-a-Porter', icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
     { name: 'Lush',         icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
