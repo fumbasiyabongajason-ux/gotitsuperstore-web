@@ -1573,13 +1573,16 @@ footer {
       <p><strong>Hours:</strong> We respond within 24-48 hours, Mon-Fri.</p>
       <p style="margin-top: 18px;"><strong style="display:block; min-width:0; margin-bottom:6px;">For partnership / brand inquiries:</strong>Send us a brief intro with your brand, niche, and the product/category you'd like featured via the contact form. We respond to all inquiries.</p>
     </div>
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Your message has been received. We will respond within 24-48 hours.');">
+    <form class="contact-form" action="https://formspree.io/f/xqejeqdn" method="POST">
+      <!-- Hidden Formspree control fields -->
+      <input type="hidden" name="_subject" value="New Got It Superstore inquiry">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-row">
-        <input class="form-input" type="text" placeholder="Your name" required>
-        <input class="form-input" type="email" placeholder="Your email" required>
+        <input class="form-input" type="text" name="name" placeholder="Your name" required>
+        <input class="form-input" type="email" name="email" placeholder="Your email" required>
       </div>
-      <input class="form-input" type="text" placeholder="Subject" required style="margin-bottom: 14px;">
-      <textarea class="form-textarea" placeholder="Your message…" required></textarea>
+      <input class="form-input" type="text" name="subject" placeholder="Subject" required style="margin-bottom: 14px;">
+      <textarea class="form-textarea" name="message" placeholder="Your message…" required></textarea>
       <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
     </form>
   </div>
