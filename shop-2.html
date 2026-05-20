@@ -85,101 +85,144 @@ header { background: var(--cream); border-bottom: 1px solid var(--border); paddi
 .global-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,168,107,0.12); color: var(--green); font-family: var(--font-heading); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; margin-top: 10px; }
 
 /* ============ Backward-r walkway ============ */
-/* ============== Backward-r walkway · centre corridor with stores flanking ============== */
-/* Path: visitor enters at top of page (from Wing 1 swipe), walks UP the vertical
-   aisle (stores LEFT + walkway + stores RIGHT), hits the corner, then the
-   walkway hooks LEFT through the top horizontal section (stores ABOVE +
-   walkway + stores BELOW). The backward-r shape is the abstract path. */
-.r-mall {
-  max-width: var(--max-width);
-  margin: 30px auto 0;
-  padding: 0 24px;
+/* ============== Tiled mall walkway · backward-r path ==============
+   Same warm-cream argyle floor pattern as Wing 1, just shaped as a backward r:
+   vertical going up + hook going left at the top. */
+.r-mall { max-width: var(--max-width); margin: 30px auto 0; padding: 0 24px; }
+
+/* Section A · vertical part: stores LEFT, tiled walkway UP, stores RIGHT */
+.r-mall .mall-walkway {
+  display: grid;
+  grid-template-columns: 1fr 84px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+.r-mall .mall-aisle { display: flex; flex-direction: column; gap: 14px; }
+
+/* Shared tiled floor — vertical and horizontal variants */
+.r-mall .mall-floor,
+.r-mall .mall-floor-horizontal,
+.r-mall .mall-corner {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #f0e4cc;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 250, 235, 0.55) 0, rgba(255, 250, 235, 0.55) 3px, transparent 4px),
+    linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
+    linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
+    linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
+  background-size: 32px 32px;
+  background-position: 16px 16px, 0 0, 0 16px, 16px -16px, -16px 0;
+  box-shadow:
+    inset 0 4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
+}
+.r-mall .mall-floor::before,
+.r-mall .mall-floor-horizontal::before,
+.r-mall .mall-corner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 110, 60, 0.18) 100%);
+  pointer-events: none; z-index: 1;
 }
 
-/* SECTION A · vertical part: stores LEFT, centre walkway UP, stores RIGHT */
-.r-vertical-section {
-  display: grid;
-  grid-template-columns: minmax(180px, 1fr) 70px minmax(180px, 1fr);
-  gap: 18px;
-}
-.r-aisle-left, .r-aisle-right {
-  display: flex; flex-direction: column; gap: 18px;
-}
-.r-walkway-vertical {
-  position: relative;
-  background:
-    linear-gradient(180deg, rgba(0,168,107,0.18) 0%, rgba(242,107,26,0.16) 50%, rgba(242,107,26,0.04) 100%);
-  border-radius: 14px;
-  border: 1.5px dashed rgba(0,168,107,0.4);
+/* Vertical tiled walkway (centre column, stroll up) */
+.r-mall .mall-floor {
+  min-height: 220px;
   display: flex; flex-direction: column;
   align-items: center; justify-content: space-between;
-  padding: 18px 0;
-  min-height: 100%;
+  padding: 24px 8px;
 }
-.r-walkway-vertical .arrow {
-  font-size: 22px; color: var(--green); line-height: 1;
-}
-.r-walkway-vertical .label {
-  writing-mode: vertical-rl;
-  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.20em; text-transform: uppercase; color: var(--green);
+.r-mall .mall-floor-label {
+  position: relative; z-index: 3;
+  writing-mode: vertical-rl; transform: rotate(180deg);
   white-space: nowrap;
+  letter-spacing: 8px;
+  font-size: 10px; font-weight: 800;
+  color: rgba(120, 90, 50, 0.7);
+  text-transform: uppercase;
+  background: rgba(255, 250, 235, 0.85);
+  padding: 14px 5px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
+}
+.r-mall .mall-floor-arrow {
+  position: relative; z-index: 2;
+  color: rgba(120, 90, 50, 0.55);
+  font-size: 16px; font-weight: 800;
 }
 
-/* CORNER · the backward-r bend */
-.r-corner {
-  position: relative;
-  margin: 14px 0;
-  padding: 18px 24px;
-  background: linear-gradient(225deg, rgba(0,168,107,0.10), rgba(242,107,26,0.10));
-  border: 1.5px dashed rgba(0,168,107,0.32);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  gap: 14px;
-  font-family: var(--font-heading); font-weight: 700; font-size: 13px;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--green);
-}
-.r-corner .corner-icon {
-  font-size: 24px;
-  color: var(--orange);
-}
-
-/* SECTION B · horizontal hook part: stores ABOVE, centre walkway LEFT, stores BELOW */
-.r-horizontal-section {
+/* Horizontal tiled walkway (top hook, stroll left) */
+.r-mall .mall-walkway-h {
   display: grid;
-  grid-template-rows: auto 56px auto;
-  gap: 14px;
+  grid-template-rows: 1fr 90px 1fr;
+  gap: 18px;
+  margin-top: 16px;
 }
-.r-horizontal-top,
-.r-horizontal-bottom {
+.r-mall .mall-aisle-top, .r-mall .mall-aisle-bottom {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 14px;
 }
-.r-walkway-horizontal {
-  position: relative;
-  background:
-    linear-gradient(270deg, rgba(242,107,26,0.18), rgba(0,168,107,0.18) 90%, rgba(242,107,26,0.32));
-  border-radius: 14px;
-  border: 1.5px dashed rgba(242,107,26,0.4);
+.r-mall .mall-floor-horizontal {
+  min-height: 90px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 22px;
-  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--orange);
+  gap: 24px; padding: 0 28px;
 }
-.r-walkway-horizontal .arrow-left { color: var(--green); font-size: 18px; letter-spacing: 0.04em; }
+.r-mall .mall-floor-label-h {
+  position: relative; z-index: 3;
+  letter-spacing: 8px; font-size: 10px; font-weight: 800;
+  color: rgba(120, 90, 50, 0.7);
+  text-transform: uppercase;
+  background: rgba(255, 250, 235, 0.85);
+  padding: 5px 16px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
+  white-space: nowrap;
+}
+.r-mall .mall-floor-arrow-h {
+  position: relative; z-index: 2;
+  color: rgba(120, 90, 50, 0.55);
+  font-size: 16px; font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* Backward-r corner */
+.r-mall .mall-corner {
+  min-height: 80px;
+  margin: 16px 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 18px; padding: 20px 24px;
+}
+.r-mall .mall-corner-arrow {
+  position: relative; z-index: 2;
+  color: rgba(120, 90, 50, 0.6);
+  font-size: 26px; font-weight: 800;
+}
+.r-mall .mall-corner-label {
+  position: relative; z-index: 3;
+  background: rgba(255, 250, 235, 0.85);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 800; letter-spacing: 5px;
+  color: rgba(120, 90, 50, 0.7);
+  text-transform: uppercase;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
+}
 
 @media (max-width: 1100px) {
-  .r-horizontal-top, .r-horizontal-bottom { grid-template-columns: repeat(4, 1fr); }
+  .r-mall .mall-aisle-top, .r-mall .mall-aisle-bottom { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 900px) {
-  .r-vertical-section { grid-template-columns: 1fr; }
-  .r-walkway-vertical { display: none; }
-  .r-horizontal-top, .r-horizontal-bottom { grid-template-columns: 1fr 1fr; }
-  .r-horizontal-section { grid-template-rows: auto auto auto; gap: 18px; }
-  .r-walkway-horizontal { order: 99; padding: 10px 16px; min-height: 44px; flex-wrap: wrap; gap: 6px; text-align: center; }
+  .r-mall .mall-walkway { grid-template-columns: 1fr; gap: 12px; }
+  .r-mall .mall-floor { min-height: 60px; padding: 12px 8px; }
+  .r-mall .mall-floor-label { writing-mode: horizontal-tb; transform: none; padding: 4px 14px; letter-spacing: 4px; }
+  .r-mall .mall-walkway-h { grid-template-rows: auto auto auto; gap: 12px; }
+  .r-mall .mall-aisle-top, .r-mall .mall-aisle-bottom { grid-template-columns: 1fr 1fr; }
+  .r-mall .mall-floor-horizontal { padding: 10px 16px; min-height: 60px; flex-wrap: wrap; gap: 8px; text-align: center; }
 }
 
 /* Store cards (replicating shop.html aesthetic) */
@@ -306,9 +349,10 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
   <div class="r-mall">
 
     <!-- ====== SECTION A · r-vertical: 8 stores LEFT, walkway UP, 8 stores RIGHT ====== -->
-    <div class="r-vertical-section">
+    <!-- ====== SECTION A · r-vertical: tiled walkway UP between aisles ====== -->
+    <div class="mall-walkway">
       <!-- LEFT aisle facing the centre walkway -->
-      <div class="r-aisle-left">
+      <div class="mall-aisle mall-aisle-left">
         <a href="https://www.jd.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
           <span class="new-badge">New</span>
           <span class="store-door">Open</span>
@@ -375,15 +419,15 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
         </a>
       </div>
 
-      <!-- CENTRE walkway · stroll up -->
-      <div class="r-walkway-vertical" aria-hidden="true">
-        <span class="arrow">↑</span>
-        <span class="label">Walkway · stroll up</span>
-        <span class="arrow">↑</span>
+      <!-- CENTRE tiled walkway · stroll up -->
+      <div class="mall-floor" aria-hidden="true">
+        <span class="mall-floor-arrow top">▲</span>
+        <span class="mall-floor-label">Walkway · stroll up</span>
+        <span class="mall-floor-arrow bottom">▲</span>
       </div>
 
       <!-- RIGHT aisle facing the centre walkway -->
-      <div class="r-aisle-right">
+      <div class="mall-aisle mall-aisle-right">
         <a href="https://www.farfetch.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
           <span class="new-badge">New</span>
           <span class="store-door">Open</span>
@@ -451,17 +495,17 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
       </div>
     </div>
 
-    <!-- ====== CORNER · the walkway hooks left at the top of the r ====== -->
-    <div class="r-corner" aria-hidden="true">
-      <span class="corner-icon">↺</span>
-      <span>The walkway hooks left at the corner</span>
-      <span class="corner-icon">←</span>
+    <!-- ====== CORNER · backward-r hooks left · tiled ====== -->
+    <div class="mall-corner" aria-hidden="true">
+      <span class="mall-corner-arrow">↺</span>
+      <span class="mall-corner-label">Hook left at the corner</span>
+      <span class="mall-corner-arrow">←</span>
     </div>
 
     <!-- ====== SECTION B · r-horizontal hook: 7 stores ABOVE, walkway LEFT, 7 stores BELOW ====== -->
-    <div class="r-horizontal-section">
+    <div class="mall-walkway-h">
       <!-- TOP row (7 stores above the walkway hook) -->
-      <div class="r-horizontal-top">
+      <div class="mall-aisle-top">
         <a href="https://www.cultbeauty.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
           <span class="new-badge">New</span>
           <span class="store-door">Open</span>
@@ -520,15 +564,15 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
         </a>
       </div>
 
-      <!-- CENTRE walkway going left -->
-      <div class="r-walkway-horizontal" aria-hidden="true">
-        <span class="arrow-left">← ← ←</span>
-        <span>Walkway · stroll left</span>
-        <span class="arrow-left">← ← ← to exit</span>
+      <!-- CENTRE tiled walkway · hook left -->
+      <div class="mall-floor-horizontal" aria-hidden="true">
+        <span class="mall-floor-arrow-h">◄ ◄ ◄</span>
+        <span class="mall-floor-label-h">Walkway · hooks left · towards exit</span>
+        <span class="mall-floor-arrow-h">◄ ◄ ◄</span>
       </div>
 
       <!-- BOTTOM row (7 stores below the walkway hook) -->
-      <div class="r-horizontal-bottom">
+      <div class="mall-aisle-bottom">
         <a href="https://www.on-running.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
           <span class="new-badge">New</span>
           <span class="store-door">Open</span>
