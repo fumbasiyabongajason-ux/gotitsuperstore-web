@@ -1224,6 +1224,24 @@ footer {
   color: #788596;
   font-weight: 500;
 }
+/* Ships-globally pill — added to every Wing 1 store except Takealot (SA-only) */
+.store-card .ships-pill, .mall-bottom-store .ships-pill {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #00A86B;
+  background: rgba(0, 168, 107, 0.10);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.store-card .ships-pill.sa-only, .mall-bottom-store .ships-pill.sa-only {
+  color: #F26B1A;
+  background: rgba(242, 107, 26, 0.10);
+}
 
 /* ============== CATEGORY CARDS — UPGRADED ============== */
 .category-card {
@@ -1637,36 +1655,42 @@ footer {
         <div class="store-icon">👗</div>
         <div class="store-name">ASOS</div>
         <div class="store-tag">Global fashion</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://global.rakuten.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🎌</div>
         <div class="store-name">Rakuten</div>
         <div class="store-tag">Japanese marketplace</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">👠</div>
         <div class="store-name">Zalando</div>
         <div class="store-tag">European fashion</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">💄</div>
         <div class="store-name">Sephora</div>
         <div class="store-tag">Beauty &amp; skincare</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🛋️</div>
         <div class="store-name">Wayfair</div>
         <div class="store-tag">Home &amp; furniture</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🍎</div>
         <div class="store-name">Apple</div>
         <div class="store-tag">Premium electronics</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1674,6 +1698,7 @@ footer {
         <div class="store-icon">🛫</div>
         <div class="store-name">Booking.com</div>
         <div class="store-tag">Travel &amp; stays</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1681,6 +1706,7 @@ footer {
         <div class="store-icon">💻</div>
         <div class="store-name">Newegg</div>
         <div class="store-tag">PC &amp; tech hardware</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1688,24 +1714,28 @@ footer {
         <div class="store-icon">⛺</div>
         <div class="store-name">Decathlon</div>
         <div class="store-tag">Sport &amp; outdoor</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🎨</div>
         <div class="store-name">Etsy</div>
         <div class="store-tag">Handmade &amp; vintage</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🛒</div>
         <div class="store-name">eBay</div>
         <div class="store-tag">Auctions &amp; resale</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🛍️</div>
         <div class="store-name">Shein</div>
         <div class="store-tag">Fast fashion</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
     </div>
 
@@ -1725,18 +1755,21 @@ footer {
         <div class="store-icon">🌏</div>
         <div class="store-name">AliExpress</div>
         <div class="store-tag">Global wholesale</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🇿🇦</div>
         <div class="store-name">Takealot</div>
         <div class="store-tag">South Africa</div>
+        <span class="ships-pill sa-only">🇿🇦 South Africa only</span>
       </a>
       <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🪑</div>
         <div class="store-name">IKEA</div>
         <div class="store-tag">Affordable home</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1744,6 +1777,7 @@ footer {
         <div class="store-icon">🧘</div>
         <div class="store-name">Lululemon</div>
         <div class="store-tag">Premium athleisure</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1751,6 +1785,7 @@ footer {
         <div class="store-icon">💎</div>
         <div class="store-name">Net-a-Porter</div>
         <div class="store-tag">Luxury fashion</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1758,12 +1793,14 @@ footer {
         <div class="store-icon">🛁</div>
         <div class="store-name">Lush</div>
         <div class="store-tag">Natural beauty</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🛒</div>
         <div class="store-name">Costco</div>
         <div class="store-tag">Members wholesale</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
@@ -1771,6 +1808,7 @@ footer {
         <div class="store-icon">📲</div>
         <div class="store-name">Digistore24</div>
         <div class="store-tag">Digital products</div>
+        <span class="ships-pill">🌐 Ships globally</span>
       </a>
     </div>
 
