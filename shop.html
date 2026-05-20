@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Shop the Mall</title>
-<meta name="description" content="Got It Superstore curates the best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Takealot and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
 <meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
@@ -1445,15 +1445,16 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 20 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 50 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 20 trusted stores covering 100,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 50 trusted stores covering 200,000+ brands.</div>
     </div>
     <div class="nav-links">
-      <a href="shop.html">Shop</a>
+      <a href="shop.html">Wing 1</a>
+      <a href="shop-2.html">Wing 2</a>
       <a href="categories.html">Curated</a>
       <a href="deals.html">Deals</a>
       <a href="editorials.html">Editorial</a>
@@ -1489,44 +1490,148 @@ footer {
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE — UNIFIED U-SHAPE MALL WALKWAY ============== -->
+<!-- ============== SHOP BY STORE — L-SHAPE MALL WALKWAY (WING 1) ============== -->
 <style>
-/* Two-card bottom row so the U closes with 2 stores instead of 1 */
-.mall-bottom-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-top: 22px;
-}
-@media (max-width: 720px) { .mall-bottom-row { grid-template-columns: 1fr; } }
-.mall-bottom-row .mall-bottom-store { margin: 0; }
-/* "New" pill for the 7 expansion-wing stores now folded into the walkway */
+/* "New" badge */
 .store-card .new-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--orange);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 100px;
+  position: absolute; top: 12px; left: 12px;
+  background: var(--orange); color: #fff;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 100px;
+}
+
+/* ============== L-SHAPE WALKWAY ============== */
+.l-walkway {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 24px 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 18px;
+  margin-top: 24px;
+}
+.l-vertical {
+  grid-column: 1; grid-row: 1;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.l-walkway-floor-v {
+  grid-column: 2; grid-row: 1;
+  position: relative;
+  background: linear-gradient(180deg, rgba(242,107,26,0.06), rgba(242,107,26,0.16) 80%, rgba(242,107,26,0.16) 100%);
+  border-radius: 12px;
+  border: 1px dashed rgba(242,107,26,0.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 16px 0;
+  min-height: 320px;
+}
+.l-walkway-floor-h {
+  grid-column: 1 / -1; grid-row: 2;
+  position: relative;
+  background: linear-gradient(90deg, rgba(242,107,26,0.16), rgba(0,168,107,0.22) 95%);
+  border-radius: 12px;
+  border: 1px dashed rgba(242,107,26,0.4);
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--orange);
+}
+.l-walkway-floor-h .arrow-r { color: var(--green); font-size: 18px; }
+.l-walkway-floor-v .v-arrow { color: var(--orange); font-size: 22px; }
+.l-walkway-floor-v .v-label {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange);
+}
+.l-bottom {
+  grid-column: 3; grid-row: 1;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
+  align-self: end;
+  margin-bottom: 80px;
+}
+.l-bottom-row {
+  grid-column: 1 / -1; grid-row: 3;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+@media (max-width: 900px) {
+  .l-walkway { grid-template-columns: 1fr; }
+  .l-vertical, .l-bottom, .l-bottom-row, .l-walkway-floor-v, .l-walkway-floor-h { grid-column: 1; grid-row: auto; }
+  .l-walkway-floor-v { display: none; }
+  .l-walkway-floor-h { order: 99; }
+  .l-bottom { grid-template-columns: 1fr 1fr; margin-bottom: 0; }
+  .l-bottom-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============== "Continue to Wing 2" exit bay ============== */
+.wing-exit {
+  margin: 36px auto 0;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(0,168,107,0.10), rgba(242,107,26,0.08));
+  border: 1.5px dashed rgba(0,168,107,0.32);
+  border-radius: 22px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+}
+.wing-exit.locked {
+  background: var(--bg-soft);
+  border-color: var(--border);
+  color: var(--muted);
+  opacity: 0.65;
+  pointer-events: none;
+}
+.wing-exit-eyebrow {
+  display: inline-block;
+  background: rgba(0,168,107,0.16); color: var(--green);
+  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 5px 12px; border-radius: 100px; margin-bottom: 12px;
+}
+.wing-exit.locked .wing-exit-eyebrow {
+  background: rgba(14,42,71,0.06); color: var(--muted);
+}
+.wing-exit h3 {
+  font-family: var(--font-heading); font-weight: 800; font-size: 22px;
+  color: var(--navy); margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.wing-exit p { color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
+.wing-exit .btn-continue {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange); color: #fff;
+  font-family: var(--font-heading); font-weight: 700; font-size: 15px;
+  padding: 14px 26px; border-radius: 100px; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(242,107,26,0.32);
+  transition: all 0.2s;
+}
+.wing-exit .btn-continue:hover { background: var(--orange-bright); transform: translateY(-1px); }
+.wing-exit.locked .btn-continue {
+  background: var(--muted); box-shadow: none; cursor: not-allowed;
+}
+.swipe-hint {
+  margin-top: 14px; font-size: 12px; color: var(--ink-soft);
+  font-family: var(--font-heading); font-weight: 600;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.swipe-hint .swipe-arrows { font-size: 16px; color: var(--orange); animation: swipe-pulse 1.6s infinite; }
+@keyframes swipe-pulse {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50% { transform: translateX(6px); opacity: 1; }
 }
 </style>
 <section class="section" id="stores">
   <div class="section-header">
     <div>
-      <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">20 trusted stores</span></h2>
+      <div class="section-eyebrow">Step inside the mall · Wing 1</div>
+      <h2 class="section-title">Stroll the L-walkway through <span class="accent">20 stores</span></h2>
     </div>
-    <span class="section-meta">9 storefronts each side + 2 closing the U · every door is OPEN</span>
+    <span class="section-meta">12 down the aisle + 8 along the base · Wing 2 awaits at the bottom · every door is OPEN</span>
   </div>
-  <div class="mall-walkway">
-    <!-- LEFT AISLE — 9 storefronts -->
-    <div class="mall-aisle mall-aisle-left">
+
+  <div class="l-walkway">
+    <!-- L's VERTICAL AISLE — 12 storefronts going down -->
+    <div class="l-vertical">
       <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">👗</div>
@@ -1584,17 +1689,6 @@ footer {
         <div class="store-name">Decathlon</div>
         <div class="store-tag">Sport &amp; outdoor</div>
       </a>
-    </div>
-
-    <!-- CENTRE WALKWAY: open walkable corridor with the Walkway label in the middle -->
-    <div class="mall-floor has-centre">
-      <span class="mall-floor-arrow top">▲</span>
-      <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow bottom">▼</span>
-    </div>
-
-    <!-- RIGHT AISLE — 9 storefronts -->
-    <div class="mall-aisle mall-aisle-right">
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🎨</div>
@@ -1603,7 +1697,7 @@ footer {
       </a>
       <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon">🛍️</div>
+        <div class="store-icon">🛒</div>
         <div class="store-name">eBay</div>
         <div class="store-tag">Auctions &amp; resale</div>
       </a>
@@ -1613,6 +1707,19 @@ footer {
         <div class="store-name">Shein</div>
         <div class="store-tag">Fast fashion</div>
       </a>
+    </div>
+
+    <!-- Walkway corridor between the vertical stores and the open right space -->
+    <div class="l-walkway-floor-v" aria-hidden="true">
+      <span class="v-arrow">↓</span>
+      <span class="v-label">Walkway · stroll down</span>
+      <span class="v-arrow">↓</span>
+    </div>
+
+    <!-- (right column intentionally empty on desktop — gives the L its open space) -->
+
+    <!-- L's HORIZONTAL — 8 storefronts going right along the base -->
+    <div class="l-bottom-row">
       <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
         <div class="store-icon">🌏</div>
@@ -1652,30 +1759,98 @@ footer {
         <div class="store-name">Lush</div>
         <div class="store-tag">Natural beauty</div>
       </a>
+      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">🛒</div>
+        <div class="store-name">Costco</div>
+        <div class="store-tag">Members wholesale</div>
+      </a>
+      <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
+        <span class="store-door">Open</span>
+        <div class="store-icon">📲</div>
+        <div class="store-name">Digistore24</div>
+        <div class="store-tag">Digital products</div>
+      </a>
+    </div>
+
+    <!-- Walkway floor strip beneath the horizontal row -->
+    <div class="l-walkway-floor-h" aria-hidden="true">
+      <span>Walkway · stroll right →</span>
+      <span class="arrow-r">→ → → Wing 2</span>
     </div>
   </div>
 
-  <!-- BOTTOM ROW — 2 storefronts closing the U-shape -->
-  <div class="mall-bottom-row">
-    <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
-      <span class="store-door">Open</span>
-      <span class="store-icon">🛒</span>
-      <span class="store-text">
-        <span class="store-name">Costco</span>
-        <span class="store-tag">Members-only wholesale</span>
-      </span>
+  <!-- ============== Wing-2 exit bay (unlocks once you reach the bottom of the L) ============== -->
+  <div class="wing-exit locked" id="wing-exit-bay">
+    <span class="wing-exit-eyebrow" id="wing-exit-eyebrow">Locked · keep walking</span>
+    <h3 id="wing-exit-title">The walkway continues into Wing 2</h3>
+    <p id="wing-exit-desc">Stroll through all 20 stores. The exit to Wing 2 opens when you reach the bottom of the L.</p>
+    <a class="btn-continue" id="wing-exit-link" href="shop-2.html" aria-disabled="true">
+      <span>Continue to Wing 2</span>
+      <span>→</span>
     </a>
-    <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
-      <span class="new-badge">New</span>
-      <span class="store-door">Open</span>
-      <span class="store-icon">📲</span>
-      <span class="store-text">
-        <span class="store-name">Digistore24</span>
-        <span class="store-tag">Digital products</span>
-      </span>
-    </a>
+    <div class="swipe-hint" id="swipe-hint" style="display:none;">
+      <span>Or swipe left</span>
+      <span class="swipe-arrows">← ←</span>
+    </div>
   </div>
 </section>
+
+<!-- ============== Scroll-lock + swipe gesture for Wing 2 transition ============== -->
+<script>
+(function () {
+  var bay     = document.getElementById('wing-exit-bay');
+  var eyebrow = document.getElementById('wing-exit-eyebrow');
+  var title   = document.getElementById('wing-exit-title');
+  var desc    = document.getElementById('wing-exit-desc');
+  var link    = document.getElementById('wing-exit-link');
+  var swipe   = document.getElementById('swipe-hint');
+  if (!bay) return;
+
+  // Has the visitor scrolled far enough to "reach the bottom" of the L?
+  // We unlock when the exit bay itself has scrolled into the visible area.
+  var unlocked = false;
+  function checkUnlock() {
+    if (unlocked) return;
+    var r = bay.getBoundingClientRect();
+    var viewportH = window.innerHeight || document.documentElement.clientHeight;
+    // Unlock when the bay's top edge enters the lower 70% of the viewport
+    if (r.top < viewportH * 0.85) {
+      unlocked = true;
+      bay.classList.remove('locked');
+      eyebrow.textContent = 'Bottom of the L reached · Wing 2 unlocked';
+      title.textContent = 'Continue your stroll into Wing 2';
+      desc.textContent = '30 more global stores await — the walkway curves into a backward-r through travel, fashion, beauty, and tech.';
+      link.removeAttribute('aria-disabled');
+      swipe.style.display = 'inline-flex';
+    }
+  }
+  window.addEventListener('scroll', checkUnlock, { passive: true });
+  window.addEventListener('resize', checkUnlock);
+  checkUnlock();
+
+  // Swipe-left to advance (mobile gesture). Locked at top — only fires once
+  // the bay is unlocked (i.e. user has scrolled to the bottom of the L).
+  var touchStartX = null, touchStartY = null;
+  document.addEventListener('touchstart', function (e) {
+    if (!e.touches || !e.touches[0]) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (touchStartX === null || !e.changedTouches || !e.changedTouches[0]) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    touchStartX = null; touchStartY = null;
+    if (!unlocked) return; // scroll-lock the swipe until bottom is reached
+    if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 1.4 && dx < 0) {
+      // Swipe LEFT detected (dx negative) — head into Wing 2
+      window.location.href = 'shop-2.html';
+    }
+  }, { passive: true });
+})();
+</script>
 
 <!-- ============== INQUIRY RECEPTION MODAL ============== -->
 <div class="inquiry-modal-overlay" id="inquiry-modal" onclick="if(event.target===this)closeInquiryModal()" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
@@ -1893,29 +2068,61 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 20 stores so the visitor picks where to look. Every store gets
+  // we surface all 50 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    { name: 'ASOS',         icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
-    { name: 'Rakuten',      icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
-    { name: 'Zalando',      icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
-    { name: 'Sephora',      icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'Wayfair',      icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
-    { name: 'Shein',        icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
-    { name: 'Apple',        icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Etsy',         icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',         icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'AliExpress',   icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',     icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
-    { name: 'IKEA',         icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'Costco',       icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Booking.com',  icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
-    { name: 'Newegg',       icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
-    { name: 'Decathlon',    icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
-    { name: 'Lululemon',    icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
-    { name: 'Net-a-Porter', icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Lush',         icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
-    { name: 'Digistore24',  icon: '📲', tag: 'Digital products',       build: function (q) { return 'https://www.digistore24.com/redir/marketplace/?_query=' + q; } }
+    /* === Wing 1 (L-walkway) === */
+    { name: 'ASOS',          icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Rakuten',       icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
+    { name: 'Zalando',       icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
+    { name: 'Sephora',       icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair',       icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Shein',         icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
+    { name: 'Apple',         icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Etsy',          icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',          icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'AliExpress',    icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',      icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'IKEA',          icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'Costco',        icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
+    { name: 'Booking.com',   icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
+    { name: 'Newegg',        icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
+    { name: 'Decathlon',     icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
+    { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
+    { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Lush',          icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
+    { name: 'Digistore24',   icon: '📲', tag: 'Digital products',       build: function (q) { return 'https://www.digistore24.com/redir/marketplace/?_query=' + q; } },
+    /* === Wing 2 (backward-r walkway) === */
+    { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
+    { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
+    { name: 'Farfetch',      icon: '🌟', tag: 'Luxury fashion',         build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
+    { name: 'SSENSE',        icon: '⚫', tag: 'Designer marketplace',   build: function (q) { return 'https://www.ssense.com/en-us/search?q=' + q; } },
+    { name: 'END.',          icon: '🧢', tag: 'Streetwear & designer',  build: function (q) { return 'https://www.endclothing.com/us/catalogsearch/result/?q=' + q; } },
+    { name: 'Revolve',       icon: '✨', tag: 'Trendy fashion',         build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
+    { name: 'Uniqlo',        icon: '🟥', tag: 'Japanese essentials',    build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
+    { name: 'Mr Porter',     icon: '🎩', tag: "Men's luxury",           build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?keywords=' + q; } },
+    { name: 'MatchesFashion',icon: '💍', tag: 'Designer luxury',        build: function (q) { return 'https://www.matchesfashion.com/search?text=' + q; } },
+    { name: 'H&M',           icon: '👚', tag: 'Global fast fashion',    build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
+    { name: 'Zara',          icon: '🖤', tag: 'Spanish fashion',        build: function (q) { return 'https://www.zara.com/us/en/search?searchTerm=' + q; } },
+    { name: 'COS',           icon: '⚪', tag: 'Premium minimalist',     build: function (q) { return 'https://www.cos.com/en_usd/search.html?q=' + q; } },
+    { name: 'Mango',         icon: '🍃', tag: 'Spanish fashion',        build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
+    { name: 'Massimo Dutti', icon: '🧥', tag: 'Premium Inditex',        build: function (q) { return 'https://www.massimodutti.com/us/search?q=' + q; } },
+    { name: '& Other Stories',icon:'💗', tag: 'Premium H&M Group',      build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
+    { name: 'Selfridges',    icon: '🛍️', tag: 'UK luxury department',  build: function (q) { return 'https://www.selfridges.com/US/en/cat/?q=' + q; } },
+    { name: 'Cult Beauty',   icon: '🧴', tag: 'Curated indie beauty',   build: function (q) { return 'https://www.cultbeauty.com/elysium.search?searchTerm=' + q; } },
+    { name: 'Lookfantastic', icon: '💅', tag: 'Premium beauty',         build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
+    { name: 'Feelunique',    icon: '💋', tag: 'Beauty marketplace',     build: function (q) { return 'https://www.feelunique.com/elysium.search?search=' + q; } },
+    { name: 'The Body Shop', icon: '🌱', tag: 'Ethical beauty',         build: function (q) { return 'https://www.thebodyshop.com/en-us/search?q=' + q; } },
+    { name: 'iHerb',         icon: '🌿', tag: 'Health & wellness',      build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
+    { name: 'MyProtein',     icon: '🥤', tag: 'Sports nutrition',       build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
+    { name: 'Gymshark',      icon: '💪', tag: 'Fitness apparel',        build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
+    { name: 'On Running',    icon: '🏃', tag: 'Swiss running',          build: function (q) { return 'https://www.on-running.com/en-us/search?q=' + q; } },
+    { name: 'Wiggle',        icon: '🚴', tag: 'Cycling & sport',        build: function (q) { return 'https://www.wiggle.com/search?text=' + q; } },
+    { name: 'Banggood',      icon: '📱', tag: 'Electronics direct',     build: function (q) { return 'https://www.banggood.com/search/' + q + '.html'; } },
+    { name: 'LEGO',          icon: '🧱', tag: 'Toys & building',        build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
+    { name: 'Muji',          icon: '🟫', tag: 'Japanese minimalist',    build: function (q) { return 'https://www.muji.com/us/en/search?keyword=' + q; } },
+    { name: 'The Outnet',    icon: '💎', tag: 'Discount luxury',        build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
+    { name: '24S',           icon: '💼', tag: 'LVMH luxury',            build: function (q) { return 'https://www.24s.com/en-us/search?q=' + q; } }
   ];
 
   window.doSearch = function () {
