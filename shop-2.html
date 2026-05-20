@@ -85,81 +85,101 @@ header { background: var(--cream); border-bottom: 1px solid var(--border); paddi
 .global-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,168,107,0.12); color: var(--green); font-family: var(--font-heading); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; margin-top: 10px; }
 
 /* ============ Backward-r walkway ============ */
-/* The shape: stores go UP the right vertical aisle (entering from bottom),
-   then hook LEFT along the top. */
-.r-walkway {
+/* ============== Backward-r walkway · centre corridor with stores flanking ============== */
+/* Path: visitor enters at top of page (from Wing 1 swipe), walks UP the vertical
+   aisle (stores LEFT + walkway + stores RIGHT), hits the corner, then the
+   walkway hooks LEFT through the top horizontal section (stores ABOVE +
+   walkway + stores BELOW). The backward-r shape is the abstract path. */
+.r-mall {
   max-width: var(--max-width);
   margin: 30px auto 0;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 24px minmax(220px, 1fr);
-  grid-template-rows: auto auto;
-  gap: 18px;
 }
 
-/* Top hook — horizontal row of stores going LEFT (visually a strip across the top) */
-.r-top-hook {
-  grid-column: 1 / -1; grid-row: 1;
+/* SECTION A · vertical part: stores LEFT, centre walkway UP, stores RIGHT */
+.r-vertical-section {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: minmax(180px, 1fr) 70px minmax(180px, 1fr);
   gap: 18px;
 }
-
-/* Walkway floor strip beneath the top hook (shows "← walkway hooks left ←") */
-.r-walkway-floor-h {
-  grid-column: 1 / -1; grid-row: 2;
+.r-aisle-left, .r-aisle-right {
+  display: flex; flex-direction: column; gap: 18px;
+}
+.r-walkway-vertical {
   position: relative;
-  background: linear-gradient(270deg, rgba(0,168,107,0.20), rgba(242,107,26,0.08));
-  border-radius: 12px;
-  border: 1px dashed rgba(0,168,107,0.4);
-  padding: 10px 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 14px;
-  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 24px;
-}
-.r-walkway-floor-h .arrow-l { color: var(--orange); font-size: 18px; }
-
-/* Right vertical aisle — stores going UP */
-.r-vertical {
-  grid-column: 3; grid-row: 3;
-  display: flex; flex-direction: column-reverse; gap: 18px;
-}
-.r-walkway-floor-v {
-  grid-column: 2; grid-row: 3;
-  background: linear-gradient(0deg, rgba(242,107,26,0.06), rgba(0,168,107,0.22) 90%);
-  border-radius: 12px;
-  border: 1px dashed rgba(0,168,107,0.4);
+  background:
+    linear-gradient(180deg, rgba(0,168,107,0.18) 0%, rgba(242,107,26,0.16) 50%, rgba(242,107,26,0.04) 100%);
+  border-radius: 14px;
+  border: 1.5px dashed rgba(0,168,107,0.4);
   display: flex; flex-direction: column;
   align-items: center; justify-content: space-between;
-  padding: 16px 0;
-  min-height: 480px;
+  padding: 18px 0;
+  min-height: 100%;
 }
-.r-walkway-floor-v .v-arrow { color: var(--green); font-size: 22px; }
-.r-walkway-floor-v .v-label {
+.r-walkway-vertical .arrow {
+  font-size: 22px; color: var(--green); line-height: 1;
+}
+.r-walkway-vertical .label {
   writing-mode: vertical-rl;
   font-family: var(--font-heading); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--green);
-}
-.r-empty {
-  grid-column: 1; grid-row: 3;
-  /* visual breathing space — open mall floor on the left side of the r vertical */
+  letter-spacing: 0.20em; text-transform: uppercase; color: var(--green);
+  white-space: nowrap;
 }
 
-.r-walkway { grid-template-rows: auto auto auto; }
+/* CORNER · the backward-r bend */
+.r-corner {
+  position: relative;
+  margin: 14px 0;
+  padding: 18px 24px;
+  background: linear-gradient(225deg, rgba(0,168,107,0.10), rgba(242,107,26,0.10));
+  border: 1.5px dashed rgba(0,168,107,0.32);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--green);
+}
+.r-corner .corner-icon {
+  font-size: 24px;
+  color: var(--orange);
+}
 
+/* SECTION B · horizontal hook part: stores ABOVE, centre walkway LEFT, stores BELOW */
+.r-horizontal-section {
+  display: grid;
+  grid-template-rows: auto 56px auto;
+  gap: 14px;
+}
+.r-horizontal-top,
+.r-horizontal-bottom {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+.r-walkway-horizontal {
+  position: relative;
+  background:
+    linear-gradient(270deg, rgba(242,107,26,0.18), rgba(0,168,107,0.18) 90%, rgba(242,107,26,0.32));
+  border-radius: 14px;
+  border: 1.5px dashed rgba(242,107,26,0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 22px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--orange);
+}
+.r-walkway-horizontal .arrow-left { color: var(--green); font-size: 18px; letter-spacing: 0.04em; }
+
+@media (max-width: 1100px) {
+  .r-horizontal-top, .r-horizontal-bottom { grid-template-columns: repeat(4, 1fr); }
+}
 @media (max-width: 900px) {
-  .r-walkway { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .r-top-hook { grid-template-columns: 1fr 1fr; grid-column: 1; }
-  .r-vertical { grid-column: 1; }
-  .r-walkway-floor-v { display: none; }
-  .r-empty { display: none; }
-  .r-walkway-floor-h { grid-column: 1; order: 99; }
-}
-@media (max-width: 540px) {
-  .r-top-hook { grid-template-columns: 1fr; }
+  .r-vertical-section { grid-template-columns: 1fr; }
+  .r-walkway-vertical { display: none; }
+  .r-horizontal-top, .r-horizontal-bottom { grid-template-columns: 1fr 1fr; }
+  .r-horizontal-section { grid-template-rows: auto auto auto; gap: 18px; }
+  .r-walkway-horizontal { order: 99; padding: 10px 16px; min-height: 44px; flex-wrap: wrap; gap: 6px; text-align: center; }
 }
 
 /* Store cards (replicating shop.html aesthetic) */
@@ -282,271 +302,292 @@ footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 4
 <main id="main-content">
 <section class="section">
 
-  <!-- TOP HOOK — 10 storefronts going LEFT (visually a row across the top) -->
-  <div class="r-walkway">
-    <div class="r-top-hook">
-      <a href="https://www.24s.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💼</div>
-        <div class="store-name">24S</div>
-        <div class="store-tag">LVMH luxury</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.theoutnet.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💎</div>
-        <div class="store-name">The Outnet</div>
-        <div class="store-tag">Discount luxury</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.muji.com/us/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🟫</div>
-        <div class="store-name">Muji</div>
-        <div class="store-tag">Japanese minimalist</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.lego.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🧱</div>
-        <div class="store-name">LEGO</div>
-        <div class="store-tag">Toys &amp; building</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.bhphotovideo.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">📷</div>
-        <div class="store-name">B&amp;H Photo</div>
-        <div class="store-tag">Pro photo · audio · video</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.wiggle.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🚴</div>
-        <div class="store-name">Wiggle</div>
-        <div class="store-tag">Cycling &amp; sport</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.on-running.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🏃</div>
-        <div class="store-name">On Running</div>
-        <div class="store-tag">Swiss running</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.gymshark.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💪</div>
-        <div class="store-name">Gymshark</div>
-        <div class="store-tag">Fitness apparel</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.myprotein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🥤</div>
-        <div class="store-name">MyProtein</div>
-        <div class="store-tag">Sports nutrition</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.iherb.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🌿</div>
-        <div class="store-name">iHerb</div>
-        <div class="store-tag">Health &amp; wellness</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
+  <!-- ============== Backward-r walkway · centre corridor, stores flanking ============== -->
+  <div class="r-mall">
+
+    <!-- ====== SECTION A · r-vertical: 8 stores LEFT, walkway UP, 8 stores RIGHT ====== -->
+    <div class="r-vertical-section">
+      <!-- LEFT aisle facing the centre walkway -->
+      <div class="r-aisle-left">
+        <a href="https://www.jd.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🇨🇳</div>
+          <div class="store-name">JD.com</div>
+          <div class="store-tag">China marketplace</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.trendyol.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🇹🇷</div>
+          <div class="store-name">Trendyol</div>
+          <div class="store-tag">Turkish marketplace</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.ssense.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">⚫</div>
+          <div class="store-name">SSENSE</div>
+          <div class="store-tag">Designer marketplace</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.endclothing.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🧢</div>
+          <div class="store-name">END.</div>
+          <div class="store-tag">Streetwear &amp; designer</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.revolve.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">✨</div>
+          <div class="store-name">Revolve</div>
+          <div class="store-tag">Trendy fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.uniqlo.com/us/en" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🟥</div>
+          <div class="store-name">Uniqlo</div>
+          <div class="store-tag">Japanese essentials</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.zara.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🖤</div>
+          <div class="store-name">Zara</div>
+          <div class="store-tag">Spanish global fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www2.hm.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">👚</div>
+          <div class="store-name">H&amp;M</div>
+          <div class="store-tag">Global fast fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+      </div>
+
+      <!-- CENTRE walkway · stroll up -->
+      <div class="r-walkway-vertical" aria-hidden="true">
+        <span class="arrow">↑</span>
+        <span class="label">Walkway · stroll up</span>
+        <span class="arrow">↑</span>
+      </div>
+
+      <!-- RIGHT aisle facing the centre walkway -->
+      <div class="r-aisle-right">
+        <a href="https://www.farfetch.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🌟</div>
+          <div class="store-name">Farfetch</div>
+          <div class="store-tag">Luxury fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.mrporter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🎩</div>
+          <div class="store-name">Mr Porter</div>
+          <div class="store-tag">Men's luxury</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.matchesfashion.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💍</div>
+          <div class="store-name">MatchesFashion</div>
+          <div class="store-tag">Designer luxury</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.cos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">⚪</div>
+          <div class="store-name">COS</div>
+          <div class="store-tag">Premium minimalist</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://shop.mango.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🍃</div>
+          <div class="store-name">Mango</div>
+          <div class="store-tag">Spanish fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.massimodutti.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🧥</div>
+          <div class="store-name">Massimo Dutti</div>
+          <div class="store-tag">Premium Inditex</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.stories.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💗</div>
+          <div class="store-name">&amp; Other Stories</div>
+          <div class="store-tag">Premium fashion</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.selfridges.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛍️</div>
+          <div class="store-name">Selfridges</div>
+          <div class="store-tag">UK luxury department</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Floor strip beneath top hook -->
-    <div class="r-walkway-floor-h" aria-hidden="true">
-      <span class="arrow-l">←</span>
-      <span>Walkway hooks left across the top</span>
-      <span class="arrow-l">←</span>
+    <!-- ====== CORNER · the walkway hooks left at the top of the r ====== -->
+    <div class="r-corner" aria-hidden="true">
+      <span class="corner-icon">↺</span>
+      <span>The walkway hooks left at the corner</span>
+      <span class="corner-icon">←</span>
     </div>
 
-    <!-- LEFT BLANK (open mall floor — gives backward r its shape) -->
-    <div class="r-empty" aria-hidden="true"></div>
+    <!-- ====== SECTION B · r-horizontal hook: 7 stores ABOVE, walkway LEFT, 7 stores BELOW ====== -->
+    <div class="r-horizontal-section">
+      <!-- TOP row (7 stores above the walkway hook) -->
+      <div class="r-horizontal-top">
+        <a href="https://www.cultbeauty.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🧴</div>
+          <div class="store-name">Cult Beauty</div>
+          <div class="store-tag">Curated indie</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.lookfantastic.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💅</div>
+          <div class="store-name">Lookfantastic</div>
+          <div class="store-tag">Premium beauty</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.feelunique.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💋</div>
+          <div class="store-name">Feelunique</div>
+          <div class="store-tag">Beauty marketplace</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.thebodyshop.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🌱</div>
+          <div class="store-name">The Body Shop</div>
+          <div class="store-tag">Ethical beauty</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.iherb.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🌿</div>
+          <div class="store-name">iHerb</div>
+          <div class="store-tag">Health &amp; wellness</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.myprotein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🥤</div>
+          <div class="store-name">MyProtein</div>
+          <div class="store-tag">Sports nutrition</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.gymshark.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💪</div>
+          <div class="store-name">Gymshark</div>
+          <div class="store-tag">Fitness apparel</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+      </div>
 
-    <!-- WALKWAY CORRIDOR going UP -->
-    <div class="r-walkway-floor-v" aria-hidden="true">
-      <span class="v-arrow">↑</span>
-      <span class="v-label">Walkway · stroll up</span>
-      <span class="v-arrow">↑</span>
+      <!-- CENTRE walkway going left -->
+      <div class="r-walkway-horizontal" aria-hidden="true">
+        <span class="arrow-left">← ← ←</span>
+        <span>Walkway · stroll left</span>
+        <span class="arrow-left">← ← ← to exit</span>
+      </div>
+
+      <!-- BOTTOM row (7 stores below the walkway hook) -->
+      <div class="r-horizontal-bottom">
+        <a href="https://www.on-running.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🏃</div>
+          <div class="store-name">On Running</div>
+          <div class="store-tag">Swiss running</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.wiggle.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🚴</div>
+          <div class="store-name">Wiggle</div>
+          <div class="store-tag">Cycling &amp; sport</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.bhphotovideo.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">📷</div>
+          <div class="store-name">B&amp;H Photo</div>
+          <div class="store-tag">Pro photo · A/V</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.lego.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🧱</div>
+          <div class="store-name">LEGO</div>
+          <div class="store-tag">Toys &amp; building</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.muji.com/us/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🟫</div>
+          <div class="store-name">Muji</div>
+          <div class="store-tag">Japanese minimalist</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.theoutnet.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💎</div>
+          <div class="store-name">The Outnet</div>
+          <div class="store-tag">Discount luxury</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+        <a href="https://www.24s.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💼</div>
+          <div class="store-name">24S</div>
+          <div class="store-tag">LVMH luxury</div>
+          <span class="ships-pill">🌐 Ships global</span>
+        </a>
+      </div>
     </div>
 
-    <!-- RIGHT VERTICAL — 20 storefronts going UP (bottom = entry from Wing 1) -->
-    <div class="r-vertical">
-      <a href="https://www.thebodyshop.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🌱</div>
-        <div class="store-name">The Body Shop</div>
-        <div class="store-tag">Ethical beauty</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.feelunique.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💋</div>
-        <div class="store-name">Feelunique</div>
-        <div class="store-tag">Beauty marketplace</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.lookfantastic.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💅</div>
-        <div class="store-name">Lookfantastic</div>
-        <div class="store-tag">Premium beauty</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.cultbeauty.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🧴</div>
-        <div class="store-name">Cult Beauty</div>
-        <div class="store-tag">Curated indie beauty</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.selfridges.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛍️</div>
-        <div class="store-name">Selfridges</div>
-        <div class="store-tag">UK luxury department</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.stories.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💗</div>
-        <div class="store-name">&amp; Other Stories</div>
-        <div class="store-tag">Premium fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.massimodutti.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🧥</div>
-        <div class="store-name">Massimo Dutti</div>
-        <div class="store-tag">Premium Inditex</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://shop.mango.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🍃</div>
-        <div class="store-name">Mango</div>
-        <div class="store-tag">Spanish fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.cos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">⚪</div>
-        <div class="store-name">COS</div>
-        <div class="store-tag">Premium minimalist</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.zara.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🖤</div>
-        <div class="store-name">Zara</div>
-        <div class="store-tag">Spanish global fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www2.hm.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">👚</div>
-        <div class="store-name">H&amp;M</div>
-        <div class="store-tag">Global fast fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.matchesfashion.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💍</div>
-        <div class="store-name">MatchesFashion</div>
-        <div class="store-tag">Designer luxury</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.mrporter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🎩</div>
-        <div class="store-name">Mr Porter</div>
-        <div class="store-tag">Men's luxury</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.uniqlo.com/us/en" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🟥</div>
-        <div class="store-name">Uniqlo</div>
-        <div class="store-tag">Japanese essentials</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.revolve.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">✨</div>
-        <div class="store-name">Revolve</div>
-        <div class="store-tag">Trendy fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.endclothing.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🧢</div>
-        <div class="store-name">END.</div>
-        <div class="store-tag">Streetwear &amp; designer</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.ssense.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">⚫</div>
-        <div class="store-name">SSENSE</div>
-        <div class="store-tag">Designer marketplace</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.farfetch.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🌟</div>
-        <div class="store-name">Farfetch</div>
-        <div class="store-tag">Luxury fashion</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.trendyol.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🇹🇷</div>
-        <div class="store-name">Trendyol</div>
-        <div class="store-tag">Turkish marketplace</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-      <a href="https://www.jd.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🇨🇳</div>
-        <div class="store-name">JD.com</div>
-        <div class="store-tag">China marketplace</div>
-        <span class="ships-pill">🌐 Ships global</span>
-      </a>
-    </div>
   </div>
 
   <!-- Re-entry / back to Wing 1 -->

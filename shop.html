@@ -1531,8 +1531,96 @@ footer {
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE — L-SHAPE MALL WALKWAY (WING 1) ============== -->
+<!-- ============== SHOP BY STORE — L-WALKWAY MALL (WING 1) ============== -->
 <style>
+/* ============== L-WALKWAY · centre corridor with stores flanking ============== */
+/* Section A — VERTICAL part of L: stores LEFT + walkway DOWN + stores RIGHT */
+.l-mall { margin-top: 24px; }
+.l-vertical-section {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 70px minmax(180px, 1fr);
+  gap: 18px;
+}
+.l-aisle-left,
+.l-aisle-right {
+  display: flex; flex-direction: column; gap: 18px;
+}
+.l-walkway-vertical {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(242,107,26,0.04) 0%, rgba(242,107,26,0.18) 50%, rgba(0,168,107,0.18) 100%);
+  border-radius: 14px;
+  border: 1.5px dashed rgba(242,107,26,0.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 18px 0;
+  min-height: 100%;
+}
+.l-walkway-vertical .arrow {
+  font-size: 22px; color: var(--orange); line-height: 1;
+}
+.l-walkway-vertical .label {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
+  letter-spacing: 0.20em; text-transform: uppercase; color: var(--orange);
+  white-space: nowrap;
+}
+
+/* Corner — the L-bend */
+.l-corner {
+  position: relative;
+  margin: 14px 0;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(242,107,26,0.10), rgba(0,168,107,0.10));
+  border: 1.5px dashed rgba(242,107,26,0.32);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 13px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--orange);
+}
+.l-corner .corner-icon {
+  font-size: 24px;
+  color: var(--green);
+}
+
+/* Section B — HORIZONTAL part of L: stores ABOVE + walkway RIGHT + stores BELOW */
+.l-horizontal-section {
+  display: grid;
+  grid-template-rows: auto 56px auto;
+  gap: 14px;
+}
+.l-horizontal-top,
+.l-horizontal-bottom {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.l-walkway-horizontal {
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(0,168,107,0.18), rgba(242,107,26,0.18) 90%, rgba(0,168,107,0.32));
+  border-radius: 14px;
+  border: 1.5px dashed rgba(0,168,107,0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 22px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green);
+}
+.l-walkway-horizontal .arrow-right { color: var(--orange); font-size: 18px; letter-spacing: 0.04em; }
+
+/* Mobile reflow — collapse to a single column, hide vertical walkway corridor */
+@media (max-width: 900px) {
+  .l-vertical-section { grid-template-columns: 1fr; }
+  .l-walkway-vertical { display: none; }
+  .l-aisle-left, .l-aisle-right { grid-column: 1; }
+  .l-horizontal-top, .l-horizontal-bottom { grid-template-columns: 1fr 1fr; }
+  .l-horizontal-section { grid-template-rows: auto auto auto; gap: 18px; }
+  .l-walkway-horizontal { order: 99; padding: 10px 16px; min-height: 44px; flex-wrap: wrap; gap: 6px; text-align: center; }
+}
+
 /* "New" badge */
 .store-card .new-badge {
   position: absolute; top: 12px; left: 12px;
@@ -1667,179 +1755,198 @@ footer {
       <div class="section-eyebrow">Step inside the mall · Wing 1</div>
       <h2 class="section-title">Stroll the L-walkway through <span class="accent">20 stores</span></h2>
     </div>
-    <span class="section-meta">12 down the aisle + 8 along the base · Wing 2 awaits at the bottom · every door is OPEN</span>
+    <span class="section-meta">Stores flank the walkway on both sides · path curves L-down then right · Wing 2 awaits at the corner exit</span>
   </div>
 
-  <div class="l-walkway">
-    <!-- L's VERTICAL AISLE — 12 storefronts going down -->
-    <div class="l-vertical">
-      <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">👗</div>
-        <div class="store-name">ASOS</div>
-        <div class="store-tag">Global fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://global.rakuten.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🎌</div>
-        <div class="store-name">Rakuten</div>
-        <div class="store-tag">Japanese marketplace</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">👠</div>
-        <div class="store-name">Zalando</div>
-        <div class="store-tag">European fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">💄</div>
-        <div class="store-name">Sephora</div>
-        <div class="store-tag">Beauty &amp; skincare</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛋️</div>
-        <div class="store-name">Wayfair</div>
-        <div class="store-tag">Home &amp; furniture</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🍎</div>
-        <div class="store-name">Apple</div>
-        <div class="store-tag">Premium electronics</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛫</div>
-        <div class="store-name">Booking.com</div>
-        <div class="store-tag">Travel &amp; stays</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💻</div>
-        <div class="store-name">Newegg</div>
-        <div class="store-tag">PC &amp; tech hardware</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">⛺</div>
-        <div class="store-name">Decathlon</div>
-        <div class="store-tag">Sport &amp; outdoor</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🎨</div>
-        <div class="store-name">Etsy</div>
-        <div class="store-tag">Handmade &amp; vintage</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛒</div>
-        <div class="store-name">eBay</div>
-        <div class="store-tag">Auctions &amp; resale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛍️</div>
-        <div class="store-name">Shein</div>
-        <div class="store-tag">Fast fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
+  <div class="l-mall">
+    <!-- ====== SECTION A · L-vertical: 6 stores LEFT, walkway DOWN, 6 stores RIGHT ====== -->
+      <!-- LEFT aisle (6 stores facing the centre walkway) -->
+      <div class="l-aisle-left">
+        <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">👗</div>
+          <div class="store-name">ASOS</div>
+          <div class="store-tag">Global fashion</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">👠</div>
+          <div class="store-name">Zalando</div>
+          <div class="store-tag">European fashion</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛋️</div>
+          <div class="store-name">Wayfair</div>
+          <div class="store-tag">Home &amp; furniture</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛫</div>
+          <div class="store-name">Booking.com</div>
+          <div class="store-tag">Travel &amp; stays</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">⛺</div>
+          <div class="store-name">Decathlon</div>
+          <div class="store-tag">Sport &amp; outdoor</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛒</div>
+          <div class="store-name">eBay</div>
+          <div class="store-tag">Auctions &amp; resale</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+      </div>
+
+      <!-- CENTRE walkway — the heart of the mall -->
+      <div class="l-walkway-vertical" aria-hidden="true">
+        <span class="arrow">↓</span>
+        <span class="label">Walkway · stroll down</span>
+        <span class="arrow">↓</span>
+      </div>
+
+      <!-- RIGHT aisle (6 stores facing the centre walkway) -->
+      <div class="l-aisle-right">
+        <a href="https://global.rakuten.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🎌</div>
+          <div class="store-name">Rakuten</div>
+          <div class="store-tag">Japanese marketplace</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">💄</div>
+          <div class="store-name">Sephora</div>
+          <div class="store-tag">Beauty &amp; skincare</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🍎</div>
+          <div class="store-name">Apple</div>
+          <div class="store-tag">Premium electronics</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💻</div>
+          <div class="store-name">Newegg</div>
+          <div class="store-tag">PC &amp; tech hardware</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🎨</div>
+          <div class="store-name">Etsy</div>
+          <div class="store-tag">Handmade &amp; vintage</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛍️</div>
+          <div class="store-name">Shein</div>
+          <div class="store-tag">Fast fashion</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+      </div>
     </div>
 
-    <!-- Walkway corridor between the vertical stores and the open right space -->
-    <div class="l-walkway-floor-v" aria-hidden="true">
-      <span class="v-arrow">↓</span>
-      <span class="v-label">Walkway · stroll down</span>
-      <span class="v-arrow">↓</span>
+    <!-- ====== CORNER · the walkway bends from down to right ====== -->
+    <div class="l-corner" aria-hidden="true">
+      <span class="corner-icon">↙</span>
+      <span>The walkway turns right at the corner</span>
+      <span class="corner-icon">→</span>
     </div>
 
-    <!-- (right column intentionally empty on desktop — gives the L its open space) -->
+    <!-- ====== SECTION B · L-horizontal: 4 stores ABOVE, walkway RIGHT, 4 stores BELOW ====== -->
+    <div class="l-horizontal-section">
+      <!-- TOP row (4 stores above the walkway) -->
+      <div class="l-horizontal-top">
+        <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🌏</div>
+          <div class="store-name">AliExpress</div>
+          <div class="store-tag">Global wholesale</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card featured-store">
+          <span class="featured-badge">★ Featured · Local pick</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🇿🇦</div>
+          <div class="store-name">Takealot</div>
+          <div class="store-tag">South Africa</div>
+          <span class="ships-pill sa-only">🇿🇦 Ships in South Africa</span>
+        </a>
+        <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🪑</div>
+          <div class="store-name">IKEA</div>
+          <div class="store-tag">Affordable home</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🧘</div>
+          <div class="store-name">Lululemon</div>
+          <div class="store-tag">Premium athleisure</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+      </div>
 
-    <!-- L's HORIZONTAL — 8 storefronts going right along the base -->
-    <div class="l-bottom-row">
-      <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🌏</div>
-        <div class="store-name">AliExpress</div>
-        <div class="store-tag">Global wholesale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card featured-store">
-        <span class="featured-badge">★ Featured · Local pick</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🇿🇦</div>
-        <div class="store-name">Takealot</div>
-        <div class="store-tag">South Africa</div>
-        <span class="ships-pill sa-only">🇿🇦 Ships in South Africa</span>
-      </a>
-      <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🪑</div>
-        <div class="store-name">IKEA</div>
-        <div class="store-tag">Affordable home</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🧘</div>
-        <div class="store-name">Lululemon</div>
-        <div class="store-tag">Premium athleisure</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💎</div>
-        <div class="store-name">Net-a-Porter</div>
-        <div class="store-tag">Luxury fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛁</div>
-        <div class="store-name">Lush</div>
-        <div class="store-tag">Natural beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon">🛒</div>
-        <div class="store-name">Costco</div>
-        <div class="store-tag">Members wholesale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.boots.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon">💊</div>
-        <div class="store-name">Boots</div>
-        <div class="store-tag">Pharmacy &amp; beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-    </div>
+      <!-- CENTRE walkway going right -->
+      <div class="l-walkway-horizontal" aria-hidden="true">
+        <span class="arrow-right">→ → →</span>
+        <span>Walkway · stroll right</span>
+        <span class="arrow-right">→ → → to Wing 2</span>
+      </div>
 
-    <!-- Walkway floor strip beneath the horizontal row -->
-    <div class="l-walkway-floor-h" aria-hidden="true">
-      <span>Walkway · stroll right →</span>
-      <span class="arrow-r">→ → → Wing 2</span>
+      <!-- BOTTOM row (4 stores below the walkway) -->
+      <div class="l-horizontal-bottom">
+        <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💎</div>
+          <div class="store-name">Net-a-Porter</div>
+          <div class="store-tag">Luxury fashion</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛁</div>
+          <div class="store-name">Lush</div>
+          <div class="store-tag">Natural beauty</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="store-door">Open</span>
+          <div class="store-icon">🛒</div>
+          <div class="store-name">Costco</div>
+          <div class="store-tag">Members wholesale</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+        <a href="https://www.boots.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+          <span class="new-badge">New</span>
+          <span class="store-door">Open</span>
+          <div class="store-icon">💊</div>
+          <div class="store-name">Boots</div>
+          <div class="store-tag">Pharmacy &amp; beauty</div>
+          <span class="ships-pill">🌐 Ships globally</span>
+        </a>
+      </div>
     </div>
   </div>
 
