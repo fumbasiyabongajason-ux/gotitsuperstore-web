@@ -1242,6 +1242,29 @@ footer {
   color: #F26B1A;
   background: rgba(242, 107, 26, 0.10);
 }
+/* Featured promotion store (Takealot — local pick) */
+.store-card.featured-store {
+  border-color: #F26B1A;
+  background: linear-gradient(180deg, #fffdf7 0%, #fff4e2 100%);
+  box-shadow: 0 6px 18px rgba(242, 107, 26, 0.16);
+}
+.featured-badge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #F26B1A;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(242, 107, 26, 0.32);
+}
 
 /* ============== CATEGORY CARDS — UPGRADED ============== */
 .category-card {
@@ -1757,12 +1780,13 @@ footer {
         <div class="store-tag">Global wholesale</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card featured-store">
+        <span class="featured-badge">★ Featured · Local pick</span>
         <span class="store-door">Open</span>
         <div class="store-icon">🇿🇦</div>
         <div class="store-name">Takealot</div>
         <div class="store-tag">South Africa</div>
-        <span class="ships-pill sa-only">🇿🇦 South Africa only</span>
+        <span class="ships-pill sa-only">🇿🇦 Ships in South Africa</span>
       </a>
       <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
@@ -1802,12 +1826,12 @@ footer {
         <div class="store-tag">Members wholesale</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.digistore24.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.boots.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon">📲</div>
-        <div class="store-name">Digistore24</div>
-        <div class="store-tag">Digital products</div>
+        <div class="store-icon">💊</div>
+        <div class="store-name">Boots</div>
+        <div class="store-tag">Pharmacy &amp; beauty</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
     </div>
@@ -1913,7 +1937,7 @@ footer {
     <div class="footer-grid">
       <div class="footer-brand">
         <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
-        <p>Curated affiliate marketplace · Best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Takealot and more. South African owned · global shoppers welcome.</p>
+        <p>Curated affiliate marketplace · Best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Boots, B&H Photo, Takealot and more. South African owned · global shoppers welcome.</p>
         <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
       </div>
       <div class="footer-col">
@@ -2129,7 +2153,7 @@ footer {
     { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
     { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
     { name: 'Lush',          icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
-    { name: 'Digistore24',   icon: '📲', tag: 'Digital products',       build: function (q) { return 'https://www.digistore24.com/redir/marketplace/?_query=' + q; } },
+    { name: 'Boots',         icon: '💊', tag: 'Pharmacy & beauty',      build: function (q) { return 'https://www.boots.com/sitesearch?searchTerm=' + q; } },
     /* === Wing 2 (backward-r walkway) === */
     { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
     { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
@@ -2156,7 +2180,7 @@ footer {
     { name: 'Gymshark',      icon: '💪', tag: 'Fitness apparel',        build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
     { name: 'On Running',    icon: '🏃', tag: 'Swiss running',          build: function (q) { return 'https://www.on-running.com/en-us/search?q=' + q; } },
     { name: 'Wiggle',        icon: '🚴', tag: 'Cycling & sport',        build: function (q) { return 'https://www.wiggle.com/search?text=' + q; } },
-    { name: 'Banggood',      icon: '📱', tag: 'Electronics direct',     build: function (q) { return 'https://www.banggood.com/search/' + q + '.html'; } },
+    { name: 'B&H Photo',     icon: '📷', tag: 'Pro photo & audio',      build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
     { name: 'LEGO',          icon: '🧱', tag: 'Toys & building',        build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
     { name: 'Muji',          icon: '🟫', tag: 'Japanese minimalist',    build: function (q) { return 'https://www.muji.com/us/en/search?keyword=' + q; } },
     { name: 'The Outnet',    icon: '💎', tag: 'Discount luxury',        build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
