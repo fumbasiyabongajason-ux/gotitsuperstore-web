@@ -1614,14 +1614,17 @@ footer {
 .mall-floor .mall-floor-label {
   position: relative;
   top: auto; left: auto;
-  transform: none;
+  /* Text reads vertically top-to-bottom so it fits the thin 48px corridor */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
   white-space: nowrap;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   font-size: 10px; font-weight: 800;
   color: rgba(120, 90, 50, 0.7);
   text-transform: uppercase;
   background: rgba(255, 250, 235, 0.85);
-  padding: 5px 18px;
+  padding: 14px 5px;
   border-radius: 999px;
   box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
 }
