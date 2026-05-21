@@ -793,13 +793,16 @@ footer {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
-/* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
+/* ============== STORE CARDS — MALL WALKWAY LAYOUT (wide centre banner) ============== */
 .mall-walkway {
   display: grid;
-  grid-template-columns: 1fr 84px 1fr;
-  gap: 18px;
-  margin-top: 14px;
+  /* Centre walkway banner is now a wide tiled corridor — fills the visual space
+     between the two aisles, left to right, not a thin vertical strip. */
+  grid-template-columns: 1fr clamp(240px, 30vw, 420px) 1fr;
+  gap: 22px;
+  margin: 14px auto 0;
   align-items: stretch;
+  max-width: 100%;
 }
 .mall-aisle {
   display: flex;
@@ -1224,7 +1227,7 @@ footer {
   color: #788596;
   font-weight: 500;
 }
-/* Ships-globally pill — added to every Wing 1 store except Takealot (SA-only) */
+/* Ships-globally pill — every mall store gets one, except Takealot (SA-only) */
 .store-card .ships-pill, .mall-bottom-store .ships-pill {
   display: inline-block;
   margin-top: 8px;
@@ -1530,129 +1533,9 @@ footer {
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE — L-WALKWAY MALL (WING 1) ============== -->
+<!-- ============== SHOP BY STORE — MALL OF 50 STORES ============== -->
 <style>
-/* ============== Tiled mall walkway · vertical AND horizontal variants ==============
-   The vertical mall-floor / mall-aisle-left / mall-aisle-right CSS already lives
-   above (lines ~797-911). Below are the horizontal-walkway and corner variants
-   that reuse the same tiled cream/argyle floor pattern. */
-.mall-walkway-h {
-  display: grid;
-  grid-template-rows: 1fr 90px 1fr;
-  gap: 18px;
-  margin-top: 14px;
-}
-.mall-aisle-top, .mall-aisle-bottom {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-.mall-floor-horizontal {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  min-height: 90px;
-  background-color: #f0e4cc;
-  background-image:
-    radial-gradient(circle at 50% 50%, rgba(255, 250, 235, 0.55) 0, rgba(255, 250, 235, 0.55) 3px, transparent 4px),
-    linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
-    linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
-  background-size: 32px 32px;
-  background-position: 16px 16px, 0 0, 0 16px, 16px -16px, -16px 0;
-  box-shadow:
-    inset 0 4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
-  padding: 0 28px;
-}
-.mall-floor-horizontal::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 110, 60, 0.18) 100%);
-  pointer-events: none; z-index: 1;
-}
-.mall-floor-horizontal .mall-floor-label-h {
-  position: relative; z-index: 3;
-  letter-spacing: 8px;
-  font-size: 10px;
-  font-weight: 800;
-  color: rgba(120, 90, 50, 0.65);
-  text-transform: uppercase;
-  background: rgba(255, 250, 235, 0.85);
-  padding: 5px 16px;
-  border-radius: 999px;
-  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
-  white-space: nowrap;
-}
-.mall-floor-horizontal .mall-floor-arrow-h {
-  position: relative; z-index: 2;
-  color: rgba(120, 90, 50, 0.55);
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-/* L corner — tiled bend block linking vertical → horizontal sections */
-.mall-corner {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  min-height: 80px;
-  margin: 16px 0;
-  background-color: #f0e4cc;
-  background-image:
-    radial-gradient(circle at 50% 50%, rgba(255, 250, 235, 0.55) 0, rgba(255, 250, 235, 0.55) 3px, transparent 4px),
-    linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
-    linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
-  background-size: 32px 32px;
-  background-position: 16px 16px, 0 0, 0 16px, 16px -16px, -16px 0;
-  box-shadow:
-    inset 0 4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
-    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
-  display: flex; align-items: center; justify-content: center;
-  gap: 18px;
-  padding: 20px 24px;
-}
-.mall-corner::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(140, 110, 60, 0.22) 100%);
-  pointer-events: none; z-index: 1;
-}
-.mall-corner-arrow {
-  position: relative; z-index: 2;
-  color: rgba(120, 90, 50, 0.6);
-  font-size: 26px;
-  font-weight: 800;
-}
-.mall-corner-label {
-  position: relative; z-index: 3;
-  background: rgba(255, 250, 235, 0.85);
-  padding: 6px 18px;
-  border-radius: 999px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 5px;
-  color: rgba(120, 90, 50, 0.7);
-  text-transform: uppercase;
-  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
-}
-
-@media (max-width: 900px) {
-  .mall-walkway-h { grid-template-rows: auto auto auto; gap: 12px; }
-  .mall-aisle-top, .mall-aisle-bottom { grid-template-columns: 1fr 1fr; }
-  .mall-floor-horizontal { padding: 10px 16px; min-height: 60px; flex-wrap: wrap; gap: 8px; text-align: center; }
-}
-
-/* "New" badge */
+/* "New" badge worn by the 30 newer stores in the mall */
 .store-card .new-badge {
   position: absolute; top: 12px; left: 12px;
   background: var(--orange); color: #fff;
@@ -1661,123 +1544,40 @@ footer {
   padding: 4px 8px; border-radius: 100px;
 }
 
-/* ============== L-SHAPE WALKWAY ============== */
-.l-walkway {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) 24px 1fr;
-  grid-template-rows: 1fr auto;
-  gap: 18px;
-  margin-top: 24px;
+/* The mall walkway floor has its arrows + label centred in a substantial
+   tiled corridor that runs down the middle of the mall. The corridor is
+   intentionally wide (clamp 240-420px) so it reads as a real banner — not
+   a thin divider. The walkway label appears multiple times down the
+   length so the visitor never loses the sense of being in a mall. */
+.mall-floor {
+  /* Tile pattern + base inherited from the original .mall-floor rule
+     above. Below we add the long-walkway specifics. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 24px 12px;
 }
-.l-vertical {
-  grid-column: 1; grid-row: 1;
-  display: flex; flex-direction: column; gap: 18px;
-}
-.l-walkway-floor-v {
-  grid-column: 2; grid-row: 1;
+.mall-floor .mall-floor-label {
   position: relative;
-  background: linear-gradient(180deg, rgba(242,107,26,0.06), rgba(242,107,26,0.16) 80%, rgba(242,107,26,0.16) 100%);
-  border-radius: 12px;
-  border: 1px dashed rgba(242,107,26,0.4);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: space-between;
-  padding: 16px 0;
-  min-height: 320px;
+  top: auto; left: auto;
+  transform: none;
+  white-space: nowrap;
+  letter-spacing: 8px;
+  font-size: 10px; font-weight: 800;
+  color: rgba(120, 90, 50, 0.7);
+  text-transform: uppercase;
+  background: rgba(255, 250, 235, 0.85);
+  padding: 5px 18px;
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
 }
-.l-walkway-floor-h {
-  grid-column: 1 / -1; grid-row: 2;
+.mall-floor .mall-floor-arrow {
   position: relative;
-  background: linear-gradient(90deg, rgba(242,107,26,0.16), rgba(0,168,107,0.22) 95%);
-  border-radius: 12px;
-  border: 1px dashed rgba(242,107,26,0.4);
-  padding: 10px 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 14px;
-  font-family: var(--font-heading); font-weight: 700; font-size: 12px;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--orange);
-}
-.l-walkway-floor-h .arrow-r { color: var(--green); font-size: 18px; }
-.l-walkway-floor-v .v-arrow { color: var(--orange); font-size: 22px; }
-.l-walkway-floor-v .v-label {
-  writing-mode: vertical-rl; transform: rotate(180deg);
-  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange);
-}
-.l-bottom {
-  grid-column: 3; grid-row: 1;
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
-  align-self: end;
-  margin-bottom: 80px;
-}
-.l-bottom-row {
-  grid-column: 1 / -1; grid-row: 3;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
-}
-@media (max-width: 900px) {
-  .l-walkway { grid-template-columns: 1fr; }
-  .l-vertical, .l-bottom, .l-bottom-row, .l-walkway-floor-v, .l-walkway-floor-h { grid-column: 1; grid-row: auto; }
-  .l-walkway-floor-v { display: none; }
-  .l-walkway-floor-h { order: 99; }
-  .l-bottom { grid-template-columns: 1fr 1fr; margin-bottom: 0; }
-  .l-bottom-row { grid-template-columns: 1fr 1fr; }
-}
-
-/* ============== "Continue to Wing 2" exit bay ============== */
-.wing-exit {
-  margin: 36px auto 0;
-  padding: 28px 24px;
-  background: linear-gradient(135deg, rgba(0,168,107,0.10), rgba(242,107,26,0.08));
-  border: 1.5px dashed rgba(0,168,107,0.32);
-  border-radius: 22px;
-  text-align: center;
-  position: relative;
-  transition: all 0.3s;
-}
-.wing-exit.locked {
-  background: var(--bg-soft);
-  border-color: var(--border);
-  color: var(--muted);
-  opacity: 0.65;
-  pointer-events: none;
-}
-.wing-exit-eyebrow {
-  display: inline-block;
-  background: rgba(0,168,107,0.16); color: var(--green);
-  font-family: var(--font-heading); font-weight: 700; font-size: 11px;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 100px; margin-bottom: 12px;
-}
-.wing-exit.locked .wing-exit-eyebrow {
-  background: rgba(14,42,71,0.06); color: var(--muted);
-}
-.wing-exit h3 {
-  font-family: var(--font-heading); font-weight: 800; font-size: 22px;
-  color: var(--navy); margin-bottom: 8px; letter-spacing: -0.01em;
-}
-.wing-exit p { color: var(--ink-soft); font-size: 15px; margin-bottom: 18px; }
-.wing-exit .btn-continue {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--orange); color: #fff;
-  font-family: var(--font-heading); font-weight: 700; font-size: 15px;
-  padding: 14px 26px; border-radius: 100px; text-decoration: none;
-  box-shadow: 0 6px 18px rgba(242,107,26,0.32);
-  transition: all 0.2s;
-}
-.wing-exit .btn-continue:hover { background: var(--orange-bright); transform: translateY(-1px); }
-.wing-exit.locked .btn-continue {
-  background: var(--muted); box-shadow: none; cursor: not-allowed;
-}
-.swipe-hint {
-  margin-top: 14px; font-size: 12px; color: var(--ink-soft);
-  font-family: var(--font-heading); font-weight: 600;
-  letter-spacing: 0.10em; text-transform: uppercase;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.swipe-hint .swipe-arrows { font-size: 16px; color: var(--orange); animation: swipe-pulse 1.6s infinite; }
-@keyframes swipe-pulse {
-  0%, 100% { transform: translateX(0); opacity: 0.6; }
-  50% { transform: translateX(6px); opacity: 1; }
+  top: auto; bottom: auto; left: auto;
+  transform: none;
+  color: rgba(120, 90, 50, 0.55);
+  font-size: 18px; font-weight: 800;
 }
 </style>
 <section class="section" id="stores">
@@ -1979,9 +1779,15 @@ footer {
 
     <!-- CENTRE WALKWAY · tiled mall floor · stroll down -->
     <div class="mall-floor" aria-hidden="true">
-      <span class="mall-floor-arrow top">▼</span>
+      <span class="mall-floor-arrow">▼</span>
       <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow bottom">▼</span>
+      <span class="mall-floor-arrow">▼</span>
+      <span class="mall-floor-label">Walkway</span>
+      <span class="mall-floor-arrow">▼</span>
+      <span class="mall-floor-label">Walkway</span>
+      <span class="mall-floor-arrow">▼</span>
+      <span class="mall-floor-label">Walkway</span>
+      <span class="mall-floor-arrow">▼</span>
     </div>
 
     <!-- RIGHT AISLE — 24 storefronts -->
