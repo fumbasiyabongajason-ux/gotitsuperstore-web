@@ -1088,6 +1088,25 @@ footer {
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
+/* The two anchor stores that close the U-shape — sit side-by-side across the
+   full mall width, like one continuous banner along the bottom. */
+.mall-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 22px auto 0;
+  max-width: 100%;
+}
+.mall-bottom-row .mall-bottom-store {
+  /* The row already supplies the top margin — reset the card's own margin
+     so they sit flush in the grid cells. */
+  margin: 0;
+}
+@media (max-width: 540px) {
+  /* Only on very narrow screens do we stack the two anchor stores */
+  .mall-bottom-row { grid-template-columns: 1fr; gap: 12px; }
+}
+
 /* Brand banner that sits at the very top of the homepage, above the nav */
 .brand-banner {
   background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 60%, #0E2A47 100%);
