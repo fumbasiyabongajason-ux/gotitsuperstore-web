@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Shop the Mall</title>
-<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
-<meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
+<meta name="description" content="Got It Superstore curates the best deals from Amazon, Walmart, Target, REI, Chewy and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="keywords" content="affiliate deals, Amazon deals, Walmart deals, Target deals, REI deals, Chewy deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
 <meta name="robots" content="index, follow">
@@ -13,21 +13,17 @@
 
 <!-- Open Graph -->
 <meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
-<meta property="og:description" content="Hand-picked deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy. Best prices. Zero cost to you.">
+<meta property="og:description" content="Hand-picked deals from Amazon, Walmart, Target, REI, Chewy. Best prices. Zero cost to you.">
 <meta property="og:type" content="website">
 
 <!-- Cache hint for bfcache (back/forward cache) - keeps page persistent when user tabs back -->
 <meta http-equiv="Cache-Control" content="public, max-age=3600">
 
 <!-- Performance: preconnect to image CDNs we use -->
-<!-- video is fetched on demand via the <video> tag with preload=metadata
-     so the page is interactive immediately and the video streams in progressively -->
+<link rel="preload" as="video" href="media/welcome-transition.mp4" type="video/mp4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Warm the favicon CDN connection so 50 store logos arrive fast -->
-<link rel="preconnect" href="https://www.google.com">
-<link rel="dns-prefetch" href="//www.google.com">
-<link rel="dns-prefetch" href="https://www.asos.com">
+<link rel="preconnect" href="https://m.media-amazon.com">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 
 <!-- Fonts: only the weights we actually use -->
@@ -796,17 +792,13 @@ footer {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
-/* ============== STORE CARDS — MALL WALKWAY LAYOUT (wide centre banner) ============== */
+/* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
 .mall-walkway {
   display: grid;
-  /* Thin centre walkway between two store aisles — leaner than the original
-     84px so the storefronts feel closer to each other across the corridor.
-     The wide tiled banner closing the U lives in .mall-bottom-row below. */
-  grid-template-columns: 1fr 48px 1fr;
+  grid-template-columns: 1fr 84px 1fr;
   gap: 18px;
-  margin: 14px auto 0;
+  margin-top: 14px;
   align-items: stretch;
-  max-width: 100%;
 }
 .mall-aisle {
   display: flex;
@@ -1092,28 +1084,6 @@ footer {
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
-/* The two anchor stores that close the U-shape — ALWAYS side-by-side across
-   the full mall width so the U reads correctly on every viewport. */
-.mall-bottom-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin: 22px auto 0;
-  max-width: 100%;
-}
-.mall-bottom-row .mall-bottom-store {
-  margin: 0;
-}
-/* On very narrow phones, tighten the gap but keep them side-by-side so the
-   U-shape banner is preserved. */
-@media (max-width: 540px) {
-  .mall-bottom-row { gap: 10px; }
-  .mall-bottom-row .mall-bottom-store { padding: 16px 14px; min-height: 86px; }
-  .mall-bottom-row .mall-bottom-store .store-icon { font-size: 36px; }
-  .mall-bottom-row .mall-bottom-store .store-name { font-size: 16px; }
-  .mall-bottom-row .mall-bottom-store .store-tag { font-size: 12px; }
-}
-
 /* Brand banner that sits at the very top of the homepage, above the nav */
 .brand-banner {
   background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 60%, #0E2A47 100%);
@@ -1192,11 +1162,6 @@ footer {
   overflow: hidden;
   min-height: 150px;
   gap: 6px;
-  /* Performance: tell the browser to skip rendering off-screen store cards
-     until they're scrolled into view. Massively speeds up first paint of
-     the 48 aisle cards. */
-  content-visibility: auto;
-  contain-intrinsic-size: 0 180px;
 }
 /* Each storefront wears an "OPEN" doorway sign at the top */
 .store-door {
@@ -1257,47 +1222,6 @@ footer {
   font-size: 11.5px;
   color: #788596;
   font-weight: 500;
-}
-/* Ships-globally pill — every mall store gets one, except Takealot (SA-only) */
-.store-card .ships-pill, .mall-bottom-store .ships-pill {
-  display: inline-block;
-  margin-top: 8px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #00A86B;
-  background: rgba(0, 168, 107, 0.10);
-  padding: 4px 10px;
-  border-radius: 100px;
-}
-.store-card .ships-pill.sa-only, .mall-bottom-store .ships-pill.sa-only {
-  color: #F26B1A;
-  background: rgba(242, 107, 26, 0.10);
-}
-/* Featured promotion store (Takealot — local pick) */
-.store-card.featured-store {
-  border-color: #F26B1A;
-  background: linear-gradient(180deg, #fffdf7 0%, #fff4e2 100%);
-  box-shadow: 0 6px 18px rgba(242, 107, 26, 0.16);
-}
-.featured-badge {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #F26B1A;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 100px;
-  white-space: nowrap;
-  box-shadow: 0 4px 10px rgba(242, 107, 26, 0.32);
 }
 
 /* ============== CATEGORY CARDS — UPGRADED ============== */
@@ -1520,18 +1444,17 @@ footer {
     <div class="nav-search" role="search">
       <div class="nav-search-shell">
         <span class="nav-search-badge">Inquiry Reception</span>
-        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 50 stores">
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 13 stores">
         <button onclick="doSearch()" aria-label="Submit inquiry">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 50 trusted stores covering 200,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
       <a href="categories.html">Curated</a>
       <a href="deals.html">Deals</a>
-      <a href="editorials.html">Editorial</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </div>
@@ -1540,537 +1463,137 @@ footer {
 
 <main id="main-content">
 
-<!-- ============== WELCOME HERO (SHOP) — static image for instant load ============== -->
+<!-- ============== TRANSITION VIDEO (SHOP) ============== -->
 <section class="hero hero-shop">
   <div class="hero-inner hero-inner-stacked">
     <div class="hero-video-wrap shop-video-wrap" id="shop-video-wrap">
-      <img class="hero-video"
-           src="media/welcome-poster.jpg"
-           alt="Welcome to Got It Superstore mall"
-           width="1280" height="720"
-           loading="eager"
-           fetchpriority="high"
-           decoding="async"
-           style="background-color: var(--cream); object-fit: cover;">
+      <video class="hero-video"
+             id="shop-transition-video"
+             src="media/welcome-transition.mp4"
+             poster="media/welcome-poster.jpg"
+             playsinline
+             muted
+             autoplay
+             preload="auto"
+             aria-label="Got It Superstore welcome — couple stepping inside the mall">
+        Your browser does not support embedded video.
+      </video>
     </div>
     <div class="hero-text hero-text-centered">
       <div class="hero-eyebrow">You're inside</div>
       <h1>Take a stroll through the <span class="accent">Got It Superstore mall</span></h1>
-      <p class="lead">50 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
+      <p class="lead">13 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
     </div>
   </div>
 </section>
 
-<!-- ============== SHOP BY STORE — MALL OF 50 STORES ============== -->
-<style>
-/* ============== Real store logos (Google favicon CDN) ==============
-   Each store-icon contains an <img> of the merchant's actual logo so
-   shoppers recognise familiar brands at a glance. Falls back gracefully
-   to a neutral placeholder if the favicon ever fails to load. */
-.store-icon img,
-.mall-bottom-store .store-icon img {
-  width: 100%;
-  height: 100%;
-  max-width: 56px;
-  max-height: 56px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: #fff;
-  padding: 4px;
-  box-shadow: 0 1px 3px rgba(14, 42, 71, 0.08);
-}
-.store-card .store-icon {
-  /* keep a fixed visual footprint whether it contains an emoji or img */
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-.mall-bottom-store .store-icon {
-  width: 64px;
-  height: 64px;
-}
-.mall-bottom-store .store-icon img { max-width: 64px; max-height: 64px; }
-
-/* "New" badge worn by the 30 newer stores in the mall */
-.store-card .new-badge {
-  position: absolute; top: 12px; left: 12px;
-  background: var(--orange); color: #fff;
-  font-family: var(--font-heading); font-weight: 700;
-  font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
-  padding: 4px 8px; border-radius: 100px;
-}
-
-/* The mall walkway floor has its arrows + label centred in a substantial
-   tiled corridor that runs down the middle of the mall. The corridor is
-   intentionally wide (clamp 240-420px) so it reads as a real banner — not
-   a thin divider. The walkway label appears multiple times down the
-   length so the visitor never loses the sense of being in a mall. */
-.mall-floor {
-  /* Tile pattern + base inherited from the original .mall-floor rule
-     above. Below we add the long-walkway specifics. */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 24px 12px;
-}
-.mall-floor .mall-floor-label {
-  position: relative;
-  top: auto; left: auto;
-  /* Text reads vertically top-to-bottom so it fits the thin 48px corridor */
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  white-space: nowrap;
-  letter-spacing: 6px;
-  font-size: 10px; font-weight: 800;
-  color: rgba(120, 90, 50, 0.7);
-  text-transform: uppercase;
-  background: rgba(255, 250, 235, 0.85);
-  padding: 14px 5px;
-  border-radius: 999px;
-  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
-}
-.mall-floor .mall-floor-arrow {
-  position: relative;
-  top: auto; bottom: auto; left: auto;
-  transform: none;
-  color: rgba(120, 90, 50, 0.55);
-  font-size: 18px; font-weight: 800;
-}
-</style>
+<!-- ============== SHOP BY STORE — MALL WALKWAY ============== -->
 <section class="section" id="stores">
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Step inside the mall</div>
-      <h2 class="section-title">Take a stroll through our <span class="accent">50 trusted stores</span></h2>
+      <h2 class="section-title">Take a stroll through our <span class="accent">13 trusted stores</span></h2>
     </div>
-    <span class="section-meta">24 storefronts each side + 2 closing the U · every door is OPEN</span>
+    <span class="section-meta">6 storefronts each side + Costco closing the U · every door is OPEN</span>
   </div>
-
-  <!-- ============== U-SHAPE WALKWAY · 50 stores · 24 each aisle + 2 closing the U ============== -->
   <div class="mall-walkway">
-    <!-- LEFT AISLE — 24 storefronts -->
+    <!-- LEFT AISLE — 6 storefronts -->
     <div class="mall-aisle mall-aisle-left">
-      <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=asos.com&amp;sz=128" alt="ASOS logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">ASOS</div>
-        <div class="store-tag">Global fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
+        <div class="store-icon">📦</div>
+        <div class="store-name">Amazon</div>
+        <div class="store-tag">Global marketplace</div>
       </a>
-      <a href="https://www.zooplus.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
+      <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zooplus.com&amp;sz=128" alt="Zooplus logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Zooplus</div>
+        <div class="store-icon">🏪</div>
+        <div class="store-name">Walmart</div>
+        <div class="store-tag">Everyday low prices</div>
+      </a>
+      <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">🎯</div>
+        <div class="store-name">Target</div>
+        <div class="store-tag">Style + value</div>
+      </a>
+      <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">⛰️</div>
+        <div class="store-name">REI Co-op</div>
+        <div class="store-tag">Outdoor gear</div>
+      </a>
+      <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="store-door">Open</span>
+        <div class="store-icon">🐾</div>
+        <div class="store-name">Chewy</div>
         <div class="store-tag">Pet supplies</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zalando.com&amp;sz=128" alt="Zalando logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Zalando</div>
-        <div class="store-tag">European fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=sephora.com&amp;sz=128" alt="Sephora logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Sephora</div>
-        <div class="store-tag">Beauty &amp; skincare</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=wayfair.com&amp;sz=128" alt="Wayfair logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Wayfair</div>
-        <div class="store-tag">Home &amp; furniture</div>
-        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=apple.com&amp;sz=128" alt="Apple logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon">🍎</div>
         <div class="store-name">Apple</div>
         <div class="store-tag">Premium electronics</div>
-        <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=booking.com&amp;sz=128" alt="Booking.com logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Booking.com</div>
-        <div class="store-tag">Travel &amp; stays</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=newegg.com&amp;sz=128" alt="Newegg logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Newegg</div>
-        <div class="store-tag">PC &amp; tech hardware</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=decathlon.com&amp;sz=128" alt="Decathlon logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Decathlon</div>
-        <div class="store-tag">Sport &amp; outdoor</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
+    </div>
+
+    <!-- CENTRE WALKWAY: open walkable corridor with the Walkway label in the middle -->
+    <div class="mall-floor has-centre">
+      <span class="mall-floor-arrow top">▲</span>
+      <span class="mall-floor-label">Walkway</span>
+      <span class="mall-floor-arrow bottom">▼</span>
+    </div>
+
+    <!-- RIGHT AISLE — 6 storefronts -->
+    <div class="mall-aisle mall-aisle-right">
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=etsy.com&amp;sz=128" alt="Etsy logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon">🎨</div>
         <div class="store-name">Etsy</div>
         <div class="store-tag">Handmade &amp; vintage</div>
-        <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=ebay.com&amp;sz=128" alt="eBay logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon">🛍️</div>
         <div class="store-name">eBay</div>
         <div class="store-tag">Auctions &amp; resale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.bestbuy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=shein.com&amp;sz=128" alt="Shein logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Shein</div>
-        <div class="store-tag">Fast fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
+        <div class="store-icon">📺</div>
+        <div class="store-name">Best Buy</div>
+        <div class="store-tag">Tech &amp; appliances</div>
       </a>
       <a href="https://www.aliexpress.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=aliexpress.com&amp;sz=128" alt="AliExpress logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon">🌏</div>
         <div class="store-name">AliExpress</div>
         <div class="store-tag">Global wholesale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.jd.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
+      <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=jd.com&amp;sz=128" alt="JD.com logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">JD.com</div>
-        <div class="store-tag">China marketplace</div>
-        <span class="ships-pill">🌐 Ships globally</span>
+        <div class="store-icon">🇿🇦</div>
+        <div class="store-name">Takealot</div>
+        <div class="store-tag">South Africa</div>
       </a>
-      <a href="https://www.trendyol.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
+      <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=trendyol.com&amp;sz=128" alt="Trendyol logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Trendyol</div>
-        <div class="store-tag">Turkish marketplace</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.farfetch.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=farfetch.com&amp;sz=128" alt="Farfetch logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Farfetch</div>
-        <div class="store-tag">Luxury fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.ssense.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=ssense.com&amp;sz=128" alt="SSENSE logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">SSENSE</div>
-        <div class="store-tag">Designer marketplace</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.endclothing.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=endclothing.com&amp;sz=128" alt="END. logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">END.</div>
-        <div class="store-tag">Streetwear &amp; designer</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.revolve.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=revolve.com&amp;sz=128" alt="Revolve logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Revolve</div>
-        <div class="store-tag">Trendy fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.uniqlo.com/us/en" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=uniqlo.com&amp;sz=128" alt="Uniqlo logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Uniqlo</div>
-        <div class="store-tag">Japanese essentials</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.mrporter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=mrporter.com&amp;sz=128" alt="Mr Porter logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Mr Porter</div>
-        <div class="store-tag">Men's luxury</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.matchesfashion.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=matchesfashion.com&amp;sz=128" alt="MatchesFashion logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">MatchesFashion</div>
-        <div class="store-tag">Designer luxury</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www2.hm.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=hm.com&amp;sz=128" alt="H&M logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">H&amp;M</div>
-        <div class="store-tag">Global fast fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.mytheresa.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=mytheresa.com&amp;sz=128" alt="Mytheresa logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Mytheresa</div>
-        <div class="store-tag">Luxury fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-    </div>
-
-    <!-- CENTRE WALKWAY · tiled mall floor · stroll down -->
-    <div class="mall-floor" aria-hidden="true">
-      <span class="mall-floor-arrow">▼</span>
-      <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow">▼</span>
-      <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow">▼</span>
-      <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow">▼</span>
-      <span class="mall-floor-label">Walkway</span>
-      <span class="mall-floor-arrow">▼</span>
-    </div>
-
-    <!-- RIGHT AISLE — 24 storefronts -->
-    <div class="mall-aisle mall-aisle-right">
-      <a href="https://www.cos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=cos.com&amp;sz=128" alt="COS logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">COS</div>
-        <div class="store-tag">Premium minimalist</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://shop.mango.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=mango.com&amp;sz=128" alt="Mango logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Mango</div>
-        <div class="store-tag">Spanish fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.massimodutti.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=massimodutti.com&amp;sz=128" alt="Massimo Dutti logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Massimo Dutti</div>
-        <div class="store-tag">Premium Inditex</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.stories.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=stories.com&amp;sz=128" alt="& Other Stories logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">&amp; Other Stories</div>
-        <div class="store-tag">Premium fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.selfridges.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=selfridges.com&amp;sz=128" alt="Selfridges logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Selfridges</div>
-        <div class="store-tag">UK luxury department</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.cultbeauty.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=cultbeauty.com&amp;sz=128" alt="Cult Beauty logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Cult Beauty</div>
-        <div class="store-tag">Curated indie beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.lookfantastic.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=lookfantastic.com&amp;sz=128" alt="Lookfantastic logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Lookfantastic</div>
-        <div class="store-tag">Premium beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.feelunique.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=feelunique.com&amp;sz=128" alt="Feelunique logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Feelunique</div>
-        <div class="store-tag">Beauty marketplace</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.thebodyshop.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=thebodyshop.com&amp;sz=128" alt="The Body Shop logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">The Body Shop</div>
-        <div class="store-tag">Ethical beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.iherb.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=iherb.com&amp;sz=128" alt="iHerb logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">iHerb</div>
-        <div class="store-tag">Health &amp; wellness</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.myprotein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=myprotein.com&amp;sz=128" alt="MyProtein logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">MyProtein</div>
-        <div class="store-tag">Sports nutrition</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.gymshark.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=gymshark.com&amp;sz=128" alt="Gymshark logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Gymshark</div>
-        <div class="store-tag">Fitness apparel</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.on-running.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=on-running.com&amp;sz=128" alt="On Running logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">On Running</div>
-        <div class="store-tag">Swiss running</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.wiggle.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=wiggle.com&amp;sz=128" alt="Wiggle logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Wiggle</div>
-        <div class="store-tag">Cycling &amp; sport</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.bhphotovideo.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=bhphotovideo.com&amp;sz=128" alt="B&H Photo logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">B&amp;H Photo</div>
-        <div class="store-tag">Pro photo · audio · video</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.lego.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=lego.com&amp;sz=128" alt="LEGO logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">LEGO</div>
-        <div class="store-tag">Toys &amp; building</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.muji.com/us/en/" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=muji.com&amp;sz=128" alt="Muji logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Muji</div>
-        <div class="store-tag">Japanese minimalist</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.crateandbarrel.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=crateandbarrel.com&amp;sz=128" alt="Crate &amp; Barrel logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Crate &amp; Barrel</div>
-        <div class="store-tag">Premium home</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=lululemon.com&amp;sz=128" alt="Lululemon logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Lululemon</div>
-        <div class="store-tag">Premium athleisure</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.net-a-porter.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=net-a-porter.com&amp;sz=128" alt="Net-a-Porter logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Net-a-Porter</div>
-        <div class="store-tag">Luxury fashion</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.charlottetilbury.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=charlottetilbury.com&amp;sz=128" alt="Charlotte Tilbury logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Charlotte Tilbury</div>
-        <div class="store-tag">Premium beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.boots.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=boots.com&amp;sz=128" alt="Boots logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Boots</div>
-        <div class="store-tag">Pharmacy &amp; beauty</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.theoutnet.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="new-badge">New</span>
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=theoutnet.com&amp;sz=128" alt="The Outnet logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">The Outnet</div>
-        <div class="store-tag">Discount luxury</div>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </a>
-      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
-        <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=costco.com&amp;sz=128" alt="Costco logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Costco</div>
-        <div class="store-tag">Members wholesale</div>
-        <span class="ships-pill">🌐 Ships globally</span>
+        <div class="store-icon">🛋️</div>
+        <div class="store-name">IKEA</div>
+        <div class="store-tag">Furniture &amp; home</div>
       </a>
     </div>
   </div>
 
-  <!-- BOTTOM ROW — 2 storefronts closing the U-shape -->
-  <div class="mall-bottom-row">
-    <a href="https://www.takealot.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store featured-store">
-      <span class="featured-badge">★ Featured · Local pick</span>
-      <span class="store-door">Open</span>
-      <span class="store-icon"><img src="https://www.google.com/s2/favicons?domain=takealot.com&amp;sz=128" alt="Takealot logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></span>
-      <span class="store-text">
-        <span class="store-name">Takealot</span>
-        <span class="store-tag">South Africa</span>
-        <span class="ships-pill sa-only">🇿🇦 Ships in South Africa</span>
-      </span>
-    </a>
-    <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store featured-store">
-      <span class="featured-badge">★ Featured · Global pick</span>
-      <span class="store-door">Open</span>
-      <span class="store-icon"><img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="Amazon logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></span>
-      <span class="store-text">
-        <span class="store-name">Amazon</span>
-        <span class="store-tag">Global marketplace</span>
-        <span class="ships-pill">🌐 Ships globally</span>
-      </span>
-    </a>
-  </div>
+  <!-- BOTTOM HORIZONTAL STOREFRONT — closes the mall into a U-shape -->
+  <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
+    <span class="store-door">Open</span>
+    <span class="store-icon">🛒</span>
+    <span class="store-text">
+      <span class="store-name">Costco</span>
+      <span class="store-tag">Members-only wholesale</span>
+    </span>
+  </a>
 </section>
 
 <!-- ============== INQUIRY RECEPTION MODAL ============== -->
@@ -2096,7 +1619,7 @@ footer {
     <div class="footer-grid">
       <div class="footer-brand">
         <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
-        <p>Curated affiliate marketplace · Best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Boots, B&H Photo, Takealot and more. South African owned · global shoppers welcome.</p>
+        <p>Curated affiliate marketplace · Best deals from Amazon, Walmart, Target, REI, Chewy and more. South African owned · global shoppers welcome.</p>
         <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
       </div>
       <div class="footer-col">
@@ -2107,11 +1630,11 @@ footer {
       </div>
       <div class="footer-col">
         <h4>Retailers</h4>
-        <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">ASOS</a>
-        <a href="https://www.rakuten.co.jp" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Rakuten</a>
-        <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Zalando</a>
-        <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Sephora</a>
-        <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Wayfair</a>
+        <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Amazon</a>
+        <a href="https://www.walmart.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Walmart</a>
+        <a href="https://www.target.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Target</a>
+        <a href="https://www.rei.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">REI Co-op</a>
+        <a href="https://www.chewy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Chewy</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -2124,7 +1647,7 @@ footer {
     </div>
     <div class="footer-bottom">
       <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
-      <div>No tracking · No cookies · POPIA · GDPR · CCPA · LGPD · PDPA · FTC compliant</div>
+      <div>No tracking · No cookies · POPIA + GDPR + FTC compliant</div>
     </div>
   </div>
 </footer>
@@ -2137,27 +1660,7 @@ footer {
       <button class="modal-close" onclick="closeModal('privacy-modal')" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 18, 2026</p>
-
-      <div style="background: rgba(0, 168, 107, 0.06); border: 1px solid rgba(0, 168, 107, 0.18); border-radius: 12px; padding: 16px 18px; margin: 16px 0;">
-        <p style="margin-bottom: 8px;"><strong style="color: #00A86B;">🌐 International personal-information policy</strong></p>
-        <p style="margin-bottom: 8px;">Got It Superstore is registered in South Africa and serves shoppers globally. Wherever you are reading this from, our practice is the same: <strong>we do not collect, store, or transmit personally identifying information to ourselves or any third party</strong>. Your sign-in is processed by Google directly; your anonymous session token lives only on your device.</p>
-        <p style="margin-bottom: 8px;">We comply with the following privacy frameworks, and we adopt the strictest applicable standard for each visitor's home jurisdiction:</p>
-        <ul style="margin: 8px 0 8px 22px; padding: 0;">
-          <li><strong>POPIA</strong> — Republic of South Africa, Protection of Personal Information Act, 2013.</li>
-          <li><strong>GDPR</strong> — European Union, General Data Protection Regulation 2016/679.</li>
-          <li><strong>UK GDPR</strong> — United Kingdom, Data Protection Act 2018.</li>
-          <li><strong>CCPA / CPRA</strong> — California Consumer Privacy Act and Privacy Rights Act.</li>
-          <li><strong>LGPD</strong> — Brazil, Lei Geral de Proteção de Dados.</li>
-          <li><strong>PDPA</strong> — Singapore, Personal Data Protection Act 2012.</li>
-          <li><strong>PIPEDA</strong> — Canada, Personal Information Protection and Electronic Documents Act.</li>
-          <li><strong>Australia Privacy Act 1988</strong> (as amended) and the Australian Privacy Principles.</li>
-          <li><strong>APPI</strong> — Japan, Act on the Protection of Personal Information.</li>
-          <li><strong>FTC Endorsement Guidelines</strong> — United States Federal Trade Commission, 16 CFR Part 255.</li>
-        </ul>
-        <p style="margin-bottom: 8px;"><strong>Your rights, in any jurisdiction:</strong> request a copy of any data we hold about you (almost certainly nothing — we don't store user accounts ourselves); request deletion of any data; opt out of cookies (we don't set any non-essential cookies); lodge a complaint with your local data-protection authority. To exercise any of these, use the contact form on our homepage and we'll respond within 30 days.</p>
-        <p style="margin: 0;"><strong>Cross-border transfers:</strong> when you click through to a third-party retailer (ASOS, Rakuten, Zalando, etc.), you are transferring your interaction to that retailer's own privacy regime — which we link to from each store's product page. Got It Superstore does not transfer your data between jurisdictions because we do not store it.</p>
-      </div>
+      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
       <p>This Privacy Policy explains how Got It Superstore (CIPC Reg. 2023/224652/07) collects, uses, and protects your personal information. We comply with the South African Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US Federal Trade Commission (FTC) guidelines.</p>
       <h3>1. Information We Collect</h3>
       <ul>
@@ -2172,7 +1675,7 @@ footer {
         <li>To improve our product curation and website experience.</li>
       </ul>
       <h3>3. Cookies and Local Storage</h3>
-      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
+      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (Amazon, Walmart, Target, REI, Chewy, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
       <h3>4. Your Rights</h3>
       <p>Under POPIA, GDPR, and applicable law, you have the right to:</p>
       <ul>
@@ -2183,7 +1686,7 @@ footer {
         <li><strong>Object:</strong> Opt out of any future communications at any time.</li>
       </ul>
       <h3>5. Affiliate Disclosure</h3>
-      <p>Got It Superstore participates in affiliate marketing programs with ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, and other partner retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
+      <p>Got It Superstore participates in affiliate marketing programs with Amazon, Walmart, Target, Chewy, REI, and other retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
       <h3>6. Data Sharing</h3>
       <p>We do not sell, rent, or share your personal information with third parties, except:</p>
       <ul>
@@ -2216,7 +1719,7 @@ footer {
       <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
       <p>By using Got It Superstore ("the Site"), you agree to these Terms of Service. The Site is registered under CIPC Reg. 2023/224652/07.</p>
       <h3>1. Nature of the Service</h3>
-      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
+      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (Amazon, Walmart, Target, REI, Chewy, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
       <h3>2. No Direct Sales</h3>
       <p>All purchases are made directly through the third-party retailer's website. Got It Superstore is not a party to any transaction between you and the retailer. Product availability, pricing, shipping, returns, warranties, and customer service are handled entirely by the respective retailer. We do not guarantee the accuracy of prices or availability displayed on our site.</p>
       <h3>3. Acceptable Use</h3>
@@ -2289,60 +1792,22 @@ footer {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 50 stores so the visitor picks where to look. Every store gets
+  // we surface all 13 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    /* === The mall · 50 stores === */
-    { name: 'ASOS',          icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
-    { name: 'Zooplus',       icon: '🐶', tag: 'Pet supplies',           build: function (q) { return 'https://www.zooplus.com/search?q=' + q; } },
-    { name: 'Zalando',       icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
-    { name: 'Sephora',       icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'Wayfair',       icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
-    { name: 'Shein',         icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
-    { name: 'Apple',         icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Etsy',          icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',          icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'AliExpress',    icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',      icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
-    { name: 'Crate & Barrel',icon: '🏠', tag: 'Premium home',           build: function (q) { return 'https://www.crateandbarrel.com/search?query=' + q; } },
-    { name: 'Costco',        icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Booking.com',   icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
-    { name: 'Newegg',        icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
-    { name: 'Decathlon',     icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
-    { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
-    { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Charlotte Tilbury', icon: '💄', tag: 'Premium beauty',     build: function (q) { return 'https://www.charlottetilbury.com/us/search?q=' + q; } },
-    { name: 'Boots',         icon: '💊', tag: 'Pharmacy & beauty',      build: function (q) { return 'https://www.boots.com/sitesearch?searchTerm=' + q; } },
-    { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
-    { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
-    { name: 'Farfetch',      icon: '🌟', tag: 'Luxury fashion',         build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
-    { name: 'SSENSE',        icon: '⚫', tag: 'Designer marketplace',   build: function (q) { return 'https://www.ssense.com/en-us/search?q=' + q; } },
-    { name: 'END.',          icon: '🧢', tag: 'Streetwear & designer',  build: function (q) { return 'https://www.endclothing.com/us/catalogsearch/result/?q=' + q; } },
-    { name: 'Revolve',       icon: '✨', tag: 'Trendy fashion',         build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
-    { name: 'Uniqlo',        icon: '🟥', tag: 'Japanese essentials',    build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
-    { name: 'Mr Porter',     icon: '🎩', tag: "Men's luxury",           build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?keywords=' + q; } },
-    { name: 'MatchesFashion',icon: '💍', tag: 'Designer luxury',        build: function (q) { return 'https://www.matchesfashion.com/search?text=' + q; } },
-    { name: 'H&M',           icon: '👚', tag: 'Global fast fashion',    build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
-    { name: 'Mytheresa',     icon: '👑', tag: 'Luxury fashion',         build: function (q) { return 'https://www.mytheresa.com/en-us/search?q=' + q; } },
-    { name: 'COS',           icon: '⚪', tag: 'Premium minimalist',     build: function (q) { return 'https://www.cos.com/en_usd/search.html?q=' + q; } },
-    { name: 'Mango',         icon: '🍃', tag: 'Spanish fashion',        build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
-    { name: 'Massimo Dutti', icon: '🧥', tag: 'Premium Inditex',        build: function (q) { return 'https://www.massimodutti.com/us/search?q=' + q; } },
-    { name: '& Other Stories',icon:'💗', tag: 'Premium H&M Group',      build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
-    { name: 'Selfridges',    icon: '🛍️', tag: 'UK luxury department',  build: function (q) { return 'https://www.selfridges.com/US/en/cat/?q=' + q; } },
-    { name: 'Cult Beauty',   icon: '🧴', tag: 'Curated indie beauty',   build: function (q) { return 'https://www.cultbeauty.com/elysium.search?searchTerm=' + q; } },
-    { name: 'Lookfantastic', icon: '💅', tag: 'Premium beauty',         build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
-    { name: 'Feelunique',    icon: '💋', tag: 'Beauty marketplace',     build: function (q) { return 'https://www.feelunique.com/elysium.search?search=' + q; } },
-    { name: 'The Body Shop', icon: '🌱', tag: 'Ethical beauty',         build: function (q) { return 'https://www.thebodyshop.com/en-us/search?q=' + q; } },
-    { name: 'iHerb',         icon: '🌿', tag: 'Health & wellness',      build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
-    { name: 'MyProtein',     icon: '🥤', tag: 'Sports nutrition',       build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
-    { name: 'Gymshark',      icon: '💪', tag: 'Fitness apparel',        build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
-    { name: 'On Running',    icon: '🏃', tag: 'Swiss running',          build: function (q) { return 'https://www.on-running.com/en-us/search?q=' + q; } },
-    { name: 'Wiggle',        icon: '🚴', tag: 'Cycling & sport',        build: function (q) { return 'https://www.wiggle.com/search?text=' + q; } },
-    { name: 'B&H Photo',     icon: '📷', tag: 'Pro photo & audio',      build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
-    { name: 'LEGO',          icon: '🧱', tag: 'Toys & building',        build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
-    { name: 'Muji',          icon: '🟫', tag: 'Japanese minimalist',    build: function (q) { return 'https://www.muji.com/us/en/search?keyword=' + q; } },
-    { name: 'The Outnet',    icon: '💎', tag: 'Discount luxury',        build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Amazon',        icon: '📦', tag: 'Global marketplace',     build: function (q) { return 'https://www.amazon.com/s?k=' + q; } }
+    { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
+    { name: 'Walmart',    icon: '🏪', tag: 'Everyday low prices', build: function (q) { return 'https://www.walmart.com/search?q=' + q; } },
+    { name: 'Target',     icon: '🎯', tag: 'Style + value',       build: function (q) { return 'https://www.target.com/s?searchTerm=' + q; } },
+    { name: 'REI Co-op',  icon: '⛰️', tag: 'Outdoor gear',         build: function (q) { return 'https://www.rei.com/search?q=' + q; } },
+    { name: 'Chewy',      icon: '🐾', tag: 'Pet supplies',        build: function (q) { return 'https://www.chewy.com/s?query=' + q; } },
+    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
+    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'Best Buy',   icon: '📺', tag: 'Tech & appliances',   build: function (q) { return 'https://www.bestbuy.com/site/searchpage.jsp?st=' + q; } },
+    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
   ];
 
   window.doSearch = function () {
