@@ -24,6 +24,9 @@
      so the page is interactive immediately and the video streams in progressively -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Warm the favicon CDN connection so 50 store logos arrive fast -->
+<link rel="preconnect" href="https://www.google.com">
+<link rel="dns-prefetch" href="//www.google.com">
 <link rel="dns-prefetch" href="https://www.asos.com">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 
@@ -1189,6 +1192,11 @@ footer {
   overflow: hidden;
   min-height: 150px;
   gap: 6px;
+  /* Performance: tell the browser to skip rendering off-screen store cards
+     until they're scrolled into view. Massively speeds up first paint of
+     the 48 aisle cards. */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 180px;
 }
 /* Each storefront wears an "OPEN" doorway sign at the top */
 .store-door {
@@ -1532,26 +1540,23 @@ footer {
 
 <main id="main-content">
 
-<!-- ============== TRANSITION VIDEO (SHOP) ============== -->
+<!-- ============== WELCOME HERO (SHOP) — static image for instant load ============== -->
 <section class="hero hero-shop">
   <div class="hero-inner hero-inner-stacked">
     <div class="hero-video-wrap shop-video-wrap" id="shop-video-wrap">
-      <video class="hero-video"
-             id="shop-transition-video"
-             src="media/welcome-transition.mp4"
-             poster="media/welcome-poster.jpg"
-             playsinline
-             muted
-             autoplay
-             preload="metadata"
-             aria-label="Got It Superstore welcome — couple stepping inside the mall">
-        Your browser does not support embedded video.
-      </video>
+      <img class="hero-video"
+           src="media/welcome-poster.jpg"
+           alt="Welcome to Got It Superstore mall"
+           width="1280" height="720"
+           loading="eager"
+           fetchpriority="high"
+           decoding="async"
+           style="background-color: var(--cream); object-fit: cover;">
     </div>
     <div class="hero-text hero-text-centered">
       <div class="hero-eyebrow">You're inside</div>
       <h1>Take a stroll through the <span class="accent">Got It Superstore mall</span></h1>
-      <p class="lead">20 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
+      <p class="lead">50 trusted stores, every door open. Tell the <strong>Inquiry Reception</strong> what you need and we'll show you which store carries it.</p>
     </div>
   </div>
 </section>
@@ -1651,42 +1656,43 @@ footer {
     <div class="mall-aisle mall-aisle-left">
       <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=asos.com&amp;sz=128" alt="ASOS logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=asos.com&amp;sz=128" alt="ASOS logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">ASOS</div>
         <div class="store-tag">Global fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://global.rakuten.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.zooplus.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=rakuten.co.jp&amp;sz=128" alt="Rakuten logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Rakuten</div>
-        <div class="store-tag">Japanese marketplace</div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zooplus.com&amp;sz=128" alt="Zooplus logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-name">Zooplus</div>
+        <div class="store-tag">Pet supplies</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zalando.com&amp;sz=128" alt="Zalando logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zalando.com&amp;sz=128" alt="Zalando logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Zalando</div>
         <div class="store-tag">European fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=sephora.com&amp;sz=128" alt="Sephora logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=sephora.com&amp;sz=128" alt="Sephora logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Sephora</div>
         <div class="store-tag">Beauty &amp; skincare</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=wayfair.com&amp;sz=128" alt="Wayfair logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=wayfair.com&amp;sz=128" alt="Wayfair logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Wayfair</div>
         <div class="store-tag">Home &amp; furniture</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.apple.com/shop" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=apple.com&amp;sz=128" alt="Apple logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=apple.com&amp;sz=128" alt="Apple logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Apple</div>
         <div class="store-tag">Premium electronics</div>
         <span class="ships-pill">🌐 Ships globally</span>
@@ -1694,7 +1700,7 @@ footer {
       <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=booking.com&amp;sz=128" alt="Booking.com logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=booking.com&amp;sz=128" alt="Booking.com logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Booking.com</div>
         <div class="store-tag">Travel &amp; stays</div>
         <span class="ships-pill">🌐 Ships globally</span>
@@ -1702,7 +1708,7 @@ footer {
       <a href="https://www.newegg.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=newegg.com&amp;sz=128" alt="Newegg logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=newegg.com&amp;sz=128" alt="Newegg logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Newegg</div>
         <div class="store-tag">PC &amp; tech hardware</div>
         <span class="ships-pill">🌐 Ships globally</span>
@@ -1710,28 +1716,28 @@ footer {
       <a href="https://www.decathlon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=decathlon.com&amp;sz=128" alt="Decathlon logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=decathlon.com&amp;sz=128" alt="Decathlon logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Decathlon</div>
         <div class="store-tag">Sport &amp; outdoor</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.etsy.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=etsy.com&amp;sz=128" alt="Etsy logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=etsy.com&amp;sz=128" alt="Etsy logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Etsy</div>
         <div class="store-tag">Handmade &amp; vintage</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=ebay.com&amp;sz=128" alt="eBay logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=ebay.com&amp;sz=128" alt="eBay logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">eBay</div>
         <div class="store-tag">Auctions &amp; resale</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.shein.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=shein.com&amp;sz=128" alt="Shein logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=shein.com&amp;sz=128" alt="Shein logo" loading="eager" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
         <div class="store-name">Shein</div>
         <div class="store-tag">Fast fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
@@ -1823,12 +1829,12 @@ footer {
         <div class="store-tag">Global fast fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.zara.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.mytheresa.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=zara.com&amp;sz=128" alt="Zara logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Zara</div>
-        <div class="store-tag">Spanish global fashion</div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=mytheresa.com&amp;sz=128" alt="Mytheresa logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-name">Mytheresa</div>
+        <div class="store-tag">Luxury fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
     </div>
@@ -1984,11 +1990,12 @@ footer {
         <div class="store-tag">Japanese minimalist</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.ikea.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.crateandbarrel.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+        <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=ikea.com&amp;sz=128" alt="IKEA logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">IKEA</div>
-        <div class="store-tag">Affordable home</div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=crateandbarrel.com&amp;sz=128" alt="Crate &amp; Barrel logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-name">Crate &amp; Barrel</div>
+        <div class="store-tag">Premium home</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.lululemon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
@@ -2007,12 +2014,12 @@ footer {
         <div class="store-tag">Luxury fashion</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.lush.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.charlottetilbury.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="new-badge">New</span>
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=lush.com&amp;sz=128" alt="Lush logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Lush</div>
-        <div class="store-tag">Natural beauty</div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=charlottetilbury.com&amp;sz=128" alt="Charlotte Tilbury logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-name">Charlotte Tilbury</div>
+        <div class="store-tag">Premium beauty</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
       <a href="https://www.boots.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
@@ -2031,11 +2038,11 @@ footer {
         <div class="store-tag">Discount luxury</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
-      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="Amazon logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
-        <div class="store-name">Amazon</div>
-        <div class="store-tag">Global marketplace</div>
+        <div class="store-icon"><img src="https://www.google.com/s2/favicons?domain=costco.com&amp;sz=128" alt="Costco logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></div>
+        <div class="store-name">Costco</div>
+        <div class="store-tag">Members wholesale</div>
         <span class="ships-pill">🌐 Ships globally</span>
       </a>
     </div>
@@ -2053,12 +2060,13 @@ footer {
         <span class="ships-pill sa-only">🇿🇦 Ships in South Africa</span>
       </span>
     </a>
-    <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store">
+    <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card mall-bottom-store featured-store">
+      <span class="featured-badge">★ Featured · Global pick</span>
       <span class="store-door">Open</span>
-      <span class="store-icon"><img src="https://www.google.com/s2/favicons?domain=costco.com&amp;sz=128" alt="Costco logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></span>
+      <span class="store-icon"><img src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="Amazon logo" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.textContent='\u00B7';"></span>
       <span class="store-text">
-        <span class="store-name">Costco</span>
-        <span class="store-tag">Members wholesale</span>
+        <span class="store-name">Amazon</span>
+        <span class="store-tag">Global marketplace</span>
         <span class="ships-pill">🌐 Ships globally</span>
       </span>
     </a>
@@ -2286,7 +2294,7 @@ footer {
   var INQUIRY_STORES = [
     /* === The mall · 50 stores === */
     { name: 'ASOS',          icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
-    { name: 'Rakuten',       icon: '🎌', tag: 'Japanese marketplace',   build: function (q) { return 'https://global.rakuten.com/en/search/?k=' + q; } },
+    { name: 'Zooplus',       icon: '🐶', tag: 'Pet supplies',           build: function (q) { return 'https://www.zooplus.com/search?q=' + q; } },
     { name: 'Zalando',       icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
     { name: 'Sephora',       icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
     { name: 'Wayfair',       icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
@@ -2296,14 +2304,14 @@ footer {
     { name: 'eBay',          icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
     { name: 'AliExpress',    icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
     { name: 'Takealot',      icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
-    { name: 'IKEA',          icon: '🪑', tag: 'Affordable home',        build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'Crate & Barrel',icon: '🏠', tag: 'Premium home',           build: function (q) { return 'https://www.crateandbarrel.com/search?query=' + q; } },
     { name: 'Costco',        icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
     { name: 'Booking.com',   icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
     { name: 'Newegg',        icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
     { name: 'Decathlon',     icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
     { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
     { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Lush',          icon: '🛁', tag: 'Natural beauty',         build: function (q) { return 'https://www.lush.com/search?q=' + q; } },
+    { name: 'Charlotte Tilbury', icon: '💄', tag: 'Premium beauty',     build: function (q) { return 'https://www.charlottetilbury.com/us/search?q=' + q; } },
     { name: 'Boots',         icon: '💊', tag: 'Pharmacy & beauty',      build: function (q) { return 'https://www.boots.com/sitesearch?searchTerm=' + q; } },
     { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
     { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
@@ -2315,7 +2323,7 @@ footer {
     { name: 'Mr Porter',     icon: '🎩', tag: "Men's luxury",           build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?keywords=' + q; } },
     { name: 'MatchesFashion',icon: '💍', tag: 'Designer luxury',        build: function (q) { return 'https://www.matchesfashion.com/search?text=' + q; } },
     { name: 'H&M',           icon: '👚', tag: 'Global fast fashion',    build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
-    { name: 'Zara',          icon: '🖤', tag: 'Spanish fashion',        build: function (q) { return 'https://www.zara.com/us/en/search?searchTerm=' + q; } },
+    { name: 'Mytheresa',     icon: '👑', tag: 'Luxury fashion',         build: function (q) { return 'https://www.mytheresa.com/en-us/search?q=' + q; } },
     { name: 'COS',           icon: '⚪', tag: 'Premium minimalist',     build: function (q) { return 'https://www.cos.com/en_usd/search.html?q=' + q; } },
     { name: 'Mango',         icon: '🍃', tag: 'Spanish fashion',        build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
     { name: 'Massimo Dutti', icon: '🧥', tag: 'Premium Inditex',        build: function (q) { return 'https://www.massimodutti.com/us/search?q=' + q; } },
