@@ -792,10 +792,21 @@ footer {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
+
+.inquiry-store-link-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 3px;
+  box-shadow: 0 1px 3px rgba(14, 42, 71, 0.08);
+}
+
 /* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
 .mall-walkway {
   display: grid;
-  grid-template-columns: 1fr 48px 1fr;
+  grid-template-columns: 1fr 64px 1fr;
   gap: 14px;
   margin-top: 14px;
   align-items: stretch;
@@ -807,6 +818,10 @@ footer {
   grid-template-columns: 1fr 1fr;
   gap: 14px;
   margin-top: 14px;
+  padding-left: 64px;  /* nudges both bottom stores rightward, leaves space on left */
+}
+@media (max-width: 768px) {
+  .mall-bottom-row { padding-left: 24px; }
 }
 /* Featured ribbon for the Local pick (Takealot) */
 .store-featured-ribbon {
@@ -886,7 +901,7 @@ img.store-icon {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
   white-space: nowrap;
   letter-spacing: 8px;
   font-size: 10px;
@@ -1840,11 +1855,11 @@ img.store-icon {
         <div class="store-name">The Outnet</div>
         <div class="store-tag">Luxury discounts</div>
       </a>
-      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
         <span class="store-door">Open</span>
-        <img class="store-icon" src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="" loading="lazy" width="56" height="56">
-        <div class="store-name">Amazon</div>
-        <div class="store-tag">Global marketplace</div>
+        <img class="store-icon" src="https://www.google.com/s2/favicons?domain=costco.com&amp;sz=128" alt="" loading="lazy" width="56" height="56">
+        <div class="store-name">Costco</div>
+        <div class="store-tag">Members-only wholesale</div>
       </a>
     </div>
   </div>
@@ -1860,12 +1875,13 @@ img.store-icon {
         <span class="store-tag">South Africa</span>
       </span>
     </a>
-    <a href="https://www.costco.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+    <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
+      <span class="store-featured-ribbon">Featured · Global pick</span>
       <span class="store-door">Open</span>
-      <img class="store-icon" src="https://www.google.com/s2/favicons?domain=costco.com&amp;sz=128" alt="" loading="lazy" width="48" height="48">
+      <img class="store-icon" src="https://www.google.com/s2/favicons?domain=amazon.com&amp;sz=128" alt="" loading="lazy" width="48" height="48">
       <span class="store-text">
-        <span class="store-name">Costco</span>
-        <span class="store-tag">Members-only wholesale</span>
+        <span class="store-name">Amazon</span>
+        <span class="store-tag">Global marketplace</span>
       </span>
     </a>
   </div>
@@ -2070,14 +2086,56 @@ img.store-icon {
   // we surface all 13 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    { name: 'Amazon',     icon: '📦', tag: 'Global marketplace',  build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
-    { name: 'Apple',      icon: '🍎', tag: 'Premium electronics', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Costco',     icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
-    { name: 'Etsy',       icon: '🎨', tag: 'Handmade & vintage',  build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay',       icon: '🛍️', tag: 'Auctions & resale',   build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'IKEA',       icon: '🛋️', tag: 'Furniture & home',    build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'AliExpress', icon: '🌏', tag: 'Global wholesale',    build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'Takealot',   icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } }
+    { name: 'ASOS', icon: 'https://www.google.com/s2/favicons?domain=asos.com&sz=64', tag: 'Fashion (UK)', build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Rakuten', icon: 'https://www.google.com/s2/favicons?domain=rakuten.com&sz=64', tag: 'Marketplace (JP/global)', build: function (q) { return 'https://www.rakuten.com/search?searchText=' + q; } },
+    { name: 'Zalando', icon: 'https://www.google.com/s2/favicons?domain=zalando.com&sz=64', tag: 'Fashion (EU)', build: function (q) { return 'https://www.zalando.com/catalog/?q=' + q; } },
+    { name: 'Sephora', icon: 'https://www.google.com/s2/favicons?domain=sephora.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair', icon: 'https://www.google.com/s2/favicons?domain=wayfair.com&sz=64', tag: 'Home & furniture', build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Apple', icon: 'https://www.google.com/s2/favicons?domain=apple.com&sz=64', tag: 'Premium tech', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Booking.com', icon: 'https://www.google.com/s2/favicons?domain=booking.com&sz=64', tag: 'Hotels & travel', build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
+    { name: 'Newegg', icon: 'https://www.google.com/s2/favicons?domain=newegg.com&sz=64', tag: 'Tech & PC parts', build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
+    { name: 'Decathlon', icon: 'https://www.google.com/s2/favicons?domain=decathlon.com&sz=64', tag: 'Sports gear', build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
+    { name: 'Etsy', icon: 'https://www.google.com/s2/favicons?domain=etsy.com&sz=64', tag: 'Handmade & vintage', build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay', icon: 'https://www.google.com/s2/favicons?domain=ebay.com&sz=64', tag: 'Auctions & resale', build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'Shein', icon: 'https://www.google.com/s2/favicons?domain=shein.com&sz=64', tag: 'Trend fashion', build: function (q) { return 'https://www.shein.com/pdsearch/' + q; } },
+    { name: 'AliExpress', icon: 'https://www.google.com/s2/favicons?domain=aliexpress.com&sz=64', tag: 'Global wholesale', build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'JD.com', icon: 'https://www.google.com/s2/favicons?domain=jd.com&sz=64', tag: 'China marketplace', build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
+    { name: 'Trendyol', icon: 'https://www.google.com/s2/favicons?domain=trendyol.com&sz=64', tag: 'Turkey fashion', build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
+    { name: 'Farfetch', icon: 'https://www.google.com/s2/favicons?domain=farfetch.com&sz=64', tag: 'Luxury fashion', build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
+    { name: 'SSENSE', icon: 'https://www.google.com/s2/favicons?domain=ssense.com&sz=64', tag: 'Designer fashion', build: function (q) { return 'https://www.ssense.com/en-us/search?q=' + q; } },
+    { name: 'END.', icon: 'https://www.google.com/s2/favicons?domain=endclothing.com&sz=64', tag: 'Streetwear', build: function (q) { return 'https://www.endclothing.com/search?q=' + q; } },
+    { name: 'Revolve', icon: 'https://www.google.com/s2/favicons?domain=revolve.com&sz=64', tag: 'Contemporary fashion', build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
+    { name: 'Uniqlo', icon: 'https://www.google.com/s2/favicons?domain=uniqlo.com&sz=64', tag: 'Everyday essentials', build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
+    { name: 'Mr Porter', icon: 'https://www.google.com/s2/favicons?domain=mrporter.com&sz=64', tag: 'Menswear edit', build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?q=' + q; } },
+    { name: 'MatchesFashion', icon: 'https://www.google.com/s2/favicons?domain=matchesfashion.com&sz=64', tag: 'Luxury edit', build: function (q) { return 'https://www.matchesfashion.com/intl/search?q=' + q; } },
+    { name: 'H&M', icon: 'https://www.google.com/s2/favicons?domain=hm.com&sz=64', tag: 'High-street fashion', build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
+    { name: 'Zara', icon: 'https://www.google.com/s2/favicons?domain=zara.com&sz=64', tag: 'Trend fashion', build: function (q) { return 'https://www.zara.com/us/en/search?searchTerm=' + q; } },
+    { name: 'COS', icon: 'https://www.google.com/s2/favicons?domain=cos.com&sz=64', tag: 'Minimal essentials', build: function (q) { return 'https://www.cos.com/en_usd/search?q=' + q; } },
+    { name: 'Mango', icon: 'https://www.google.com/s2/favicons?domain=mango.com&sz=64', tag: 'Fashion (ES)', build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
+    { name: 'Massimo Dutti', icon: 'https://www.google.com/s2/favicons?domain=massimodutti.com&sz=64', tag: 'Smart fashion', build: function (q) { return 'https://www.massimodutti.com/us/search?text=' + q; } },
+    { name: '& Other Stories', icon: 'https://www.google.com/s2/favicons?domain=stories.com&sz=64', tag: 'Style & beauty', build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
+    { name: 'Selfridges', icon: 'https://www.google.com/s2/favicons?domain=selfridges.com&sz=64', tag: 'Department store (UK)', build: function (q) { return 'https://www.selfridges.com/US/en/cat/search/?searchTerm=' + q; } },
+    { name: 'Cult Beauty', icon: 'https://www.google.com/s2/favicons?domain=cultbeauty.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.cultbeauty.com/search?q=' + q; } },
+    { name: 'Lookfantastic', icon: 'https://www.google.com/s2/favicons?domain=lookfantastic.com&sz=64', tag: 'Beauty & haircare', build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
+    { name: 'Feelunique', icon: 'https://www.google.com/s2/favicons?domain=feelunique.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.feelunique.com/search?q=' + q; } },
+    { name: 'The Body Shop', icon: 'https://www.google.com/s2/favicons?domain=thebodyshop.com&sz=64', tag: 'Natural beauty', build: function (q) { return 'https://www.thebodyshop.com/en-us/search/?q=' + q; } },
+    { name: 'iHerb', icon: 'https://www.google.com/s2/favicons?domain=iherb.com&sz=64', tag: 'Health & wellness', build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
+    { name: 'MyProtein', icon: 'https://www.google.com/s2/favicons?domain=myprotein.com&sz=64', tag: 'Sports nutrition', build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
+    { name: 'Gymshark', icon: 'https://www.google.com/s2/favicons?domain=gymshark.com&sz=64', tag: 'Activewear', build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
+    { name: 'On Running', icon: 'https://www.google.com/s2/favicons?domain=on.com&sz=64', tag: 'Running shoes', build: function (q) { return 'https://www.on.com/en-us/search?q=' + q; } },
+    { name: 'Wiggle', icon: 'https://www.google.com/s2/favicons?domain=wiggle.com&sz=64', tag: 'Cycling & sports', build: function (q) { return 'https://www.wiggle.com/search?q=' + q; } },
+    { name: 'B&H Photo', icon: 'https://www.google.com/s2/favicons?domain=bhphotovideo.com&sz=64', tag: 'Photo & video gear', build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
+    { name: 'LEGO', icon: 'https://www.google.com/s2/favicons?domain=lego.com&sz=64', tag: 'Bricks & toys', build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
+    { name: 'Muji', icon: 'https://www.google.com/s2/favicons?domain=muji.com&sz=64', tag: 'Japanese essentials', build: function (q) { return 'https://www.muji.com/us/en/store/cmdty/search/?q=' + q; } },
+    { name: 'IKEA', icon: 'https://www.google.com/s2/favicons?domain=ikea.com&sz=64', tag: 'Furniture & home', build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
+    { name: 'Lululemon', icon: 'https://www.google.com/s2/favicons?domain=lululemon.com&sz=64', tag: 'Activewear', build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
+    { name: 'Net-a-Porter', icon: 'https://www.google.com/s2/favicons?domain=net-a-porter.com&sz=64', tag: 'Luxury womenswear', build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Lush', icon: 'https://www.google.com/s2/favicons?domain=lush.com&sz=64', tag: 'Bath & body', build: function (q) { return 'https://www.lush.com/us/en_us/search?q=' + q; } },
+    { name: 'Boots', icon: 'https://www.google.com/s2/favicons?domain=boots.com&sz=64', tag: 'Pharmacy & beauty (UK)', build: function (q) { return 'https://www.boots.com/search/' + q; } },
+    { name: 'The Outnet', icon: 'https://www.google.com/s2/favicons?domain=theoutnet.com&sz=64', tag: 'Luxury discounts', build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Amazon', icon: 'https://www.google.com/s2/favicons?domain=amazon.com&sz=64', tag: 'Global marketplace', build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
+    { name: 'Takealot', icon: 'https://www.google.com/s2/favicons?domain=takealot.com&sz=64', tag: 'South Africa', build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'Costco', icon: 'https://www.google.com/s2/favicons?domain=costco.com&sz=64', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } }
   ];
 
   window.doSearch = function () {
@@ -2104,9 +2162,20 @@ img.store-icon {
         a.rel = 'noopener noreferrer';
         a.referrerPolicy = 'strict-origin-when-cross-origin';
         a.className = 'inquiry-store-link';
-        var iconSpan = document.createElement('span');
-        iconSpan.className = 'inquiry-store-link-icon';
-        iconSpan.textContent = s.icon;
+        var iconSpan;
+        if (s.icon && s.icon.indexOf('http') === 0) {
+          iconSpan = document.createElement('img');
+          iconSpan.className = 'inquiry-store-link-icon inquiry-store-link-icon-img';
+          iconSpan.src = s.icon;
+          iconSpan.alt = '';
+          iconSpan.loading = 'lazy';
+          iconSpan.width = 28;
+          iconSpan.height = 28;
+        } else {
+          iconSpan = document.createElement('span');
+          iconSpan.className = 'inquiry-store-link-icon';
+          iconSpan.textContent = s.icon;
+        }
         var textWrap = document.createElement('span');
         textWrap.className = 'inquiry-store-link-text';
         var nameSpan = document.createElement('span');
