@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Curated Categories</title>
-<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="description" content="Browse the Got It Superstore mall by category — Electronics, Fashion, Beauty, Home, Outdoor, Wellness, Travel and more. Tap a category to see today's deals from the 50 trusted stores in the mall.">
 <meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
@@ -1206,7 +1206,7 @@ footer {
   box-shadow: 0 6px 16px rgba(0, 168, 107, 0.18);
 }
 .category-card.active-filter .category-count::after {
-  content: " · click again to clear";
+  content: " · loading deals…";
   font-size: 10px;
   color: #00A86B;
   font-weight: 600;
@@ -2060,59 +2060,27 @@ footer {
 
 
 <script>
-/* ============== CATEGORY FILTERING ============== */
-(function() {
-  const cats = document.querySelectorAll('.category-card[data-category]');
-  const products = document.querySelectorAll('.product-card[data-category]');
-  const dealsSection = document.getElementById('deals');
-  const dealsHeader = dealsSection ? dealsSection.querySelector('.section-meta') : null;
-  const originalDealsMeta = dealsHeader ? dealsHeader.textContent : '';
-  let currentFilter = null;
-
-  cats.forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.preventDefault();
-      const cat = this.dataset.category;
-      const isSoon = this.classList.contains('soon');
-
-      // Clear all active filters first
-      document.querySelectorAll('.category-card.active-filter').forEach(c => c.classList.remove('active-filter'));
-
-      // Toggle off if clicking the same one again
-      if (currentFilter === cat) {
-        currentFilter = null;
-        products.forEach(p => { p.style.display = ''; });
-        if (dealsHeader) dealsHeader.textContent = originalDealsMeta;
-      } else {
-        currentFilter = cat;
-        this.classList.add('active-filter');
-
-        let visibleCount = 0;
-        products.forEach(p => {
-          if (p.dataset.category === cat) {
-            p.style.display = '';
-            visibleCount++;
-          } else {
-            p.style.display = 'none';
-          }
-        });
-
-        // Update deals header to show the filter context
-        if (dealsHeader) {
-          const catName = this.querySelector('.category-name').textContent;
-          if (visibleCount === 0) {
-            dealsHeader.textContent = catName + ' deals coming soon · check back weekly';
-          } else {
-            dealsHeader.textContent = 'Showing ' + visibleCount + ' ' + catName + ' deal' + (visibleCount === 1 ? '' : 's');
-          }
-        }
-      }
-
-      // Scroll deals section into view smoothly
-      if (dealsSection) {
-        dealsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+/* ============== CATEGORY CARD CLICK -> NAVIGATE TO deals.html?cat=<slug> ==============
+   On categories.html the category cards are <a href="deals.html" data-category="xyz">.
+   We DON'T preventDefault — we let the navigation happen — but we rewrite the href so the
+   browser lands on deals.html?cat=xyz, and the URL-driven filter on deals.html does the rest.
+   "Soon" categories navigate too but will show a friendly "coming soon" header. */
+(function () {
+  var cats = document.querySelectorAll('.category-card[data-category]');
+  cats.forEach(function (card) {
+    var slug = card.dataset.category;
+    if (!slug) return;
+    // Rewrite href once on page load to include the cat param
+    try {
+      var url = new URL(card.getAttribute('href') || 'deals.html', window.location.origin);
+      url.searchParams.set('cat', slug);
+      card.setAttribute('href', url.pathname.replace(/^.*?\//, '') + url.search);
+    } catch (e) {
+      card.setAttribute('href', 'deals.html?cat=' + encodeURIComponent(slug));
+    }
+    // Visual feedback: subtle pressed state on mousedown, but never preventDefault
+    card.addEventListener('mousedown', function () { card.classList.add('active-filter'); });
+    card.addEventListener('mouseleave', function () { card.classList.remove('active-filter'); });
   });
 })();
 </script>

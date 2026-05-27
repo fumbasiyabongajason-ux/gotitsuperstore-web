@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Welcome</title>
-<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="description" content="Got It Superstore — a curated affiliate mall with 50 trusted global stores under one walkable storefront. South African-owned, global shoppers welcome. Walk the mall: gotitsuperstore.co.za">
 <meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
@@ -1440,7 +1440,7 @@ footer {
     <div class="about-text">
       <div class="section-eyebrow">About us</div>
       <h2 class="section-title" style="margin-bottom: 18px;">A curated affiliate <span class="accent">marketplace</span></h2>
-      <p>Got It Superstore is a curated affiliate marketplace that helps South African and global shoppers discover the best deals from trusted retailers worldwide. We do not sell products directly — we surface verified, hand-picked items from <strong>ASOS, Rakuten, Zalando, Sephora, Wayfair, Apple, Booking.com, Newegg, Decathlon, Etsy, eBay, Shein, AliExpress, JD.com, Farfetch, SSENSE, Uniqlo, Mr Porter, MatchesFashion, H&amp;M, Zara, COS, Selfridges, Cult Beauty, Lookfantastic, The Body Shop, iHerb, Gymshark, On Running, LEGO, Muji, IKEA, Lululemon, Net-a-Porter, Lush, Boots, Amazon, Takealot, Costco, and more</strong>, so you find quality products at competitive prices without the hours of comparison shopping.</p>
+      <p>Got It Superstore is a curated affiliate marketplace that helps South African and global shoppers discover the best deals from trusted retailers worldwide. We do not sell products directly — we surface verified, hand-picked items from <strong>ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, and Costco</strong>, so you find quality products at competitive prices without the hours of comparison shopping.</p>
       <p>When you click through our links and make a purchase, we earn a small commission from the retailer at <strong>no extra cost to you</strong>. That commission funds the curation, content, and editorial review work — and lets us keep the entire site free for shoppers.</p>
       <p>We're registered in South Africa as a private company under <strong>CIPC Reg. 2023/224652/07</strong>, and we comply with the Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US FTC Endorsement Guidelines.</p>
     </div>
@@ -1807,56 +1807,58 @@ footer {
   // we surface all 50 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
-    { name: 'ASOS', icon: 'https://www.google.com/s2/favicons?domain=asos.com&sz=64', tag: 'Fashion (UK)', build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
-    { name: 'Rakuten', icon: 'https://www.google.com/s2/favicons?domain=rakuten.com&sz=64', tag: 'Marketplace (JP/global)', build: function (q) { return 'https://www.rakuten.com/search?searchText=' + q; } },
-    { name: 'Zalando', icon: 'https://www.google.com/s2/favicons?domain=zalando.com&sz=64', tag: 'Fashion (EU)', build: function (q) { return 'https://www.zalando.com/catalog/?q=' + q; } },
-    { name: 'Sephora', icon: 'https://www.google.com/s2/favicons?domain=sephora.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
-    { name: 'Wayfair', icon: 'https://www.google.com/s2/favicons?domain=wayfair.com&sz=64', tag: 'Home & furniture', build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
-    { name: 'Apple', icon: 'https://www.google.com/s2/favicons?domain=apple.com&sz=64', tag: 'Premium tech', build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
-    { name: 'Booking.com', icon: 'https://www.google.com/s2/favicons?domain=booking.com&sz=64', tag: 'Hotels & travel', build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
-    { name: 'Newegg', icon: 'https://www.google.com/s2/favicons?domain=newegg.com&sz=64', tag: 'Tech & PC parts', build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
-    { name: 'Decathlon', icon: 'https://www.google.com/s2/favicons?domain=decathlon.com&sz=64', tag: 'Sports gear', build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
-    { name: 'Etsy', icon: 'https://www.google.com/s2/favicons?domain=etsy.com&sz=64', tag: 'Handmade & vintage', build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
-    { name: 'eBay', icon: 'https://www.google.com/s2/favicons?domain=ebay.com&sz=64', tag: 'Auctions & resale', build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
-    { name: 'Shein', icon: 'https://www.google.com/s2/favicons?domain=shein.com&sz=64', tag: 'Trend fashion', build: function (q) { return 'https://www.shein.com/pdsearch/' + q; } },
-    { name: 'AliExpress', icon: 'https://www.google.com/s2/favicons?domain=aliexpress.com&sz=64', tag: 'Global wholesale', build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
-    { name: 'JD.com', icon: 'https://www.google.com/s2/favicons?domain=jd.com&sz=64', tag: 'China marketplace', build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
-    { name: 'Trendyol', icon: 'https://www.google.com/s2/favicons?domain=trendyol.com&sz=64', tag: 'Turkey fashion', build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
-    { name: 'Farfetch', icon: 'https://www.google.com/s2/favicons?domain=farfetch.com&sz=64', tag: 'Luxury fashion', build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
-    { name: 'SSENSE', icon: 'https://www.google.com/s2/favicons?domain=ssense.com&sz=64', tag: 'Designer fashion', build: function (q) { return 'https://www.ssense.com/en-us/search?q=' + q; } },
-    { name: 'END.', icon: 'https://www.google.com/s2/favicons?domain=endclothing.com&sz=64', tag: 'Streetwear', build: function (q) { return 'https://www.endclothing.com/search?q=' + q; } },
-    { name: 'Revolve', icon: 'https://www.google.com/s2/favicons?domain=revolve.com&sz=64', tag: 'Contemporary fashion', build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
-    { name: 'Uniqlo', icon: 'https://www.google.com/s2/favicons?domain=uniqlo.com&sz=64', tag: 'Everyday essentials', build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
-    { name: 'Mr Porter', icon: 'https://www.google.com/s2/favicons?domain=mrporter.com&sz=64', tag: 'Menswear edit', build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?q=' + q; } },
-    { name: 'MatchesFashion', icon: 'https://www.google.com/s2/favicons?domain=matchesfashion.com&sz=64', tag: 'Luxury edit', build: function (q) { return 'https://www.matchesfashion.com/intl/search?q=' + q; } },
-    { name: 'H&M', icon: 'https://www.google.com/s2/favicons?domain=hm.com&sz=64', tag: 'High-street fashion', build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
-    { name: 'Zara', icon: 'https://www.google.com/s2/favicons?domain=zara.com&sz=64', tag: 'Trend fashion', build: function (q) { return 'https://www.zara.com/us/en/search?searchTerm=' + q; } },
-    { name: 'COS', icon: 'https://www.google.com/s2/favicons?domain=cos.com&sz=64', tag: 'Minimal essentials', build: function (q) { return 'https://www.cos.com/en_usd/search?q=' + q; } },
-    { name: 'Mango', icon: 'https://www.google.com/s2/favicons?domain=mango.com&sz=64', tag: 'Fashion (ES)', build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
-    { name: 'Massimo Dutti', icon: 'https://www.google.com/s2/favicons?domain=massimodutti.com&sz=64', tag: 'Smart fashion', build: function (q) { return 'https://www.massimodutti.com/us/search?text=' + q; } },
-    { name: '& Other Stories', icon: 'https://www.google.com/s2/favicons?domain=stories.com&sz=64', tag: 'Style & beauty', build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
-    { name: 'Selfridges', icon: 'https://www.google.com/s2/favicons?domain=selfridges.com&sz=64', tag: 'Department store (UK)', build: function (q) { return 'https://www.selfridges.com/US/en/cat/search/?searchTerm=' + q; } },
-    { name: 'Cult Beauty', icon: 'https://www.google.com/s2/favicons?domain=cultbeauty.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.cultbeauty.com/search?q=' + q; } },
-    { name: 'Lookfantastic', icon: 'https://www.google.com/s2/favicons?domain=lookfantastic.com&sz=64', tag: 'Beauty & haircare', build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
-    { name: 'Feelunique', icon: 'https://www.google.com/s2/favicons?domain=feelunique.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.feelunique.com/search?q=' + q; } },
-    { name: 'The Body Shop', icon: 'https://www.google.com/s2/favicons?domain=thebodyshop.com&sz=64', tag: 'Natural beauty', build: function (q) { return 'https://www.thebodyshop.com/en-us/search/?q=' + q; } },
-    { name: 'iHerb', icon: 'https://www.google.com/s2/favicons?domain=iherb.com&sz=64', tag: 'Health & wellness', build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
-    { name: 'MyProtein', icon: 'https://www.google.com/s2/favicons?domain=myprotein.com&sz=64', tag: 'Sports nutrition', build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
-    { name: 'Gymshark', icon: 'https://www.google.com/s2/favicons?domain=gymshark.com&sz=64', tag: 'Activewear', build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
-    { name: 'On Running', icon: 'https://www.google.com/s2/favicons?domain=on.com&sz=64', tag: 'Running shoes', build: function (q) { return 'https://www.on.com/en-us/search?q=' + q; } },
-    { name: 'Wiggle', icon: 'https://www.google.com/s2/favicons?domain=wiggle.com&sz=64', tag: 'Cycling & sports', build: function (q) { return 'https://www.wiggle.com/search?q=' + q; } },
-    { name: 'B&H Photo', icon: 'https://www.google.com/s2/favicons?domain=bhphotovideo.com&sz=64', tag: 'Photo & video gear', build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
-    { name: 'LEGO', icon: 'https://www.google.com/s2/favicons?domain=lego.com&sz=64', tag: 'Bricks & toys', build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
-    { name: 'Muji', icon: 'https://www.google.com/s2/favicons?domain=muji.com&sz=64', tag: 'Japanese essentials', build: function (q) { return 'https://www.muji.com/us/en/store/cmdty/search/?q=' + q; } },
-    { name: 'IKEA', icon: 'https://www.google.com/s2/favicons?domain=ikea.com&sz=64', tag: 'Furniture & home', build: function (q) { return 'https://www.ikea.com/us/en/search/products/?q=' + q; } },
-    { name: 'Lululemon', icon: 'https://www.google.com/s2/favicons?domain=lululemon.com&sz=64', tag: 'Activewear', build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
-    { name: 'Net-a-Porter', icon: 'https://www.google.com/s2/favicons?domain=net-a-porter.com&sz=64', tag: 'Luxury womenswear', build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Lush', icon: 'https://www.google.com/s2/favicons?domain=lush.com&sz=64', tag: 'Bath & body', build: function (q) { return 'https://www.lush.com/us/en_us/search?q=' + q; } },
-    { name: 'Boots', icon: 'https://www.google.com/s2/favicons?domain=boots.com&sz=64', tag: 'Pharmacy & beauty (UK)', build: function (q) { return 'https://www.boots.com/search/' + q; } },
-    { name: 'The Outnet', icon: 'https://www.google.com/s2/favicons?domain=theoutnet.com&sz=64', tag: 'Luxury discounts', build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
-    { name: 'Amazon', icon: 'https://www.google.com/s2/favicons?domain=amazon.com&sz=64', tag: 'Global marketplace', build: function (q) { return 'https://www.amazon.com/s?k=' + q; } },
-    { name: 'Takealot', icon: 'https://www.google.com/s2/favicons?domain=takealot.com&sz=64', tag: 'South Africa', build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
-    { name: 'Costco', icon: 'https://www.google.com/s2/favicons?domain=costco.com&sz=64', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } }
+    /* === The mall · first 20 stores === */
+    { name: 'ASOS',          icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Zooplus',       icon: '🐶', tag: 'Pet supplies',           build: function (q) { return 'https://www.zooplus.com/search?q=' + q; } },
+    { name: 'Zalando',       icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
+    { name: 'Sephora',       icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair',       icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Shein',         icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
+    { name: 'Apple',         icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Etsy',          icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',          icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'AliExpress',    icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',      icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'Crate & Barrel',icon: '🏠', tag: 'Premium home',           build: function (q) { return 'https://www.crateandbarrel.com/search?query=' + q; } },
+    { name: 'Costco',        icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
+    { name: 'Booking.com',   icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
+    { name: 'Newegg',        icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
+    { name: 'Decathlon',     icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
+    { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
+    { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Charlotte Tilbury', icon: '💄', tag: 'Premium beauty',     build: function (q) { return 'https://www.charlottetilbury.com/us/search?q=' + q; } },
+    { name: 'Boots',         icon: '💊', tag: 'Pharmacy & beauty',      build: function (q) { return 'https://www.boots.com/sitesearch?searchTerm=' + q; } },
+    /* === The mall · next 30 stores === */
+    { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
+    { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
+    { name: 'Farfetch',      icon: '🌟', tag: 'Luxury fashion',         build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
+    { name: 'SSENSE',        icon: '⚫', tag: 'Designer marketplace',   build: function (q) { return 'https://www.ssense.com/en-us/search?q=' + q; } },
+    { name: 'END.',          icon: '🧢', tag: 'Streetwear & designer',  build: function (q) { return 'https://www.endclothing.com/us/catalogsearch/result/?q=' + q; } },
+    { name: 'Revolve',       icon: '✨', tag: 'Trendy fashion',         build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
+    { name: 'Uniqlo',        icon: '🟥', tag: 'Japanese essentials',    build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
+    { name: 'Mr Porter',     icon: '🎩', tag: "Men's luxury",           build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?keywords=' + q; } },
+    { name: 'MatchesFashion',icon: '💍', tag: 'Designer luxury',        build: function (q) { return 'https://www.matchesfashion.com/search?text=' + q; } },
+    { name: 'H&M',           icon: '👚', tag: 'Global fast fashion',    build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
+    { name: 'Mytheresa',     icon: '👑', tag: 'Luxury fashion',         build: function (q) { return 'https://www.mytheresa.com/en-us/search?q=' + q; } },
+    { name: 'COS',           icon: '⚪', tag: 'Premium minimalist',     build: function (q) { return 'https://www.cos.com/en_usd/search.html?q=' + q; } },
+    { name: 'Mango',         icon: '🍃', tag: 'Spanish fashion',        build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
+    { name: 'Massimo Dutti', icon: '🧥', tag: 'Premium Inditex',        build: function (q) { return 'https://www.massimodutti.com/us/search?q=' + q; } },
+    { name: '& Other Stories',icon:'💗', tag: 'Premium H&M Group',      build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
+    { name: 'Selfridges',    icon: '🛍️', tag: 'UK luxury department',  build: function (q) { return 'https://www.selfridges.com/US/en/cat/?q=' + q; } },
+    { name: 'Cult Beauty',   icon: '🧴', tag: 'Curated indie beauty',   build: function (q) { return 'https://www.cultbeauty.com/elysium.search?searchTerm=' + q; } },
+    { name: 'Lookfantastic', icon: '💅', tag: 'Premium beauty',         build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
+    { name: 'Feelunique',    icon: '💋', tag: 'Beauty marketplace',     build: function (q) { return 'https://www.feelunique.com/elysium.search?search=' + q; } },
+    { name: 'The Body Shop', icon: '🌱', tag: 'Ethical beauty',         build: function (q) { return 'https://www.thebodyshop.com/en-us/search?q=' + q; } },
+    { name: 'iHerb',         icon: '🌿', tag: 'Health & wellness',      build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
+    { name: 'MyProtein',     icon: '🥤', tag: 'Sports nutrition',       build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
+    { name: 'Gymshark',      icon: '💪', tag: 'Fitness apparel',        build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
+    { name: 'On Running',    icon: '🏃', tag: 'Swiss running',          build: function (q) { return 'https://www.on-running.com/en-us/search?q=' + q; } },
+    { name: 'Wiggle',        icon: '🚴', tag: 'Cycling & sport',        build: function (q) { return 'https://www.wiggle.com/search?text=' + q; } },
+    { name: 'B&H Photo',     icon: '📷', tag: 'Pro photo & audio',      build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
+    { name: 'LEGO',          icon: '🧱', tag: 'Toys & building',        build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
+    { name: 'Muji',          icon: '🟫', tag: 'Japanese minimalist',    build: function (q) { return 'https://www.muji.com/us/en/search?keyword=' + q; } },
+    { name: 'The Outnet',    icon: '💎', tag: 'Discount luxury',        build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Amazon',        icon: '📦', tag: 'Global marketplace',     build: function (q) { return 'https://www.amazon.com/s?k=' + q; } }
   ];
 
   window.doSearch = function () {
@@ -1883,20 +1885,9 @@ footer {
         a.rel = 'noopener noreferrer';
         a.referrerPolicy = 'strict-origin-when-cross-origin';
         a.className = 'inquiry-store-link';
-        var iconSpan;
-        if (s.icon && s.icon.indexOf('http') === 0) {
-          iconSpan = document.createElement('img');
-          iconSpan.className = 'inquiry-store-link-icon inquiry-store-link-icon-img';
-          iconSpan.src = s.icon;
-          iconSpan.alt = '';
-          iconSpan.loading = 'lazy';
-          iconSpan.width = 28;
-          iconSpan.height = 28;
-        } else {
-          iconSpan = document.createElement('span');
-          iconSpan.className = 'inquiry-store-link-icon';
-          iconSpan.textContent = s.icon;
-        }
+        var iconSpan = document.createElement('span');
+        iconSpan.className = 'inquiry-store-link-icon';
+        iconSpan.textContent = s.icon;
         var textWrap = document.createElement('span');
         textWrap.className = 'inquiry-store-link-text';
         var nameSpan = document.createElement('span');

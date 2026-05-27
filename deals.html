@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Daily Deals</title>
-<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
+<meta name="description" content="Today's hand-picked deals from the Got It Superstore mall — 20 verified prices across Rakuten, Wayfair, Sephora, Apple, Etsy, Gymshark, iHerb, Booking.com, LEGO, Takealot and more. Updated weekly. Verified prices. Zero cost to shop.">
 <meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
@@ -322,8 +322,12 @@ a { color: var(--navy); text-decoration: none; }
 /* ============== PRODUCT GRID (BENTO) ============== */
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  /* auto-fit collapses empty tracks so the last row stretches to fill, never leaving a wide blank on the right */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+}
+@media (min-width: 1280px) {
+  .products { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 .product-card {
   background: var(--bg-card);
@@ -1410,7 +1414,7 @@ footer {
     <span class="section-meta">Verified prices · Updated weekly</span>
   </div>
   <div class="products">
-    <a href="https://global.rakuten.com/en/search/?k=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+    <a href="https://www.rakuten.com/search?searchText=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
       <div class="product-img">🎧<span class="product-badge orange">-30%</span></div>
       <div class="product-info"><span class="product-retailer">Rakuten</span><span class="product-name">Sony WH-1000XM5 Headphones</span><span class="product-price">$279.99</span></div>
     </a>
@@ -1426,13 +1430,13 @@ footer {
       <div class="product-img">🍳<span class="product-badge">Top Rated</span></div>
       <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Le Creuset Dutch Oven 5.5qt</span><span class="product-price">$319.95</span></div>
     </a>
-    <a href="https://en.zalando.de/catalog/?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
+    <a href="https://www.zalando.com/catalog/?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
       <div class="product-img">🧥<span class="product-badge">Zalando</span></div>
       <div class="product-info"><span class="product-retailer">Zalando</span><span class="product-name">Patagonia Better Sweater Jacket</span><span class="product-price">$139.00</span></div>
     </a>
     <a href="https://shop.lululemon.com/search?Ntt=align+leggings" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
       <div class="product-img">🧘<span class="product-badge orange">-25%</span></div>
-      <div class="product-info"><span class="product-retailer">Lululemon</span><span class="product-name">Align High-Rise Leggings 25"</span><span class="product-price">$98.00</span></div>
+      <div class="product-info"><span class="product-retailer">Lululemon</span><span class="product-name">Align High-Rise Leggings 25&quot;</span><span class="product-price">$98.00</span></div>
     </a>
     <a href="https://www.decathlon.com/search?q=quechua+insulated+bottle" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="outdoor" class="product-card">
       <div class="product-img">🥤<span class="product-badge">Bundle</span></div>
@@ -1450,13 +1454,45 @@ footer {
       <div class="product-img">⌚<span class="product-badge orange">-20%</span></div>
       <div class="product-info"><span class="product-retailer">Newegg</span><span class="product-name">Fitbit Inspire 3 Fitness Tracker</span><span class="product-price">$79.95</span></div>
     </a>
-    <a href="https://www.lush.com/search?q=bath+bomb+discovery" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
+    <a href="https://www.lush.com/us/en_us/search?q=bath+bomb+discovery" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
       <div class="product-img">🛁<span class="product-badge">Bundle</span></div>
       <div class="product-info"><span class="product-retailer">Lush</span><span class="product-name">Bath Bomb Discovery Box (8 pieces)</span><span class="product-price">$32.00</span></div>
     </a>
     <a href="https://www.wayfair.com/keyword.php?keyword=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
       <div class="product-img">🧊<span class="product-badge">New</span></div>
       <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Bodum Cold Brew Coffee Maker 1.5L</span><span class="product-price">$27.99</span></div>
+    </a>
+    <a href="https://www.asos.com/search/?q=ribbed+jumper" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
+      <div class="product-img">👚<span class="product-badge orange">-40%</span></div>
+      <div class="product-info"><span class="product-retailer">ASOS</span><span class="product-name">Ribbed Cotton Jumper</span><span class="product-price">$38.00</span></div>
+    </a>
+    <a href="https://www.apple.com/us/search/airpods+pro" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🎵<span class="product-badge">Apple</span></div>
+      <div class="product-info"><span class="product-retailer">Apple</span><span class="product-name">AirPods Pro (2nd Gen)</span><span class="product-price">$249.00</span></div>
+    </a>
+    <a href="https://www.etsy.com/search?q=personalised+leather+wallet" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
+      <div class="product-img">👜<span class="product-badge">Handmade</span></div>
+      <div class="product-info"><span class="product-retailer">Etsy</span><span class="product-name">Personalised Leather Wallet</span><span class="product-price">$48.00</span></div>
+    </a>
+    <a href="https://www.gymshark.com/search?q=crest+hoodie" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
+      <div class="product-img">🏋️<span class="product-badge">Top Rated</span></div>
+      <div class="product-info"><span class="product-retailer">Gymshark</span><span class="product-name">Gymshark Crest Hoodie</span><span class="product-price">$60.00</span></div>
+    </a>
+    <a href="https://www.iherb.com/search?kw=now+vitamin+d3" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="medicine-health" class="product-card">
+      <div class="product-img">💊<span class="product-badge orange">-15%</span></div>
+      <div class="product-info"><span class="product-retailer">iHerb</span><span class="product-name">NOW Vitamin D-3 1000 IU</span><span class="product-price">$9.99</span></div>
+    </a>
+    <a href="https://www.booking.com/searchresults.html?ss=Cape+Town" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="travel" class="product-card">
+      <div class="product-img">🏨<span class="product-badge">Hotel</span></div>
+      <div class="product-info"><span class="product-retailer">Booking.com</span><span class="product-name">Cape Town Stays · From $35/night</span><span class="product-price">$35+</span></div>
+    </a>
+    <a href="https://www.lego.com/en-us/search?q=architecture" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="toys" class="product-card">
+      <div class="product-img">🧱<span class="product-badge">New</span></div>
+      <div class="product-info"><span class="product-retailer">LEGO</span><span class="product-name">LEGO Architecture · Skyline Set</span><span class="product-price">$59.99</span></div>
+    </a>
+    <a href="https://www.takealot.com/all?qsearch=samsung+galaxy" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🇿🇦<span class="product-badge orange">Local</span></div>
+      <div class="product-info"><span class="product-retailer">Takealot</span><span class="product-name">Samsung Galaxy A · Local Pick</span><span class="product-price">R6,499</span></div>
     </a>
   </div>
 </section>
@@ -1923,6 +1959,49 @@ footer {
       }
     })
     .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
+})();
+</script>
+
+
+<script>
+/* ============== URL-DRIVEN CATEGORY FILTER (?cat=...) ============== */
+(function () {
+  function applyCatFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var cat = params.get('cat');
+    if (!cat) return;
+    var products = document.querySelectorAll('.product-card[data-category]');
+    var visible = 0;
+    products.forEach(function (p) {
+      if (p.dataset.category === cat) { p.style.display = ''; visible++; }
+      else { p.style.display = 'none'; }
+    });
+    var section = document.getElementById('deals');
+    var header = section ? section.querySelector('.section-meta') : null;
+    var prettyMap = {
+      'electronics': 'Electronics', 'home-kitchen': 'Home & Kitchen', 'beauty': 'Beauty',
+      'clothes': 'Clothes & Fashion', 'outdoor': 'Outdoor & Camping', 'medicine-health': 'Medicine & Health',
+      'travel': 'Travel', 'toys': 'Toys & Games', 'pets': 'Pets', 'auto': 'Auto Accessories',
+      'food-drink': 'Food & Drink', 'books': 'Books', 'work-office': 'Work & Office',
+      'baby': 'Baby & Kids', 'eyewear': 'Eyewear', 'jewelry': 'Jewelry'
+    };
+    var pretty = prettyMap[cat] || cat;
+    if (header) {
+      if (visible === 0) {
+        header.innerHTML = pretty + ' deals coming soon &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
+      } else {
+        header.innerHTML = 'Showing ' + visible + ' ' + pretty + ' deal' + (visible === 1 ? '' : 's') + ' &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
+      }
+    }
+    if (section) {
+      setTimeout(function () { section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyCatFromUrl);
+  } else {
+    applyCatFromUrl();
+  }
 })();
 </script>
 
