@@ -128,8 +128,22 @@ grep -E 'Walmart|Target|REI Co-op|Chewy|Best Buy' shop.html  # must return nothi
 grep -c 's2/favicons' shop.html                # ≥ 50 (mall + modal)
 ```
 
+## Daily deals rotation (`deals.html`)
+
+The curated deals page now uses a **deterministic daily-rotation picker**:
+
+- A **61-deal pool** is embedded inside `deals.html` as `<script id="deal-pool" type="application/json">…</script>`. The pool covers all 50 mall stores (some stores get multiple picks).
+- On page load, a small JS picker reads `Math.floor(Date.now() / 86400000)` (today's day number) and uses it as a seed for a Mulberry32-style PRNG to shuffle the pool deterministically. The first 20 are rendered into `#products-grid`.
+- All users visiting on the same UTC day see the **same 20 deals** (good for word-of-mouth + caching). The next day rotates ~14 of 20 to fresh picks.
+- The status pill reads `Refreshes daily · 20 of 61 picks` and the `Last refreshed` label is stamped with today's date.
+- Static HTML fallback: the FIRST 20 deals of the pool are rendered server-side in `#products-grid` so no-JS clients and search-engine crawlers see content.
+
+**Editing the deal pool**: add or remove objects in the `#deal-pool` JSON block in `deals.html`. Keep schema: `{ url, cat, icon, badgeCls, badge, retailer, name, price }`. Category slugs in `cat` must match the categories used in `categories.html` (electronics, home-kitchen, beauty, clothes, outdoor, medicine-health, travel, toys).
+
 ## Change log
 
+- **2026-05-27 (this commit)** — Daily-rotation deal picker installed on `deals.html`. 61-deal pool across all 50 stores, deterministic per-day shuffle, true "refreshes daily" behaviour.
+- **2026-05-27 (3626f207)** — Fixed `categories.html` → `deals.html?cat=<slug>` click flow (was preventDefault'ing into nothing). Expanded deals from 12 to 20. Switched grid to auto-fit + 5-col desktop lock. Made meta descriptions unique across index/categories/deals.
 - **2026-05-27** — Sentinel guards added: top-of-file comment in `shop.html`, mall-section sentinel, and this `STORES.md` spec to prevent silent regression by another agent session.
 - **2026-05-26 (54b94f6d)** — Walkway label switched to `writing-mode: vertical-rl`; bottom row reverted to `1fr 64px 1fr` matching walkway above; 50-store Inquiry Reception modal pushed to all 4 pages.
 - **2026-05-26 (1081f239)** — Amazon promoted to bottom row as Featured · Global pick next to Takealot Featured · Local pick; Costco moved into right aisle slot 48; walkway widened 48px → 64px; walkway label tried `rotate(90deg)` (later replaced with vertical-rl).

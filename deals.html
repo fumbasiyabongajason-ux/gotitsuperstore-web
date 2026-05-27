@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Got It Superstore — Daily Deals</title>
-<meta name="description" content="Today's hand-picked deals from the Got It Superstore mall — 20 verified prices across Rakuten, Wayfair, Sephora, Apple, Etsy, Gymshark, iHerb, Booking.com, LEGO, Takealot and more. Updated weekly. Verified prices. Zero cost to shop.">
+<meta name="description" content="Got It Superstore curates the best deals from 50 global retailers across two mall wings: ASOS, Rakuten, Zalando, Sephora, Apple, JD.com, Farfetch, SSENSE, Uniqlo, Selfridges, iHerb, Gymshark, LEGO, Muji and more. Hand-picked products, real prices, zero cost to you. South African and global shoppers welcome.">
 <meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#0E2A47">
@@ -322,12 +322,8 @@ a { color: var(--navy); text-decoration: none; }
 /* ============== PRODUCT GRID (BENTO) ============== */
 .products {
   display: grid;
-  /* auto-fit collapses empty tracks so the last row stretches to fill, never leaving a wide blank on the right */
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-}
-@media (min-width: 1280px) {
-  .products { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 .product-card {
   background: var(--bg-card);
@@ -1398,8 +1394,8 @@ footer {
       <h2 class="section-title">Today's <span class="accent">handpicked deals</span></h2>
     </div>
     <div class="deals-status-meta">
-      <span class="deals-status-pill">Auto-refreshes daily</span>
-      <span id="deals-last-updated" class="deals-status-time">Last updated: loading…</span>
+      <span class="deals-status-pill">Refreshes daily &middot; 20 of 61 picks</span>
+      <span id="deals-last-updated" class="deals-status-time">Last refreshed: loading…</span>
     </div>
   </div>
 </section>
@@ -1413,86 +1409,86 @@ footer {
     </div>
     <span class="section-meta">Verified prices · Updated weekly</span>
   </div>
-  <div class="products">
-    <a href="https://www.rakuten.com/search?searchText=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">🎧<span class="product-badge orange">-30%</span></div>
-      <div class="product-info"><span class="product-retailer">Rakuten</span><span class="product-name">Sony WH-1000XM5 Headphones</span><span class="product-price">$279.99</span></div>
+  <div class="products" id="products-grid">
+    <a href="https://www.amazon.com/s?k=kindle+paperwhite" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">📚<span class="product-badge orange">-20%</span></div>
+      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Kindle Paperwhite (16GB)</span><span class="product-price">$129.99</span></div>
     </a>
-    <a href="https://www.wayfair.com/keyword.php?keyword=breville+barista+express" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">☕<span class="product-badge">Best Seller</span></div>
-      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Breville Barista Express Espresso</span><span class="product-price">$549.95</span></div>
+    <a href="https://www.amazon.com/s?k=echo+dot" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🔊<span class="product-badge">Best Seller</span></div>
+      <div class="product-info"><span class="product-retailer">Amazon</span><span class="product-name">Echo Dot (5th Gen)</span><span class="product-price">$49.99</span></div>
     </a>
-    <a href="https://www.sephora.com/search?keyword=dyson+airwrap" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
-      <div class="product-img">💨<span class="product-badge orange">Hot</span></div>
-      <div class="product-info"><span class="product-retailer">Sephora</span><span class="product-name">Dyson Airwrap Complete</span><span class="product-price">$599.99</span></div>
-    </a>
-    <a href="https://www.wayfair.com/keyword.php?keyword=le+creuset+dutch+oven" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">🍳<span class="product-badge">Top Rated</span></div>
-      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Le Creuset Dutch Oven 5.5qt</span><span class="product-price">$319.95</span></div>
-    </a>
-    <a href="https://www.zalando.com/catalog/?q=patagonia+better+sweater" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
-      <div class="product-img">🧥<span class="product-badge">Zalando</span></div>
-      <div class="product-info"><span class="product-retailer">Zalando</span><span class="product-name">Patagonia Better Sweater Jacket</span><span class="product-price">$139.00</span></div>
-    </a>
-    <a href="https://shop.lululemon.com/search?Ntt=align+leggings" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
-      <div class="product-img">🧘<span class="product-badge orange">-25%</span></div>
-      <div class="product-info"><span class="product-retailer">Lululemon</span><span class="product-name">Align High-Rise Leggings 25&quot;</span><span class="product-price">$98.00</span></div>
-    </a>
-    <a href="https://www.decathlon.com/search?q=quechua+insulated+bottle" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="outdoor" class="product-card">
-      <div class="product-img">🥤<span class="product-badge">Bundle</span></div>
-      <div class="product-info"><span class="product-retailer">Decathlon</span><span class="product-name">Quechua MH500 Insulated Bottle 0.8L</span><span class="product-price">$24.99</span></div>
-    </a>
-    <a href="https://www.newegg.com/p/pl?d=samsung+galaxy+tab+s9+fe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">📱<span class="product-badge">New</span></div>
-      <div class="product-info"><span class="product-retailer">Newegg</span><span class="product-name">Samsung Galaxy Tab S9 FE</span><span class="product-price">$449.99</span></div>
-    </a>
-    <a href="https://www.ikea.com/us/en/search/products/?q=glass+water+carafe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">💧<span class="product-badge">Top Rated</span></div>
-      <div class="product-info"><span class="product-retailer">IKEA</span><span class="product-name">IKEA 365+ Glass Water Carafe 1L</span><span class="product-price">$14.99</span></div>
-    </a>
-    <a href="https://www.newegg.com/p/pl?d=fitbit+inspire" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">⌚<span class="product-badge orange">-20%</span></div>
-      <div class="product-info"><span class="product-retailer">Newegg</span><span class="product-name">Fitbit Inspire 3 Fitness Tracker</span><span class="product-price">$79.95</span></div>
-    </a>
-    <a href="https://www.lush.com/us/en_us/search?q=bath+bomb+discovery" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="beauty" class="product-card">
-      <div class="product-img">🛁<span class="product-badge">Bundle</span></div>
-      <div class="product-info"><span class="product-retailer">Lush</span><span class="product-name">Bath Bomb Discovery Box (8 pieces)</span><span class="product-price">$32.00</span></div>
-    </a>
-    <a href="https://www.wayfair.com/keyword.php?keyword=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
-      <div class="product-img">🧊<span class="product-badge">New</span></div>
-      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Bodum Cold Brew Coffee Maker 1.5L</span><span class="product-price">$27.99</span></div>
-    </a>
-    <a href="https://www.asos.com/search/?q=ribbed+jumper" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
-      <div class="product-img">👚<span class="product-badge orange">-40%</span></div>
-      <div class="product-info"><span class="product-retailer">ASOS</span><span class="product-name">Ribbed Cotton Jumper</span><span class="product-price">$38.00</span></div>
-    </a>
-    <a href="https://www.apple.com/us/search/airpods+pro" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
-      <div class="product-img">🎵<span class="product-badge">Apple</span></div>
-      <div class="product-info"><span class="product-retailer">Apple</span><span class="product-name">AirPods Pro (2nd Gen)</span><span class="product-price">$249.00</span></div>
+    <a href="https://www.ebay.com/sch/i.html?_nkw=vintage+camera" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">📷<span class="product-badge">Auction</span></div>
+      <div class="product-info"><span class="product-retailer">eBay</span><span class="product-name">Vintage Film Camera</span><span class="product-price">$89.00</span></div>
     </a>
     <a href="https://www.etsy.com/search?q=personalised+leather+wallet" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
       <div class="product-img">👜<span class="product-badge">Handmade</span></div>
       <div class="product-info"><span class="product-retailer">Etsy</span><span class="product-name">Personalised Leather Wallet</span><span class="product-price">$48.00</span></div>
     </a>
-    <a href="https://www.gymshark.com/search?q=crest+hoodie" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="clothes" class="product-card">
-      <div class="product-img">🏋️<span class="product-badge">Top Rated</span></div>
-      <div class="product-info"><span class="product-retailer">Gymshark</span><span class="product-name">Gymshark Crest Hoodie</span><span class="product-price">$60.00</span></div>
+    <a href="https://www.etsy.com/search?q=ceramic+mug+handmade" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">☕<span class="product-badge">Handmade</span></div>
+      <div class="product-info"><span class="product-retailer">Etsy</span><span class="product-name">Handmade Ceramic Mug</span><span class="product-price">$28.00</span></div>
     </a>
-    <a href="https://www.iherb.com/search?kw=now+vitamin+d3" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="medicine-health" class="product-card">
-      <div class="product-img">💊<span class="product-badge orange">-15%</span></div>
-      <div class="product-info"><span class="product-retailer">iHerb</span><span class="product-name">NOW Vitamin D-3 1000 IU</span><span class="product-price">$9.99</span></div>
+    <a href="https://www.rakuten.com/search?searchText=sony+wh-1000xm5" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🎧<span class="product-badge orange">-30%</span></div>
+      <div class="product-info"><span class="product-retailer">Rakuten</span><span class="product-name">Sony WH-1000XM5 Headphones</span><span class="product-price">$279.99</span></div>
     </a>
-    <a href="https://www.booking.com/searchresults.html?ss=Cape+Town" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="travel" class="product-card">
-      <div class="product-img">🏨<span class="product-badge">Hotel</span></div>
-      <div class="product-info"><span class="product-retailer">Booking.com</span><span class="product-name">Cape Town Stays · From $35/night</span><span class="product-price">$35+</span></div>
+    <a href="https://www.aliexpress.com/wholesale?SearchText=wireless+earbuds" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🎧<span class="product-badge orange">-40%</span></div>
+      <div class="product-info"><span class="product-retailer">AliExpress</span><span class="product-name">Wireless Earbuds Pro</span><span class="product-price">$22.99</span></div>
     </a>
-    <a href="https://www.lego.com/en-us/search?q=architecture" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="toys" class="product-card">
-      <div class="product-img">🧱<span class="product-badge">New</span></div>
-      <div class="product-info"><span class="product-retailer">LEGO</span><span class="product-name">LEGO Architecture · Skyline Set</span><span class="product-price">$59.99</span></div>
+    <a href="https://search.jd.com/Search?keyword=portable+blender" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">🍓<span class="product-badge">New</span></div>
+      <div class="product-info"><span class="product-retailer">JD.com</span><span class="product-name">Portable USB Blender</span><span class="product-price">$18.50</span></div>
     </a>
     <a href="https://www.takealot.com/all?qsearch=samsung+galaxy" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
       <div class="product-img">🇿🇦<span class="product-badge orange">Local</span></div>
       <div class="product-info"><span class="product-retailer">Takealot</span><span class="product-name">Samsung Galaxy A · Local Pick</span><span class="product-price">R6,499</span></div>
+    </a>
+    <a href="https://www.costco.com/CatalogSearch?keyword=kirkland+coffee" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">☕<span class="product-badge">Bundle</span></div>
+      <div class="product-info"><span class="product-retailer">Costco</span><span class="product-name">Kirkland Coffee 2.7kg Bundle</span><span class="product-price">$18.99</span></div>
+    </a>
+    <a href="https://www.apple.com/us/search/airpods+pro" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">🎵<span class="product-badge">Apple</span></div>
+      <div class="product-info"><span class="product-retailer">Apple</span><span class="product-name">AirPods Pro (2nd Gen)</span><span class="product-price">$249.00</span></div>
+    </a>
+    <a href="https://www.apple.com/us/search/macbook+air" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">💻<span class="product-badge orange">Apple</span></div>
+      <div class="product-info"><span class="product-retailer">Apple</span><span class="product-name">MacBook Air 13″ M3</span><span class="product-price">$1,099</span></div>
+    </a>
+    <a href="https://www.newegg.com/p/pl?d=samsung+galaxy+tab+s9+fe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">📱<span class="product-badge">New</span></div>
+      <div class="product-info"><span class="product-retailer">Newegg</span><span class="product-name">Samsung Galaxy Tab S9 FE</span><span class="product-price">$449.99</span></div>
+    </a>
+    <a href="https://www.newegg.com/p/pl?d=fitbit+inspire" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">⌚<span class="product-badge orange">-20%</span></div>
+      <div class="product-info"><span class="product-retailer">Newegg</span><span class="product-name">Fitbit Inspire 3 Fitness Tracker</span><span class="product-price">$79.95</span></div>
+    </a>
+    <a href="https://www.bhphotovideo.com/c/search?Ntt=sony+a7c" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="electronics" class="product-card">
+      <div class="product-img">📷<span class="product-badge">Top Rated</span></div>
+      <div class="product-info"><span class="product-retailer">B&H Photo</span><span class="product-name">Sony α7C II Mirrorless Body</span><span class="product-price">$2,098</span></div>
+    </a>
+    <a href="https://www.wayfair.com/keyword.php?keyword=breville+barista+express" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">☕<span class="product-badge">Best Seller</span></div>
+      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Breville Barista Express</span><span class="product-price">$549.95</span></div>
+    </a>
+    <a href="https://www.wayfair.com/keyword.php?keyword=le+creuset+dutch+oven" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">🍳<span class="product-badge">Top Rated</span></div>
+      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Le Creuset Dutch Oven 5.5qt</span><span class="product-price">$319.95</span></div>
+    </a>
+    <a href="https://www.wayfair.com/keyword.php?keyword=cold+brew+coffee+maker" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">🧊<span class="product-badge">New</span></div>
+      <div class="product-info"><span class="product-retailer">Wayfair</span><span class="product-name">Bodum Cold Brew Maker 1.5L</span><span class="product-price">$27.99</span></div>
+    </a>
+    <a href="https://www.ikea.com/us/en/search/products/?q=glass+water+carafe" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">💧<span class="product-badge">Top Rated</span></div>
+      <div class="product-info"><span class="product-retailer">IKEA</span><span class="product-name">IKEA 365+ Glass Water Carafe 1L</span><span class="product-price">$14.99</span></div>
+    </a>
+    <a href="https://www.ikea.com/us/en/search/products/?q=desk+lamp" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="home-kitchen" class="product-card">
+      <div class="product-img">💡<span class="product-badge">Bundle</span></div>
+      <div class="product-info"><span class="product-retailer">IKEA</span><span class="product-name">FÖRNUFTIG LED Desk Lamp</span><span class="product-price">$24.99</span></div>
     </a>
   </div>
 </section>
@@ -1963,44 +1959,97 @@ footer {
 </script>
 
 
+<!-- ============================================================================
+     CURATED-DEALS DAILY POOL & PICKER (LOCKED MAY 2026)
+     ⚠️  This is what makes the "Auto-refreshes daily" pill TRUE. Don't remove.
+     - 61 deals in #deal-pool below covering all 50 mall stores
+     - The picker JS at the bottom deterministically shuffles by today's date and
+       renders 20 into #products-grid. Same 20 for all users on the same day.
+     - To add more deals: append to #deal-pool JSON. To curate-out a deal: remove
+       its entry. To freeze the rotation temporarily: comment out the picker call.
+============================================================================ -->
+<script id="deal-pool" type="application/json">[{"url":"https://www.amazon.com/s?k=kindle+paperwhite","cat":"electronics","icon":"📚","badgeCls":"orange","badge":"-20%","retailer":"Amazon","name":"Kindle Paperwhite (16GB)","price":"$129.99"},{"url":"https://www.amazon.com/s?k=echo+dot","cat":"electronics","icon":"🔊","badgeCls":"","badge":"Best Seller","retailer":"Amazon","name":"Echo Dot (5th Gen)","price":"$49.99"},{"url":"https://www.ebay.com/sch/i.html?_nkw=vintage+camera","cat":"electronics","icon":"📷","badgeCls":"","badge":"Auction","retailer":"eBay","name":"Vintage Film Camera","price":"$89.00"},{"url":"https://www.etsy.com/search?q=personalised+leather+wallet","cat":"clothes","icon":"👜","badgeCls":"","badge":"Handmade","retailer":"Etsy","name":"Personalised Leather Wallet","price":"$48.00"},{"url":"https://www.etsy.com/search?q=ceramic+mug+handmade","cat":"home-kitchen","icon":"☕","badgeCls":"","badge":"Handmade","retailer":"Etsy","name":"Handmade Ceramic Mug","price":"$28.00"},{"url":"https://www.rakuten.com/search?searchText=sony+wh-1000xm5","cat":"electronics","icon":"🎧","badgeCls":"orange","badge":"-30%","retailer":"Rakuten","name":"Sony WH-1000XM5 Headphones","price":"$279.99"},{"url":"https://www.aliexpress.com/wholesale?SearchText=wireless+earbuds","cat":"electronics","icon":"🎧","badgeCls":"orange","badge":"-40%","retailer":"AliExpress","name":"Wireless Earbuds Pro","price":"$22.99"},{"url":"https://search.jd.com/Search?keyword=portable+blender","cat":"home-kitchen","icon":"🍓","badgeCls":"","badge":"New","retailer":"JD.com","name":"Portable USB Blender","price":"$18.50"},{"url":"https://www.takealot.com/all?qsearch=samsung+galaxy","cat":"electronics","icon":"🇿🇦","badgeCls":"orange","badge":"Local","retailer":"Takealot","name":"Samsung Galaxy A · Local Pick","price":"R6,499"},{"url":"https://www.costco.com/CatalogSearch?keyword=kirkland+coffee","cat":"home-kitchen","icon":"☕","badgeCls":"","badge":"Bundle","retailer":"Costco","name":"Kirkland Coffee 2.7kg Bundle","price":"$18.99"},{"url":"https://www.apple.com/us/search/airpods+pro","cat":"electronics","icon":"🎵","badgeCls":"","badge":"Apple","retailer":"Apple","name":"AirPods Pro (2nd Gen)","price":"$249.00"},{"url":"https://www.apple.com/us/search/macbook+air","cat":"electronics","icon":"💻","badgeCls":"orange","badge":"Apple","retailer":"Apple","name":"MacBook Air 13″ M3","price":"$1,099"},{"url":"https://www.newegg.com/p/pl?d=samsung+galaxy+tab+s9+fe","cat":"electronics","icon":"📱","badgeCls":"","badge":"New","retailer":"Newegg","name":"Samsung Galaxy Tab S9 FE","price":"$449.99"},{"url":"https://www.newegg.com/p/pl?d=fitbit+inspire","cat":"electronics","icon":"⌚","badgeCls":"orange","badge":"-20%","retailer":"Newegg","name":"Fitbit Inspire 3 Fitness Tracker","price":"$79.95"},{"url":"https://www.bhphotovideo.com/c/search?Ntt=sony+a7c","cat":"electronics","icon":"📷","badgeCls":"","badge":"Top Rated","retailer":"B&H Photo","name":"Sony α7C II Mirrorless Body","price":"$2,098"},{"url":"https://www.wayfair.com/keyword.php?keyword=breville+barista+express","cat":"home-kitchen","icon":"☕","badgeCls":"","badge":"Best Seller","retailer":"Wayfair","name":"Breville Barista Express","price":"$549.95"},{"url":"https://www.wayfair.com/keyword.php?keyword=le+creuset+dutch+oven","cat":"home-kitchen","icon":"🍳","badgeCls":"","badge":"Top Rated","retailer":"Wayfair","name":"Le Creuset Dutch Oven 5.5qt","price":"$319.95"},{"url":"https://www.wayfair.com/keyword.php?keyword=cold+brew+coffee+maker","cat":"home-kitchen","icon":"🧊","badgeCls":"","badge":"New","retailer":"Wayfair","name":"Bodum Cold Brew Maker 1.5L","price":"$27.99"},{"url":"https://www.ikea.com/us/en/search/products/?q=glass+water+carafe","cat":"home-kitchen","icon":"💧","badgeCls":"","badge":"Top Rated","retailer":"IKEA","name":"IKEA 365+ Glass Water Carafe 1L","price":"$14.99"},{"url":"https://www.ikea.com/us/en/search/products/?q=desk+lamp","cat":"home-kitchen","icon":"💡","badgeCls":"","badge":"Bundle","retailer":"IKEA","name":"FÖRNUFTIG LED Desk Lamp","price":"$24.99"},{"url":"https://www.muji.com/us/en/store/cmdty/search/?q=ultrasonic+aroma+diffuser","cat":"home-kitchen","icon":"🌿","badgeCls":"","badge":"Top Rated","retailer":"Muji","name":"Ultrasonic Aroma Diffuser","price":"$59.00"},{"url":"https://www.sephora.com/search?keyword=dyson+airwrap","cat":"beauty","icon":"💨","badgeCls":"orange","badge":"Hot","retailer":"Sephora","name":"Dyson Airwrap Complete","price":"$599.99"},{"url":"https://www.sephora.com/search?keyword=charlotte+tilbury+pillow+talk","cat":"beauty","icon":"💄","badgeCls":"","badge":"Best Seller","retailer":"Sephora","name":"Charlotte Tilbury Pillow Talk Set","price":"$72.00"},{"url":"https://www.cultbeauty.com/search?q=drunk+elephant+set","cat":"beauty","icon":"🧴","badgeCls":"","badge":"Bundle","retailer":"Cult Beauty","name":"Drunk Elephant Glow Bundle","price":"$98.00"},{"url":"https://www.lookfantastic.com/elysium.search?search=color+wow+dream+coat","cat":"beauty","icon":"💁","badgeCls":"","badge":"Top Rated","retailer":"Lookfantastic","name":"Color Wow Dream Coat Spray","price":"$28.00"},{"url":"https://www.feelunique.com/search?q=la+roche+posay+anthelios","cat":"beauty","icon":"☀️","badgeCls":"orange","badge":"-15%","retailer":"Feelunique","name":"La Roche-Posay Anthelios SPF 50","price":"$22.50"},{"url":"https://www.thebodyshop.com/en-us/search/?q=vitamin+e+moisturizer","cat":"beauty","icon":"🌸","badgeCls":"","badge":"Vegan","retailer":"The Body Shop","name":"Vitamin E Moisture Cream","price":"$23.00"},{"url":"https://www.lush.com/us/en_us/search?q=bath+bomb+discovery","cat":"beauty","icon":"🛁","badgeCls":"","badge":"Bundle","retailer":"Lush","name":"Bath Bomb Discovery Box (8 pcs)","price":"$32.00"},{"url":"https://www.boots.com/search/?text=no7+protect+and+perfect","cat":"beauty","icon":"🧴","badgeCls":"","badge":"UK Pick","retailer":"Boots","name":"No7 Protect & Perfect Serum","price":"$28.50"},{"url":"https://www.asos.com/search/?q=ribbed+jumper","cat":"clothes","icon":"👚","badgeCls":"orange","badge":"-40%","retailer":"ASOS","name":"Ribbed Cotton Jumper","price":"$38.00"},{"url":"https://www.asos.com/search/?q=denim+jeans","cat":"clothes","icon":"👖","badgeCls":"","badge":"Best Seller","retailer":"ASOS","name":"Slim-Fit Stretch Jeans","price":"$45.00"},{"url":"https://www.zalando.com/catalog/?q=patagonia+better+sweater","cat":"clothes","icon":"🧥","badgeCls":"","badge":"Zalando","retailer":"Zalando","name":"Patagonia Better Sweater Jacket","price":"$139.00"},{"url":"https://www.shein.com/pdsearch/summer+dress","cat":"clothes","icon":"👗","badgeCls":"orange","badge":"-60%","retailer":"Shein","name":"Floral Summer Dress","price":"$15.99"},{"url":"https://www.trendyol.com/sr?q=oversized+blazer","cat":"clothes","icon":"🧥","badgeCls":"","badge":"Trending","retailer":"Trendyol","name":"Oversized Blazer","price":"$42.00"},{"url":"https://www.uniqlo.com/us/en/search/?q=heattech","cat":"clothes","icon":"🧣","badgeCls":"","badge":"Top Rated","retailer":"Uniqlo","name":"HEATTECH Crew Neck T-Shirt","price":"$19.90"},{"url":"https://www2.hm.com/en_us/search-results.html?q=linen+shirt","cat":"clothes","icon":"👔","badgeCls":"","badge":"New","retailer":"H&M","name":"Relaxed-Fit Linen Shirt","price":"$29.99"},{"url":"https://www.zara.com/us/en/search?searchTerm=trench+coat","cat":"clothes","icon":"🧥","badgeCls":"","badge":"Trending","retailer":"Zara","name":"Belted Trench Coat","price":"$129.00"},{"url":"https://www.cos.com/en_usd/search?q=wool+jumper","cat":"clothes","icon":"🧶","badgeCls":"","badge":"Minimal","retailer":"COS","name":"Merino Wool Jumper","price":"$135.00"},{"url":"https://shop.mango.com/us/search?kw=midi+dress","cat":"clothes","icon":"👗","badgeCls":"","badge":"New","retailer":"Mango","name":"Pleated Midi Dress","price":"$79.99"},{"url":"https://www.massimodutti.com/us/search?text=leather+jacket","cat":"clothes","icon":"🧥","badgeCls":"","badge":"Top Rated","retailer":"Massimo Dutti","name":"Nappa Leather Jacket","price":"$329.00"},{"url":"https://www.stories.com/en_usd/search.html?q=knit+top","cat":"clothes","icon":"👚","badgeCls":"","badge":"Style","retailer":"& Other Stories","name":"Ribbed Knit Top","price":"$59.00"},{"url":"https://www.farfetch.com/shopping/search/items.aspx?q=tote+bag","cat":"clothes","icon":"👜","badgeCls":"","badge":"Luxury","retailer":"Farfetch","name":"Designer Tote Bag","price":"$895.00"},{"url":"https://www.ssense.com/en-us/search?q=oversized+hoodie","cat":"clothes","icon":"👕","badgeCls":"","badge":"Designer","retailer":"SSENSE","name":"Oversized Logo Hoodie","price":"$295.00"},{"url":"https://www.endclothing.com/search?q=nike+dunk+low","cat":"clothes","icon":"👟","badgeCls":"","badge":"Streetwear","retailer":"END.","name":"Nike Dunk Low (Premium)","price":"$120.00"},{"url":"https://www.revolve.com/r/Search.jsp?search=cocktail+dress","cat":"clothes","icon":"👗","badgeCls":"","badge":"Trending","retailer":"Revolve","name":"Mini Cocktail Dress","price":"$188.00"},{"url":"https://www.mrporter.com/en-us/mens/search?q=cashmere+sweater","cat":"clothes","icon":"🧥","badgeCls":"","badge":"Luxury","retailer":"Mr Porter","name":"Cashmere Crewneck Sweater","price":"$595.00"},{"url":"https://www.matchesfashion.com/intl/search?q=silk+blouse","cat":"clothes","icon":"👚","badgeCls":"","badge":"Luxury","retailer":"MatchesFashion","name":"Silk Charmeuse Blouse","price":"$450.00"},{"url":"https://www.selfridges.com/US/en/cat/search/?searchTerm=designer+watch","cat":"clothes","icon":"⌚","badgeCls":"","badge":"UK Pick","retailer":"Selfridges","name":"Designer Automatic Watch","price":"$1,250"},{"url":"https://www.net-a-porter.com/en-us/shop/search?keywords=heels","cat":"clothes","icon":"👠","badgeCls":"","badge":"Luxury","retailer":"Net-a-Porter","name":"Pointed-Toe Leather Heels","price":"$595.00"},{"url":"https://www.theoutnet.com/en-us/shop/search?keywords=designer+coat","cat":"clothes","icon":"🧥","badgeCls":"orange","badge":"-55%","retailer":"The Outnet","name":"Designer Wool Coat (Sale)","price":"$345.00"},{"url":"https://shop.lululemon.com/search?Ntt=align+leggings","cat":"clothes","icon":"🧘","badgeCls":"orange","badge":"-25%","retailer":"Lululemon","name":"Align High-Rise Leggings 25″","price":"$98.00"},{"url":"https://www.gymshark.com/search?q=crest+hoodie","cat":"clothes","icon":"🏋️","badgeCls":"","badge":"Top Rated","retailer":"Gymshark","name":"Gymshark Crest Hoodie","price":"$60.00"},{"url":"https://www.on.com/en-us/search?q=cloudswift","cat":"outdoor","icon":"👟","badgeCls":"","badge":"New","retailer":"On Running","name":"On Cloudswift 3","price":"$170.00"},{"url":"https://www.wiggle.com/search?q=cycling+jersey","cat":"outdoor","icon":"🚴","badgeCls":"orange","badge":"-20%","retailer":"Wiggle","name":"Pro-Fit Cycling Jersey","price":"$48.00"},{"url":"https://www.decathlon.com/search?q=quechua+insulated+bottle","cat":"outdoor","icon":"🥤","badgeCls":"","badge":"Bundle","retailer":"Decathlon","name":"Quechua MH500 Bottle 0.8L","price":"$24.99"},{"url":"https://www.iherb.com/search?kw=now+vitamin+d3","cat":"medicine-health","icon":"💊","badgeCls":"orange","badge":"-15%","retailer":"iHerb","name":"NOW Vitamin D-3 1000 IU","price":"$9.99"},{"url":"https://www.myprotein.com/elysium.search?search=impact+whey","cat":"medicine-health","icon":"💪","badgeCls":"orange","badge":"-30%","retailer":"MyProtein","name":"Impact Whey Protein 2.5kg","price":"$45.99"},{"url":"https://www.booking.com/searchresults.html?ss=Cape+Town","cat":"travel","icon":"🏨","badgeCls":"","badge":"Hotel","retailer":"Booking.com","name":"Cape Town Stays from $35/night","price":"$35+"},{"url":"https://www.booking.com/searchresults.html?ss=Johannesburg","cat":"travel","icon":"🏨","badgeCls":"","badge":"Hotel","retailer":"Booking.com","name":"Johannesburg City Hotels","price":"$28+"},{"url":"https://www.lego.com/en-us/search?q=architecture","cat":"toys","icon":"🧱","badgeCls":"","badge":"New","retailer":"LEGO","name":"LEGO Architecture Skyline Set","price":"$59.99"},{"url":"https://www.lego.com/en-us/search?q=star+wars","cat":"toys","icon":"🚀","badgeCls":"","badge":"Top Rated","retailer":"LEGO","name":"LEGO Star Wars Millennium Falcon","price":"$169.99"}]</script>
 <script>
-/* ============== URL-DRIVEN CATEGORY FILTER (?cat=...) ============== */
+/* Daily deal picker — deterministic shuffle keyed on today's date */
 (function () {
-  function applyCatFromUrl() {
-    var params = new URLSearchParams(window.location.search);
-    var cat = params.get('cat');
-    if (!cat) return;
-    var products = document.querySelectorAll('.product-card[data-category]');
+  var poolNode = document.getElementById('deal-pool');
+  var grid = document.getElementById('products-grid');
+  if (!poolNode || !grid) return;
+  var pool;
+  try { pool = JSON.parse(poolNode.textContent); } catch (e) { return; }
+  if (!Array.isArray(pool) || pool.length < 20) return;
+
+  /* Today's day number (days since 1970-01-01 in UTC) — same for all users on the same day */
+  var today = Math.floor(Date.now() / 86400000);
+
+  /* Mulberry32-style seeded PRNG for a reproducible shuffle */
+  function seededRng(seed) {
+    var s = seed >>> 0;
+    return function () {
+      s = (s + 0x6D2B79F5) >>> 0;
+      var t = s;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  var rng = seededRng(today * 9301 + 49297);
+  var shuffled = pool.slice();
+  for (var i = shuffled.length - 1; i > 0; i--) {
+    var j = Math.floor(rng() * (i + 1));
+    var tmp = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = tmp;
+  }
+
+  var todaysDeals = shuffled.slice(0, 20);
+
+  /* Render */
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  var html = '';
+  for (var k = 0; k < todaysDeals.length; k++) {
+    var d = todaysDeals[k];
+    var badgeCls = ('product-badge ' + (d.badgeCls || '')).trim();
+    html += '<a href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" data-category="' + esc(d.cat) + '" class="product-card">';
+    html += '<div class="product-img">' + d.icon + '<span class="' + esc(badgeCls) + '">' + esc(d.badge) + '</span></div>';
+    html += '<div class="product-info"><span class="product-retailer">' + esc(d.retailer) + '</span><span class="product-name">' + esc(d.name) + '</span><span class="product-price">' + esc(d.price) + '</span></div>';
+    html += '</a>';
+  }
+  grid.innerHTML = html;
+
+  /* Stamp the "Last updated" label with today's date */
+  var stamp = document.getElementById('deals-last-updated');
+  if (stamp) {
+    var now = new Date();
+    var pretty = now.toLocaleDateString('en-ZA', { year: 'numeric', month: 'short', day: 'numeric' });
+    stamp.textContent = 'Last refreshed: ' + pretty;
+  }
+
+  /* If the URL has ?cat=<slug>, re-apply the category filter after we have rendered the cards.
+     The standalone URL-driven script also runs on DOMContentLoaded but it does so BEFORE we
+     replace the grid contents, so we run the same filter once more here. */
+  var params = new URLSearchParams(window.location.search);
+  var catFilter = params.get('cat');
+  if (catFilter) {
+    var cards = grid.querySelectorAll('.product-card[data-category]');
     var visible = 0;
-    products.forEach(function (p) {
-      if (p.dataset.category === cat) { p.style.display = ''; visible++; }
-      else { p.style.display = 'none'; }
+    cards.forEach(function (c) {
+      if (c.dataset.category === catFilter) { c.style.display = ''; visible++; }
+      else { c.style.display = 'none'; }
     });
     var section = document.getElementById('deals');
     var header = section ? section.querySelector('.section-meta') : null;
-    var prettyMap = {
-      'electronics': 'Electronics', 'home-kitchen': 'Home & Kitchen', 'beauty': 'Beauty',
-      'clothes': 'Clothes & Fashion', 'outdoor': 'Outdoor & Camping', 'medicine-health': 'Medicine & Health',
-      'travel': 'Travel', 'toys': 'Toys & Games', 'pets': 'Pets', 'auto': 'Auto Accessories',
-      'food-drink': 'Food & Drink', 'books': 'Books', 'work-office': 'Work & Office',
-      'baby': 'Baby & Kids', 'eyewear': 'Eyewear', 'jewelry': 'Jewelry'
-    };
-    var pretty = prettyMap[cat] || cat;
-    if (header) {
+    if (header && visible >= 0) {
+      var prettyMap = {
+        'electronics': 'Electronics', 'home-kitchen': 'Home & Kitchen', 'beauty': 'Beauty',
+        'clothes': 'Clothes & Fashion', 'outdoor': 'Outdoor & Camping', 'medicine-health': 'Medicine & Health',
+        'travel': 'Travel', 'toys': 'Toys & Games'
+      };
+      var prettyCat = prettyMap[catFilter] || catFilter;
       if (visible === 0) {
-        header.innerHTML = pretty + ' deals coming soon &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
+        header.innerHTML = prettyCat + ' deals coming back tomorrow &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
       } else {
-        header.innerHTML = 'Showing ' + visible + ' ' + pretty + ' deal' + (visible === 1 ? '' : 's') + ' &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
+        header.innerHTML = 'Showing ' + visible + ' ' + prettyCat + ' deal' + (visible === 1 ? '' : 's') + ' today &middot; <a href="deals.html" style="color:#F26B1A;font-weight:600;">Show all deals</a>';
       }
     }
-    if (section) {
-      setTimeout(function () { section.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
-    }
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', applyCatFromUrl);
-  } else {
-    applyCatFromUrl();
   }
 })();
 </script>
