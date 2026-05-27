@@ -1199,6 +1199,23 @@ footer {
   font-weight: 500;
   display: block;
 }
+.category-card .category-stores {
+  /* Brand-preview line under each active category (added 2026-05-28).
+     Shows representative store names so visitors see the breadth of the mall. */
+  font-size: 11px;
+  color: #5b6b80;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #ece6d3;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.category-card:hover .category-stores {
+  color: #0E2A47;
+}
 .category-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(14, 42, 71, 0.08);
@@ -1498,23 +1515,81 @@ html, body {
   <div class="section-header">
     <div>
       <div class="section-eyebrow">Shop by category</div>
-      <h2 class="section-title">7 active categories · <span class="accent">handpicked</span></h2>
+      <h2 class="section-title">9 active categories · <span class="accent">all 50 stores mapped</span></h2>
     </div>
-    <span class="section-meta">Click to filter · More coming weekly</span>
+    <span class="section-meta">Tap any active category to filter today's deals</span>
   </div>
   <div class="categories">
-    <a href="deals.html" data-category="food-drink" class="category-card soon"><span class="category-icon">🍲</span><span class="category-name">Food &amp; Drink</span><span class="category-count">Coming soon</span></a>
-    <a href="deals.html" data-category="medicine-health" class="category-card"><span class="category-icon">💊</span><span class="category-name">Medicine &amp; Health</span><span class="category-count">1 deal</span></a>
-    <a href="deals.html" data-category="clothes" class="category-card"><span class="category-icon">👗</span><span class="category-name">Clothes &amp; Fashion</span><span class="category-count">1 deal</span></a>
-    <a href="deals.html" data-category="books" class="category-card soon"><span class="category-icon">📚</span><span class="category-name">Books</span><span class="category-count">Coming soon</span></a>
-    <a href="deals.html" data-category="auto" class="category-card soon"><span class="category-icon">🚗</span><span class="category-name">Auto Accessories</span><span class="category-count">Coming soon</span></a>
-    <a href="deals.html" data-category="home-kitchen" class="category-card"><span class="category-icon">🏠</span><span class="category-name">Home &amp; Kitchen</span><span class="category-count">4 deals</span></a>
-    <a href="deals.html" data-category="electronics" class="category-card"><span class="category-icon">💻</span><span class="category-name">Electronics</span><span class="category-count">3 deals</span></a>
-    <a href="deals.html" data-category="beauty" class="category-card"><span class="category-icon">💄</span><span class="category-name">Beauty</span><span class="category-count">1 deal</span></a>
-    <a href="deals.html" data-category="outdoor" class="category-card"><span class="category-icon">⛺</span><span class="category-name">Outdoor &amp; Camping</span><span class="category-count">1 deal</span></a>
-    <a href="deals.html" data-category="pets" class="category-card"><span class="category-icon">🐶</span><span class="category-name">Pets</span><span class="category-count">1 deal</span></a>
-    <a href="deals.html" data-category="work-office" class="category-card soon"><span class="category-icon">💼</span><span class="category-name">Work &amp; Office</span><span class="category-count">Coming soon</span></a>
-    <a href="deals.html" data-category="toys" class="category-card soon"><span class="category-icon">🎲</span><span class="category-name">Toys &amp; Games</span><span class="category-count">Coming soon</span></a>
+    <a href="deals.html" data-category="clothes" class="category-card">
+      <span class="category-icon">👗</span>
+      <span class="category-name">Fashion &amp; Style</span>
+      <span class="category-count">14 stores</span>
+      <span class="category-stores">ASOS · Zara · H&amp;M · Uniqlo · COS · Mango · &amp; 8 more</span>
+    </a>
+    <a href="deals.html" data-category="clothes" class="category-card">
+      <span class="category-icon">👑</span>
+      <span class="category-name">Luxury Edit</span>
+      <span class="category-count">6 stores</span>
+      <span class="category-stores">Farfetch · SSENSE · Mr Porter · MatchesFashion · Net-a-Porter · Selfridges</span>
+    </a>
+    <a href="deals.html" data-category="beauty" class="category-card">
+      <span class="category-icon">💄</span>
+      <span class="category-name">Beauty</span>
+      <span class="category-count">7 stores</span>
+      <span class="category-stores">Sephora · Cult Beauty · Lookfantastic · Feelunique · The Body Shop · Lush · Boots</span>
+    </a>
+    <a href="deals.html" data-category="outdoor" class="category-card">
+      <span class="category-icon">🏃</span>
+      <span class="category-name">Sports &amp; Outdoor</span>
+      <span class="category-count">5 stores</span>
+      <span class="category-stores">Decathlon · On Running · Lululemon · Gymshark · Wiggle</span>
+    </a>
+    <a href="deals.html" data-category="home-kitchen" class="category-card">
+      <span class="category-icon">🏠</span>
+      <span class="category-name">Home &amp; Living</span>
+      <span class="category-count">3 stores</span>
+      <span class="category-stores">Wayfair · IKEA · Muji</span>
+    </a>
+    <a href="deals.html" data-category="electronics" class="category-card">
+      <span class="category-icon">💻</span>
+      <span class="category-name">Electronics</span>
+      <span class="category-count">3 stores</span>
+      <span class="category-stores">Apple · Newegg · B&amp;H Photo</span>
+    </a>
+    <a href="deals.html" data-category="medicine-health" class="category-card">
+      <span class="category-icon">💊</span>
+      <span class="category-name">Wellness</span>
+      <span class="category-count">2 stores</span>
+      <span class="category-stores">iHerb · MyProtein</span>
+    </a>
+    <a href="deals.html" data-category="travel" class="category-card">
+      <span class="category-icon">🏨</span>
+      <span class="category-name">Travel</span>
+      <span class="category-count">1 store</span>
+      <span class="category-stores">Booking.com</span>
+    </a>
+    <a href="deals.html" data-category="toys" class="category-card">
+      <span class="category-icon">🧱</span>
+      <span class="category-name">Toys &amp; Games</span>
+      <span class="category-count">1 store</span>
+      <span class="category-stores">LEGO</span>
+    </a>
+    <a href="shop.html#stores" class="category-card">
+      <span class="category-icon">🛒</span>
+      <span class="category-name">Marketplaces</span>
+      <span class="category-count">8 stores</span>
+      <span class="category-stores">Amazon · eBay · Etsy · AliExpress · Rakuten · JD.com · Takealot · Costco</span>
+    </a>
+    <a href="deals.html" data-category="food-drink" class="category-card soon">
+      <span class="category-icon">🍲</span>
+      <span class="category-name">Food &amp; Drink</span>
+      <span class="category-count">Coming soon</span>
+    </a>
+    <a href="deals.html" data-category="books" class="category-card soon">
+      <span class="category-icon">📚</span>
+      <span class="category-name">Books &amp; Media</span>
+      <span class="category-count">Coming soon</span>
+    </a>
   </div>
 </section>
 
