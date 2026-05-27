@@ -3,11 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============== SECURITY HEADERS (META — installed 2026-05-27) ==============
+     GitHub Pages doesn't allow custom HTTP headers, so we use http-equiv meta.
+     CSP whitelists only the externals we actually load (Skimlinks, Google Fonts,
+     Google s2 favicons, Formspree, YouTube embed if used).
+     Permissions-Policy denies every unused powerful API.
+     ========================================================================== -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://s.skimresources.com https://t.skimresources.com https://r.skimresources.com https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://www.google.com https://s2.googleusercontent.com https://m.media-amazon.com https://images.unsplash.com https://*.skimresources.com https://i.ytimg.com https://yt3.ggpht.com; media-src 'self' blob: https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://formspree.io https://*.skimresources.com https://accounts.google.com; form-action 'self' https://formspree.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://accounts.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
+<meta http-equiv="Permissions-Policy" content="accelerometer=(), ambient-light-sensor=(), autoplay=(self), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <title>Got It Superstore — Curated Categories</title>
 <meta name="description" content="Browse the Got It Superstore mall by category — Electronics, Fashion, Beauty, Home, Outdoor, Wellness, Travel and more. Tap a category to see today's deals from the 50 trusted stores in the mall.">
-<meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter">
-<meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="theme-color" content="#0E2A47">
+<meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter"><meta name="theme-color" content="#0E2A47">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07">
 
@@ -2229,6 +2239,46 @@ html, body {
       }
     })
     .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
+})();
+</script>
+
+
+<script>
+/* ============== INQUIRY MODAL RATE LIMITER (added 2026-05-27) ==============
+   Prevents bot-style abuse of the inquiry search. Stores recent search
+   timestamps in sessionStorage and rejects searches if a visitor fires more
+   than 8 queries in 30 seconds — far above human typing speed but well below
+   any practical scraper rate. Silent for normal use. */
+(function () {
+  var KEY = 'gi_inq_rl';
+  var WINDOW_MS = 30000;
+  var MAX_HITS = 8;
+  function tooFast() {
+    var now = Date.now();
+    var raw = '';
+    try { raw = sessionStorage.getItem(KEY) || ''; } catch (e) { return false; }
+    var hits = raw ? raw.split(',').map(Number).filter(function (n) { return now - n < WINDOW_MS; }) : [];
+    if (hits.length >= MAX_HITS) return true;
+    hits.push(now);
+    try { sessionStorage.setItem(KEY, hits.join(',')); } catch (e) {}
+    return false;
+  }
+  /* Wrap the existing doSearch so we don't fight the original implementation */
+  if (typeof window.doSearch === 'function') {
+    var orig = window.doSearch;
+    window.doSearch = function () {
+      if (tooFast()) {
+        var input = document.getElementById('searchInput');
+        if (input) {
+          var prev = input.placeholder;
+          input.placeholder = 'Slow down a moment — try again in a few seconds';
+          setTimeout(function () { input.placeholder = prev; }, 4000);
+        }
+        return;
+      }
+      return orig.apply(this, arguments);
+    };
+  }
 })();
 </script>
 

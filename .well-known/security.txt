@@ -1,0 +1,21 @@
+# Security disclosure for Got It Superstore (Pty) Ltd
+# CIPC Reg. 2023/224652/07 — South Africa
+# This file follows RFC 9116 — Web Security Disclosure.
+
+Contact: https://gotitsuperstore.co.za/index.html#contact
+Contact: mailto:security@gotitsuperstore.co.za
+Expires: 2027-05-27T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://gotitsuperstore.co.za/.well-known/security.txt
+Policy: https://gotitsuperstore.co.za/index.html#privacy
+
+# What to report:
+#   - Vulnerabilities (XSS, injection, auth bypass) on gotitsuperstore.co.za
+#   - Privacy concerns about how the site handles visitor data
+#   - Misuse of the Got It Superstore brand / domain / IP
+#
+# Not in scope:
+#   - Issues on third-party retailer sites we link out to
+#   - Reports related to the Skimlinks affiliate aggregator (skimresources.com)
+#
+# Please give us a reasonable time to remediate before public disclosure.
