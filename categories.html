@@ -1324,39 +1324,86 @@ footer {
 }
 
 /* ============================================================================
-   MOBILE FIX (added 2026-05-27) — kill horizontal overflow on phones.
-   The base .mall-walkway rule was overriding the earlier mobile media query,
-   so the U-shape grid (1fr 64px 1fr) was rendering on 390px screens and
-   pushing content past the viewport. This block re-asserts mobile layout AT
-   THE END of the cascade so it always wins on ≤768px viewports.
+   MOBILE FIX v2 (2026-05-27) — U-shape walkway preserved, no horizontal overflow.
+   v1 hid the walkway on phones; user wanted it back at exactly 64px with the
+   WALKWAY label visible. The original overflow was caused by store-card
+   min-content (long names, 56px favicons) pushing 1fr columns wider than the
+   viewport, NOT by the 3-column grid itself. Fix: minmax(0, 1fr) lets the
+   columns shrink past natural content size, and compact card metrics keep
+   everything legible in ~150px-wide aisles on a 390px phone.
 ============================================================================ */
 @media (max-width: 768px) {
+  /* Keep the U-shape: left aisle | tiled walkway | right aisle */
   .mall-walkway {
-    grid-template-columns: 1fr 1fr !important;  /* 2-col stack, no walkway between */
+    grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) !important;
     gap: 8px !important;
-  }
-  .mall-floor.has-centre {
-    display: none !important;  /* no centre walkway on mobile — aisles aren't side-by-side anymore */
   }
   .mall-bottom-row {
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) !important;
     gap: 8px !important;
   }
-  .store-card {
-    padding: 10px 12px 14px !important;
-    min-height: 130px !important;
-    gap: 4px !important;
+  /* Walkway visible — restore explicitly in case any earlier rule hides it */
+  .mall-floor.has-centre {
+    display: flex !important;
+    min-height: 200px !important;
+    padding: 12px 4px !important;
   }
-  .store-name { font-size: 13.5px !important; }
-  .store-tag  { font-size: 10.5px !important; }
+  .mall-floor-arrow { font-size: 11px !important; }
+  .mall-floor.has-centre .mall-floor-label {
+    font-size: 9px !important;
+    letter-spacing: 4px !important;
+    padding: 10px 4px !important;
+  }
+  /* Spacer between Takealot and Amazon in bottom row stays visible to mirror the walkway above */
+  .mall-bottom-row > .mall-bottom-spacer {
+    display: block !important;
+    background-color: #f0e4cc;
+    background-image:
+      linear-gradient(45deg, #ddc6a0 25%, transparent 25%),
+      linear-gradient(-45deg, #ddc6a0 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #ddc6a0 75%),
+      linear-gradient(-45deg, transparent 75%, #ddc6a0 75%);
+    background-size: 24px 24px;
+    background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+    border-radius: 10px;
+    opacity: 0.55;
+  }
+  /* Compact store cards so content fits in the narrow aisle columns without pushing them wider */
+  .store-card {
+    padding: 8px 10px 12px !important;
+    min-height: 110px !important;
+    gap: 3px !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .store-name {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .store-tag {
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+  }
   img.store-icon {
-    width: 44px !important;
-    height: 44px !important;
-    margin: 2px auto 6px !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 2px auto 4px !important;
+    padding: 2px !important;
   }
   /* Bottom-row featured stores stay readable */
-  .mall-bottom-row .store-card { min-height: 90px !important; padding: 12px !important; }
-  .mall-bottom-row img.store-icon { width: 38px !important; height: 38px !important; margin: 0 8px 0 0 !important; }
+  .mall-bottom-row .store-card { min-height: 80px !important; padding: 10px !important; }
+  .mall-bottom-row img.store-icon { width: 34px !important; height: 34px !important; margin: 0 6px 0 0 !important; }
+  .mall-bottom-row .store-name { font-size: 12px !important; }
+  .mall-bottom-row .store-tag { font-size: 9.5px !important; }
+  .store-featured-ribbon {
+    font-size: 7.5px !important;
+    padding: 2px 20px !important;
+    right: -20px !important;
+    top: 6px !important;
+  }
 }
 
 /* Safety net: prevent ANY rogue element (banners, hero video, etc.) from causing
