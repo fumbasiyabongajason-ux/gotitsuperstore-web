@@ -1498,6 +1498,50 @@ img.store-icon {
   font-size: 13px;
   color: var(--ink-soft);
 }
+
+/* ============================================================================
+   MOBILE FIX (added 2026-05-27) — kill horizontal overflow on phones.
+   The base .mall-walkway rule was overriding the earlier mobile media query,
+   so the U-shape grid (1fr 64px 1fr) was rendering on 390px screens and
+   pushing content past the viewport. This block re-asserts mobile layout AT
+   THE END of the cascade so it always wins on ≤768px viewports.
+============================================================================ */
+@media (max-width: 768px) {
+  .mall-walkway {
+    grid-template-columns: 1fr 1fr !important;  /* 2-col stack, no walkway between */
+    gap: 8px !important;
+  }
+  .mall-floor.has-centre {
+    display: none !important;  /* no centre walkway on mobile — aisles aren't side-by-side anymore */
+  }
+  .mall-bottom-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .store-card {
+    padding: 10px 12px 14px !important;
+    min-height: 130px !important;
+    gap: 4px !important;
+  }
+  .store-name { font-size: 13.5px !important; }
+  .store-tag  { font-size: 10.5px !important; }
+  img.store-icon {
+    width: 44px !important;
+    height: 44px !important;
+    margin: 2px auto 6px !important;
+  }
+  /* Bottom-row featured stores stay readable */
+  .mall-bottom-row .store-card { min-height: 90px !important; padding: 12px !important; }
+  .mall-bottom-row img.store-icon { width: 38px !important; height: 38px !important; margin: 0 8px 0 0 !important; }
+}
+
+/* Safety net: prevent ANY rogue element (banners, hero video, etc.) from causing
+   horizontal scroll on mobile. The site is designed mobile-first vertical-scroll. */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 </style>
 </head>
 <body>
