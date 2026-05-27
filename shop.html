@@ -84,7 +84,7 @@
 <!-- ============================================================ -->
 <script>
 (function () {
-  var SKIMLINKS_ID = '303199X1791240'; /* live: publisher 303199 × site 1791240 */
+  var SKIMLINKS_ID = ''; /* DISABLED 2026-05-28 — Skimlinks rejected gotitsuperstore.co.za twice. The loader was intercepting outbound clicks and showing a 'Show original content' interstitial instead of taking shoppers to the actual retailer. Re-enabling requires (a) Skimlinks accepting the site OR (b) swapping in a different aggregator (Sovrn etc.). DO NOT restore '303199X1791240' without verifying the application status. */
   if (SKIMLINKS_ID && /^[0-9]+(X[0-9]+)?$/.test(SKIMLINKS_ID)) {
     var s = document.createElement('script');
     s.src = 'https://s.skimresources.com/js/' + SKIMLINKS_ID + '.skimlinks.js';
