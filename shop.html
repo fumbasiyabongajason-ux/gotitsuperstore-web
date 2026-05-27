@@ -815,13 +815,16 @@ footer {
    ALWAYS 2 columns, even on mobile — never collapses. */
 .mall-bottom-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 64px 1fr;  /* matches the walkway above so the U-shape closes cleanly */
   gap: 14px;
   margin-top: 14px;
-  padding-left: 64px;  /* nudges both bottom stores rightward, leaves space on left */
+}
+.mall-bottom-row > .mall-bottom-spacer {
+  /* invisible spacer that mirrors the centre walkway column */
 }
 @media (max-width: 768px) {
-  .mall-bottom-row { padding-left: 24px; }
+  .mall-bottom-row { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mall-bottom-row > .mall-bottom-spacer { display: none; }
 }
 /* Featured ribbon for the Local pick (Takealot) */
 .store-featured-ribbon {
@@ -949,15 +952,17 @@ img.store-icon {
   gap: 12px;
 }
 .mall-floor.has-centre .mall-floor-label {
-  /* Walkway label sits as a small pill between the welcome mat and the bottom arrow */
+  /* Walkway label sits as a tall pill in the centre walkway, text reads top-to-bottom */
   position: relative;
   top: auto; left: auto;
   transform: none;
+  writing-mode: vertical-rl;   /* text flows top-to-bottom (head tilt right to read) */
+  text-orientation: mixed;
   display: inline-block;
   align-self: center;
-  margin: 0 auto;
+  margin: 12px auto;
   background: rgba(255, 250, 235, 0.85);
-  padding: 5px 16px;
+  padding: 14px 5px;           /* tall pill, narrow width */
   border-radius: 999px;
   font-size: 10px;
   font-weight: 800;
@@ -1512,7 +1517,7 @@ img.store-icon {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
         </button>
       </div>
-      <div class="nav-search-hint">Tell us what you need — we'll search 13 trusted stores covering 100,000+ brands.</div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 50 trusted stores covering 200,000+ brands.</div>
     </div>
     <div class="nav-links">
       <a href="shop.html">Shop</a>
@@ -1875,6 +1880,7 @@ img.store-icon {
         <span class="store-tag">South Africa</span>
       </span>
     </a>
+    <div class="mall-bottom-spacer" aria-hidden="true"></div>
     <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin" class="store-card">
       <span class="store-featured-ribbon">Featured · Global pick</span>
       <span class="store-door">Open</span>
@@ -2083,7 +2089,7 @@ img.store-icon {
 
   // ============== INQUIRY RECEPTION ==============
   // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
-  // we surface all 13 stores so the visitor picks where to look. Every store gets
+  // we surface all 50 stores so the visitor picks where to look. Every store gets
   // a real search URL for the visitor's query.
   var INQUIRY_STORES = [
     { name: 'ASOS', icon: 'https://www.google.com/s2/favicons?domain=asos.com&sz=64', tag: 'Fashion (UK)', build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
