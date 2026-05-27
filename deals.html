@@ -1940,22 +1940,7 @@ footer {
   }
 })();
 
-/* ============== DEALS LAST-UPDATED FROM FEED FILE ============== */
-(function () {
-  var el = document.getElementById('deals-last-updated');
-  if (!el) return;
-  fetch('data/deals-feed.json', { cache: 'no-store' })
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (data && data.lastUpdated) {
-        var d = new Date(data.lastUpdated);
-        el.textContent = 'Last updated: ' + d.toLocaleString();
-      } else {
-        el.textContent = 'Last updated: pending first refresh';
-      }
-    })
-    .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
-})();
+/* DEALS LAST-UPDATED is now handled by the daily picker block below */
 </script>
 
 
