@@ -6,7 +6,7 @@
 
 <!-- ============== SECURITY HEADERS (META — installed 2026-05-27) ==============
      GitHub Pages doesn't allow custom HTTP headers, so we use http-equiv meta.
-     CSP whitelists only the externals we actually load (Skimlinks, Google Fonts,
+     CSP whitelists only the externals we actually load (Google Fonts,
      Google s2 favicons, Formspree, YouTube embed if used).
      Permissions-Policy denies every unused powerful API.
      ========================================================================== -->
@@ -16,7 +16,7 @@
      gstatic.com, ...). Pinning to a specific host list HAS broken the mall before.
      Tighten only after you've verified all 50 favicons render on shop.html AND
      in the Inquiry Reception modal on index/categories/deals. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://s.skimresources.com https://t.skimresources.com https://r.skimresources.com https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:;  /* WIDE BY DESIGN: merchant favicons may redirect through any Google CDN. Do not narrow without testing all 50 favicons. */ media-src 'self' blob: https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://formspree.io https://*.skimresources.com https://accounts.google.com; form-action 'self' https://formspree.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://accounts.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:;  /* WIDE BY DESIGN: merchant favicons may redirect through any Google CDN. Do not narrow without testing all 50 favicons. */ media-src 'self' blob: https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://formspree.io https://accounts.google.com; form-action 'self' https://formspree.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://accounts.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
 <meta http-equiv="Permissions-Policy" content="accelerometer=(), ambient-light-sensor=(), autoplay=(self), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -45,23 +45,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ============================================================ -->
-<!-- SKIMLINKS AFFILIATE WIRING — auto-monetizes outbound links.   -->
-<!-- To activate: paste your numeric publisher ID below as the      -->
-<!-- value of SKIMLINKS_ID (find it at skimlinks.com -> Settings).  -->
-<!-- The site works fine while the field is empty; it just won't    -->
-<!-- earn affiliate revenue until a real ID is wired in.            -->
+<!-- MONETIZATION SLOT (inert as of 2026-05-28)                    -->
+<!-- A prior affiliate aggregator was removed: it had rejected this  -->
+<!-- its loader was intercepting outbound clicks with a "Show      -->
+<!-- original content" interstitial, which also got the domain     -->
+<!-- flagged by Pinterest. Outbound links now go straight to the   -->
+<!-- retailer. To add monetization later, wire a direct affiliate  -->
+<!-- network or an aggregator here (e.g. Sovrn) — do NOT re-add     -->
+<!-- a click-rewriting redirect script.                            -->
 <!-- ============================================================ -->
-<script>
-(function () {
-  var SKIMLINKS_ID = ''; /* DISABLED 2026-05-28 — Skimlinks rejected gotitsuperstore.co.za twice. The loader was intercepting outbound clicks and showing a 'Show original content' interstitial instead of taking shoppers to the actual retailer. Re-enabling requires (a) Skimlinks accepting the site OR (b) swapping in a different aggregator (Sovrn etc.). DO NOT restore '303199X1791240' without verifying the application status. */
-  if (SKIMLINKS_ID && /^[0-9]+(X[0-9]+)?$/.test(SKIMLINKS_ID)) {
-    var s = document.createElement('script');
-    s.src = 'https://s.skimresources.com/js/' + SKIMLINKS_ID + '.skimlinks.js';
-    s.async = true; s.defer = true;
-    document.head.appendChild(s);
-  }
-})();
-</script>
 
 <style>
 :root {
@@ -1699,7 +1691,7 @@ html, body {
         <li>To improve our product curation and website experience.</li>
       </ul>
       <h3>3. Cookies and Local Storage</h3>
-      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. We use Skimlinks for affiliate-link auto-monetization; Skimlinks may set a session-only cookie when you click an outbound merchant link, used solely to attribute the click for commission purposes.</p>
+      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. Got It Superstore itself does not run any third-party click-tracking or redirect scripts — outbound links take you directly to the retailer's own website.</p>
       <h3>4. Your Rights</h3>
       <p>Under POPIA, GDPR, and applicable law, you have the right to:</p>
       <ul>
@@ -1710,7 +1702,7 @@ html, body {
         <li><strong>Object:</strong> Opt out of any future communications at any time.</li>
       </ul>
       <h3>5. Affiliate Disclosure</h3>
-      <p>Got It Superstore participates in affiliate marketing programs with ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, and other partner retailers, including the Skimlinks aggregator network. When you click an affiliate link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
+      <p>Got It Superstore participates in affiliate marketing programs with ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, and other partner retailers. When you click a link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
       <h3>6. Data Sharing</h3>
       <p>We do not sell, rent, or share your personal information with third parties, except:</p>
       <ul>
