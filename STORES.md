@@ -54,7 +54,7 @@
 | 19 | Revolve | revolve.com |
 | 20 | Uniqlo | uniqlo.com |
 | 21 | Mr Porter | mrporter.com |
-| 22 | MatchesFashion | matchesfashion.com |
+| 22 | Mytheresa | mytheresa.com |
 | 23 | H&M | hm.com |
 | 24 | Zara | zara.com |
 
@@ -69,13 +69,13 @@
 | 29 | Selfridges | selfridges.com |
 | 30 | Cult Beauty | cultbeauty.com |
 | 31 | Lookfantastic | lookfantastic.com |
-| 32 | Feelunique | feelunique.com |
+| 32 | Space NK | spacenk.com |
 | 33 | The Body Shop | thebodyshop.com |
 | 34 | iHerb | iherb.com |
 | 35 | MyProtein | myprotein.com |
 | 36 | Gymshark | gymshark.com |
 | 37 | On Running | on.com |
-| 38 | Wiggle | wiggle.com |
+| 38 | Columbia | columbia.com |
 | 39 | B&H Photo | bhphotovideo.com |
 | 40 | LEGO | lego.com |
 | 41 | Muji | muji.com |
@@ -141,6 +141,8 @@ The curated deals page now uses a **deterministic daily-rotation picker**:
 **Editing the deal pool**: add or remove objects in the `#deal-pool` JSON block in `deals.html`. Keep schema: `{ url, cat, icon, badgeCls, badge, retailer, name, price }`. Category slugs in `cat` must match the categories used in `categories.html` (electronics, home-kitchen, beauty, clothes, outdoor, medicine-health, travel, toys).
 
 ## Change log
+
+- **2026-05-28** — Replaced 3 stores that shut down/were absorbed in 2024 with live retailers across the mall and the Inquiry modal on all 4 pages: Wiggle->Columbia, MatchesFashion->Mytheresa, Feelunique->Space NK. Also: curated deals + the 6 search-404 modal stores (SSENSE, END., Selfridges, The Body Shop, Lush, Boots) now link to store HOMEPAGES, never deep search URLs, so they cannot 404. RULE: deal/modal links must use verified homepages or known-good search endpoints — never unverified deep search paths.
 
 - **2026-05-27 (this commit)** — Daily-rotation deal picker installed on `deals.html`. 61-deal pool across all 50 stores, deterministic per-day shuffle, true "refreshes daily" behaviour.
 - **2026-05-27 (3626f207)** — Fixed `categories.html` → `deals.html?cat=<slug>` click flow (was preventDefault'ing into nothing). Expanded deals from 12 to 20. Switched grid to auto-fit + 5-col desktop lock. Made meta descriptions unique across index/categories/deals.
