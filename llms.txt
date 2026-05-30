@@ -1,0 +1,14 @@
+# Got It Superstore
+
+> A curated South African online shopping mall that links shoppers to 50 trusted global retailers (Amazon, ASOS, Sephora, Apple, Booking.com, IKEA, Takealot and more) in one place. South African owned (Got It Superstore (Pty) Ltd, CIPC Reg. 2023/224652/07). No store nearby? Shop from home and have it delivered. Outbound links go directly to each retailer's own website at no extra cost to the shopper.
+
+## Key pages
+- [Shop the mall](https://gotitsuperstore.co.za/shop.html): walk 50 trusted stores in one place
+- [Daily deals](https://gotitsuperstore.co.za/deals.html): hand-picked deals, refreshed daily
+- [Shop by category](https://gotitsuperstore.co.za/categories.html): browse fashion, beauty, tech, home, sport, travel and more
+- [Editorials](https://gotitsuperstore.co.za/editorials.html): shopping guides and money-saving insights
+
+## What makes it useful
+- One organised walkway instead of 50 browser tabs
+- Helps shoppers far from physical shops buy from home (no transport, no fuel, no parking)
+- Fewer shopping trips means fewer cars on the road and more work for delivery businesses
