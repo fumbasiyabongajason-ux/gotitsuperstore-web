@@ -59,6 +59,13 @@
   .how h2{font-family:'Poppins';font-size:18px;color:var(--navy);margin-bottom:6px;}
   .how li{font-size:13.5px;margin-bottom:5px;} .how ul{padding-left:20px;}
   .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px;}
+  /* ===== results walkway — mall-style aisle layout; ONLY rendered when a country has results (added 2026-06-01) ===== */
+  .local-walkway{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);gap:12px;margin-top:4px;align-items:stretch;}
+  .lwk-aisle{display:flex;flex-direction:column;gap:12px;min-width:0;}
+  .lwk-aisle .store{min-width:0;}
+  .lwk-floor{position:relative;border-radius:12px;border:1px solid var(--border);background-color:#f0e4cc;background-image:linear-gradient(45deg,#ddc6a0 25%,transparent 25%,transparent 75%,#ddc6a0 75%),linear-gradient(45deg,#ddc6a0 25%,transparent 25%,transparent 75%,#ddc6a0 75%);background-size:30px 30px;background-position:0 0,15px 15px;box-shadow:inset 0 0 14px rgba(120,90,40,.18);}
+  .lwk-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);writing-mode:vertical-rl;font-family:'Poppins';font-weight:800;font-size:10.5px;letter-spacing:.2em;color:#8a6f3c;background:rgba(255,255,255,.72);padding:10px 4px;border-radius:999px;white-space:nowrap;}
+  @media(max-width:640px){.local-walkway{grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr);gap:8px;}.lwk-label{font-size:9px;letter-spacing:.1em;padding:7px 3px;}}
 </style>
 </head>
 <body>
@@ -122,6 +129,15 @@
       '<a class="visit" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Visit &rarr;</a>'+
       '</div></div>';
   }
+  function walkway(rows,label){
+    var L=[],R=[];
+    rows.forEach(function(r,i){ (i%2?R:L).push(card(r)); });
+    return '<div class="local-walkway">'+
+      '<div class="lwk-aisle">'+L.join('')+'</div>'+
+      '<div class="lwk-floor" aria-hidden="true"><span class="lwk-label">'+(label||'WALKWAY')+'</span></div>'+
+      '<div class="lwk-aisle">'+R.join('')+'</div>'+
+    '</div>';
+  }
   function fallback(city){
     var q = encodeURIComponent((city?city+' ':'')+'grocery and essentials delivery near me');
     var maps='https://www.google.com/maps/search/?api=1&query='+q;
@@ -139,7 +155,7 @@
     var info=DATA[c]; var where=(city?esc(city)+', ':'')+esc(c);
     var h='<div class="reshead">'+info.flag+' Delivering to '+where+'</div>'+
           '<div class="ressub">Real services that deliver locally. Tap any to shop direct — links go straight to the store.</div>';
-    h+='<div class="grid">'+info.deliver.map(card).join('')+'</div>';
+    h+=walkway(info.deliver,'WALKWAY');
     if(info.pickup && info.pickup.length){
       h+='<div class="seclabel"><span class="ic">📦</span> Prefer to collect? Drop-off &amp; pickup points near you</div>';
       h+='<div class="grid">'+info.pickup.map(card).join('')+'</div>';
