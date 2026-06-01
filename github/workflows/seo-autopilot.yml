@@ -1,0 +1,38 @@
+name: SEO Autopilot — IndexNow
+
+# Tells Bing / Yandex / Naver / Seznam the moment your content changes, so they
+# re-crawl fast. White-hat way to keep search traffic flowing while you're offline.
+# It only reads the repo (never commits), so it can't break the live site.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+  schedule:
+    - cron: '0 5 * * 1'      # Mondays 05:00 UTC (07:00 SAST) — light weekly re-ping
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Submit changed URLs to IndexNow
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: python3 .github/scripts/indexnow.py
