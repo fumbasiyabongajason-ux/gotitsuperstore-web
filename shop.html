@@ -910,15 +910,29 @@ img.store-icon {
   flex-direction: column;
   gap: 14px;
 }
-/* Straighten the walkway: reserve a constant 2-line name block so the left & right
-   aisles step level row-by-row instead of looking skew/staggered. Additive only —
-   no markup change, store-card count and U-shape lock untouched. (added 2026-06-01) */
-.mall-aisle .store-card { justify-content: center; }
+/* LOCK the walkway straight: give every aisle card identical content boxes so the left
+   & right columns step level row-for-row (no drift). Name = fixed 2-line box, tag =
+   fixed 1-line box, icon already fixed 56px → all 48 aisle cards are the exact same
+   height. Additive only — markup, store-card count and U-shape lock untouched.
+   (added 2026-06-01, tightened) */
 .mall-aisle .store-name {
-  min-height: 2.6em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 2.8em;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
+}
+.mall-aisle .store-tag {
+  width: 100%;
+  height: 1.4em;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 .mall-floor {
   position: relative;
