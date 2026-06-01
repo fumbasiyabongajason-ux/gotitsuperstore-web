@@ -910,6 +910,16 @@ img.store-icon {
   flex-direction: column;
   gap: 14px;
 }
+/* Straighten the walkway: reserve a constant 2-line name block so the left & right
+   aisles step level row-by-row instead of looking skew/staggered. Additive only —
+   no markup change, store-card count and U-shape lock untouched. (added 2026-06-01) */
+.mall-aisle .store-card { justify-content: center; }
+.mall-aisle .store-name {
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .mall-floor {
   position: relative;
   border-radius: 10px;
@@ -1520,6 +1530,7 @@ img.store-icon {
 .local-wing-banner .lw-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.01em;margin:0 0 3px;color:#fff;}
 .local-wing-banner .lw-title .hl{color:#F26B1A;}
 .local-wing-banner .lw-sub{font-size:13.5px;line-height:1.5;color:#c8d4e2;margin:0;}
+.local-wing-banner .lw-badge{display:inline-block;vertical-align:middle;background:rgba(0,168,107,.2);color:#bfeed2;border:1px solid rgba(0,168,107,.55);font-family:'Poppins',sans-serif;font-weight:700;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin:0 8px 3px 0;}
 .local-wing-banner .lw-cta{flex:none;background:#F26B1A;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;padding:12px 20px;border-radius:11px;white-space:nowrap;}
 @media (max-width:640px){.local-wing-banner{flex-direction:column;text-align:center;padding:20px;}
   .local-wing-banner .lw-text{flex-basis:auto;} .local-wing-banner .lw-cta{width:100%;text-align:center;}}
@@ -1641,7 +1652,7 @@ html, body {
 
 <!-- ============== FTC DISCLOSURE ============== -->
 <div class="ftc-bar">
-  <strong>Affiliate Disclosure:</strong> Got It Superstore earns commissions from qualifying purchases through affiliate links. This comes at no extra cost to you. <a href="#" onclick="openModal('privacy-modal'); return false;">Learn more</a>
+  <strong>Affiliate Disclosure:</strong> Got It Superstore earns commissions from qualifying purchases through affiliate links — at no extra cost to you. Our <strong>Local Shopping Centre</strong> (local-delivery directory) is a free <strong>promotional</strong> service: those listings are not affiliate links and we earn nothing from them. <a href="#" onclick="openModal('privacy-modal'); return false;">Learn more</a>
 </div>
 
 <!-- ============== NAV ============== -->
@@ -2048,7 +2059,7 @@ html, body {
   <a href="local.html" class="local-wing-banner" aria-label="Local Delivery Wing — find local stores that deliver to you">
     <span class="lw-ico" aria-hidden="true">🛵</span>
     <span class="lw-text">
-      <span class="lw-title">Local Delivery Wing <span class="hl">— stores that deliver to you</span></span>
+      <span class="lw-title"><span class="lw-badge">Promotional</span>Local Delivery Wing <span class="hl">— stores that deliver to you</span></span>
       <span class="lw-sub">No store nearby? Step up to the Concierge Desk and we'll point you to real local stores that deliver to your door — in South Africa and 26 more countries worldwide.</span>
     </span>
     <span class="lw-cta">Step into our Local Shopping Centre →</span>
