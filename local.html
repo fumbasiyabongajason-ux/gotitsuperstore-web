@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Delivery Wing — Stores That Deliver To You | Got It Superstore</title>
+<meta name="description" content="No store nearby? No problem. Tell our concierge your country and city, and we'll point you to the real local stores that deliver to your door or offer nearby pickup — in South Africa and around the world.">
+<link rel="canonical" href="https://gotitsuperstore.co.za/local.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0E2A47;--orange:#F26B1A;--green:#00A86B;--cream:#f6f4ee;--paper:#faf8f2;--border:#e6dfca;--ink:#1c2937;--muted:#5b6b80;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#fff;color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  a{color:var(--orange);text-decoration:none;font-weight:600;}
+  /* top nav (brand-matched, links back to the mall) */
+  .nav{background:var(--navy);color:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:50;}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Poppins';font-weight:800;font-size:17px;color:#fff;letter-spacing:-.01em;}
+  .brand .shield{width:22px;height:24px;display:inline-block;}
+  .brand b{color:#fff;} .brand span{color:var(--orange);}
+  .navlinks{display:flex;gap:4px;flex-wrap:wrap;}
+  .navlinks a{color:#c5d1de;font-size:13.5px;font-weight:600;padding:6px 10px;border-radius:8px;}
+  .navlinks a:hover{background:rgba(255,255,255,.08);color:#fff;}
+  .navlinks a.active{background:var(--orange);color:#fff;}
+  .wrap{max-width:920px;margin:0 auto;padding:22px 16px 90px;}
+  /* hero / desk */
+  .hero{background:linear-gradient(135deg,#0E2A47,#1a3d62);color:#fff;border-radius:18px;padding:26px 22px;margin-bottom:18px;text-align:center;}
+  .hero .desk{font-size:38px;}
+  .hero h1{font-family:'Poppins';font-weight:800;font-size:26px;margin:6px 0 4px;letter-spacing:-.01em;}
+  .hero h1 .a{color:var(--orange);}
+  .hero p{color:#c8d4e2;font-size:14.5px;max-width:560px;margin:6px auto 0;}
+  /* concierge form */
+  .desk-card{background:linear-gradient(135deg,#fff,var(--paper));border:1px solid var(--border);border-radius:16px;padding:18px;margin:-44px auto 18px;max-width:620px;box-shadow:0 8px 28px rgba(14,42,71,.10);position:relative;}
+  .desk-card h2{font-family:'Poppins';font-size:16px;color:var(--navy);margin-bottom:10px;text-align:center;}
+  .field{margin-bottom:10px;}
+  label{display:block;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  select,input{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:10px;font-family:'Inter';font-size:15px;color:var(--ink);background:#fff;min-height:46px;}
+  .go{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:13px;font-family:'Inter';font-size:15px;font-weight:800;cursor:pointer;width:100%;min-height:48px;margin-top:4px;}
+  .go:active{transform:translateY(1px);}
+  /* results */
+  #out{margin-top:6px;}
+  .reshead{font-family:'Poppins';font-size:18px;color:var(--navy);margin:18px 0 4px;}
+  .ressub{font-size:13px;color:var(--muted);margin-bottom:10px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+  .store{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#fff,var(--paper));border:1px solid var(--border);border-radius:14px;padding:13px 14px;box-shadow:0 2px 8px rgba(14,42,71,.04);}
+  .ini{flex:none;width:40px;height:40px;border-radius:11px;background:var(--navy);color:#fff;font-family:'Poppins';font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;}
+  .store:nth-child(3n+2) .ini{background:var(--orange);} .store:nth-child(3n+3) .ini{background:var(--green);}
+  .store .nm{font-weight:700;color:var(--navy);font-size:14.5px;line-height:1.2;}
+  .store .ds{font-size:12.5px;color:var(--muted);margin:2px 0 7px;}
+  .store .visit{display:inline-block;font-size:12.5px;font-weight:700;color:var(--orange);}
+  .seclabel{font-family:'Poppins';font-size:14px;color:var(--navy);margin:18px 0 6px;display:flex;align-items:center;gap:7px;}
+  .seclabel .ic{font-size:17px;}
+  .note{background:#f4f7fc;border-left:4px solid var(--navy);padding:12px 15px;border-radius:10px;margin:14px 0;font-size:13.5px;color:#26323f;}
+  .fallback{background:#fff8f0;border-left:4px solid var(--orange);padding:16px 17px;border-radius:12px;margin:10px 0;}
+  .fallback h3{font-family:'Poppins';font-size:16px;color:var(--navy);margin-bottom:6px;}
+  .fallback p{font-size:14px;margin-bottom:10px;}
+  .fbtn{display:inline-block;background:var(--navy);color:#fff;border-radius:10px;padding:11px 15px;font-weight:700;font-size:13.5px;margin:4px 6px 4px 0;}
+  .fbtn.orange{background:var(--orange);}
+  .how{margin-top:26px;padding-top:18px;border-top:2px solid var(--border);}
+  .how h2{font-family:'Poppins';font-size:18px;color:var(--navy);margin-bottom:6px;}
+  .how li{font-size:13.5px;margin-bottom:5px;} .how ul{padding-left:20px;}
+  .foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="nav">
+  <a class="brand" href="index.html">
+    <svg class="shield" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#13335a" stroke="#F26B1A" stroke-width="5"/><path d="M30 52 L44 66 L70 36" fill="none" stroke="#00A86B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>GOT IT</span> <b>SUPERSTORE</b>
+  </a>
+  <div class="navlinks">
+    <a href="index.html">Home</a>
+    <a href="shop.html">The Mall</a>
+    <a href="deals.html">Deals</a>
+    <a href="local.html" class="active">Local Delivery</a>
+  </div>
+</div>
+<div class="wrap">
+  <div class="hero">
+    <div class="desk">&#128717;&#65039;</div>
+    <h1>No store nearby? <span class="a">No problem.</span></h1>
+    <p>Step up to the Concierge Desk. Tell us where you are, and we'll point you to the real local stores that deliver to your door &mdash; or offer pickup close by.</p>
+  </div>
+  <div class="desk-card">
+    <h2>&#128205; Where are you shopping from?</h2>
+    <div class="field">
+      <label for="country">Your country</label>
+      <select id="country"><option value="">Choose your country&hellip;</option></select>
+    </div>
+    <div class="field">
+      <label for="city">Your city or town <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+      <input id="city" type="text" placeholder="e.g. Cape Town, London, Lagos&hellip;" autocomplete="off">
+    </div>
+    <button class="go" id="go">Find stores that deliver to me</button>
+  </div>
+  <div id="out"></div>
+  <div class="how">
+    <h2>How the Concierge Desk works</h2>
+    <ul>
+      <li><b>Every store here is real and verified</b> &mdash; no made-up shops, and we check the links work.</li>
+      <li>We show the trusted local-delivery services for your country. Big cities get the widest same-day coverage; smaller towns are best served by the pickup &amp; drop-off networks.</li>
+      <li><b>Don't see your country yet?</b> The concierge points you to a live "near me" search and to our <a href="shop.html">50-store mall</a>, which ships to most places worldwide.</li>
+      <li>We add more places as we verify them &mdash; <a href="index.html#contact">tell us your city</a> and we'll look into it.</li>
+    </ul>
+  </div>
+  <div class="foot">Got It Superstore &middot; one walkway, every way to get it delivered.</div>
+</div>
+<script id="local-data" type="application/json">{"South Africa": {"flag": "🇿🇦", "deliver": [["Checkers Sixty60", "Groceries, liquor & household in 60 min", "https://www.sixty60.co.za"], ["Woolworths Dash", "Woolworths food & essentials, fast", "https://www.woolworths.co.za/dash"], ["Pick n Pay asap!", "PnP groceries & household on-demand", "https://www.pnp.co.za/pnpstorefront/pnp/en/asap"], ["Mr D", "Meals + groceries to your door", "https://www.mrdfood.com"], ["Uber Eats", "Food, groceries & convenience", "https://www.ubereats.com/za"], ["Takealot", "Electronics & essentials; fast in metros, next-day nationwide", "https://www.takealot.com"]], "pickup": [["Pargo", "4,000+ pickup points incl. small towns", "https://www.pargo.co.za"], ["PUDO", "Self-service lockers to send & collect", "https://www.pudo.co.za"], ["PEP Paxi", "Send/collect at PEP stores — deep rural reach", "https://www.paxi.co.za"], ["Aramex Store-to-Door", "Courier + store collection", "https://www.aramex.co.za"], ["PostNet", "Nationwide courier & parcel collection", "https://www.postnet.co.za"]]}, "United Kingdom": {"flag": "🇬🇧", "deliver": [["Tesco", "Supermarket home delivery", "https://www.tesco.com"], ["Sainsbury's", "Supermarket home delivery", "https://www.sainsburys.co.uk"], ["Ocado", "Online-only grocery delivery", "https://www.ocado.com"], ["Deliveroo", "Restaurant + grocery courier", "https://www.deliveroo.co.uk"], ["InPost UK", "Parcel locker network", "https://inpost.co.uk"]], "pickup": []}, "United States": {"flag": "🇺🇸", "deliver": [["Instacart", "Same-day grocery delivery", "https://www.instacart.com"], ["Amazon Fresh", "Prime grocery delivery", "https://www.amazon.com/fresh"], ["DoorDash", "Restaurant + convenience delivery", "https://www.doordash.com"]], "pickup": []}, "Canada": {"flag": "🇨🇦", "deliver": [["Instacart Canada", "Same-day grocery delivery", "https://www.instacart.com"], ["Voilà by Sobeys", "Sobeys online grocery", "https://www.voila.ca"], ["Uber Eats Canada", "Food + grocery delivery", "https://www.ubereats.com/ca"]], "pickup": []}, "Australia": {"flag": "🇦🇺", "deliver": [["Woolworths", "Supermarket home delivery", "https://www.woolworths.com.au"], ["Coles", "Supermarket home delivery", "https://www.coles.com.au"], ["Uber Eats", "Food + grocery delivery", "https://www.ubereats.com/au"], ["DoorDash", "Food + grocery delivery", "https://www.doordash.com/en-AU"]], "pickup": []}, "Nigeria": {"flag": "🇳🇬", "deliver": [["Jumia Nigeria", "E-commerce + grocery delivery", "https://www.jumia.com.ng"], ["Chowdeck", "Food & grocery delivery app", "https://www.chowdeck.com"], ["Glovo Nigeria", "Multi-category courier", "https://glovoapp.com/ng"]], "pickup": []}, "Kenya": {"flag": "🇰🇪", "deliver": [["Jumia Kenya", "E-commerce + grocery delivery", "https://www.jumia.co.ke"], ["Glovo Kenya", "Multi-category courier", "https://glovoapp.com/ke"], ["Naivas Online", "Supermarket online ordering", "https://www.naivas.online"]], "pickup": []}, "India": {"flag": "🇮🇳", "deliver": [["BigBasket", "Scheduled grocery delivery", "https://www.bigbasket.com"], ["Blinkit", "10-minute grocery delivery", "https://www.blinkit.com"], ["Zepto", "10-minute grocery delivery", "https://www.zeptonow.com"], ["Swiggy Instamart", "Quick grocery via Swiggy", "https://www.swiggy.com/instamart"]], "pickup": []}, "United Arab Emirates": {"flag": "🇦🇪", "deliver": [["Carrefour UAE", "Hypermarket home delivery", "https://www.carrefouruae.com"], ["Talabat", "Food + grocery delivery", "https://www.talabat.com/uae"], ["Noon Minutes", "Ultra-fast grocery delivery", "https://www.noon.com"], ["InstaShop", "Multi-store express delivery", "https://www.instashop.ae"]], "pickup": []}}</script>
+<script>
+(function(){
+  var DATA = JSON.parse(document.getElementById('local-data').textContent);
+  var sel = document.getElementById('country');
+  var countries = Object.keys(DATA);
+  countries.forEach(function(c){
+    var o=document.createElement('option'); o.value=c; o.textContent=DATA[c].flag+'  '+c; sel.appendChild(o);
+  });
+  var other=document.createElement('option'); other.value='__other__'; other.textContent='🌍  My country isn’t listed'; sel.appendChild(other);
+  function esc(s){return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function card(row){
+    var name=row[0], what=row[1], url=row[2];
+    return '<div class="store"><div class="ini">'+esc(name.charAt(0))+'</div><div>'+
+      '<div class="nm">'+esc(name)+'</div><div class="ds">'+esc(what)+'</div>'+
+      '<a class="visit" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Visit &rarr;</a>'+
+      '</div></div>';
+  }
+  function fallback(city){
+    var q = encodeURIComponent((city?city+' ':'')+'grocery and essentials delivery near me');
+    var maps='https://www.google.com/maps/search/?api=1&query='+q;
+    return '<div class="fallback"><h3>We don’t have a verified local list for '+(city?esc(city):'your area')+' yet — but here’s the way in</h3>'+
+      '<p>Rather than guess, here are two real options that work anywhere:</p>'+
+      '<a class="fbtn orange" href="'+maps+'" target="_blank" rel="noopener noreferrer">🔍 Search delivery near you</a>'+
+      '<a class="fbtn" href="shop.html">🛒 Shop the 50-store mall (ships worldwide)</a>'+
+      '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)">Want your city added? <a href="index.html#contact">Tell us here</a> and we’ll verify local stores for it.</p></div>';
+  }
+  function render(){
+    var c=sel.value, city=document.getElementById('city').value.trim();
+    var out=document.getElementById('out');
+    if(!c){ out.innerHTML='<div class="note">Pick your country above and tap the button — the concierge will do the rest. 👆</div>'; return; }
+    if(c==='__other__'){ out.innerHTML=fallback(city); out.scrollIntoView({behavior:'smooth',block:'start'}); return; }
+    var info=DATA[c]; var where=(city?esc(city)+', ':'')+esc(c);
+    var h='<div class="reshead">'+info.flag+' Delivering to '+where+'</div>'+
+          '<div class="ressub">Real services that deliver locally. Tap any to shop direct — links go straight to the store.</div>';
+    h+='<div class="grid">'+info.deliver.map(card).join('')+'</div>';
+    if(info.pickup && info.pickup.length){
+      h+='<div class="seclabel"><span class="ic">📦</span> Prefer to collect? Drop-off &amp; pickup points near you</div>';
+      h+='<div class="grid">'+info.pickup.map(card).join('')+'</div>';
+    }
+    if(c==='South Africa'){
+      h+='<div class="note"><b>Coverage tip:</b> Joburg, Cape Town, Pretoria &amp; Durban get the widest same-day delivery. In smaller towns, the <b>pickup networks</b> above (Pargo &amp; Paxi especially) reach almost everywhere — your parcel waits at a nearby shop.</div>';
+    }
+    h+='<div class="note" style="border-left-color:var(--orange);background:#fff8f0">Don’t see a store you love? These are the ones we’ve <b>verified</b> — we add more as we confirm them. You can always <a href="shop.html">shop the global mall</a> too.</div>';
+    out.innerHTML=h; out.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  document.getElementById('go').addEventListener('click',render);
+  sel.addEventListener('change',function(){ if(sel.value) render(); });
+  document.getElementById('city').addEventListener('keydown',function(e){ if(e.key==='Enter') render(); });
+})();
+</script>
+</body>
+</html>
