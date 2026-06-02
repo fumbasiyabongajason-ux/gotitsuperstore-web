@@ -70,6 +70,13 @@
   .loc-line{text-align:center;font-family:'Poppins';font-weight:700;font-size:15.5px;color:var(--navy);padding:6px 4px;line-height:1.45;}
   .loc-line .city{color:var(--orange);}
   .store .favi{flex:none;width:40px;height:40px;border-radius:11px;object-fit:contain;background:#fff;border:1px solid var(--border);padding:5px;box-shadow:0 1px 4px rgba(14,42,71,.08);}
+  /* ===== Inquiry Reception — category button-switch; no results until tapped (added 2026-06-02) ===== */
+  .inq-q{font-family:'Poppins';font-weight:700;font-size:15px;color:var(--navy);text-align:center;margin:14px 0 10px;line-height:1.4;}
+  .cat-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px;}
+  .cat-btn{flex:1 1 140px;max-width:220px;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;font-family:'Poppins';font-weight:700;font-size:14px;color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;min-height:50px;transition:background .15s,border-color .15s,color .15s,transform .15s;}
+  .cat-btn:hover{border-color:var(--orange);}
+  .cat-btn:active{transform:translateY(1px);}
+  .cat-btn.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 16px rgba(242,107,26,.28);}
 </style>
 </head>
 <body>
@@ -150,31 +157,45 @@
       '<p>Got It Superstore’s Local Shopping Centre doesn’t cover your area at the moment, so there’s nothing local to show here yet. We verify and add new locations all the time — please check back soon.</p>'+
       '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)"><a href="index.html#contact">Tell us your city</a> and we’ll prioritise adding it.</p></div>';
   }
-  function renderCountry(c, city){
-    var info=DATA[c]; var where=(city?esc(city)+', ':'')+esc(c);
-    var h='<div class="reshead">'+info.flag+' Delivering to '+where+'</div>'+
-          '<div class="ressub">Real local services for your area — links go straight to each store or app.</div>';
-    h+=walkway(info.deliver,'WALKWAY');
-    if(info.restaurants && info.restaurants.length){
-      h+='<div class="seclabel"><span class="ic">🍽️</span> Restaurants — order a meal from local spots near you</div>';
-      h+=walkway(info.restaurants,'RESTAURANTS');
-    }
-    if(info.pickup && info.pickup.length){
-      h+='<div class="seclabel"><span class="ic">📦</span> Prefer to collect? Drop-off &amp; pickup points near you</div>';
-      h+='<div class="grid">'+info.pickup.map(card).join('')+'</div>';
-    }
-    if(c==='South Africa'){
+  function verifiedNote(){
+    return '<div class="note" style="border-left-color:var(--orange);background:#fff8f0">These are the local options we’ve <b>verified</b> for your area — we add more as we confirm them. The apps show exactly what’s near you once you open them.</div>';
+  }
+  // Renders ONE section into the results box (button-switch). Walkway for stores & restaurants, grid for pickup.
+  function showSection(key, sec, box){
+    var info=DATA[key]; var rows=info[sec]||[]; var h='';
+    if(sec==='deliver'){ h='<div class="seclabel"><span class="ic">🛒</span> Stores that deliver to you</div>'+walkway(rows,'WALKWAY'); }
+    else if(sec==='restaurants'){ h='<div class="seclabel"><span class="ic">🍽️</span> Restaurants — order a meal from local spots near you</div>'+walkway(rows,'RESTAURANTS'); }
+    else { h='<div class="seclabel"><span class="ic">📦</span> Prefer to collect? Drop-off &amp; pickup points near you</div><div class="grid">'+rows.map(card).join('')+'</div>'; }
+    if(sec==='pickup' && key==='South Africa'){
       h+='<div class="note"><b>Coverage tip:</b> Joburg, Cape Town, Pretoria &amp; Durban get the widest same-day delivery. In smaller towns, the <b>pickup networks</b> above (Pargo &amp; Paxi especially) reach almost everywhere — your parcel waits at a nearby shop.</div>';
     }
-    h+='<div class="note" style="border-left-color:var(--orange);background:#fff8f0">These are the local options we’ve <b>verified</b> for your area — we add more as we confirm them. The restaurant &amp; delivery apps show exactly what’s near you once you open them.</div>';
-    out.innerHTML=h;
+    h+=verifiedNote();
+    box.innerHTML=h;
+  }
+  // Inquiry Reception: show category buttons only — NO results until the visitor taps one.
+  function renderReception(key, city){
+    var info=DATA[key]; var label = city?esc(city):esc(key);
+    var btns='';
+    if(info.deliver&&info.deliver.length) btns+='<button type="button" class="cat-btn" data-sec="deliver">🛒 Stores</button>';
+    if(info.restaurants&&info.restaurants.length) btns+='<button type="button" class="cat-btn" data-sec="restaurants">🍽️ Restaurants</button>';
+    if(info.pickup&&info.pickup.length) btns+='<button type="button" class="cat-btn" data-sec="pickup">📦 Pickup</button>';
+    out.innerHTML='<div class="inq"><div class="inq-q">'+info.flag+' What are you looking for in '+label+'?</div>'+
+      '<div class="cat-btns">'+btns+'</div>'+
+      '<div id="localres"><div class="note">👆 Tap a category to see what serves '+label+'. Nothing loads until you choose.</div></div></div>';
+    var box=document.getElementById('localres');
+    var bs=out.querySelectorAll('.cat-btn');
+    bs.forEach(function(b){ b.addEventListener('click',function(){
+      bs.forEach(function(x){ x.classList.remove('active'); }); b.classList.add('active');
+      showSection(key, b.getAttribute('data-sec'), box);
+      box.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }); });
   }
   function setLoc(html, detected){ if(locLine){ locLine.innerHTML=html; locLine.className = detected ? 'loc-line detected' : 'loc-line'; } }
   function enableManual(){
     if(manual && manual.dataset.ready!=='1'){
       Object.keys(DATA).forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=DATA[c].flag+'  '+c; sel.appendChild(o); });
       var go=document.getElementById('go');
-      function pick(){ if(sel.value){ renderCountry(sel.value,''); out.scrollIntoView({behavior:'smooth',block:'start'}); } }
+      function pick(){ if(sel.value){ renderReception(sel.value,''); out.scrollIntoView({behavior:'smooth',block:'start'}); } }
       if(go) go.addEventListener('click',pick);
       sel.addEventListener('change',pick);
       manual.dataset.ready='1';
@@ -184,8 +205,8 @@
   function finish(name, code, city){
     var key = (code && BYCODE[(''+code).toUpperCase()]) ? BYCODE[(''+code).toUpperCase()] : (DATA[name]?name:null);
     if(key){
-      setLoc('📍 Showing local options for <span class="city">'+esc((city?city+', ':'')+key)+'</span>', true);
-      renderCountry(key, city||'');
+      setLoc('📍 You\'re in <span class="city">'+esc((city?city+', ':'')+key)+'</span>', true);
+      renderReception(key, city||'');
     } else {
       setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true);
       out.innerHTML=fallback(city||'');
