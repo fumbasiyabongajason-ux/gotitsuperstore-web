@@ -146,13 +146,9 @@
       '<div class="lwk-aisle">'+R.join('')+'</div></div>';
   }
   function fallback(city){
-    var q = encodeURIComponent((city?city+' ':'')+'grocery and food delivery near me');
-    var maps='https://www.google.com/maps/search/?api=1&query='+q;
-    return '<div class="fallback"><h3>We don’t have a verified local list for '+(city?esc(city):'your area')+' yet — but here’s the way in</h3>'+
-      '<p>Rather than guess, here are two real options that work anywhere:</p>'+
-      '<a class="fbtn orange" href="'+maps+'" target="_blank" rel="noopener noreferrer">🔍 Search delivery near you</a>'+
-      '<a class="fbtn" href="shop.html">🛒 Shop the 50-store mall (ships worldwide)</a>'+
-      '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)">Want your area added? <a href="index.html#contact">Tell us here</a> and we’ll verify local stores for it.</p></div>';
+    return '<div class="fallback"><h3>📍 Sorry — we’re not around '+(city?esc(city):'your location')+' yet</h3>'+
+      '<p>Got It Superstore’s Local Shopping Centre doesn’t cover your area at the moment, so there’s nothing local to show here yet. We verify and add new locations all the time — please check back soon.</p>'+
+      '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)"><a href="index.html#contact">Tell us your city</a> and we’ll prioritise adding it.</p></div>';
   }
   function renderCountry(c, city){
     var info=DATA[c]; var where=(city?esc(city)+', ':'')+esc(c);
@@ -161,7 +157,7 @@
     h+=walkway(info.deliver,'WALKWAY');
     if(info.restaurants && info.restaurants.length){
       h+='<div class="seclabel"><span class="ic">🍽️</span> Restaurants — order a meal from local spots near you</div>';
-      h+='<div class="grid">'+info.restaurants.map(card).join('')+'</div>';
+      h+=walkway(info.restaurants,'RESTAURANTS');
     }
     if(info.pickup && info.pickup.length){
       h+='<div class="seclabel"><span class="ic">📦</span> Prefer to collect? Drop-off &amp; pickup points near you</div>';
