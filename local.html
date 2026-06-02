@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Local Delivery Wing — Stores That Deliver To You | Got It Superstore</title>
-<meta name="description" content="No store nearby? No problem. Tell our concierge your country and city, and we'll point you to the real local stores that deliver to your door or offer nearby pickup — in South Africa and around the world.">
+<meta name="description" content="No store nearby? Tell the concierge any city — your own or a loved one's abroad — and we'll point you to the real local stores, restaurants and pickup points that deliver there. Order local delivery for family back home, from anywhere in the world.">
 <link rel="canonical" href="https://gotitsuperstore.co.za/local.html">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -80,6 +80,7 @@
   .inq-search{display:flex;gap:8px;margin-top:10px;}
   .inq-search input{flex:1 1 auto;min-width:0;}
   .inq-search .go{width:auto;min-width:66px;margin-top:0;padding:13px 18px;}
+  .inq-help{font-size:12.5px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.45;}
 </style>
 </head>
 <body>
@@ -99,15 +100,16 @@
   <div class="hero">
     <div class="desk">&#128717;&#65039;</div>
     <h1>No store nearby? <span class="a">No problem.</span></h1>
-    <p>Step up to the Concierge Desk. We'll detect where you are and show the real local stores, restaurants &amp; pickup points that deliver to you &mdash; only what actually serves your area.</p>
+    <p>Step up to the Concierge Desk and choose a city &mdash; your own, or a loved one's anywhere in the world. We'll show the real local stores, restaurants &amp; pickup points that deliver right to that door.</p>
   </div>
   <div class="desk-card">
-    <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip;</div>
+    <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip; <span style="font-weight:600;color:var(--muted)">or search any city below</span></div>
     <div class="inq-search">
-      <input id="locsearch" list="loclist" type="text" placeholder="Search your country or city&hellip;" autocomplete="off" aria-label="Search your country or city">
+      <input id="locsearch" list="loclist" type="text" placeholder="Search any country or city&hellip;" autocomplete="off" aria-label="Search any country or city">
       <datalist id="loclist"></datalist>
       <button class="go" id="locgo" type="button">Go</button>
     </div>
+    <p class="inq-help">Shopping for family or friends abroad? Search <b>their</b> city &mdash; you can send local delivery to them from anywhere. 🌍</p>
   </div>
   <div id="out"></div>
   <div class="how">
@@ -154,9 +156,9 @@
       '<div class="lwk-aisle">'+R.join('')+'</div></div>';
   }
   function fallback(city){
-    return '<div class="fallback"><h3>📍 Sorry — we’re not around '+(city?esc(city):'your location')+' yet</h3>'+
-      '<p>Got It Superstore’s Local Shopping Centre doesn’t cover your area at the moment, so there’s nothing local to show here yet. We verify and add new locations all the time — please check back soon.</p>'+
-      '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)"><a href="index.html#contact">Tell us your city</a> and we’ll prioritise adding it.</p></div>';
+    return '<div class="fallback"><h3>📍 Sorry — we don’t deliver in '+(city?esc(city):'that location')+' yet</h3>'+
+      '<p>Got It Superstore’s Local Shopping Centre doesn’t cover that location at the moment, so there’s nothing to show here yet. We verify and add new places all the time — please check back soon.</p>'+
+      '<p style="margin-top:10px;margin-bottom:0;font-size:13px;color:var(--muted)"><a href="index.html#contact">Tell us the city</a> and we’ll prioritise adding it.</p></div>';
   }
   function verifiedNote(){
     return '<div class="note" style="border-left-color:var(--orange);background:#fff8f0">These are the local options we’ve <b>verified</b> for your area — we add more as we confirm them. The apps show exactly what’s near you once you open them.</div>';
