@@ -208,9 +208,9 @@
       done=true; clearTimeout(t); finish(d.country, d.country_code, d.city);
     }).catch(function(){
       if(done) return;
-      fetch('https://ipapi.co/json/').then(function(r){return r.json();}).then(function(d){
+      fetch('https://get.geojs.io/v1/ip/geo.json').then(function(r){return r.json();}).then(function(d){
         if(done) return; done=true; clearTimeout(t);
-        if(d && (d.country_code||d.country_name)) finish(d.country_name, d.country_code, d.city); else fail();
+        if(d && (d.country_code||d.country)) finish(d.country, d.country_code, d.city); else fail();
       }).catch(function(){ if(!done){ done=true; clearTimeout(t); fail(); } });
     });
   }
