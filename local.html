@@ -174,7 +174,7 @@
   }
   // Inquiry Reception: show category buttons only — NO results until the visitor taps one.
   function renderReception(key, city){
-    var info=DATA[key]; var label = city?esc(city):esc(key);
+    var info=DATA[key]; var label = (city?esc(city)+', ':'')+esc(key);
     var btns='';
     if(info.deliver&&info.deliver.length) btns+='<button type="button" class="cat-btn" data-sec="deliver">🛒 Stores</button>';
     if(info.restaurants&&info.restaurants.length) btns+='<button type="button" class="cat-btn" data-sec="restaurants">🍽️ Restaurants</button>';
