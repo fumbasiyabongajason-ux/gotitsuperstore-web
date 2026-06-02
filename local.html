@@ -77,6 +77,9 @@
   .cat-btn:hover{border-color:var(--orange);}
   .cat-btn:active{transform:translateY(1px);}
   .cat-btn.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 16px rgba(242,107,26,.28);}
+  .inq-search{display:flex;gap:8px;margin-top:10px;}
+  .inq-search input{flex:1 1 auto;min-width:0;}
+  .inq-search .go{width:auto;min-width:66px;margin-top:0;padding:13px 18px;}
 </style>
 </head>
 <body>
@@ -99,15 +102,11 @@
     <p>Step up to the Concierge Desk. We'll detect where you are and show the real local stores, restaurants &amp; pickup points that deliver to you &mdash; only what actually serves your area.</p>
   </div>
   <div class="desk-card">
-    <div id="loc-line" class="loc-line">&#128205; Finding the stores that deliver to <b>you</b>&hellip;</div>
-    <div id="manual" class="manual-fallback" style="display:none">
-      <h2>&#128205; Where are you?</h2>
-      <div class="field">
-        <label for="country">Your country</label>
-        <select id="country"><option value="">Choose your country&hellip;</option></select>
-      </div>
-      <button class="go" id="go">Show local stores</button>
-      <p style="font-size:12.5px;color:var(--muted);margin-top:8px;text-align:center">We couldn't auto-detect your location &mdash; pick your country once and we'll show what delivers there.</p>
+    <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip;</div>
+    <div class="inq-search">
+      <input id="locsearch" list="loclist" type="text" placeholder="Search your country or city&hellip;" autocomplete="off" aria-label="Search your country or city">
+      <datalist id="loclist"></datalist>
+      <button class="go" id="locgo" type="button">Go</button>
     </div>
   </div>
   <div id="out"></div>
@@ -128,8 +127,10 @@
   var DATA = JSON.parse(document.getElementById('local-data').textContent);
   var out = document.getElementById('out');
   var locLine = document.getElementById('loc-line');
-  var manual = document.getElementById('manual');
-  var sel = document.getElementById('country');
+  var search = document.getElementById('locsearch');
+  var dl = document.getElementById('loclist');
+  // major cities per covered country — populate the search bar (store data is national; city is shown for context)
+  var CITIES = {"South Africa":["Johannesburg","Cape Town","Durban","Pretoria","Gqeberha","Bloemfontein"],"United Kingdom":["London","Manchester","Birmingham","Glasgow","Leeds","Liverpool"],"United States":["New York","Los Angeles","Chicago","Houston","Miami","San Francisco"],"Canada":["Toronto","Vancouver","Montreal","Calgary","Ottawa"],"Australia":["Sydney","Melbourne","Brisbane","Perth","Adelaide"],"Nigeria":["Lagos","Abuja","Port Harcourt","Ibadan","Kano"],"Kenya":["Nairobi","Mombasa","Kisumu","Nakuru"],"India":["Mumbai","Delhi","Bengaluru","Hyderabad","Chennai","Kolkata"],"United Arab Emirates":["Dubai","Abu Dhabi","Sharjah","Ajman"],"Germany":["Berlin","Munich","Hamburg","Frankfurt","Cologne"],"France":["Paris","Marseille","Lyon","Toulouse","Nice"],"Netherlands":["Amsterdam","Rotterdam","The Hague","Utrecht","Eindhoven"],"Spain":["Madrid","Barcelona","Valencia","Seville","Bilbao"],"Italy":["Rome","Milan","Naples","Turin","Florence"],"Ireland":["Dublin","Cork","Galway","Limerick"],"New Zealand":["Auckland","Wellington","Christchurch","Hamilton"],"Singapore":["Singapore"],"Philippines":["Manila","Quezon City","Cebu City","Davao City"],"Indonesia":["Jakarta","Surabaya","Bandung","Medan","Denpasar"],"Malaysia":["Kuala Lumpur","George Town","Johor Bahru","Ipoh"],"Japan":["Tokyo","Osaka","Yokohama","Nagoya","Kyoto","Fukuoka"],"Saudi Arabia":["Riyadh","Jeddah","Mecca","Medina","Dammam"],"Brazil":["São Paulo","Rio de Janeiro","Brasília","Salvador","Fortaleza"],"Mexico":["Mexico City","Guadalajara","Monterrey","Puebla","Cancún"],"Egypt":["Cairo","Alexandria","Giza","Sharm El Sheikh"],"Ghana":["Accra","Kumasi","Tamale","Takoradi"],"Pakistan":["Karachi","Lahore","Islamabad","Rawalpindi","Faisalabad"]};
   // ISO country code -> our DATA key, so we can lock results to the visitor's detected location
   var BYCODE = {ZA:'South Africa',GB:'United Kingdom',US:'United States',CA:'Canada',AU:'Australia',NG:'Nigeria',KE:'Kenya',IN:'India',AE:'United Arab Emirates',DE:'Germany',FR:'France',NL:'Netherlands',ES:'Spain',IT:'Italy',IE:'Ireland',NZ:'New Zealand',SG:'Singapore',PH:'Philippines',ID:'Indonesia',MY:'Malaysia',JP:'Japan',SA:'Saudi Arabia',BR:'Brazil',MX:'Mexico',EG:'Egypt',GH:'Ghana',PK:'Pakistan'};
   function esc(s){return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -191,32 +192,45 @@
     }); });
   }
   function setLoc(html, detected){ if(locLine){ locLine.innerHTML=html; locLine.className = detected ? 'loc-line detected' : 'loc-line'; } }
-  function enableManual(){
-    if(manual && manual.dataset.ready!=='1'){
-      Object.keys(DATA).forEach(function(c){ var o=document.createElement('option'); o.value=c; o.textContent=DATA[c].flag+'  '+c; sel.appendChild(o); });
-      var go=document.getElementById('go');
-      function pick(){ if(sel.value){ renderReception(sel.value,''); out.scrollIntoView({behavior:'smooth',block:'start'}); } }
-      if(go) go.addEventListener('click',pick);
-      sel.addEventListener('change',pick);
-      manual.dataset.ready='1';
-    }
-    if(manual) manual.style.display='block';
+  function buildList(){
+    if(!dl) return; var html='';
+    Object.keys(DATA).forEach(function(c){
+      html+='<option value="'+esc(c)+'"></option>';
+      (CITIES[c]||[]).forEach(function(ci){ html+='<option value="'+esc(ci+', '+c)+'"></option>'; });
+    });
+    dl.innerHTML=html;
+  }
+  function lockTo(country, city){
+    setLoc('📍 <span class="city">'+esc((city?city+', ':'')+country)+'</span>', true);
+    renderReception(country, city||'');
+  }
+  function resolveAndShow(q){
+    q=(q||'').trim(); if(!q) return;
+    if(DATA[q]){ lockTo(q,''); return; }
+    var parts=q.split(',');
+    if(parts.length>=2){ var ctry=parts[parts.length-1].trim(), cty=parts.slice(0,-1).join(',').trim(); if(DATA[ctry]){ lockTo(ctry,cty); return; } }
+    var lc=q.toLowerCase(), found=null, foundCity=null;
+    Object.keys(CITIES).forEach(function(c){ CITIES[c].forEach(function(ci){ if(ci.toLowerCase()===lc){ found=c; foundCity=ci; } }); });
+    if(found){ lockTo(found, foundCity); return; }
+    var starts=Object.keys(DATA).filter(function(c){ return c.toLowerCase().indexOf(lc)===0; });
+    if(starts.length===1){ lockTo(starts[0],''); return; }
+    setLoc('📍 <span class="city">'+esc(q)+'</span>', true); out.innerHTML=fallback(q);
   }
   function finish(name, code, city){
     var key = (code && BYCODE[(''+code).toUpperCase()]) ? BYCODE[(''+code).toUpperCase()] : (DATA[name]?name:null);
-    if(key){
-      setLoc('📍 You\'re in <span class="city">'+esc((city?city+', ':'')+key)+'</span>', true);
-      renderReception(key, city||'');
-    } else {
-      setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true);
-      out.innerHTML=fallback(city||'');
-    }
+    if(key){ if(search) search.value=(city?city+', ':'')+key; lockTo(key, city||''); }
+    else { setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true); out.innerHTML=fallback(city||''); }
   }
   function fail(){
-    setLoc('📍 Couldn’t pin your location automatically.', false);
-    enableManual();
-    out.innerHTML='<div class="note">Pick your country below and we’ll show the local stores, restaurants &amp; pickup points that serve it. 👇</div>';
+    setLoc('📍 Couldn’t pin your location — search your country or city above.', false);
+    out.innerHTML='<div class="note">Type your country or city in the search bar above to see the local stores, restaurants &amp; pickup points that serve it. 👆</div>';
   }
+  buildList();
+  if(search){
+    search.addEventListener('change',function(){ resolveAndShow(search.value); });
+    search.addEventListener('keydown',function(e){ if(e.key==='Enter'){ resolveAndShow(search.value); } });
+  }
+  (function(){ var g=document.getElementById('locgo'); if(g) g.addEventListener('click',function(){ resolveAndShow(search?search.value:''); }); })();
   function detect(){
     var done=false;
     var t=setTimeout(function(){ if(!done){ done=true; fail(); } }, 9000);
