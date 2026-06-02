@@ -227,6 +227,7 @@
   }
   buildList();
   if(search){
+    search.addEventListener('focus',function(){ try{ this.select(); }catch(e){} });
     search.addEventListener('change',function(){ resolveAndShow(search.value); });
     search.addEventListener('keydown',function(e){ if(e.key==='Enter'){ resolveAndShow(search.value); } });
   }
