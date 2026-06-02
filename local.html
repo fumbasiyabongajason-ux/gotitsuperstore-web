@@ -220,7 +220,7 @@
   }
   function finish(name, code, city){
     var key = (code && BYCODE[(''+code).toUpperCase()]) ? BYCODE[(''+code).toUpperCase()] : (DATA[name]?name:null);
-    if(key){ if(search) search.value=(city?city+', ':'')+key; lockTo(key, city||''); }
+    if(key){ lockTo(key, city||''); }
     else { setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true); out.innerHTML=fallback(city||''); }
   }
   function fail(){
