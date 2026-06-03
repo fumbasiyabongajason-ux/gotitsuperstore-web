@@ -142,6 +142,8 @@
   var dlCity=document.getElementById('dl-city');
   // State/Province suggestions — full for the home market; other countries pre-fill + typeable (extensible)
   var STATES={"South Africa":["Eastern Cape","Free State","Gauteng","KwaZulu-Natal","Limpopo","Mpumalanga","North West","Northern Cape","Western Cape"]};
+  // brands whose sites bot-block their favicon (no web-fetchable logo) -> render a clean letter badge instead of a globe. Add hosts here if any other store shows a blank/globe.
+  var NOLOGO={"www.sixty60.co.za":1,"www.woolworths.co.za":1};
   // major cities per covered country — populate the search bar (store data is national; city is shown for context)
   var CITIES = {"South Africa":["Johannesburg","Cape Town","Durban","Pretoria","Gqeberha","Bloemfontein"],"United Kingdom":["London","Manchester","Birmingham","Glasgow","Leeds","Liverpool"],"United States":["New York","Los Angeles","Chicago","Houston","Miami","San Francisco"],"Canada":["Toronto","Vancouver","Montreal","Calgary","Ottawa"],"Australia":["Sydney","Melbourne","Brisbane","Perth","Adelaide"],"Nigeria":["Lagos","Abuja","Port Harcourt","Ibadan","Kano"],"Kenya":["Nairobi","Mombasa","Kisumu","Nakuru"],"India":["Mumbai","Delhi","Bengaluru","Hyderabad","Chennai","Kolkata"],"United Arab Emirates":["Dubai","Abu Dhabi","Sharjah","Ajman"],"Germany":["Berlin","Munich","Hamburg","Frankfurt","Cologne"],"France":["Paris","Marseille","Lyon","Toulouse","Nice"],"Netherlands":["Amsterdam","Rotterdam","The Hague","Utrecht","Eindhoven"],"Spain":["Madrid","Barcelona","Valencia","Seville","Bilbao"],"Italy":["Rome","Milan","Naples","Turin","Florence"],"Ireland":["Dublin","Cork","Galway","Limerick"],"New Zealand":["Auckland","Wellington","Christchurch","Hamilton"],"Singapore":["Singapore"],"Philippines":["Manila","Quezon City","Cebu City","Davao City"],"Indonesia":["Jakarta","Surabaya","Bandung","Medan","Denpasar"],"Malaysia":["Kuala Lumpur","George Town","Johor Bahru","Ipoh"],"Japan":["Tokyo","Osaka","Yokohama","Nagoya","Kyoto","Fukuoka"],"Saudi Arabia":["Riyadh","Jeddah","Mecca","Medina","Dammam"],"Brazil":["São Paulo","Rio de Janeiro","Brasília","Salvador","Fortaleza"],"Mexico":["Mexico City","Guadalajara","Monterrey","Puebla","Cancún"],"Egypt":["Cairo","Alexandria","Giza","Sharm El Sheikh"],"Ghana":["Accra","Kumasi","Tamale","Takoradi"],"Pakistan":["Karachi","Lahore","Islamabad","Rawalpindi","Faisalabad"]};
   // ISO country code -> our DATA key, so we can lock results to the visitor's detected location
@@ -151,13 +153,16 @@
   function card(row){
     var name=row[0], what=row[1], url=row[2];
     var d=host(url);
-    // real logo via Google faviconV2 (size=128); its "not-found" default is a tiny 16px icon, which we
-    // detect by naturalWidth and replace with a clean branded letter badge. Single reliable source.
-    var s1='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=https://'+d+'&size=128';
     var L=esc((name.charAt(0)||'•').toUpperCase());
-    return '<div class="store">'+
-      '<img class="favi" data-srcs="'+esc(s1)+'" data-i="0" src="'+esc(s1)+'" alt="" width="40" height="40" referrerpolicy="no-referrer">'+
-      '<span class="ini" style="display:none">'+L+'</span>'+
+    // Real logo via Google faviconV2 (fallback_opts makes it reliably return the real icon for stores that have one).
+    // NOLOGO brands bot-block their favicon -> show the clean letter badge directly. The naturalWidth<24 check (below)
+    // also demotes any tiny/default icon to the letter, so a card never shows a blank or a globe.
+    var s1='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+d+'&size=128';
+    var img = NOLOGO[d]
+      ? '<img class="favi" alt="" width="40" height="40" style="display:none">'
+      : '<img class="favi" data-i="0" src="'+esc(s1)+'" alt="" width="40" height="40" referrerpolicy="no-referrer">';
+    return '<div class="store">'+img+
+      '<span class="ini" style="display:'+(NOLOGO[d]?'flex':'none')+'">'+L+'</span>'+
       '<div><div class="nm">'+esc(name)+'</div><div class="ds">'+esc(what)+'</div>'+
       '<a class="visit" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Visit &rarr;</a></div>'+
       '</div>';
