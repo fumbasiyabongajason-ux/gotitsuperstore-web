@@ -80,8 +80,8 @@
   .loc-fields{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
   .lf{display:flex;flex-direction:column;gap:4px;}
   .lf-lab{font-size:12px;font-weight:700;color:var(--navy);}
-  .loc-fields input{width:100%;min-height:54px;font-size:16px;border:1.5px solid var(--border);border-radius:12px;padding:14px;background:#fff;}
-  .loc-fields input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(242,107,26,.15);}
+  .loc-fields input,.loc-fields select{width:100%;min-height:54px;font-size:16px;border:1.5px solid var(--border);border-radius:12px;padding:14px;background:#fff;color:var(--ink);}
+  .loc-fields input:focus,.loc-fields select:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(242,107,26,.15);}
   .big-go{width:100%;min-height:56px;font-size:16.5px;margin-top:12px;}
   .inq-help{font-size:12.5px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.45;}
 </style>
@@ -108,11 +108,10 @@
   <div class="desk-card">
     <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip;</div>
     <div class="loc-fields">
-      <label class="lf"><span class="lf-lab">Country</span><input id="f-country" list="dl-country" type="text" placeholder="Country" autocomplete="off"></label>
+      <label class="lf"><span class="lf-lab">Country <span style="font-weight:500;color:var(--muted)">(tap to see where we deliver)</span></span><select id="f-country"><option value="">Select a country&hellip;</option></select></label>
       <label class="lf"><span class="lf-lab">State / Province</span><input id="f-state" list="dl-state" type="text" placeholder="State / Province" autocomplete="off"></label>
       <label class="lf"><span class="lf-lab">City</span><input id="f-city" list="dl-city" type="text" placeholder="City" autocomplete="off"></label>
     </div>
-    <datalist id="dl-country"></datalist>
     <datalist id="dl-state"></datalist>
     <datalist id="dl-city"></datalist>
     <button class="go big-go" id="locgo" type="button">Show local options</button>
@@ -139,7 +138,6 @@
   var fCountry=document.getElementById('f-country');
   var fState=document.getElementById('f-state');
   var fCity=document.getElementById('f-city');
-  var dlCountry=document.getElementById('dl-country');
   var dlState=document.getElementById('dl-state');
   var dlCity=document.getElementById('dl-city');
   // State/Province suggestions — full for the home market; other countries pre-fill + typeable (extensible)
@@ -212,8 +210,11 @@
     renderReception(country, city||'');
   }
   function fillDL(dlEl, arr){ if(dlEl) dlEl.innerHTML=(arr||[]).map(function(v){return '<option value="'+esc(v)+'"></option>';}).join(''); }
+  function buildCountrySelect(){
+    if(!fCountry) return;
+    fCountry.innerHTML='<option value="">Select a country…</option>'+Object.keys(DATA).map(function(c){return '<option value="'+esc(c)+'">'+DATA[c].flag+' '+esc(c)+'</option>';}).join('');
+  }
   function refreshLists(country){
-    fillDL(dlCountry, Object.keys(DATA));
     fillDL(dlState, (country&&STATES[country])?STATES[country]:[]);
     fillDL(dlCity, (country&&CITIES[country])?CITIES[country]:[]);
   }
@@ -237,7 +238,7 @@
   function finish(name, code, city, region){
     var key = (code && BYCODE[(''+code).toUpperCase()]) ? BYCODE[(''+code).toUpperCase()] : (DATA[name]?name:null);
     refreshLists(key||'');
-    if(fCountry) fCountry.value=key||name||'';
+    if(fCountry) fCountry.value=key||'';
     if(fState) fState.value=region||'';
     if(fCity) fCity.value=city||'';
     if(key){ lockTo(key, [city,region].filter(Boolean).join(', ')); }
@@ -248,7 +249,7 @@
     setLoc('📍 Couldn’t pin your location — set your country, state &amp; city below.', false);
     out.innerHTML='<div class="note">Set your country, state &amp; city above to see the local stores, restaurants &amp; pickup points that serve it. 👆</div>';
   }
-  refreshLists('');
+  buildCountrySelect(); refreshLists('');
   (function(){
     var g=document.getElementById('locgo'); if(g) g.addEventListener('click', resolveFromFields);
     [fCountry,fState,fCity].forEach(function(el){ if(el){ el.addEventListener('focus',function(){ try{this.select();}catch(e){} }); el.addEventListener('keydown',function(e){ if(e.key==='Enter') resolveFromFields(); }); } });
