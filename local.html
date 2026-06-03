@@ -77,9 +77,12 @@
   .cat-btn:hover{border-color:var(--orange);}
   .cat-btn:active{transform:translateY(1px);}
   .cat-btn.active{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 16px rgba(242,107,26,.28);}
-  .inq-search{display:flex;gap:8px;margin-top:10px;}
-  .inq-search input{flex:1 1 auto;min-width:0;}
-  .inq-search .go{width:auto;min-width:66px;margin-top:0;padding:13px 18px;}
+  .loc-fields{display:flex;flex-direction:column;gap:10px;margin-top:10px;}
+  .lf{display:flex;flex-direction:column;gap:4px;}
+  .lf-lab{font-size:12px;font-weight:700;color:var(--navy);}
+  .loc-fields input{width:100%;min-height:54px;font-size:16px;border:1.5px solid var(--border);border-radius:12px;padding:14px;background:#fff;}
+  .loc-fields input:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(242,107,26,.15);}
+  .big-go{width:100%;min-height:56px;font-size:16.5px;margin-top:12px;}
   .inq-help{font-size:12.5px;color:var(--muted);text-align:center;margin-top:9px;line-height:1.45;}
 </style>
 </head>
@@ -103,13 +106,17 @@
     <p>Step up to the Concierge Desk and choose a city &mdash; your own, or a loved one's anywhere in the world. We'll show the real local stores, restaurants &amp; pickup points that deliver right to that door.</p>
   </div>
   <div class="desk-card">
-    <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip; <span style="font-weight:600;color:var(--muted)">or search any city below</span></div>
-    <div class="inq-search">
-      <input id="locsearch" list="loclist" type="text" placeholder="Search any country or city&hellip;" autocomplete="off" aria-label="Search any country or city">
-      <datalist id="loclist"></datalist>
-      <button class="go" id="locgo" type="button">Go</button>
+    <div id="loc-line" class="loc-line">&#128205; Finding your location&hellip;</div>
+    <div class="loc-fields">
+      <label class="lf"><span class="lf-lab">Country</span><input id="f-country" list="dl-country" type="text" placeholder="Country" autocomplete="off"></label>
+      <label class="lf"><span class="lf-lab">State / Province</span><input id="f-state" list="dl-state" type="text" placeholder="State / Province" autocomplete="off"></label>
+      <label class="lf"><span class="lf-lab">City</span><input id="f-city" list="dl-city" type="text" placeholder="City" autocomplete="off"></label>
     </div>
-    <p class="inq-help">Shopping for family or friends abroad? Search <b>their</b> city &mdash; you can send local delivery to them from anywhere. 🌍</p>
+    <datalist id="dl-country"></datalist>
+    <datalist id="dl-state"></datalist>
+    <datalist id="dl-city"></datalist>
+    <button class="go big-go" id="locgo" type="button">Show local options</button>
+    <p class="inq-help">Shopping for family or friends abroad? Set <b>their</b> country &amp; city &mdash; you can send local delivery to them from anywhere. 🌍</p>
   </div>
   <div id="out"></div>
   <div class="how">
@@ -129,8 +136,14 @@
   var DATA = JSON.parse(document.getElementById('local-data').textContent);
   var out = document.getElementById('out');
   var locLine = document.getElementById('loc-line');
-  var search = document.getElementById('locsearch');
-  var dl = document.getElementById('loclist');
+  var fCountry=document.getElementById('f-country');
+  var fState=document.getElementById('f-state');
+  var fCity=document.getElementById('f-city');
+  var dlCountry=document.getElementById('dl-country');
+  var dlState=document.getElementById('dl-state');
+  var dlCity=document.getElementById('dl-city');
+  // State/Province suggestions — full for the home market; other countries pre-fill + typeable (extensible)
+  var STATES={"South Africa":["Eastern Cape","Free State","Gauteng","KwaZulu-Natal","Limpopo","Mpumalanga","North West","Northern Cape","Western Cape"]};
   // major cities per covered country — populate the search bar (store data is national; city is shown for context)
   var CITIES = {"South Africa":["Johannesburg","Cape Town","Durban","Pretoria","Gqeberha","Bloemfontein"],"United Kingdom":["London","Manchester","Birmingham","Glasgow","Leeds","Liverpool"],"United States":["New York","Los Angeles","Chicago","Houston","Miami","San Francisco"],"Canada":["Toronto","Vancouver","Montreal","Calgary","Ottawa"],"Australia":["Sydney","Melbourne","Brisbane","Perth","Adelaide"],"Nigeria":["Lagos","Abuja","Port Harcourt","Ibadan","Kano"],"Kenya":["Nairobi","Mombasa","Kisumu","Nakuru"],"India":["Mumbai","Delhi","Bengaluru","Hyderabad","Chennai","Kolkata"],"United Arab Emirates":["Dubai","Abu Dhabi","Sharjah","Ajman"],"Germany":["Berlin","Munich","Hamburg","Frankfurt","Cologne"],"France":["Paris","Marseille","Lyon","Toulouse","Nice"],"Netherlands":["Amsterdam","Rotterdam","The Hague","Utrecht","Eindhoven"],"Spain":["Madrid","Barcelona","Valencia","Seville","Bilbao"],"Italy":["Rome","Milan","Naples","Turin","Florence"],"Ireland":["Dublin","Cork","Galway","Limerick"],"New Zealand":["Auckland","Wellington","Christchurch","Hamilton"],"Singapore":["Singapore"],"Philippines":["Manila","Quezon City","Cebu City","Davao City"],"Indonesia":["Jakarta","Surabaya","Bandung","Medan","Denpasar"],"Malaysia":["Kuala Lumpur","George Town","Johor Bahru","Ipoh"],"Japan":["Tokyo","Osaka","Yokohama","Nagoya","Kyoto","Fukuoka"],"Saudi Arabia":["Riyadh","Jeddah","Mecca","Medina","Dammam"],"Brazil":["São Paulo","Rio de Janeiro","Brasília","Salvador","Fortaleza"],"Mexico":["Mexico City","Guadalajara","Monterrey","Puebla","Cancún"],"Egypt":["Cairo","Alexandria","Giza","Sharm El Sheikh"],"Ghana":["Accra","Kumasi","Tamale","Takoradi"],"Pakistan":["Karachi","Lahore","Islamabad","Rawalpindi","Faisalabad"]};
   // ISO country code -> our DATA key, so we can lock results to the visitor's detected location
@@ -194,57 +207,64 @@
     }); });
   }
   function setLoc(html, detected){ if(locLine){ locLine.innerHTML=html; locLine.className = detected ? 'loc-line detected' : 'loc-line'; } }
-  function buildList(){
-    if(!dl) return; var html='';
-    Object.keys(DATA).forEach(function(c){
-      html+='<option value="'+esc(c)+'"></option>';
-      (CITIES[c]||[]).forEach(function(ci){ html+='<option value="'+esc(ci+', '+c)+'"></option>'; });
-    });
-    dl.innerHTML=html;
-  }
   function lockTo(country, city){
     setLoc('📍 <span class="city">'+esc((city?city+', ':'')+country)+'</span>', true);
     renderReception(country, city||'');
   }
-  function resolveAndShow(q){
-    q=(q||'').trim(); if(!q) return;
-    if(DATA[q]){ lockTo(q,''); return; }
-    var parts=q.split(',');
-    if(parts.length>=2){ var ctry=parts[parts.length-1].trim(), cty=parts.slice(0,-1).join(',').trim(); if(DATA[ctry]){ lockTo(ctry,cty); return; } }
-    var lc=q.toLowerCase(), found=null, foundCity=null;
-    Object.keys(CITIES).forEach(function(c){ CITIES[c].forEach(function(ci){ if(ci.toLowerCase()===lc){ found=c; foundCity=ci; } }); });
-    if(found){ lockTo(found, foundCity); return; }
-    var starts=Object.keys(DATA).filter(function(c){ return c.toLowerCase().indexOf(lc)===0; });
-    if(starts.length===1){ lockTo(starts[0],''); return; }
-    setLoc('📍 <span class="city">'+esc(q)+'</span>', true); out.innerHTML=fallback(q);
+  function fillDL(dlEl, arr){ if(dlEl) dlEl.innerHTML=(arr||[]).map(function(v){return '<option value="'+esc(v)+'"></option>';}).join(''); }
+  function refreshLists(country){
+    fillDL(dlCountry, Object.keys(DATA));
+    fillDL(dlState, (country&&STATES[country])?STATES[country]:[]);
+    fillDL(dlCity, (country&&CITIES[country])?CITIES[country]:[]);
   }
-  function finish(name, code, city){
+  function matchCountry(q){
+    q=(q||'').trim(); if(!q) return null;
+    if(DATA[q]) return q;
+    var lc=q.toLowerCase();
+    var ex=Object.keys(DATA).filter(function(c){return c.toLowerCase()===lc;}); if(ex.length) return ex[0];
+    var alias={'usa':'United States','us':'United States','uk':'United Kingdom','britain':'United Kingdom','england':'United Kingdom','uae':'United Arab Emirates'};
+    if(alias[lc]) return alias[lc];
+    var st=Object.keys(DATA).filter(function(c){return c.toLowerCase().indexOf(lc)===0;}); if(st.length===1) return st[0];
+    return null;
+  }
+  function resolveFromFields(){
+    var key=matchCountry(fCountry?fCountry.value:'');
+    if(!key){ setLoc('📍 <span class="city">'+esc((fCountry&&fCountry.value)||'that location')+'</span>', true); out.innerHTML=fallback((fCountry&&fCountry.value)||''); return; }
+    if(fCountry) fCountry.value=key; refreshLists(key);
+    var city=((fCity&&fCity.value)||'').trim(), state=((fState&&fState.value)||'').trim();
+    lockTo(key, [city,state].filter(Boolean).join(', '));
+  }
+  function finish(name, code, city, region){
     var key = (code && BYCODE[(''+code).toUpperCase()]) ? BYCODE[(''+code).toUpperCase()] : (DATA[name]?name:null);
-    if(key){ if(search) search.value=(city?city+', ':'')+key; lockTo(key, city||''); }
-    else { setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true); out.innerHTML=fallback(city||''); }
+    refreshLists(key||'');
+    if(fCountry) fCountry.value=key||name||'';
+    if(fState) fState.value=region||'';
+    if(fCity) fCity.value=city||'';
+    if(key){ lockTo(key, [city,region].filter(Boolean).join(', ')); }
+    else { setLoc('📍 You appear to be in <span class="city">'+esc(city||name||'your area')+'</span>', true); out.innerHTML=fallback(city||name||''); }
   }
   function fail(){
-    setLoc('📍 Couldn’t pin your location — search your country or city above.', false);
-    out.innerHTML='<div class="note">Type your country or city in the search bar above to see the local stores, restaurants &amp; pickup points that serve it. 👆</div>';
+    refreshLists('');
+    setLoc('📍 Couldn’t pin your location — set your country, state &amp; city below.', false);
+    out.innerHTML='<div class="note">Set your country, state &amp; city above to see the local stores, restaurants &amp; pickup points that serve it. 👆</div>';
   }
-  buildList();
-  if(search){
-    search.addEventListener('focus',function(){ try{ this.select(); }catch(e){} });
-    search.addEventListener('change',function(){ resolveAndShow(search.value); });
-    search.addEventListener('keydown',function(e){ if(e.key==='Enter'){ resolveAndShow(search.value); } });
-  }
-  (function(){ var g=document.getElementById('locgo'); if(g) g.addEventListener('click',function(){ resolveAndShow(search?search.value:''); }); })();
+  refreshLists('');
+  (function(){
+    var g=document.getElementById('locgo'); if(g) g.addEventListener('click', resolveFromFields);
+    [fCountry,fState,fCity].forEach(function(el){ if(el){ el.addEventListener('focus',function(){ try{this.select();}catch(e){} }); el.addEventListener('keydown',function(e){ if(e.key==='Enter') resolveFromFields(); }); } });
+    if(fCountry) fCountry.addEventListener('change',function(){ var k=matchCountry(fCountry.value); refreshLists(k||''); if(fState) fState.value=''; if(fCity) fCity.value=''; resolveFromFields(); });
+  })();
   function detect(){
     var done=false;
     var t=setTimeout(function(){ if(!done){ done=true; fail(); } }, 9000);
     fetch('https://ipwho.is/').then(function(r){return r.json();}).then(function(d){
       if(done) return; if(!d || d.success===false || !(d.country_code||d.country)) throw 0;
-      done=true; clearTimeout(t); finish(d.country, d.country_code, d.city);
+      done=true; clearTimeout(t); finish(d.country, d.country_code, d.city, d.region);
     }).catch(function(){
       if(done) return;
       fetch('https://get.geojs.io/v1/ip/geo.json').then(function(r){return r.json();}).then(function(d){
         if(done) return; done=true; clearTimeout(t);
-        if(d && (d.country_code||d.country)) finish(d.country, d.country_code, d.city); else fail();
+        if(d && (d.country_code||d.country)) finish(d.country, d.country_code, d.city, d.region); else fail();
       }).catch(function(){ if(!done){ done=true; clearTimeout(t); fail(); } });
     });
   }
