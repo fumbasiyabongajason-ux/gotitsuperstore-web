@@ -151,12 +151,12 @@
   function card(row){
     var name=row[0], what=row[1], url=row[2];
     var d=host(url);
-    // logo fallback chain: Google faviconV2 (404s cleanly on miss) -> DuckDuckGo -> branded letter badge
-    var s1='https://icons.duckduckgo.com/ip3/'+d+'.ico';
-    var s2='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=https://'+d+'&size=128';
+    // real logo via Google faviconV2 (size=128); its "not-found" default is a tiny 16px icon, which we
+    // detect by naturalWidth and replace with a clean branded letter badge. Single reliable source.
+    var s1='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=https://'+d+'&size=128';
     var L=esc((name.charAt(0)||'•').toUpperCase());
     return '<div class="store">'+
-      '<img class="favi" data-srcs="'+esc(s1+'|'+s2)+'" data-i="0" src="'+esc(s1)+'" alt="" loading="lazy" width="40" height="40" referrerpolicy="no-referrer">'+
+      '<img class="favi" data-srcs="'+esc(s1)+'" data-i="0" src="'+esc(s1)+'" alt="" width="40" height="40" referrerpolicy="no-referrer">'+
       '<span class="ini" style="display:none">'+L+'</span>'+
       '<div><div class="nm">'+esc(name)+'</div><div class="ds">'+esc(what)+'</div>'+
       '<a class="visit" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Visit &rarr;</a></div>'+
@@ -263,7 +263,7 @@
     }
     if(out){
       out.addEventListener('error', function(e){ var img=e.target; if(img&&img.classList&&img.classList.contains('favi')) faviAdvance(img); }, true);
-      out.addEventListener('load', function(e){ var img=e.target; if(img&&img.classList&&img.classList.contains('favi')&&img.naturalWidth&&img.naturalWidth<28) faviAdvance(img); }, true);
+      out.addEventListener('load', function(e){ var img=e.target; if(img&&img.classList&&img.classList.contains('favi')&&img.naturalWidth&&img.naturalWidth<24) faviAdvance(img); }, true);
     }
     var g=document.getElementById('locgo'); if(g) g.addEventListener('click', resolveFromFields);
     [fCountry,fState,fCity].forEach(function(el){ if(el){ el.addEventListener('focus',function(){ try{this.select();}catch(e){} }); el.addEventListener('keydown',function(e){ if(e.key==='Enter') resolveFromFields(); }); } });
