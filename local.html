@@ -152,8 +152,8 @@
     var name=row[0], what=row[1], url=row[2];
     var d=host(url);
     // logo fallback chain: Google faviconV2 (404s cleanly on miss) -> DuckDuckGo -> branded letter badge
-    var s1='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+d+'&size=128';
-    var s2='https://icons.duckduckgo.com/ip3/'+d+'.ico';
+    var s1='https://icons.duckduckgo.com/ip3/'+d+'.ico';
+    var s2='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&url=https://'+d+'&size=128';
     var L=esc((name.charAt(0)||'•').toUpperCase());
     return '<div class="store">'+
       '<img class="favi" data-srcs="'+esc(s1+'|'+s2)+'" data-i="0" src="'+esc(s1)+'" alt="" loading="lazy" width="40" height="40" referrerpolicy="no-referrer">'+
