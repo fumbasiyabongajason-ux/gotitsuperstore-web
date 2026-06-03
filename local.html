@@ -150,10 +150,13 @@
   function host(u){try{return new URL(u).hostname;}catch(e){return (u+'').replace(/^https?:\/\//,'').split('/')[0];}}
   function card(row){
     var name=row[0], what=row[1], url=row[2];
-    var fav='https://www.google.com/s2/favicons?domain='+encodeURIComponent(host(url))+'&sz=128';
+    var d=host(url);
+    // logo fallback chain: Google faviconV2 (404s cleanly on miss) -> DuckDuckGo -> branded letter badge
+    var s1='https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+d+'&size=128';
+    var s2='https://icons.duckduckgo.com/ip3/'+d+'.ico';
     var L=esc((name.charAt(0)||'•').toUpperCase());
     return '<div class="store">'+
-      '<img class="favi" src="'+fav+'" alt="" loading="lazy" width="40" height="40" referrerpolicy="no-referrer" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">'+
+      '<img class="favi" data-srcs="'+esc(s1+'|'+s2)+'" data-i="0" src="'+esc(s1)+'" alt="" loading="lazy" width="40" height="40" referrerpolicy="no-referrer">'+
       '<span class="ini" style="display:none">'+L+'</span>'+
       '<div><div class="nm">'+esc(name)+'</div><div class="ds">'+esc(what)+'</div>'+
       '<a class="visit" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Visit &rarr;</a></div>'+
@@ -251,6 +254,13 @@
   }
   buildCountrySelect(); refreshLists('');
   (function(){
+    // logo fallback chain: advance through data-srcs on error; final miss -> branded letter badge (capture phase, img errors don't bubble)
+    if(out) out.addEventListener('error', function(e){
+      var img=e.target; if(!img||!img.classList||!img.classList.contains('favi')) return;
+      var srcs=(img.getAttribute('data-srcs')||'').split('|'); var i=(parseInt(img.getAttribute('data-i'),10)||0)+1;
+      if(i<srcs.length && srcs[i]){ img.setAttribute('data-i',i); img.src=srcs[i]; }
+      else { img.style.display='none'; if(img.nextElementSibling) img.nextElementSibling.style.display='flex'; }
+    }, true);
     var g=document.getElementById('locgo'); if(g) g.addEventListener('click', resolveFromFields);
     [fCountry,fState,fCity].forEach(function(el){ if(el){ el.addEventListener('focus',function(){ try{this.select();}catch(e){} }); el.addEventListener('keydown',function(e){ if(e.key==='Enter') resolveFromFields(); }); } });
     if(fCountry) fCountry.addEventListener('change',function(){ var k=matchCountry(fCountry.value); refreshLists(k||''); if(fState) fState.value=''; if(fCity) fCity.value=''; resolveFromFields(); });
