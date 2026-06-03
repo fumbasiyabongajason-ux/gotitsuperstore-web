@@ -254,13 +254,17 @@
   }
   buildCountrySelect(); refreshLists('');
   (function(){
-    // logo fallback chain: advance through data-srcs on error; final miss -> branded letter badge (capture phase, img errors don't bubble)
-    if(out) out.addEventListener('error', function(e){
-      var img=e.target; if(!img||!img.classList||!img.classList.contains('favi')) return;
+    // logo fallback chain: advance through data-srcs on error OR when a returned icon is a tiny default/globe
+    // (these services return a 200 generic icon, not a 404, so onerror alone can't catch them) -> branded letter badge
+    function faviAdvance(img){
       var srcs=(img.getAttribute('data-srcs')||'').split('|'); var i=(parseInt(img.getAttribute('data-i'),10)||0)+1;
       if(i<srcs.length && srcs[i]){ img.setAttribute('data-i',i); img.src=srcs[i]; }
       else { img.style.display='none'; if(img.nextElementSibling) img.nextElementSibling.style.display='flex'; }
-    }, true);
+    }
+    if(out){
+      out.addEventListener('error', function(e){ var img=e.target; if(img&&img.classList&&img.classList.contains('favi')) faviAdvance(img); }, true);
+      out.addEventListener('load', function(e){ var img=e.target; if(img&&img.classList&&img.classList.contains('favi')&&img.naturalWidth&&img.naturalWidth<28) faviAdvance(img); }, true);
+    }
     var g=document.getElementById('locgo'); if(g) g.addEventListener('click', resolveFromFields);
     [fCountry,fState,fCity].forEach(function(el){ if(el){ el.addEventListener('focus',function(){ try{this.select();}catch(e){} }); el.addEventListener('keydown',function(e){ if(e.key==='Enter') resolveFromFields(); }); } });
     if(fCountry) fCountry.addEventListener('change',function(){ var k=matchCountry(fCountry.value); refreshLists(k||''); if(fState) fState.value=''; if(fCity) fCity.value=''; resolveFromFields(); });
