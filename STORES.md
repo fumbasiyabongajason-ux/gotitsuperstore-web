@@ -64,7 +64,7 @@
 |---|---|---|
 | 25 | COS | cos.com |
 | 26 | Mango | mango.com |
-| 27 | Massimo Dutti | massimodutti.com |
+| 27 | Nike | nike.com |
 | 28 | & Other Stories | stories.com |
 | 29 | Selfridges | selfridges.com |
 | 30 | Cult Beauty | cultbeauty.com |
@@ -104,7 +104,9 @@ These were previously in a 13-store version of the mall and have been intentiona
 - Chewy
 - Best Buy
 
-Also intentionally absent: Audible, Goodreads, Kindle, Ring, Twitch, IMDb, Nike, Whole Foods, Zappos.
+Also intentionally absent: Audible, Goodreads, Kindle, Ring, Twitch, IMDb, Whole Foods, Zappos.
+
+> **Note:** Nike (slot 27) was added at the owner's explicit request (2026-06-05), replacing Massimo Dutti, even though Nike overlaps Amazon's catalogue — the same explicit-override basis on which Amazon and Takealot are included.
 
 ## Inquiry Reception modal
 
@@ -141,6 +143,8 @@ The curated deals page now uses a **deterministic daily-rotation picker**:
 **Editing the deal pool**: add or remove objects in the `#deal-pool` JSON block in `deals.html`. Keep schema: `{ url, cat, icon, badgeCls, badge, retailer, name, price }`. Category slugs in `cat` must match the categories used in `categories.html` (electronics, home-kitchen, beauty, clothes, outdoor, medicine-health, travel, toys).
 
 ## Change log
+
+- **2026-06-05** — Swapped **Massimo Dutti → Nike** (slot 27, right aisle), at the owner's explicit request. Massimo Dutti had no public affiliate program and was redundant with Zara/Mango/COS; Nike adds athletic variety. Total stays **50**. Updated 3 spots on `shop.html`: the store card, the `ItemList` JSON-LD (position 27), and the `INQUIRY_STORES` modal array. ⚠️ The `INQUIRY_STORES` arrays on `index.html`, `categories.html`, `deals.html` (and any Massimo Dutti entry in the `deals.html` deal pool) still reference Massimo Dutti — sync those when next editing those pages.
 
 - **2026-05-28** — Replaced 3 stores that shut down/were absorbed in 2024 with live retailers across the mall and the Inquiry modal on all 4 pages: Wiggle->Columbia, MatchesFashion->Mytheresa, Feelunique->Space NK. Also: curated deals + the 6 search-404 modal stores (SSENSE, END., Selfridges, The Body Shop, Lush, Boots) now link to store HOMEPAGES, never deep search URLs, so they cannot 404. RULE: deal/modal links must use verified homepages or known-good search endpoints — never unverified deep search paths.
 
