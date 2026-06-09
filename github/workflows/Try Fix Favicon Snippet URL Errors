@@ -1,0 +1,2 @@
+#Removes the accidental leading slash before the https:// link inside all HTML files
+    sed -i 's|href="/https://|href="https://|g' *.html
