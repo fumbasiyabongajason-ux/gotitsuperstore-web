@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="icon" type="image/png" href="/https://github.com/fumbasiyabongajason-ux/gotitsuperstore-web/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/https://github.com/fumbasiyabongajason-ux/gotitsuperstore-web/favicon.svg" />
+<link rel="shortcut icon" href="/https://github.com/fumbasiyabongajason-ux/gotitsuperstore-web/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/https://github.com/fumbasiyabongajason-ux/gotitsuperstore-web/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="gotitsuperstore.co.za" />
+<link rel="manifest" href="/https://github.com/fumbasiyabongajason-ux/gotitsuperstore-web/site.webmanifest" />
+
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="p:domain_verify" content="cb356521d5dd0d9d12edd28b55adfb79"/>
+
+<!-- ============== SECURITY HEADERS (META — installed 2026-05-27) ==============
+     GitHub Pages doesn't allow custom HTTP headers, so we use http-equiv meta.
+     CSP whitelists only the externals we actually load (Google Fonts,
+     Google s2 favicons, Formspree, YouTube embed if used).
+     Permissions-Policy denies every unused powerful API.
+     ========================================================================== -->
+<!-- ⚠️  CSP img-src IS INTENTIONALLY 'https:' (broad).
+     The 50-store mall loads merchant favicons from www.google.com/s2/favicons,
+     which can 302-redirect through other Google CDNs (s2.googleusercontent.com,
+     gstatic.com, ...). Pinning to a specific host list HAS broken the mall before.
+     Tighten only after you've verified all 50 favicons render on shop.html AND
+     in the Inquiry Reception modal on index/categories/deals. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:;  /* WIDE BY DESIGN: merchant favicons may redirect through any Google CDN. Do not narrow without testing all 50 favicons. */ media-src 'self' blob: https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://formspree.io https://accounts.google.com; form-action 'self' https://formspree.io; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://accounts.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;">
+<meta http-equiv="Permissions-Policy" content="accelerometer=(), ambient-light-sensor=(), autoplay=(self), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), xr-spatial-tracking=()">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<title>Got It Superstore — Welcome</title>
+<meta name="description" content="Got It Superstore — a curated affiliate mall with 50 trusted global stores under one walkable storefront. South African-owned, global shoppers welcome. Walk the mall: gotitsuperstore.co.za">
+<meta name="keywords" content="affiliate deals, ASOS deals, Rakuten deals, Zalando deals, Sephora deals, Wayfair deals, Shein deals, Apple deals, Etsy deals, Takealot deals, online shopping South Africa, curated deals, best prices, deal hunter"><meta name="theme-color" content="#0E2A47">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
+<meta property="og:description" content="Hand-picked deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy. Best prices. Zero cost to you.">
+<meta property="og:type" content="website">
+
+<!-- Cache hint for bfcache (back/forward cache) - keeps page persistent when user tabs back -->
+<meta http-equiv="Cache-Control" content="public, max-age=3600">
+
+<!-- Performance: preconnect to image CDNs we use -->
+<!-- video files are fetched on demand via the <video> tag with preload=metadata
+     so the page is interactive immediately and the video streams in progressively -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.asos.com">
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+
+<!-- Fonts: only the weights we actually use -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ============================================================ -->
+<!-- MONETIZATION SLOT (inert as of 2026-05-28)                    -->
+<!-- A prior affiliate aggregator was removed: it had rejected this  -->
+<!-- its loader was intercepting outbound clicks with a "Show      -->
+<!-- original content" interstitial, which also got the domain     -->
+<!-- flagged by Pinterest. Outbound links now go straight to the   -->
+<!-- retailer. To add monetization later, wire a direct affiliate  -->
+<!-- network or an aggregator here (e.g. Sovrn) — do NOT re-add     -->
+<!-- a click-rewriting redirect script.                            -->
+<!-- ============================================================ -->
+
+<style>
+:root {
+  --navy: #0E2A47;
+  --navy-light: #1a3d62;
+  --navy-deep: #061a2e;
+  --orange: #F26B1A;
+  --orange-bright: #FF8533;
+  --green: #00A86B;
+  --green-light: #1FCC8B;
+  --cream: #FFFDF7;
+  --bg: #FAF7EF;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F5F2EC;
+  --ink: #0E2A47;
+  --ink-soft: #4A5568;
+  --muted: #8B95A3;
+  --border: rgba(14, 42, 71, 0.10);
+  --shadow-sm: 0 2px 6px rgba(14, 42, 71, 0.06);
+  --shadow-md: 0 8px 24px rgba(14, 42, 71, 0.10);
+  --shadow-lg: 0 16px 48px rgba(14, 42, 71, 0.16);
+  --radius: 14px;
+  --radius-lg: 22px;
+  --max-width: 1320px;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--navy); text-decoration: none; }
+.skip-to-content { position: absolute; top: -40px; left: 0; background: var(--orange); color: #fff; padding: 10px 16px; z-index: 9999; transition: top 0.2s; }
+.skip-to-content:focus { top: 0; }
+
+.display { font-family: var(--font-heading); font-weight: 800; }
+
+/* ============== FTC DISCLOSURE BAR ============== */
+.ftc-bar {
+  background: var(--navy-deep); color: #cfe1f4;
+  text-align: center; padding: 8px 16px;
+  font-size: 12.5px; letter-spacing: 0.2px;
+  position: relative; z-index: 99;
+}
+.ftc-bar strong { color: var(--orange); margin-right: 6px; }
+.ftc-bar a { color: #fff; text-decoration: underline; }
+.ftc-bar a:hover { color: var(--orange-bright); }
+
+/* ============== NAV ============== */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255, 253, 247, 0.92);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.nav-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 24px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-heading); font-weight: 800; font-size: 20px;
+  color: var(--navy); flex-shrink: 0;
+}
+.nav-logo-text { line-height: 1.05; }
+.nav-logo-text .got { color: var(--navy); display: block; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; }
+.nav-logo-text .superstore { color: var(--orange); font-size: 18px; font-weight: 800; }
+.nav-search {
+  flex: 1; max-width: 480px; position: relative;
+}
+.nav-search-shell {
+  position: relative;
+}
+.nav-search-badge {
+  position: absolute;
+  top: -9px;
+  left: 16px;
+  z-index: 2;
+  background: var(--navy);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(14, 42, 71, 0.18);
+}
+.nav-search input {
+  width: 100%; height: 42px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  border-radius: 22px;
+  padding: 0 48px 0 18px;
+  font-family: var(--font-body); font-size: 14px;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.nav-search input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(242, 107, 26, 0.12); }
+.nav-search button {
+  position: absolute; right: 5px; top: 5px;
+  width: 32px; height: 32px;
+  background: var(--orange); border: none; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.nav-search button:hover { background: var(--orange-bright); transform: scale(1.06); }
+.nav-search-hint {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  padding-left: 18px;
+  font-style: italic;
+  opacity: 0.85;
+}
+.nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; }
+.nav-links a { color: var(--ink-soft); transition: color 0.2s; }
+.nav-links a:hover { color: var(--orange); }
+
+/* ============== BUTTONS ============== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: 999px;
+  font-family: var(--font-body); font-weight: 600; font-size: 14.5px;
+  cursor: pointer; transition: all 0.2s;
+  border: none;
+}
+.btn-primary { background: var(--orange); color: #fff; }
+.btn-primary:hover { background: var(--orange-bright); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(242, 107, 26, 0.32); }
+.btn-secondary {
+  background: #fff; color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+.btn-secondary:hover { background: var(--navy); color: #fff; }
+.btn-ghost { background: transparent; color: var(--orange); border: 1px solid var(--orange); }
+.btn-ghost:hover { background: var(--orange); color: #fff; }
+
+/* ============== HERO ============== */
+.hero {
+  position: relative;
+  background:
+    radial-gradient(circle at 90% -10%, rgba(242, 107, 26, 0.18), transparent 50%),
+    radial-gradient(circle at 0% 50%, rgba(0, 168, 107, 0.10), transparent 50%),
+    linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+  padding: 56px 24px 64px;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0, 168, 107, 0.12);
+  color: var(--green);
+  padding: 6px 14px; border-radius: 999px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(36px, 5vw, 54px); line-height: 1.05; letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  color: var(--navy);
+}
+.hero h1 .accent { color: var(--orange); }
+.hero h1 .accent-green { color: var(--green); }
+.hero p.lead {
+  font-size: 17px; line-height: 1.55; color: var(--ink-soft);
+  max-width: 540px; margin-bottom: 28px;
+}
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-trust {
+  display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
+  padding-top: 24px; border-top: 1px solid var(--border);
+}
+.hero-trust-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--muted); font-weight: 600; }
+.hero-trust-logos { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; font-weight: 700; color: var(--ink-soft); font-size: 14px; }
+.hero-trust-logos span { padding: 4px 10px; background: rgba(14, 42, 71, 0.06); border-radius: 6px; }
+
+.hero-visual { position: relative; }
+.hero-card {
+  background: #fff; border-radius: var(--radius-lg);
+  padding: 28px; box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+.hero-card-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+}
+.hero-deal {
+  background: var(--bg-soft); border-radius: 12px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.hero-deal-emoji { font-size: 28px; }
+.hero-deal-name { font-weight: 600; font-size: 13.5px; color: var(--navy); line-height: 1.25; }
+.hero-deal-price {
+  display: flex; align-items: baseline; gap: 6px;
+  font-family: var(--font-heading);
+}
+.hero-deal-price .now { color: var(--orange); font-weight: 800; font-size: 18px; }
+.hero-deal-price .was { text-decoration: line-through; color: var(--muted); font-size: 13px; }
+.hero-deal-tag {
+  align-self: flex-start;
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+  background: var(--green); color: #fff;
+  padding: 2px 8px; border-radius: 4px; font-weight: 700;
+}
+
+/* ============== SECTIONS ============== */
+.section {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 64px 24px;
+}
+.section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 28px;
+}
+.section-eyebrow {
+  text-transform: uppercase; letter-spacing: 2px;
+  font-size: 11px; font-weight: 700; color: var(--orange);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1;
+  letter-spacing: -0.01em; color: var(--navy);
+}
+.section-title .accent { color: var(--orange); }
+.section-meta { color: var(--muted); font-size: 13px; flex-shrink: 0; }
+
+/* ============== CATEGORIES (DENSE GRID) ============== */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.category-card {
+  background: var(--bg-card); border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.category-card:hover {
+  border-color: var(--orange);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.category-icon {
+  font-size: 30px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(14, 42, 71, 0.12));
+}
+.category-name {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 13.5px; color: var(--navy);
+  line-height: 1.2;
+}
+.category-count {
+  font-size: 11px; color: var(--muted); font-weight: 500;
+}
+
+/* ============== PRODUCT GRID (BENTO) ============== */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(242, 107, 26, 0.4);
+}
+.product-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--bg-soft), var(--cream));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px;
+  position: relative;
+}
+.product-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--green); color: #fff;
+  padding: 3px 9px; border-radius: 4px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+}
+.product-badge.orange { background: var(--orange); }
+.product-info { padding: 14px 16px 16px; flex: 1; display: flex; flex-direction: column; }
+.product-retailer {
+  font-size: 11px; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.product-name {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 14px; line-height: 1.3; color: var(--navy);
+  margin-bottom: 8px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.product-price {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 18px; color: var(--orange);
+  margin-top: auto;
+}
+
+/* ============== ENTERTAINMENT CALLOUT ============== */
+.entertainment-callout {
+  max-width: var(--max-width); margin: 32px auto 0;
+  padding: 0 24px;
+}
+.callout-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #0A0A0E 0%, #1A1430 50%, #2C0A1A 100%);
+  border-radius: var(--radius-lg);
+  padding: 48px 56px;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
+  color: #fff;
+}
+.callout-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(224, 163, 61, 0.18), transparent 50%);
+}
+.callout-content { position: relative; z-index: 1; }
+.callout-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  text-transform: uppercase; letter-spacing: 2px;
+  font-size: 11px; font-weight: 700; color: #E0A33D;
+  margin-bottom: 14px;
+}
+.callout-title {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(26px, 3.4vw, 38px); line-height: 1.1;
+  letter-spacing: -0.01em; margin-bottom: 12px;
+}
+.callout-title .accent { color: #E0A33D; font-style: italic; }
+.callout-desc {
+  font-size: 15.5px; color: rgba(255,255,255,0.84); margin-bottom: 22px;
+  max-width: 480px;
+}
+.callout-grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.callout-tile {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 14px 14px;
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+  backdrop-filter: blur(6px);
+}
+.callout-tile-icon { font-size: 22px; }
+
+/* ============== BLOG ============== */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.blog-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  transition: all 0.3s; display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: rgba(242, 107, 26, 0.3); }
+.blog-cover {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.blog-cover-emoji { font-size: 56px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.3)); }
+.blog-cover.gradient-1 { background: linear-gradient(135deg, #0E2A47, #1a3d62); }
+.blog-cover.gradient-2 { background: linear-gradient(135deg, #F26B1A, #FF8533); }
+.blog-cover.gradient-3 { background: linear-gradient(135deg, #00A86B, #1FCC8B); }
+.blog-cover.gradient-4 { background: linear-gradient(135deg, #5B2C8C, #8E3FBE); }
+.blog-cover.gradient-5 { background: linear-gradient(135deg, #C53030, #ED5252); }
+.blog-cover.gradient-6 { background: linear-gradient(135deg, #2D3748, #4A5568); }
+.blog-cover.gradient-7 { background: linear-gradient(135deg, #DD6B20, #FBB360); }
+.blog-cover.gradient-8 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+.blog-cover-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(6px);
+  color: #fff; padding: 4px 10px; border-radius: 5px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+}
+.blog-info { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+.blog-meta {
+  display: flex; gap: 10px; align-items: center;
+  font-size: 11.5px; color: var(--muted); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.blog-title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 17px; line-height: 1.3; color: var(--navy);
+  margin-bottom: 10px;
+}
+.blog-excerpt {
+  font-size: 14px; line-height: 1.55; color: var(--ink-soft);
+  margin-bottom: 14px; flex: 1;
+}
+.blog-readmore {
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
+  color: var(--orange); padding: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+  align-self: flex-start;
+  transition: gap 0.2s;
+}
+.blog-readmore:hover { gap: 10px; }
+.blog-readmore::after { content: '→'; transition: transform 0.2s; }
+.blog-readmore:hover::after { transform: translateX(2px); }
+.blog-full {
+  display: none;
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  font-size: 14px; line-height: 1.7; color: var(--ink-soft);
+}
+.blog-full p { margin-bottom: 12px; }
+.blog-full h4 { font-family: var(--font-heading); font-size: 15px; font-weight: 700; color: var(--navy); margin: 14px 0 6px; }
+.blog-full ul { padding-left: 18px; margin-bottom: 12px; }
+.blog-full li { margin-bottom: 4px; }
+.blog-full a { color: var(--orange); font-weight: 600; }
+.blog-card.expanded .blog-full { display: block; }
+.blog-card.expanded .blog-readmore::after { transform: rotate(90deg); }
+.blog-card.expanded .blog-readmore .label-collapsed { display: none; }
+.blog-card.expanded .blog-readmore .label-expanded { display: inline; }
+.blog-readmore .label-expanded { display: none; }
+
+/* ============== ABOUT / WHY ============== */
+.about-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center;
+}
+.about-text p { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 14px; }
+.why-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+}
+.why-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px;
+}
+.why-icon { font-size: 24px; margin-bottom: 8px; }
+.why-card h4 {
+  font-family: var(--font-heading); font-weight: 700; font-size: 14.5px;
+  color: var(--navy); margin-bottom: 4px;
+}
+.why-card p { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+
+/* ============== NEWSLETTER ============== */
+.newsletter {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius-lg);
+  padding: 40px 48px;
+  margin: 32px 24px;
+  max-width: calc(var(--max-width) - 48px);
+  text-align: center;
+  color: #fff;
+  position: relative; overflow: hidden;
+}
+.newsletter::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 90% 50%, rgba(242, 107, 26, 0.18), transparent 50%);
+}
+.newsletter-inner { position: relative; z-index: 1; max-width: 540px; margin: 0 auto; }
+.newsletter h3 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: clamp(22px, 2.8vw, 30px); margin-bottom: 8px;
+}
+.newsletter p { color: rgba(255,255,255,0.78); font-size: 14.5px; margin-bottom: 22px; }
+.newsletter-form { display: flex; gap: 8px; max-width: 460px; margin: 0 auto; }
+.newsletter-form input {
+  flex: 1; height: 46px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 24px; padding: 0 20px;
+  color: #fff; font-size: 14px; font-family: var(--font-body);
+}
+.newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+.newsletter-form input:focus { outline: none; background: rgba(255,255,255,0.14); border-color: var(--orange); }
+.newsletter-form button { padding: 0 26px; height: 46px; background: var(--orange); color: #fff; border: none; border-radius: 24px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.newsletter-form button:hover { background: var(--orange-bright); }
+
+/* ============== CONTACT ============== */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start;
+}
+.contact-info p { font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 8px; }
+.contact-info strong { color: var(--navy); font-weight: 700; display: inline-block; min-width: 110px; }
+.contact-info a { color: var(--orange); font-weight: 600; }
+.contact-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.form-input, .form-textarea {
+  width: 100%; padding: 12px 16px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  font-family: var(--font-body); font-size: 14px;
+  background: #fff; color: var(--ink);
+  transition: all 0.2s;
+}
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(242, 107, 26, 0.1); }
+.form-textarea { min-height: 120px; resize: vertical; margin-bottom: 14px; }
+
+/* ============== FOOTER ============== */
+footer {
+  background: var(--navy-deep); color: #cfd8e3;
+  padding: 56px 24px 24px; margin-top: 48px;
+}
+.footer-inner { max-width: var(--max-width); margin: 0 auto; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 36px;
+}
+.footer-brand h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.footer-brand h3 .got { color: #cfd8e3; }
+.footer-brand h3 .super { color: var(--orange); }
+.footer-brand p { font-size: 13.5px; line-height: 1.65; color: #98a4b3; max-width: 320px; }
+.footer-col h4 {
+  font-family: var(--font-heading); font-size: 12.5px; text-transform: uppercase;
+  letter-spacing: 1.4px; font-weight: 700;
+  color: var(--orange); margin-bottom: 14px;
+}
+.footer-col a, .footer-col button {
+  display: block; font-size: 13.5px; color: #98a4b3;
+  margin-bottom: 9px; transition: color 0.2s;
+  background: none; border: none; padding: 0; cursor: pointer; text-align: left; font-family: var(--font-body);
+}
+.footer-col a:hover, .footer-col button:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 22px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+  font-size: 12px; color: #788596;
+}
+
+/* ============== MODALS ============== */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #fff; border-radius: var(--radius-lg);
+  max-width: 800px; width: 100%; max-height: 90vh;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+}
+.modal-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.modal-header h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 800; color: var(--navy); }
+.modal-close {
+  background: var(--bg-soft); border: none;
+  width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; font-size: 22px; line-height: 1; color: var(--ink);
+  transition: all 0.2s;
+}
+.modal-close:hover { background: var(--orange); color: #fff; }
+.modal-body { padding: 24px 28px; overflow-y: auto; }
+.modal-body h3 {
+  font-family: var(--font-heading); font-size: 15.5px; font-weight: 700;
+  color: var(--navy); margin: 18px 0 8px;
+}
+.modal-body p, .modal-body li {
+  font-size: 14px; line-height: 1.65; color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.modal-body ul { padding-left: 20px; margin-bottom: 10px; }
+.modal-body strong { color: var(--navy); }
+.modal-body a { color: var(--orange); font-weight: 600; }
+
+/* ============== INQUIRY RECEPTION MODAL ============== */
+.inquiry-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 42, 71, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.inquiry-modal-overlay.open {
+  display: flex;
+  animation: inquiry-fade 0.18s ease;
+}
+@keyframes inquiry-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.inquiry-modal-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow-lg);
+}
+.inquiry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.inquiry-modal-header h3 {
+  font-family: var(--font-heading);
+  font-size: 19px;
+  color: var(--navy);
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+.inquiry-modal-header p {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+.inquiry-modal-close {
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.inquiry-modal-close:hover { color: var(--navy); }
+.inquiry-query-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff4ea 0%, #ffe8d5 100%);
+  color: var(--navy);
+  border: 1px solid #ffd0a8;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.inquiry-stores {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.inquiry-store-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+.inquiry-store-link:hover {
+  border-color: var(--orange);
+  background: #fff8f0;
+  transform: translateY(-1px);
+}
+.inquiry-store-link-icon { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.inquiry-store-link-text { flex: 1; min-width: 0; }
+.inquiry-store-link-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  display: block;
+}
+.inquiry-store-link-tag {
+  font-size: 11.5px;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 920px) {
+  .nav-inner { flex-wrap: wrap; gap: 12px; }
+  .nav-search { order: 3; flex: 1 1 100%; max-width: none; }
+  .nav-links { display: none; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+  .callout-card { grid-template-columns: 1fr; padding: 32px 24px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .section { padding: 48px 18px; }
+  .why-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .mall-walkway { grid-template-columns: 1fr; gap: 12px; }
+  .mall-floor {
+    min-height: 72px;
+  }
+  .mall-floor.has-centre {
+    min-height: auto;
+    padding: 20px 14px;
+  }
+  .mall-floor-label { transform: translate(-50%, -50%) rotate(0deg); letter-spacing: 4px; }
+  .mall-floor-arrow { display: none; }
+  .fish-planter { width: 50%; }
+  .mall-welcome-mat, .mall-centre-store { width: 92%; }
+}
+@media (max-width: 480px) {
+  .inquiry-stores { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ============== STORE CARDS — MALL WALKWAY LAYOUT ============== */
+.mall-walkway {
+  display: grid;
+  grid-template-columns: 1fr 84px 1fr;
+  gap: 18px;
+  margin-top: 14px;
+  align-items: stretch;
+}
+.mall-aisle {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mall-floor {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 220px;
+  background-color: #f0e4cc;
+  /* Layered: highlight dots at tile centers + diamond/argyle tile pattern + warm cream base */
+  background-image:
+    linear-gradient(rgba(150, 120, 70, 0.20) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(150, 120, 70, 0.20) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+  background-position: 0 0;
+  box-shadow:
+    inset 0 4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 -4px 10px rgba(160, 130, 80, 0.18),
+    inset 0 0 0 1px rgba(160, 130, 80, 0.25);
+}
+/* Soft vignette so the centre of the walkway feels lit, edges feel shaded */
+.mall-floor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(140, 110, 60, 0.18) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.mall-floor-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+  letter-spacing: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  color: rgba(120, 90, 50, 0.65);
+  text-transform: uppercase;
+  pointer-events: none;
+  background: rgba(255, 250, 235, 0.7);
+  padding: 4px 14px;
+  border-radius: 999px;
+  z-index: 3;
+  box-shadow: 0 1px 3px rgba(140, 110, 60, 0.15);
+}
+.mall-floor-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(120, 90, 50, 0.5);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+.mall-floor-arrow.top { top: 14px; }
+.mall-floor-arrow.bottom { bottom: 14px; }
+
+/* The walkway is now a vertical stack: arrow, welcome mat, planter, centre store, planter, arrow */
+.mall-floor.has-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 32px 10px;
+  min-height: 320px;
+}
+.mall-floor.has-centre .mall-floor-label {
+  display: none;
+}
+.mall-floor.has-centre .mall-floor-arrow {
+  position: static;
+  transform: none;
+  text-align: center;
+}
+/* Welcome mat with Got It logo right at the top of the walkway */
+.mall-welcome-mat {
+  width: 90%;
+  margin: 14px auto 8px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 100%);
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.18),
+    inset 0 0 0 2px rgba(242, 107, 26, 0.55),
+    inset 0 0 0 4px rgba(255, 253, 247, 0.15);
+}
+.mall-welcome-mat .mat-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  color: rgba(255, 253, 247, 0.75);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.mall-welcome-mat .mat-brand {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--orange);
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  line-height: 1.15;
+}
+.mall-welcome-mat .mat-welcome {
+  display: block;
+  margin-top: 4px;
+  font-size: 8.5px;
+  color: rgba(255, 253, 247, 0.55);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+/* Fish-bowl shaped decorative planter with plants */
+.fish-planter {
+  width: 80%;
+  margin: 10px auto;
+  padding: 6px 14px 4px;
+  border-radius: 50% / 70% 70% 30% 30%;
+  background: linear-gradient(180deg, rgba(180, 220, 240, 0.85) 0%, rgba(120, 180, 215, 0.75) 100%);
+  border: 1.5px solid rgba(80, 130, 170, 0.45);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    inset 0 3px 6px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(60, 100, 140, 0.25),
+    0 3px 6px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.fish-planter::before {
+  /* tail fin */
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform: translateY(-50%);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 12px solid rgba(120, 180, 215, 0.75);
+  filter: drop-shadow(1px 0 0 rgba(80, 130, 170, 0.45));
+}
+.fish-planter::after {
+  /* eye */
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 38%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(14, 42, 71, 0.85);
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.75);
+}
+.fish-planter .planter-greenery {
+  font-size: 20px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.18));
+}
+
+/* The centre storefront sits in the middle of the walkway */
+.mall-centre-store {
+  width: 90%;
+  margin: 6px auto;
+  min-height: 130px;
+  background: linear-gradient(135deg, #fffdf7 0%, #fff4e2 100%);
+  border: 1.5px solid #f4d8a8;
+  box-shadow:
+    0 8px 20px rgba(14, 42, 71, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  position: relative;
+  z-index: 3;
+}
+.mall-centre-store::after {
+  /* Subtle "centrepiece" indicator above the card */
+  content: 'FEATURED STORE';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Brand banner that sits at the very top of the homepage, above the nav */
+.brand-banner {
+  background: linear-gradient(135deg, #0E2A47 0%, #1a3d62 60%, #0E2A47 100%);
+  padding: 18px 16px;
+  text-align: center;
+  border-bottom: 3px solid var(--orange);
+}
+.brand-banner-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.brand-banner svg {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+.brand-banner-text {
+  text-align: left;
+  line-height: 1.1;
+}
+.brand-banner-text .b-got {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: rgba(255, 253, 247, 0.7);
+  text-transform: uppercase;
+}
+.brand-banner-text .b-store {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: 1px;
+}
+.brand-banner-text .b-tag {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: rgba(255, 253, 247, 0.55);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .brand-banner svg { width: 36px; height: 36px; }
+  .brand-banner-text .b-store { font-size: 21px; }
+  .brand-banner-text .b-got, .brand-banner-text .b-tag { font-size: 10px; letter-spacing: 2.5px; }
+}
+/* Older class kept as fallback for any legacy reference */
+.stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.store-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 14px 18px 22px;
+  background: linear-gradient(135deg, #ffffff 0%, #f6f4ee 100%);
+  border: 1px solid #e8e4d8;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+  gap: 6px;
+}
+/* Each storefront wears an "OPEN" doorway sign at the top */
+.store-door {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #00A86B;
+  background: rgba(0, 168, 107, 0.10);
+  border: 1px solid rgba(0, 168, 107, 0.35);
+  padding: 3px 10px 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 1.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.store-door::before {
+  content: '🚪';
+  font-size: 11px;
+  filter: grayscale(0);
+}
+.store-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F26B1A, #00A86B);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.store-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(14, 42, 71, 0.08), 0 4px 8px rgba(14, 42, 71, 0.04);
+  border-color: #d4ccb5;
+}
+.store-card:hover::before {
+  opacity: 1;
+}
+.store-icon {
+  font-size: 38px;
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: transform 0.18s ease;
+}
+.store-card:hover .store-icon {
+  transform: scale(1.08) rotate(-3deg);
+}
+.store-name {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #0E2A47;
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+.store-tag {
+  font-size: 11.5px;
+  color: #788596;
+  font-weight: 500;
+}
+
+/* ============== CATEGORY CARDS — UPGRADED ============== */
+.category-card {
+  background: linear-gradient(135deg, #ffffff 0%, #faf8f2 100%);
+  border: 1px solid #ebe6d5;
+  border-radius: 14px;
+  padding: 22px 16px 18px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  position: relative;
+  cursor: pointer;
+}
+.category-card .category-icon {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: 4px;
+  transition: transform 0.18s ease;
+  display: block;
+}
+.category-card .category-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0E2A47;
+  letter-spacing: -0.01em;
+  display: block;
+}
+.category-card .category-count {
+  font-size: 11.5px;
+  color: #788596;
+  font-weight: 500;
+  display: block;
+}
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(14, 42, 71, 0.08);
+  border-color: #F26B1A;
+  background: linear-gradient(135deg, #ffffff 0%, #fff8ee 100%);
+}
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+.category-card.soon {
+  opacity: 0.7;
+}
+.category-card.soon .category-count {
+  color: #F26B1A;
+  font-style: italic;
+  font-weight: 600;
+}
+.category-card.active-filter {
+  border-color: #00A86B;
+  background: linear-gradient(135deg, #ffffff 0%, #ebfaf3 100%);
+  box-shadow: 0 6px 16px rgba(0, 168, 107, 0.18);
+}
+.category-card.active-filter .category-count::after {
+  content: " · click again to clear";
+  font-size: 10px;
+  color: #00A86B;
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  margin-top: 2px;
+}
+
+
+/* ============== HERO VIDEO LAYOUT ============== */
+.hero-inner-stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+  text-align: center;
+}
+.hero-text-centered {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-text-centered .hero-eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 16px 40px rgba(14, 42, 71, 0.18);
+}
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* Hero video is clickable — clicking it silently toggles sound on/off */
+.hero-video-wrap { cursor: pointer; position: relative; }
+.hero-video-wrap:hover .hero-video { filter: brightness(1.02); }
+/* Hop in button rises in over the bottom of the video once the welcome plays out */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 28px;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, transparent 65%, rgba(14, 42, 71, 0.55) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.hero-video-overlay.visible { opacity: 1; }
+.hero-video-overlay > * { pointer-events: auto; }
+.btn-hop-in-overlay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  padding: 14px 26px;
+  box-shadow: 0 8px 24px rgba(242, 107, 26, 0.45);
+  animation: hop-pulse 1.8s ease-in-out infinite;
+}
+@keyframes hop-pulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hero-shop .hero-video-wrap {
+  max-width: 1100px;
+}
+/* Home hero: the worker welcoming the couple is the opening act.
+   The video takes the spotlight; the lead line sits quietly underneath. */
+.hero-home .hero-video-wrap {
+  max-width: 1100px;
+}
+.hero-text-after-video {
+  margin-top: 18px;
+}
+.hero-text-after-video .lead {
+  margin: 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+/* ============== DEALS STATUS HEADER ============== */
+.deals-status-section {
+  padding-bottom: 0;
+}
+.deals-status-card {
+  background: linear-gradient(135deg, #fff8ef 0%, #ffffff 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.deals-status-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.deals-status-pill {
+  background: rgba(0, 168, 107, 0.12);
+  color: var(--green);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 168, 107, 0.3);
+}
+.deals-status-time {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ============================================================================
+   MOBILE FIX v2 (2026-05-27) — U-shape walkway preserved, no horizontal overflow.
+   v1 hid the walkway on phones; user wanted it back at exactly 64px with the
+   WALKWAY label visible. The original overflow was caused by store-card
+   min-content (long names, 56px favicons) pushing 1fr columns wider than the
+   viewport, NOT by the 3-column grid itself. Fix: minmax(0, 1fr) lets the
+   columns shrink past natural content size, and compact card metrics keep
+   everything legible in ~150px-wide aisles on a 390px phone.
+============================================================================ */
+@media (max-width: 768px) {
+  /* Keep the U-shape: left aisle | tiled walkway | right aisle */
+  .mall-walkway {
+    grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+  .mall-bottom-row {
+    grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+  /* Walkway visible — restore explicitly in case any earlier rule hides it */
+  .mall-floor.has-centre {
+    display: flex !important;
+    min-height: 200px !important;
+    padding: 12px 4px !important;
+  }
+  .mall-floor-arrow { font-size: 11px !important; }
+  .mall-floor.has-centre .mall-floor-label {
+    font-size: 9px !important;
+    letter-spacing: 4px !important;
+    padding: 10px 4px !important;
+  }
+  /* Spacer between Takealot and Amazon in bottom row stays visible to mirror the walkway above */
+  .mall-bottom-row > .mall-bottom-spacer {
+    display: block !important;
+    background-color: #f0e4cc;
+    background-image:
+      linear-gradient(rgba(150, 120, 70, 0.20) 1.5px, transparent 1.5px),
+      linear-gradient(90deg, rgba(150, 120, 70, 0.20) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+    border-radius: 10px;
+    opacity: 0.55;
+  }
+  /* Compact store cards so content fits in the narrow aisle columns without pushing them wider */
+  .store-card {
+    padding: 8px 10px 12px !important;
+    min-height: 110px !important;
+    gap: 3px !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+  .store-name {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .store-tag {
+    font-size: 9.5px !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+  }
+  img.store-icon {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 2px auto 4px !important;
+    padding: 2px !important;
+  }
+  /* Bottom-row featured stores stay readable */
+  .mall-bottom-row .store-card { min-height: 80px !important; padding: 10px !important; }
+  .mall-bottom-row img.store-icon { width: 34px !important; height: 34px !important; margin: 0 6px 0 0 !important; }
+  .mall-bottom-row .store-name { font-size: 12px !important; }
+  .mall-bottom-row .store-tag { font-size: 9.5px !important; }
+  .store-featured-ribbon {
+    font-size: 7.5px !important;
+    padding: 2px 20px !important;
+    right: -20px !important;
+    top: 6px !important;
+  }
+}
+
+/* Safety net: prevent ANY rogue element (banners, hero video, etc.) from causing
+   horizontal scroll on mobile. The site is designed mobile-first vertical-scroll. */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Got It Superstore","alternateName":"Got It Superstore (Pty) Ltd","url":"https://gotitsuperstore.co.za","logo":"https://gotitsuperstore.co.za/media/logo.svg","description":"A curated South African online shopping mall linking shoppers to 50 trusted global retailers in one place.","sameAs":["https://gotitsuperstore.blogspot.com","https://twitter.com/Gotitsu247_","https://youtu.be/5i5A9hvguvU"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Got It Superstore","url":"https://gotitsuperstore.co.za","description":"Curated mall of 50 trusted online stores. South African owned, global shoppers welcome."}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Got It Superstore?", "acceptedAnswer": {"@type": "Answer", "text": "Got It Superstore is a curated South African online shopping mall that links shoppers to 50 trusted global retailers — including Amazon, ASOS, Sephora, Apple, Booking.com, IKEA and Takealot — in one place, so you can find what you need without opening dozens of tabs."}}, {"@type": "Question", "name": "Is Got It Superstore free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Browsing and using the mall is completely free. You pay each retailer their normal price — there is no extra cost to shop through Got It Superstore."}}, {"@type": "Question", "name": "Is it safe to shop through Got It Superstore?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every link takes you directly to the retailer's own official website. There are no redirects or third-party tracking scripts — just a faster way to reach stores you already trust."}}, {"@type": "Question", "name": "Can I use it if I live outside a major South African city?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You shop from home anywhere in South Africa and have orders delivered, with nationwide delivery and click-and-collect points reaching thousands of towns. No nearby store needed."}}]}
+</script>
+</head>
+<body>
+
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+<!-- ============== BRAND BANNER (sits above the nav on every page) ============== -->
+<header class="brand-banner">
+  <div class="brand-banner-inner">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#F26B1A" stroke-width="3"/>
+      <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="50" y="84" text-anchor="middle" fill="#F26B1A" font-family="Poppins,Inter,sans-serif" font-size="11" font-weight="800" letter-spacing="1">GOT IT</text>
+    </svg>
+    <div class="brand-banner-text">
+      <span class="b-got">Got It</span>
+      <span class="b-store">Superstore</span>
+      <span class="b-tag">Trusted Everyday</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============== FTC DISCLOSURE ============== -->
+<div class="ftc-bar">
+  <strong>Affiliate Disclosure:</strong> Got It Superstore earns commissions from qualifying purchases through affiliate links. This comes at no extra cost to you. <a href="#" onclick="openModal('privacy-modal'); return false;">Learn more</a>
+</div>
+
+<!-- ============== NAV ============== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Got It Superstore home">
+      <svg width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z" fill="#0E2A47" stroke="#1a3d62" stroke-width="2"/>
+        <path d="M30 52 L44 66 L70 36" stroke="#00A86B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="50" y="84" text-anchor="middle" fill="#F26B1A" font-family="Poppins,Inter,sans-serif" font-size="11" font-weight="800" letter-spacing="1">GOT IT</text>
+      </svg>
+      <span class="nav-logo-text">
+        <span class="got">Got It</span>
+        <span class="superstore">Superstore</span>
+      </span>
+    </a>
+    <div class="nav-search" role="search">
+      <div class="nav-search-shell">
+        <span class="nav-search-badge">Inquiry Reception</span>
+        <input id="searchInput" type="text" placeholder="Which product are you looking for?" autocomplete="off" spellcheck="false" maxlength="200" onkeydown="if(event.key==='Enter') doSearch()" aria-label="Inquiry reception — search across all 50 stores">
+        <button onclick="doSearch()" aria-label="Submit inquiry">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </div>
+      <div class="nav-search-hint">Tell us what you need — we'll search 50 trusted stores covering 200,000+ brands.</div>
+    </div>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="categories.html">Curated</a>
+      <a href="deals.html">Deals</a>
+      <a href="editorials.html">Editorial</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+
+<!-- ============== HERO (HOME) ============== -->
+<!-- Page opens with the welcome video. Video autoplays muted so the browser
+     allows it; clicking anywhere on the video silently toggles sound (no
+     visible button or hint). Once the video finishes (or after a 7s safety
+     timer) the Hop in button rises in over the bottom of the video. -->
+<section class="hero hero-home" id="home">
+  <div class="hero-inner hero-inner-stacked">
+    <div class="hero-video-wrap" id="hero-video-wrap">
+      <video class="hero-video"
+             id="hero-arrival-video"
+             src="media/hero-arrival.mp4"
+             poster="media/hero-poster.jpg"
+             playsinline
+             muted
+             autoplay
+             preload="metadata"
+             aria-label="Got It Superstore arrival — a Got It worker welcomes a visiting couple at the mall entrance">
+        Your browser does not support embedded video.
+      </video>
+      <div class="hero-video-overlay" id="hero-video-overlay" aria-hidden="true">
+        <a class="btn btn-primary btn-hop-in-overlay" id="hop-in-button" href="login.html">
+          <span style="font-size:20px;line-height:1">🚪</span>
+          <span>Hop in</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-text hero-text-centered hero-text-after-video">
+      <p class="lead">Step inside — walk through our mall of 50 trusted stores.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-eyebrow">About us</div>
+      <h2 class="section-title" style="margin-bottom: 18px;">A curated affiliate <span class="accent">marketplace</span></h2>
+      <p>Got It Superstore is a curated affiliate marketplace that helps South African and global shoppers discover the best deals from trusted retailers worldwide. We do not sell products directly — we surface verified, hand-picked items from <strong>ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, and Costco</strong>, so you find quality products at competitive prices without the hours of comparison shopping.</p>
+      <p>When you click through our links and make a purchase, we earn a small commission from the retailer at <strong>no extra cost to you</strong>. That commission funds the curation, content, and editorial review work — and lets us keep the entire site free for shoppers.</p>
+      <p>We're registered in South Africa as a private company under <strong>CIPC Reg. 2023/224652/07</strong>, and we comply with the Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US FTC Endorsement Guidelines.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🔎</div><h4>Curated selection</h4><p>Every product is hand-picked for quality and value.</p></div>
+      <div class="why-card"><div class="why-icon">💰</div><h4>Best prices</h4><p>We compare prices so you don't have to.</p></div>
+      <div class="why-card"><div class="why-icon">🔒</div><h4>Trusted retailers</h4><p>Only verified, reputable stores.</p></div>
+      <div class="why-card"><div class="why-icon">✌</div><h4>Zero cost to you</h4><p>Commissions never affect your price.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONTACT ============== -->
+<section class="section" id="contact">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">Get in touch</div>
+      <h2 class="section-title">We'd love to <span class="accent">hear from you</span></h2>
+    </div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p><strong>Contact us:</strong> <a href="#contact">Use the contact form →</a></p>
+      <p><strong>Registration:</strong> CIPC Reg. 2023/224652/07</p>
+      <p><strong>Country:</strong> South Africa (serving global shoppers)</p>
+      <p><strong>Hours:</strong> We respond within 24-48 hours, Mon-Fri.</p>
+      <p style="margin-top: 18px;"><strong style="display:block; min-width:0; margin-bottom:6px;">For partnership / brand inquiries:</strong>Send us a brief intro with your brand, niche, and the product/category you'd like featured via the contact form. We respond to all inquiries.</p>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/xqejeqdn" method="POST">
+      <!-- Hidden Formspree control fields -->
+      <input type="hidden" name="_subject" value="New Got It Superstore inquiry">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="form-row">
+        <input class="form-input" type="text" name="name" placeholder="Your name" required>
+        <input class="form-input" type="email" name="email" placeholder="Your email" required>
+      </div>
+      <input class="form-input" type="text" name="subject" placeholder="Subject" required style="margin-bottom: 14px;">
+      <textarea class="form-textarea" name="message" placeholder="Your message…" required></textarea>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============== INQUIRY RECEPTION MODAL ============== -->
+<div class="inquiry-modal-overlay" id="inquiry-modal" onclick="if(event.target===this)closeInquiryModal()" role="dialog" aria-modal="true" aria-labelledby="inquiry-title">
+  <div class="inquiry-modal-card">
+    <div class="inquiry-modal-header">
+      <div>
+        <h3 id="inquiry-title">Your inquiry — here's where to find it</h3>
+        <p>Pick the store you'd like to check first. Each link opens that store's search in a new tab.</p>
+      </div>
+      <button class="inquiry-modal-close" type="button" onclick="closeInquiryModal()" aria-label="Close">×</button>
+    </div>
+    <span class="inquiry-query-pill"></span>
+    <div class="inquiry-stores"></div>
+  </div>
+</div>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><span class="got">Got It</span> <span class="super">Superstore</span></h3>
+        <p>Curated affiliate marketplace · Best deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy, Boots, B&H Photo, Takealot and more. South African owned · global shoppers welcome.</p>
+        <p style="margin-top: 14px; font-size: 12px; color: #788596;">CIPC Reg. 2023/224652/07</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="categories.html">All Categories</a>
+        <a href="deals.html">Exclusive Deals</a>
+        <a href="categories.html#blog">Deal Insider Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Retailers</h4>
+        <a href="https://www.asos.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">ASOS</a>
+        <a href="https://www.rakuten.co.jp" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Rakuten</a>
+        <a href="https://www.zalando.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Zalando</a>
+        <a href="https://www.sephora.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Sephora</a>
+        <a href="https://www.wayfair.com" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Wayfair</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <button onclick="openModal('privacy-modal')">Privacy Policy</button>
+        <button onclick="openModal('terms-modal')">Terms of Service</button>
+        <button onclick="openModal('privacy-modal')">Affiliate Disclosure</button>
+        <a href="#contact">Contact</a>
+        <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer" referrerpolicy="strict-origin-when-cross-origin">Information Regulator (SA)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Got It Superstore · Reg. 2023/224652/07 · South Africa</div>
+      <div>No tracking · No cookies · POPIA · GDPR · CCPA · LGPD · PDPA · FTC compliant</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== PRIVACY MODAL ============== -->
+<div class="modal-overlay" id="privacy-modal" onclick="if(event.target===this)closeModal('privacy-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Privacy Policy</h3>
+      <button class="modal-close" onclick="closeModal('privacy-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 18, 2026</p>
+
+      <div style="background: rgba(0, 168, 107, 0.06); border: 1px solid rgba(0, 168, 107, 0.18); border-radius: 12px; padding: 16px 18px; margin: 16px 0;">
+        <p style="margin-bottom: 8px;"><strong style="color: #00A86B;">🌐 International personal-information policy</strong></p>
+        <p style="margin-bottom: 8px;">Got It Superstore is registered in South Africa and serves shoppers globally. Wherever you are reading this from, our practice is the same: <strong>we do not collect, store, or transmit personally identifying information to ourselves or any third party</strong>. Your sign-in is processed by Google directly; your anonymous session token lives only on your device.</p>
+        <p style="margin-bottom: 8px;">We comply with the following privacy frameworks, and we adopt the strictest applicable standard for each visitor's home jurisdiction:</p>
+        <ul style="margin: 8px 0 8px 22px; padding: 0;">
+          <li><strong>POPIA</strong> — Republic of South Africa, Protection of Personal Information Act, 2013.</li>
+          <li><strong>GDPR</strong> — European Union, General Data Protection Regulation 2016/679.</li>
+          <li><strong>UK GDPR</strong> — United Kingdom, Data Protection Act 2018.</li>
+          <li><strong>CCPA / CPRA</strong> — California Consumer Privacy Act and Privacy Rights Act.</li>
+          <li><strong>LGPD</strong> — Brazil, Lei Geral de Proteção de Dados.</li>
+          <li><strong>PDPA</strong> — Singapore, Personal Data Protection Act 2012.</li>
+          <li><strong>PIPEDA</strong> — Canada, Personal Information Protection and Electronic Documents Act.</li>
+          <li><strong>Australia Privacy Act 1988</strong> (as amended) and the Australian Privacy Principles.</li>
+          <li><strong>APPI</strong> — Japan, Act on the Protection of Personal Information.</li>
+          <li><strong>FTC Endorsement Guidelines</strong> — United States Federal Trade Commission, 16 CFR Part 255.</li>
+        </ul>
+        <p style="margin-bottom: 8px;"><strong>Your rights, in any jurisdiction:</strong> request a copy of any data we hold about you (almost certainly nothing — we don't store user accounts ourselves); request deletion of any data; opt out of cookies (we don't set any non-essential cookies); lodge a complaint with your local data-protection authority. To exercise any of these, use the contact form on our homepage and we'll respond within 30 days.</p>
+        <p style="margin: 0;"><strong>Cross-border transfers:</strong> when you click through to a third-party retailer (ASOS, Rakuten, Zalando, etc.), you are transferring your interaction to that retailer's own privacy regime — which we link to from each store's product page. Got It Superstore does not transfer your data between jurisdictions because we do not store it.</p>
+      </div>
+      <p>This Privacy Policy explains how Got It Superstore (CIPC Reg. 2023/224652/07) collects, uses, and protects your personal information. We comply with the South African Protection of Personal Information Act (POPIA), the EU General Data Protection Regulation (GDPR), and the US Federal Trade Commission (FTC) guidelines.</p>
+      <h3>1. Information We Collect</h3>
+      <ul>
+        <li><strong>Contact Form Submissions:</strong> Your name, email address, and message when you submit our contact form.</li>
+        <li><strong>Newsletter Subscriptions:</strong> Your email address when you subscribe to our newsletter.</li>
+        <li><strong>Usage Data:</strong> Basic, anonymized browsing data such as page views for site improvement purposes.</li>
+      </ul>
+      <h3>2. How We Use Your Information</h3>
+      <ul>
+        <li>To respond to your contact form inquiries.</li>
+        <li>To send you deal alerts and shopping tips if you subscribe to our newsletter (you may unsubscribe at any time).</li>
+        <li>To improve our product curation and website experience.</li>
+      </ul>
+      <h3>3. Cookies and Local Storage</h3>
+      <p>Got It Superstore does <strong>not</strong> set its own tracking cookies. When you click affiliate links on our site, the third-party retailer (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, etc.) may set their own cookies for purchase attribution. These cookies are governed by the respective retailer's privacy policy, not ours. Got It Superstore itself does not run any third-party click-tracking or redirect scripts — outbound links take you directly to the retailer's own website.</p>
+      <h3>4. Your Rights</h3>
+      <p>Under POPIA, GDPR, and applicable law, you have the right to:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of any personal data we hold about you.</li>
+        <li><strong>Rectification:</strong> Correct inaccurate personal data by contacting us.</li>
+        <li><strong>Erasure:</strong> Request deletion of your personal data from our records.</li>
+        <li><strong>Portability:</strong> Request your data in a machine-readable format.</li>
+        <li><strong>Object:</strong> Opt out of any future communications at any time.</li>
+      </ul>
+      <h3>5. Affiliate Disclosure</h3>
+      <p>Got It Superstore participates in affiliate marketing programs with ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, and other partner retailers, When you click a link on our site and make a purchase, we may earn a commission. This comes at absolutely no additional cost to you. Our product recommendations are based on quality and value, not commission rates. In accordance with the FTC Endorsement Guidelines (16 CFR Part 255), we clearly disclose our affiliate relationships at the top of every page.</p>
+      <h3>6. Data Sharing</h3>
+      <p>We do not sell, rent, or share your personal information with third parties, except:</p>
+      <ul>
+        <li>When required by law or legal process.</li>
+        <li>Aggregated, anonymized analytics that cannot identify individuals.</li>
+      </ul>
+      <h3>7. Data Retention</h3>
+      <p>Contact form submissions are retained only as long as necessary to respond to your inquiry. Newsletter email addresses are retained until you unsubscribe. You may request deletion of your data at any time by contacting us.</p>
+      <h3>8. Children's Privacy</h3>
+      <p>Got It Superstore is not directed at children under 18. We do not knowingly collect data from minors.</p>
+      <h3>9. Changes to This Policy</h3>
+      <p>We may update this Privacy Policy periodically. Changes will be posted on this page with an updated "Last Updated" date.</p>
+      <h3>10. Contact Us</h3>
+      <p>For privacy-related inquiries, data access requests, or complaints:<br>
+      <strong>Contact us:</strong> <a href="#contact" onclick="closeModal('privacy-modal')">Use the contact form on our homepage →</a><br>
+      <strong>Registration:</strong> CIPC 2023/224652/07<br>
+      <strong>Information Regulator (South Africa):</strong> <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============== TERMS MODAL ============== -->
+<div class="modal-overlay" id="terms-modal" onclick="if(event.target===this)closeModal('terms-modal')">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Terms of Service</h3>
+      <button class="modal-close" onclick="closeModal('terms-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Effective Date:</strong> January 1, 2026 · <strong>Last Updated:</strong> May 4, 2026</p>
+      <p>By using Got It Superstore ("the Site"), you agree to these Terms of Service. The Site is registered under CIPC Reg. 2023/224652/07.</p>
+      <h3>1. Nature of the Service</h3>
+      <p>Got It Superstore is an <strong>affiliate marketing platform</strong>. We do not sell products directly. We curate and recommend products from third-party retailers (ASOS, Rakuten, Zalando, Sephora, Wayfair, Shein, Apple, Etsy, eBay, AliExpress, Takealot, IKEA, Costco, and others) via affiliate links. When you click these links and make purchases, we earn commissions from the retailers.</p>
+      <h3>2. No Direct Sales</h3>
+      <p>All purchases are made directly through the third-party retailer's website. Got It Superstore is not a party to any transaction between you and the retailer. Product availability, pricing, shipping, returns, warranties, and customer service are handled entirely by the respective retailer. We do not guarantee the accuracy of prices or availability displayed on our site.</p>
+      <h3>3. Acceptable Use</h3>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the Site for any unlawful purpose or in violation of any applicable laws.</li>
+        <li>Attempt to gain unauthorized access to any part of the Site or its systems.</li>
+        <li>Use automated tools (bots, scrapers) to access the Site without permission.</li>
+        <li>Interfere with or disrupt the Site's operation or servers.</li>
+        <li>Impersonate any person or entity.</li>
+        <li>Submit false, misleading, or fraudulent information.</li>
+        <li>Use the Site to distribute spam, malware, or other harmful content.</li>
+      </ul>
+      <h3>4. Intellectual Property</h3>
+      <p>All content on Got It Superstore (design, text, logos, graphics) is the property of Got It Superstore unless otherwise stated. Product names, images, and trademarks belong to their respective owners and retailers.</p>
+      <h3>5. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by law:</p>
+      <ul>
+        <li>Got It Superstore is provided "as is" without warranties of any kind, express or implied.</li>
+        <li>We are not liable for any damages arising from your use of the Site or purchases made through affiliate links.</li>
+        <li>We are not responsible for the content, products, or practices of third-party retailers.</li>
+        <li>Our total liability shall not exceed the amount of commissions earned from your activity, if any.</li>
+      </ul>
+      <h3>6. Indemnification</h3>
+      <p>You agree to indemnify and hold harmless Got It Superstore from any claims, damages, or expenses arising from your use of the Site or violation of these Terms.</p>
+      <h3>7. Modifications</h3>
+      <p>We reserve the right to modify these Terms at any time. Continued use of the Site after changes constitutes acceptance of the updated Terms.</p>
+      <h3>8. Governing Law</h3>
+      <p>These Terms are governed by and construed in accordance with the laws of the <strong>Republic of South Africa</strong>. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the South African courts.</p>
+      <h3>9. Contact</h3>
+      <p><strong>Contact us:</strong> <a href="#contact" onclick="closeModal('terms-modal')">Use the contact form on our homepage →</a><br>
+      <strong>Registration:</strong> CIPC 2023/224652/07</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // ============== MODAL CONTROLS ==============
+  window.openModal = function (id) {
+    var el = document.getElementById(id);
+    if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  };
+  window.closeModal = function (id) {
+    var el = document.getElementById(id);
+    if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function (m) { m.classList.remove('open'); });
+      document.body.style.overflow = '';
+    }
+  });
+
+  // ============== BLOG READ-MORE TOGGLE ==============
+  window.toggleBlog = function (btn) {
+    var card = btn.closest('.blog-card');
+    if (!card) return;
+    card.classList.toggle('expanded');
+    if (card.classList.contains('expanded')) {
+      // Smooth scroll the expanded full content into view a bit
+      setTimeout(function () {
+        var full = card.querySelector('.blog-full');
+        if (full) full.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+  };
+
+  // ============== INQUIRY RECEPTION ==============
+  // The "search" was renamed to Inquiry Reception. Instead of presuming Amazon,
+  // we surface all 50 stores so the visitor picks where to look. Every store gets
+  // a real search URL for the visitor's query.
+  var INQUIRY_STORES = [
+    /* === The mall · first 20 stores === */
+    { name: 'ASOS',          icon: '👗', tag: 'Global fashion',         build: function (q) { return 'https://www.asos.com/search/?q=' + q; } },
+    { name: 'Zooplus',       icon: '🐶', tag: 'Pet supplies',           build: function (q) { return 'https://www.zooplus.com/search?q=' + q; } },
+    { name: 'Zalando',       icon: '👠', tag: 'European fashion',       build: function (q) { return 'https://en.zalando.de/catalog/?q=' + q; } },
+    { name: 'Sephora',       icon: '💄', tag: 'Beauty & skincare',      build: function (q) { return 'https://www.sephora.com/search?keyword=' + q; } },
+    { name: 'Wayfair',       icon: '🛋️', tag: 'Home & furniture',       build: function (q) { return 'https://www.wayfair.com/keyword.php?keyword=' + q; } },
+    { name: 'Shein',         icon: '🛍️', tag: 'Fast fashion',           build: function (q) { return 'https://www.shein.com/pdsearch/' + q + '/'; } },
+    { name: 'Apple',         icon: '🍎', tag: 'Premium electronics',    build: function (q) { return 'https://www.apple.com/us/search/' + q; } },
+    { name: 'Etsy',          icon: '🎨', tag: 'Handmade & vintage',     build: function (q) { return 'https://www.etsy.com/search?q=' + q; } },
+    { name: 'eBay',          icon: '🛒', tag: 'Auctions & resale',      build: function (q) { return 'https://www.ebay.com/sch/i.html?_nkw=' + q; } },
+    { name: 'AliExpress',    icon: '🌏', tag: 'Global wholesale',       build: function (q) { return 'https://www.aliexpress.com/wholesale?SearchText=' + q; } },
+    { name: 'Takealot',      icon: '🇿🇦', tag: 'South Africa',           build: function (q) { return 'https://www.takealot.com/all?qsearch=' + q; } },
+    { name: 'Crate & Barrel',icon: '🏠', tag: 'Premium home',           build: function (q) { return 'https://www.crateandbarrel.com/search?query=' + q; } },
+    { name: 'Costco',        icon: '🛒', tag: 'Members-only wholesale', build: function (q) { return 'https://www.costco.com/CatalogSearch?keyword=' + q; } },
+    { name: 'Booking.com',   icon: '🛫', tag: 'Travel & stays',         build: function (q) { return 'https://www.booking.com/searchresults.html?ss=' + q; } },
+    { name: 'Newegg',        icon: '💻', tag: 'PC & tech hardware',     build: function (q) { return 'https://www.newegg.com/p/pl?d=' + q; } },
+    { name: 'Decathlon',     icon: '⛺', tag: 'Sport & outdoor',         build: function (q) { return 'https://www.decathlon.com/search?q=' + q; } },
+    { name: 'Lululemon',     icon: '🧘', tag: 'Premium athleisure',     build: function (q) { return 'https://shop.lululemon.com/search?Ntt=' + q; } },
+    { name: 'Net-a-Porter',  icon: '💎', tag: 'Luxury fashion',         build: function (q) { return 'https://www.net-a-porter.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Charlotte Tilbury', icon: '💄', tag: 'Premium beauty',     build: function (q) { return 'https://www.charlottetilbury.com/us/search?q=' + q; } },
+    { name: 'Boots', icon: 'https://www.google.com/s2/favicons?domain=boots.com&sz=64', tag: 'Pharmacy & beauty (UK)', build: function (q) { return 'https://www.boots.com'; } },
+    /* === The mall · next 30 stores === */
+    { name: 'JD.com',        icon: '🇨🇳', tag: 'China marketplace',      build: function (q) { return 'https://search.jd.com/Search?keyword=' + q; } },
+    { name: 'Trendyol',      icon: '🇹🇷', tag: 'Turkish marketplace',    build: function (q) { return 'https://www.trendyol.com/sr?q=' + q; } },
+    { name: 'Farfetch',      icon: '🌟', tag: 'Luxury fashion',         build: function (q) { return 'https://www.farfetch.com/shopping/search/items.aspx?q=' + q; } },
+    { name: 'SSENSE', icon: 'https://www.google.com/s2/favicons?domain=ssense.com&sz=64', tag: 'Designer fashion', build: function (q) { return 'https://www.ssense.com'; } },
+    { name: 'END.', icon: 'https://www.google.com/s2/favicons?domain=endclothing.com&sz=64', tag: 'Streetwear', build: function (q) { return 'https://www.endclothing.com'; } },
+    { name: 'Revolve',       icon: '✨', tag: 'Trendy fashion',         build: function (q) { return 'https://www.revolve.com/r/Search.jsp?search=' + q; } },
+    { name: 'Uniqlo',        icon: '🟥', tag: 'Japanese essentials',    build: function (q) { return 'https://www.uniqlo.com/us/en/search/?q=' + q; } },
+    { name: 'Mr Porter',     icon: '🎩', tag: "Men's luxury",           build: function (q) { return 'https://www.mrporter.com/en-us/mens/search?keywords=' + q; } },
+    { name: 'Mytheresa', icon: 'https://www.google.com/s2/favicons?domain=mytheresa.com&sz=64', tag: 'Luxury fashion', build: function (q) { return 'https://www.mytheresa.com'; } },
+    { name: 'H&M',           icon: '👚', tag: 'Global fast fashion',    build: function (q) { return 'https://www2.hm.com/en_us/search-results.html?q=' + q; } },
+    { name: 'Mytheresa',     icon: '👑', tag: 'Luxury fashion',         build: function (q) { return 'https://www.mytheresa.com/en-us/search?q=' + q; } },
+    { name: 'COS',           icon: '⚪', tag: 'Premium minimalist',     build: function (q) { return 'https://www.cos.com/en_usd/search.html?q=' + q; } },
+    { name: 'Mango',         icon: '🍃', tag: 'Spanish fashion',        build: function (q) { return 'https://shop.mango.com/us/search?kw=' + q; } },
+    { name: 'Nike',          icon: '👟', tag: 'Sportswear',           build: function (q) { return 'https://www.nike.com'; } },
+    { name: '& Other Stories',icon:'💗', tag: 'Premium H&M Group',      build: function (q) { return 'https://www.stories.com/en_usd/search.html?q=' + q; } },
+    { name: 'Selfridges', icon: 'https://www.google.com/s2/favicons?domain=selfridges.com&sz=64', tag: 'Department store (UK)', build: function (q) { return 'https://www.selfridges.com'; } },
+    { name: 'Cult Beauty',   icon: '🧴', tag: 'Curated indie beauty',   build: function (q) { return 'https://www.cultbeauty.com/elysium.search?searchTerm=' + q; } },
+    { name: 'Lookfantastic', icon: '💅', tag: 'Premium beauty',         build: function (q) { return 'https://www.lookfantastic.com/elysium.search?search=' + q; } },
+    { name: 'Space NK', icon: 'https://www.google.com/s2/favicons?domain=spacenk.com&sz=64', tag: 'Beauty', build: function (q) { return 'https://www.spacenk.com'; } },
+    { name: 'The Body Shop', icon: 'https://www.google.com/s2/favicons?domain=thebodyshop.com&sz=64', tag: 'Natural beauty', build: function (q) { return 'https://www.thebodyshop.com'; } },
+    { name: 'iHerb',         icon: '🌿', tag: 'Health & wellness',      build: function (q) { return 'https://www.iherb.com/search?kw=' + q; } },
+    { name: 'MyProtein',     icon: '🥤', tag: 'Sports nutrition',       build: function (q) { return 'https://www.myprotein.com/elysium.search?search=' + q; } },
+    { name: 'Gymshark',      icon: '💪', tag: 'Fitness apparel',        build: function (q) { return 'https://www.gymshark.com/search?q=' + q; } },
+    { name: 'On Running',    icon: '🏃', tag: 'Swiss running',          build: function (q) { return 'https://www.on-running.com/en-us/search?q=' + q; } },
+    { name: 'Columbia', icon: 'https://www.google.com/s2/favicons?domain=columbia.com&sz=64', tag: 'Outdoor & sports', build: function (q) { return 'https://www.columbia.com'; } },
+    { name: 'B&H Photo',     icon: '📷', tag: 'Pro photo & audio',      build: function (q) { return 'https://www.bhphotovideo.com/c/search?Ntt=' + q; } },
+    { name: 'LEGO',          icon: '🧱', tag: 'Toys & building',        build: function (q) { return 'https://www.lego.com/en-us/search?q=' + q; } },
+    { name: 'Muji',          icon: '🟫', tag: 'Japanese minimalist',    build: function (q) { return 'https://www.muji.com/us/en/search?keyword=' + q; } },
+    { name: 'The Outnet',    icon: '💎', tag: 'Discount luxury',        build: function (q) { return 'https://www.theoutnet.com/en-us/shop/search?keywords=' + q; } },
+    { name: 'Amazon',        icon: '📦', tag: 'Global marketplace',     build: function (q) { return 'https://www.amazon.com/s?k=' + q; } }
+  ];
+
+  window.doSearch = function () {
+    var input = document.getElementById('searchInput');
+    if (!input) return;
+    var q = (input.value || '').trim().replace(/[\x00-\x1f]/g, '').slice(0, 200);
+    if (!q) { input.focus(); return; }
+    showInquiryModal(q);
+  };
+
+  window.showInquiryModal = function (q) {
+    var overlay = document.getElementById('inquiry-modal');
+    if (!overlay) return;
+    var enc = encodeURIComponent(q);
+    var listEl = overlay.querySelector('.inquiry-stores');
+    var queryEl = overlay.querySelector('.inquiry-query-pill');
+    if (queryEl) queryEl.textContent = '“' + q + '”';
+    if (listEl) {
+      listEl.innerHTML = '';
+      INQUIRY_STORES.forEach(function (s) {
+        var a = document.createElement('a');
+        a.href = s.build(enc);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.referrerPolicy = 'strict-origin-when-cross-origin';
+        a.className = 'inquiry-store-link';
+        var iconSpan = document.createElement('span');
+        iconSpan.className = 'inquiry-store-link-icon';
+        iconSpan.textContent = s.icon;
+        var textWrap = document.createElement('span');
+        textWrap.className = 'inquiry-store-link-text';
+        var nameSpan = document.createElement('span');
+        nameSpan.className = 'inquiry-store-link-name';
+        nameSpan.textContent = s.name;
+        var tagSpan = document.createElement('span');
+        tagSpan.className = 'inquiry-store-link-tag';
+        tagSpan.textContent = s.tag;
+        textWrap.appendChild(nameSpan);
+        textWrap.appendChild(tagSpan);
+        a.appendChild(iconSpan);
+        a.appendChild(textWrap);
+        listEl.appendChild(a);
+      });
+    }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeInquiryModal = function () {
+    var overlay = document.getElementById('inquiry-modal');
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // ============== BFCACHE / TAB-BACK BEHAVIOR ==============
+  // Make sure the page restores cleanly when user comes back from an outbound link.
+  // Don't run heavy code on pageshow when restored from bfcache.
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      // Page was restored from back-forward cache. Already in correct state.
+      // Just close any stuck modals from the previous session.
+      document.querySelectorAll('.modal-overlay.open').forEach(function (m) { m.classList.remove('open'); });
+      document.body.style.overflow = '';
+    }
+  });
+  // Don't add an unload listener — that's the #1 cause of bfcache ineligibility.
+
+})();
+</script>
+
+
+<script>
+/* ============== CATEGORY FILTERING ============== */
+(function() {
+  const cats = document.querySelectorAll('.category-card[data-category]');
+  const products = document.querySelectorAll('.product-card[data-category]');
+  const dealsSection = document.getElementById('deals');
+  const dealsHeader = dealsSection ? dealsSection.querySelector('.section-meta') : null;
+  const originalDealsMeta = dealsHeader ? dealsHeader.textContent : '';
+  let currentFilter = null;
+
+  cats.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const cat = this.dataset.category;
+      const isSoon = this.classList.contains('soon');
+
+      // Clear all active filters first
+      document.querySelectorAll('.category-card.active-filter').forEach(c => c.classList.remove('active-filter'));
+
+      // Toggle off if clicking the same one again
+      if (currentFilter === cat) {
+        currentFilter = null;
+        products.forEach(p => { p.style.display = ''; });
+        if (dealsHeader) dealsHeader.textContent = originalDealsMeta;
+      } else {
+        currentFilter = cat;
+        this.classList.add('active-filter');
+
+        let visibleCount = 0;
+        products.forEach(p => {
+          if (p.dataset.category === cat) {
+            p.style.display = '';
+            visibleCount++;
+          } else {
+            p.style.display = 'none';
+          }
+        });
+
+        // Update deals header to show the filter context
+        if (dealsHeader) {
+          const catName = this.querySelector('.category-name').textContent;
+          if (visibleCount === 0) {
+            dealsHeader.textContent = catName + ' deals coming soon · check back weekly';
+          } else {
+            dealsHeader.textContent = 'Showing ' + visibleCount + ' ' + catName + ' deal' + (visibleCount === 1 ? '' : 's');
+          }
+        }
+      }
+
+      // Scroll deals section into view smoothly
+      if (dealsSection) {
+        dealsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+/* ============== VIDEO: silent click-to-unmute + Hop in overlay reveal ============== */
+(function () {
+  /* Silent click-to-unmute: tapping the video frame toggles sound. No visible
+     hint or icon — just behaviour. Tap once to hear the welcome, tap again to
+     mute. */
+  function wireSoundToggle(videoId, wrapId) {
+    var video = document.getElementById(videoId);
+    var wrap  = document.getElementById(wrapId);
+    if (!video || !wrap) return;
+    wrap.addEventListener('click', function () {
+      try {
+        if (video.muted) {
+          video.muted = false;
+          video.currentTime = 0;
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {});
+        } else {
+          video.muted = true;
+        }
+      } catch (e) {}
+    });
+  }
+  wireSoundToggle('hero-arrival-video',    'hero-video-wrap');
+  wireSoundToggle('shop-transition-video', 'shop-video-wrap');
+
+  /* Hop in overlay reveal: after the home page hero video ends (or 7s safety
+     fallback), fade the Hop in button overlay into view at the bottom of the
+     video frame. */
+  var heroVideo   = document.getElementById('hero-arrival-video');
+  var heroOverlay = document.getElementById('hero-video-overlay');
+  if (heroVideo && heroOverlay) {
+    function showOverlay() { heroOverlay.classList.add('visible'); }
+    heroVideo.addEventListener('ended', showOverlay);
+    setTimeout(showOverlay, 7000);
+  }
+})();
+
+/* ============== DEALS LAST-UPDATED FROM FEED FILE ============== */
+(function () {
+  var el = document.getElementById('deals-last-updated');
+  if (!el) return;
+  fetch('data/deals-feed.json', { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (data && data.lastUpdated) {
+        var d = new Date(data.lastUpdated);
+        el.textContent = 'Last updated: ' + d.toLocaleString();
+      } else {
+        el.textContent = 'Last updated: pending first refresh';
+      }
+    })
+    .catch(function () { el.textContent = 'Last updated: pending first refresh'; });
+})();
+</script>
+
+
+<script>
+/* ============== INQUIRY MODAL RATE LIMITER (added 2026-05-27) ==============
+   Prevents bot-style abuse of the inquiry search. Stores recent search
+   timestamps in sessionStorage and rejects searches if a visitor fires more
+   than 8 queries in 30 seconds — far above human typing speed but well below
+   any practical scraper rate. Silent for normal use. */
+(function () {
+  var KEY = 'gi_inq_rl';
+  var WINDOW_MS = 30000;
+  var MAX_HITS = 8;
+  function tooFast() {
+    var now = Date.now();
+    var raw = '';
+    try { raw = sessionStorage.getItem(KEY) || ''; } catch (e) { return false; }
+    var hits = raw ? raw.split(',').map(Number).filter(function (n) { return now - n < WINDOW_MS; }) : [];
+    if (hits.length >= MAX_HITS) return true;
+    hits.push(now);
+    try { sessionStorage.setItem(KEY, hits.join(',')); } catch (e) {}
+    return false;
+  }
+  /* Wrap the existing doSearch so we don't fight the original implementation */
+  if (typeof window.doSearch === 'function') {
+    var orig = window.doSearch;
+    window.doSearch = function () {
+      if (tooFast()) {
+        var input = document.getElementById('searchInput');
+        if (input) {
+          var prev = input.placeholder;
+          input.placeholder = 'Slow down a moment — try again in a few seconds';
+          setTimeout(function () { input.placeholder = prev; }, 4000);
+        }
+        return;
+      }
+      return orig.apply(this, arguments);
+    };
+  }
+})();
+</script>
+
+</body>
+</html>
