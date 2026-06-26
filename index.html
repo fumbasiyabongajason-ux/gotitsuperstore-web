@@ -1271,52 +1271,6 @@ footer {
 /* Hero video is clickable — clicking it silently toggles sound on/off */
 .hero-video-wrap { cursor: pointer; position: relative; }
 .hero-video-wrap:hover .hero-video { filter: brightness(1.02); }
-/* Brand badge — the favicon shield locked up with the wordmark, top-left of the
-   hero video. pointer-events:none so it never blocks click-to-unmute on the video. */
-.hero-brand-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 14px 7px 8px;
-  background: rgba(6, 26, 46, 0.55);
-  -webkit-backdrop-filter: blur(7px);
-  backdrop-filter: blur(7px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  pointer-events: none;
-}
-.hero-brand-badge img {
-  width: 34px;
-  height: 34px;
-  display: block;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
-}
-.hero-brand-badge .hbb-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-  font-family: var(--font-heading);
-}
-.hero-brand-badge .hbb-text b { color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.2px; }
-.hero-brand-badge .hbb-text i {
-  color: var(--orange-bright);
-  font-size: 10px;
-  font-weight: 700;
-  font-style: normal;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-}
-@media (max-width: 680px) {
-  .hero-brand-badge { top: 10px; left: 10px; gap: 7px; padding: 5px 11px 5px 6px; }
-  .hero-brand-badge img { width: 27px; height: 27px; }
-  .hero-brand-badge .hbb-text b { font-size: 12.5px; }
-  .hero-brand-badge .hbb-text i { font-size: 8.5px; letter-spacing: 1.3px; }
-}
 /* Hop in button rises in over the bottom of the video once the welcome plays out */
 .hero-video-overlay {
   position: absolute;
@@ -1543,15 +1497,15 @@ html, body {
   <link rel="canonical" href="https://gotitsuperstore.co.za/">
   <meta property="og:url" content="https://gotitsuperstore.co.za/">
   <meta property="og:site_name" content="Got It Superstore">
-  <meta property="og:image" content="https://gotitsuperstore.co.za/media/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image" content="https://gotitsuperstore.co.za/media/hero-poster.jpg">
+  <meta property="og:image:width" content="854">
+  <meta property="og:image:height" content="480">
   <meta property="og:image:alt" content="Got It Superstore — curated mall of 50 trusted stores">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@Gotitsu247_">
   <meta name="twitter:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
   <meta name="twitter:description" content="Got It Superstore — a curated affiliate mall with 50 trusted global stores under one walkable storefront. South African-owned, global shoppers welcome. Walk the mall: gotitsuperstore.co.za">
-  <meta name="twitter:image" content="https://gotitsuperstore.co.za/media/og-image.jpg">
+  <meta name="twitter:image" content="https://gotitsuperstore.co.za/media/hero-poster.jpg">
 </head>
 <body>
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Got It Superstore — a curated affiliate mall of 50 trusted global stores</h1>
@@ -1635,10 +1589,6 @@ html, body {
              aria-label="Got It Superstore arrival — a Got It worker welcomes a visiting couple at the mall entrance">
         Your browser does not support embedded video.
       </video>
-      <div class="hero-brand-badge">
-        <img src="/favicon.svg" alt="Got It Superstore badge" width="34" height="34" onerror="this.onerror=null;this.src='/favicon-96x96.png'">
-        <span class="hbb-text"><b>Got It</b><i>Superstore</i></span>
-      </div>
       <div class="hero-video-overlay" id="hero-video-overlay" aria-hidden="true">
         <a class="btn btn-primary btn-hop-in-overlay" id="hop-in-button" href="login.html">
           <span style="font-size:20px;line-height:1">🚪</span>
