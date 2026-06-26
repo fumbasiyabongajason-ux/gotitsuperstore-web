@@ -28,6 +28,16 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Got It Superstore (Pty) Ltd · CIPC Reg. 2023/224652/07">
 
+<!-- ============== FAVICON ============== -->
+<!-- Brand badge lives at the site root. Declared explicitly so Google Search and
+     browsers render the Got It shield. Google reads the home page's rel=icon;
+     favicon-96x96.png is a 48px-multiple square, exactly what Google prefers. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <!-- Open Graph -->
 <meta property="og:title" content="Got It Superstore — Curated Deals from Trusted Retailers">
 <meta property="og:description" content="Hand-picked deals from ASOS, Rakuten, Zalando, Sephora, Apple, Etsy. Best prices. Zero cost to you.">
@@ -1261,6 +1271,52 @@ footer {
 /* Hero video is clickable — clicking it silently toggles sound on/off */
 .hero-video-wrap { cursor: pointer; position: relative; }
 .hero-video-wrap:hover .hero-video { filter: brightness(1.02); }
+/* Brand badge — the favicon shield locked up with the wordmark, top-left of the
+   hero video. pointer-events:none so it never blocks click-to-unmute on the video. */
+.hero-brand-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px 7px 8px;
+  background: rgba(6, 26, 46, 0.55);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+.hero-brand-badge img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+}
+.hero-brand-badge .hbb-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  font-family: var(--font-heading);
+}
+.hero-brand-badge .hbb-text b { color: #fff; font-size: 15px; font-weight: 800; letter-spacing: 0.2px; }
+.hero-brand-badge .hbb-text i {
+  color: var(--orange-bright);
+  font-size: 10px;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+@media (max-width: 680px) {
+  .hero-brand-badge { top: 10px; left: 10px; gap: 7px; padding: 5px 11px 5px 6px; }
+  .hero-brand-badge img { width: 27px; height: 27px; }
+  .hero-brand-badge .hbb-text b { font-size: 12.5px; }
+  .hero-brand-badge .hbb-text i { font-size: 8.5px; letter-spacing: 1.3px; }
+}
 /* Hop in button rises in over the bottom of the video once the welcome plays out */
 .hero-video-overlay {
   position: absolute;
@@ -1579,6 +1635,10 @@ html, body {
              aria-label="Got It Superstore arrival — a Got It worker welcomes a visiting couple at the mall entrance">
         Your browser does not support embedded video.
       </video>
+      <div class="hero-brand-badge">
+        <img src="/favicon.svg" alt="Got It Superstore badge" width="34" height="34" onerror="this.onerror=null;this.src='/favicon-96x96.png'">
+        <span class="hbb-text"><b>Got It</b><i>Superstore</i></span>
+      </div>
       <div class="hero-video-overlay" id="hero-video-overlay" aria-hidden="true">
         <a class="btn btn-primary btn-hop-in-overlay" id="hop-in-button" href="login.html">
           <span style="font-size:20px;line-height:1">🚪</span>
@@ -1674,6 +1734,7 @@ html, body {
         <a href="categories.html">All Categories</a>
         <a href="deals.html">Exclusive Deals</a>
         <a href="categories.html#blog">Deal Insider Blog</a>
+        <a href="stores-that-ship-to-south-africa.html">Stores that ship to SA</a>
       </div>
       <div class="footer-col">
         <h4>Retailers</h4>
