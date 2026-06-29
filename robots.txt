@@ -17,52 +17,8 @@
 # ============================================================
 User-agent: Googlebot
 Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
 
-User-agent: Googlebot-Image
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
-
-User-agent: Bingbot
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
-
-User-agent: DuckDuckBot
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
-
-User-agent: Slurp
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
-
-User-agent: Applebot
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
-
-User-agent: Yandex
-Allow: /
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
+User-agent: D
 
 User-agent: Pinterestbot
 Allow: /
@@ -201,14 +157,7 @@ Disallow: /
 # DEFAULT — permissive for everything else, but keep private paths out.
 # Favicon files blocked here too so no other search crawler surfaces the icon.
 # ============================================================
-User-agent: *
-Disallow: /data/
-Disallow: /.github/
-Disallow: /workspace/
-Disallow: /favicon.ico
-Disallow: /favicon.svg
-Disallow: /favicon-96x96.png
-Disallow: /apple-touch-icon.png
+
 Allow: /
 
 # Sitemap
