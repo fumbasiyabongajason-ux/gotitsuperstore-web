@@ -1,15 +1,8 @@
-# robots.txt for gotitsuperstore.co.za
+CJ# robots.txt for gotitsuperstore.co.za
 # Last updated: 2026-06-26
 # Policy: ALLOW search engines + AI CITATION/answer-engine crawlers (so we can be
 #         cited in ChatGPT, Gemini, Perplexity, Copilot, Claude & Apple answers),
-#         BLOCK pure AI TRAINING scrapers and aggressive SEO-spy bots.
-#
-# FAVICON NOTE (2026-06-26): the favicon image files are Disallowed for the
-# search engines below so our brand favicon STOPS appearing next to our results
-# in search (it was getting muddled with look-alike/Instagram results). Browsers
-# ignore robots.txt, so the favicon still shows in browser tabs as normal. To
-# bring the favicon back into search later, delete the four "Disallow: /favicon*"
-# / "/apple-touch-icon.png" lines from the search-engine groups below.
+#         BLOCK pure AI TRAINING scrapers and aggressive SEO-spy b
 
 # ============================================================
 # SEARCH ENGINES & SOCIAL PREVIEWS — always welcome
@@ -155,7 +148,6 @@ Disallow: /
 
 # ============================================================
 # DEFAULT — permissive for everything else, but keep private paths out.
-# Favicon files blocked here too so no other search crawler surfaces the icon.
 # ============================================================
 
 Allow: /
