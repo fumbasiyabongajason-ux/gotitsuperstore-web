@@ -6,7 +6,7 @@ CJ# robots.txt for gotitsuperstore.co.za
 
 # ============================================================
 # SEARCH ENGINES & SOCIAL PREVIEWS — always welcome
-# (favicon files blocked so the icon does not show in search results)
+# 
 # ============================================================
 User-agent: Googlebot
 Allow: /
