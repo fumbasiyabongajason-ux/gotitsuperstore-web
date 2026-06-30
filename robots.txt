@@ -11,7 +11,7 @@ CJ# robots.txt for gotitsuperstore.co.za
 User-agent: Googlebot
 Allow: /
 
-User-agent: D
+
 
 User-agent: Pinterestbot
 Allow: /
