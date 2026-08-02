@@ -1,0 +1,147 @@
+name: Cloudflare Turnstile Server-Side Gate
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-turnstile-api:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create serverless Turnstile verifier
+        run: |
+          cat << 'EOF' > api/verify.js
+          export default async function handler(req, res) {
+            if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+            
+            const { token } = req.body;
+            if (!token) return res.status(400).json({ error: 'Token missing' });
+            
+            const result = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${token}`
+            });
+            
+            const data = await result.json();
+            
+            if (!data.success) {
+              return res.status(403).json({ 
+                verified: false, 
+                error: 'Bot detected or verification failed' 
+              });
+            }
+            
+            return res.status(200).json({ 
+              verified: true, 
+              timestamp: data.challenge_ts 
+            });
+          }
+          EOF
+
+      - name: Inject Turnstile with server verification
+        run: |
+          cat << 'SCRIPT' > inject-strong.js
+          const fs = require('fs');
+
+          const SITE_KEY = process.env.TURNSTILE_SITE_KEY || 'YOUR_KEY';
+          
+          const STRONG_TURNSTILE = `
+          <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+          <script>
+          async function verifyWithServer(token) {
+            try {
+              const res = await fetch('/api/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token })
+              });
+              const data = await res.json();
+              
+              if (data.verified) {
+                sessionStorage.setItem('turnstile_verified', 'true');
+                sessionStorage.setItem('turnstile_time', Date.now());
+                unlockPage();
+              } else {
+                alert('Verification failed. Please try again.');
+                turnstile.reset();
+              }
+            } catch (e) {
+              console.error('Server verification failed:', e);
+            }
+          }
+
+          function unlockPage() {
+            document.querySelectorAll('.protected-content').forEach(el => {
+              el.style.display = 'block';
+            });
+            document.querySelectorAll('.verification-wall').forEach(el => {
+              el.style.display = 'none';
+            });
+          }
+
+          // Check if already verified in this session
+          document.addEventListener('DOMContentLoaded', () => {
+            const verified = sessionStorage.getItem('turnstile_verified');
+            const time = sessionStorage.getItem('turnstile_time');
+            const oneHour = 60 * 60 * 1000;
+            
+            if (verified === 'true' && (Date.now() - time) < oneHour) {
+              unlockPage();
+            }
+          });
+          </script>
+
+          <div class="verification-wall" style="display:flex;justify-content:center;align-items:center;min-height:60vh;background:#f5f5f5;">
+            <div style="text-align:center;padding:40px;background:white;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.1);max-width:400px;">
+              <h2 style="margin-bottom:8px;">🔒 Verify You're Human</h2>
+              <p style="color:#666;margin-bottom:20px;">Complete verification to access the store</p>
+              <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-callback="verifyWithServer"></div>
+            </div>
+          </div>`;
+
+          function processFile(filePath) {
+            let html = fs.readFileSync(filePath, 'utf8');
+            
+            if (!html.includes('challenges.cloudflare.com/turnstile')) {
+              html = html.replace('</head>', `${STRONG_TURNSTILE}\n</head>`);
+              html = html.replace(/<body[^>]*>/, `$&\n<div class="protected-content" style="display:none;">`);
+              html = html.replace('</body>', '</div>\n</body>');
+              fs.writeFileSync(filePath, html);
+              console.log('✅ Strong verification injected:', filePath);
+            }
+          }
+
+          function walk(dir) {
+            fs.readdirSync(dir).forEach(f => {
+              const full = dir + '/' + f;
+              if (fs.statSync(full).isDirectory()) {
+                if (!['node_modules','.git','media','data'].includes(f)) walk(full);
+              } else if (f.endsWith('.html')) {
+                processFile(full);
+              }
+            });
+          }
+
+          walk('.');
+          SCRIPT
+
+          node inject-strong.js
+        env:
+          TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "🔒 Strong Turnstile: server-side verification gate"
+          git push
