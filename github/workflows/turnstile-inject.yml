@@ -1,4 +1,4 @@
-name: Turnstile + GitHub Pages Deploy
+name: Turnstile Injection + GitHub Pages
 
 on:
   push:
@@ -14,106 +14,76 @@ jobs:
   inject-turnstile:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Inject Turnstile into all HTML files
+      - name: Inject Turnstile
         run: |
-          cat << 'SCRIPT' > inject.js
+          cat > inject.js << 'SCRIPT'
           const fs = require('fs');
           const path = require('path');
-          const SITE_KEY = process.env.TURNSTILE_SITE_KEY || 'YOUR_SITE_KEY_HERE';
-
-          const TURNSTILE_CODE = `
+          const SITE_KEY = process.env.TURNSTILE_SITE_KEY || '';
+          const TURNSTILE_BLOCK = `
           <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
           <script>
           const GOOD_BOTS = ['googlebot','bingbot','duckduckbot','slurp','baiduspider','yandexbot','facebot','twitterbot','applebot','pinterest','linkedinbot','discordbot','slackbot','whatsapp','telegrambot','redditbot'];
-          function isGoodBot() {
-            const ua = navigator.userAgent.toLowerCase();
-            return GOOD_BOTS.some(bot => ua.includes(bot));
-          }
-          function isVerified() {
-            return sessionStorage.getItem('turnstile_verified') === 'true' &&
-                   (Date.now() - parseInt(sessionStorage.getItem('turnstile_time') || '0')) < 3600000;
-          }
-          async function verifyToken(token) {
-            sessionStorage.setItem('turnstile_verified', 'true');
-            sessionStorage.setItem('turnstile_time', Date.now().toString());
-            showContent();
-          }
-          function showContent() {
-            document.querySelectorAll('.protected-content').forEach(el => el.style.display = 'block');
-            document.querySelectorAll('.verification-wall').forEach(el => el.style.display = 'none');
-          }
-          document.addEventListener('DOMContentLoaded', () => {
-            if (isGoodBot() || isVerified()) showContent();
-          });
+          function isGoodBot(){const ua=navigator.userAgent.toLowerCase();return GOOD_BOTS.some(b=>ua.includes(b));}
+          function isVerified(){return sessionStorage.getItem('tv')==='1'&&(Date.now()-parseInt(sessionStorage.getItem('tt')||'0'))<3600000;}
+          function showContent(){document.querySelectorAll('.protected-content').forEach(e=>e.style.display='block');document.querySelectorAll('.verification-wall').forEach(e=>e.style.display='none');}
+          function verifyToken(t){sessionStorage.setItem('tv','1');sessionStorage.setItem('tt',Date.now().toString());showContent();}
+          document.addEventListener('DOMContentLoaded',()=>{if(isGoodBot()||isVerified())showContent();});
           </script>
-
-          <div class="verification-wall" style="display:flex;justify-content:center;align-items:center;min-height:60vh;background:#f5f5f5;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;">
-            <div style="text-align:center;padding:40px;background:white;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.1);max-width:400px;">
-              <h2 style="margin-bottom:8px;font-family:sans-serif;">🔒 One Quick Check</h2>
-              <p style="color:#666;margin-bottom:20px;font-family:sans-serif;">Just making sure you're not a bot</p>
-              <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-callback="verifyToken"></div>
-            </div>
-          </div>`;
-
-          function processFile(filePath) {
-            let html = fs.readFileSync(filePath, 'utf8');
-            if (!html.includes('challenges.cloudflare.com/turnstile')) {
-              html = html.replace('</head>', `${TURNSTILE_CODE}\n</head>`);
-              html = html.replace(/<body[^>]*>/, `$&\n<div class="protected-content" style="display:none;">`);
-              html = html.replace('</body>', '</div>\n</body>');
-              fs.writeFileSync(filePath, html);
-              console.log('✅ Injected:', filePath);
+          <div class="verification-wall" style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:#f5f5f5;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;">
+          <div style="text-align:center;padding:40px;background:#fff;border-radius:12px;max-width:400px;">
+          <h2>🔒 One Quick Check</h2>
+          <p style="color:#666;">Just making sure you're not a bot</p>
+          <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-callback="verifyToken"></div>
+          </div></div>`;
+          function processFile(f){
+            let html=fs.readFileSync(f,'utf8');
+            if(!html.includes('challenges.cloudflare.com/turnstile')){
+              html=html.replace('</head>',TURNSTILE_BLOCK+'\n</head>');
+              html=html.replace(/<body[^>]*>/,'$&\n<div class="protected-content" style="display:none;">');
+              html=html.replace('</body>','</div>\n</body>');
+              fs.writeFileSync(f,html);
+              console.log('INJECTED:',f);
             } else {
-              console.log('⏭️ Already injected:', filePath);
+              console.log('SKIPPED:',f);
             }
           }
-
-          function walk(dir) {
-            fs.readdirSync(dir).forEach(f => {
-              const full = path.join(dir, f);
-              if (fs.statSync(full).isDirectory()) {
-                if (!['node_modules','.git','media','data'].includes(f)) walk(full);
-              } else if (f.endsWith('.html')) {
-                processFile(full);
-              }
+          function walk(d){
+            fs.readdirSync(d).forEach(f=>{
+              const full=path.join(d,f);
+              if(fs.statSync(full).isDirectory()){
+                if(!['node_modules','.git','media','data'].includes(f)) walk(full);
+              } else if(f.endsWith('.html')) processFile(full);
             });
           }
-
           walk('.');
           SCRIPT
           node inject.js
         env:
           TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
 
-      - name: Commit injected files
+      - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add *.html **/*.html 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "🔒 Turnstile injected into HTML"
+          git diff --staged --quiet || git commit -m "Turnstile injected"
           git push
 
-  deploy-pages:
+  deploy:
     needs: inject-turnstile
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
