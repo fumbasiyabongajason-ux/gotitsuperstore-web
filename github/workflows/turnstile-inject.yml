@@ -1,4 +1,4 @@
-name: Cloudflare Turnstile Server-Side Gate
+name: Turnstile + GitHub Pages Deploy
 
 on:
   push:
@@ -7,122 +7,73 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  deploy-turnstile-api:
+  inject-turnstile:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create serverless Turnstile verifier
+      - name: Inject Turnstile into all HTML files
         run: |
-          cat << 'EOF' > api/verify.js
-          export default async function handler(req, res) {
-            if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-            
-            const { token } = req.body;
-            if (!token) return res.status(400).json({ error: 'Token missing' });
-            
-            const result = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${token}`
-            });
-            
-            const data = await result.json();
-            
-            if (!data.success) {
-              return res.status(403).json({ 
-                verified: false, 
-                error: 'Bot detected or verification failed' 
-              });
-            }
-            
-            return res.status(200).json({ 
-              verified: true, 
-              timestamp: data.challenge_ts 
-            });
-          }
-          EOF
-
-      - name: Inject Turnstile with server verification
-        run: |
-          cat << 'SCRIPT' > inject-strong.js
+          cat << 'SCRIPT' > inject.js
           const fs = require('fs');
+          const path = require('path');
+          const SITE_KEY = process.env.TURNSTILE_SITE_KEY || 'YOUR_SITE_KEY_HERE';
 
-          const SITE_KEY = process.env.TURNSTILE_SITE_KEY || 'YOUR_KEY';
-          
-          const STRONG_TURNSTILE = `
+          const TURNSTILE_CODE = `
           <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
           <script>
-          async function verifyWithServer(token) {
-            try {
-              const res = await fetch('/api/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token })
-              });
-              const data = await res.json();
-              
-              if (data.verified) {
-                sessionStorage.setItem('turnstile_verified', 'true');
-                sessionStorage.setItem('turnstile_time', Date.now());
-                unlockPage();
-              } else {
-                alert('Verification failed. Please try again.');
-                turnstile.reset();
-              }
-            } catch (e) {
-              console.error('Server verification failed:', e);
-            }
+          const GOOD_BOTS = ['googlebot','bingbot','duckduckbot','slurp','baiduspider','yandexbot','facebot','twitterbot','applebot','pinterest','linkedinbot','discordbot','slackbot','whatsapp','telegrambot','redditbot'];
+          function isGoodBot() {
+            const ua = navigator.userAgent.toLowerCase();
+            return GOOD_BOTS.some(bot => ua.includes(bot));
           }
-
-          function unlockPage() {
-            document.querySelectorAll('.protected-content').forEach(el => {
-              el.style.display = 'block';
-            });
-            document.querySelectorAll('.verification-wall').forEach(el => {
-              el.style.display = 'none';
-            });
+          function isVerified() {
+            return sessionStorage.getItem('turnstile_verified') === 'true' &&
+                   (Date.now() - parseInt(sessionStorage.getItem('turnstile_time') || '0')) < 3600000;
           }
-
-          // Check if already verified in this session
+          async function verifyToken(token) {
+            sessionStorage.setItem('turnstile_verified', 'true');
+            sessionStorage.setItem('turnstile_time', Date.now().toString());
+            showContent();
+          }
+          function showContent() {
+            document.querySelectorAll('.protected-content').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.verification-wall').forEach(el => el.style.display = 'none');
+          }
           document.addEventListener('DOMContentLoaded', () => {
-            const verified = sessionStorage.getItem('turnstile_verified');
-            const time = sessionStorage.getItem('turnstile_time');
-            const oneHour = 60 * 60 * 1000;
-            
-            if (verified === 'true' && (Date.now() - time) < oneHour) {
-              unlockPage();
-            }
+            if (isGoodBot() || isVerified()) showContent();
           });
           </script>
 
-          <div class="verification-wall" style="display:flex;justify-content:center;align-items:center;min-height:60vh;background:#f5f5f5;">
+          <div class="verification-wall" style="display:flex;justify-content:center;align-items:center;min-height:60vh;background:#f5f5f5;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;">
             <div style="text-align:center;padding:40px;background:white;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.1);max-width:400px;">
-              <h2 style="margin-bottom:8px;">🔒 Verify You're Human</h2>
-              <p style="color:#666;margin-bottom:20px;">Complete verification to access the store</p>
-              <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-callback="verifyWithServer"></div>
+              <h2 style="margin-bottom:8px;font-family:sans-serif;">🔒 One Quick Check</h2>
+              <p style="color:#666;margin-bottom:20px;font-family:sans-serif;">Just making sure you're not a bot</p>
+              <div class="cf-turnstile" data-sitekey="${SITE_KEY}" data-callback="verifyToken"></div>
             </div>
           </div>`;
 
           function processFile(filePath) {
             let html = fs.readFileSync(filePath, 'utf8');
-            
             if (!html.includes('challenges.cloudflare.com/turnstile')) {
-              html = html.replace('</head>', `${STRONG_TURNSTILE}\n</head>`);
+              html = html.replace('</head>', `${TURNSTILE_CODE}\n</head>`);
               html = html.replace(/<body[^>]*>/, `$&\n<div class="protected-content" style="display:none;">`);
               html = html.replace('</body>', '</div>\n</body>');
               fs.writeFileSync(filePath, html);
-              console.log('✅ Strong verification injected:', filePath);
+              console.log('✅ Injected:', filePath);
+            } else {
+              console.log('⏭️ Already injected:', filePath);
             }
           }
 
           function walk(dir) {
             fs.readdirSync(dir).forEach(f => {
-              const full = dir + '/' + f;
+              const full = path.join(dir, f);
               if (fs.statSync(full).isDirectory()) {
                 if (!['node_modules','.git','media','data'].includes(f)) walk(full);
               } else if (f.endsWith('.html')) {
@@ -133,15 +84,36 @@ jobs:
 
           walk('.');
           SCRIPT
-
-          node inject-strong.js
+          node inject.js
         env:
           TURNSTILE_SITE_KEY: ${{ secrets.TURNSTILE_SITE_KEY }}
 
-      - name: Commit
+      - name: Commit injected files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git diff --staged --quiet || git commit -m "🔒 Strong Turnstile: server-side verification gate"
+          git add *.html **/*.html 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "🔒 Turnstile injected into HTML"
           git push
+
+  deploy-pages:
+    needs: inject-turnstile
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
